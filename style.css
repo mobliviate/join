@@ -5,33 +5,34 @@
     scroll-behavior: smooth;
 }
 
-/* open-sans-regular - latin */
+/* inter-regular - latin */
 @font-face {
     font-display: swap;
     /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Open Sans';
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    src: url('../assets/fonts/open-sans-v40-latin-regular.woff2') format('woff2');
+    src: url('../assets/fonts/inter-v18-latin-regular.woff2') format('woff2');
     /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
-/* open-sans-700 - latin */
+/* inter-700 - latin */
 @font-face {
     font-display: swap;
     /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-    font-family: 'Open Sans';
+    font-family: 'Inter';
     font-style: normal;
     font-weight: 700;
-    src: url('../assets/fonts/open-sans-v40-latin-700.woff2') format('woff2');
+    src: url('../assets/fonts/inter-v18-latin-700.woff2') format('woff2');
     /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 :root {
-    --primary-color: #4589FF;
+    --primary-color: #2A3647;
+    --secondary-color: #29ABE2;
     --white: #FFFFFF;
     --dark-gray: #647188;
-    --placeholder: #D1D1D1;
+    --style: #D1D1D1;
     --icons: #A8A8A8;
 
 }
@@ -41,6 +42,6 @@ a {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     height: 100vh;
 }

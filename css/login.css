@@ -1,37 +1,45 @@
-.main {
+/* .main {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
     background-color: var(--primary-color);
-}
+} */
 
-.log_in {
+.main-login {
     height: 100vh;
     max-width: 1440px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    background-color: var(--white);
+    /* background-color: var(--white); */
     position: relative;
 }
 
-header {
+.logo-cnt {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 80px;
+    left: 80px;
+
+    & img {
+        width: 100px;
+    }
+}
+
+header {
     width: 100%;
     display: flex;
     justify-content: right;
     align-items: center;
-    padding: 68px 86px;
+    padding: 68px 122px;
 
     & p {
         padding-right: 36px;
-        font-size: 24px;
+        font-size: 21px;
     }
 }
 
@@ -45,21 +53,22 @@ button {
     color: var(--white);
     padding: 10px 16px;
     border-radius: 8px;
-    /* cursor: pointer; */
-    font-size: 24px;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 .btn-primary {
     padding: 10px 35px;
+    font-size: 21px;
+    border: 1px solid var(--primary-color);
 }
 
 .btn-secondary {
     background-color: transparent;
-    color: var(--dark-gray);
+    font-size: 21px;
+    color: var(--primary-color);
     padding: 10px 35px;
-    border: 1px solid var(--dark-gray);
-    border-radius: 8px;
-    font-size: 24px;
+    border: 1px solid var(--primary-color);
 }
 
 
@@ -83,13 +92,13 @@ button {
 
 .login-hdl-cnt {
     width: fit-content;
-    border-bottom: 3px solid var(--primary-color);
+    border-bottom: 3px solid var(--secondary-color);
 
 }
 
 .login-hdl {
-    font-size: 48px;
-    font-weight: 700;
+    font-size: 62px;
+    /* font-weight: 700; */
     padding-bottom: 16px;
     text-align: center;
 }
@@ -107,7 +116,7 @@ button {
     justify-content: space-between;
     align-items: center;
     padding: 12px 21px;
-    border-bottom: 1px solid var(--placeholder);
+    border-bottom: 1px solid var(--style);
 }
 
 .login-input {
@@ -117,7 +126,7 @@ button {
 }
 
 .login-input::placeholder {
-    color: var(--placeholder);
+    color: var(--style);
     font-size: 19px;
 }
 
@@ -135,4 +144,17 @@ button {
 
 .input-icon {
     color: var(--icons);
+}
+
+.footer-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 48px 0px;
+
+    & a {
+        color: var(--icons);
+        font-size: 16px;
+    }
 }
