@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+    <main class="log_in">
+
+        <header>
+            <p>
+                Not a Join user?
+            </p>
+            <a class="btn" href="sign_up_site.html">Sign up</a>
+        </header>
+
+        <div class="login">
+            <div class="login-cnt">
+                <div class="login-hdl-cnt">
+                    <h1 class="login-hdl">Log in</h1>
+                </div>
+                <form action="index.html" method="post" class="log-in-form">
+                    <!-- <label for="email">Email</label> -->
+                    <div class="input-cnt">
+                        <input class="login-input" type="email" id="email" name="email" required placeholder="Email">
+                        <svg class="input-icon">
+                            <use href="assets/svg/sprite.svg#mail_icon"></use>
+                        </svg>
+                    </div>
+                    <!-- <label for="password">Password</label> -->
+                    <div class="input-cnt">
+                        <input class="login-input" type="password" id="password" name="password" required
+                            placeholder="Password">
+                        <svg class="input-icon" width="24" height="24">
+                            <use href="assets/svg/sprite.svg#password_icon_test"></use>
+                        </svg>
+                    </div>
+
+                </form>
+                <div class="form-btn-cnt">
+                    <button type="submit" class="btn btn-primary">Log in</button>
+                    <button type="button" class="btn-secondary">Guest log in</button>
+                </div>
+            </div>
+        </div>
+        <footer></footer>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,177 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
+}
+
+/* open-sans-regular - latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/open-sans-v40-latin-regular.woff2') format('woff2');
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* open-sans-700 - latin */
+@font-face {
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../assets/fonts/open-sans-v40-latin-700.woff2') format('woff2');
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+:root {
+    --primary-color: #4589FF;
+    --placeholder: #D1D1D1;
+    --icons: #A8A8A8;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    height: 100vh;
+}
+
+.main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+}
+
+.log_in {
+    height: 100vh;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    position: relative;
+}
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding: 68px 86px;
+
+    & p {
+        padding-right: 36px;
+        font-size: 24px;
+    }
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+.btn {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 10px 16px;
+    border-radius: 8px;
+    /* cursor: pointer; */
+    font-size: 24px;
+}
+
+.btn-primary {
+    padding: 10px 35px;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--dark-gray-color);
+    padding: 10px 35px;
+    border: 1px solid var(--dark-gray-color);
+    border-radius: 8px;
+    font-size: 24px;
+}
+
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 30px;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+}
+
+.login-cnt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 39px;
+    padding: 48px 115px;
+}
+
+.login-hdl-cnt {
+    width: fit-content;
+    border-bottom: 3px solid var(--primary-color);
+
+}
+
+.login-hdl {
+    font-size: 48px;
+    font-weight: 700;
+    padding-bottom: 16px;
+    text-align: center;
+}
+
+.log-in-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 32px;
+}
+
+.input-cnt {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 21px;
+    border-bottom: 1px solid var(--placeholder);
+}
+
+.login-input {
+    width: 100%;
+    border: none;
+    font-size: 19px;
+
+}
+
+.btn-cnt {
+    align-self: stretch;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 35px;
+    display: inline-flex;
+}
+
+/* .input-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--icons);
+} */
