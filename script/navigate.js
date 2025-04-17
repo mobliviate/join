@@ -1,5 +1,5 @@
 function highlightActiveSidebarLink() {
-  const currentPath = window.location.pathname; // z.B. "/board.html"
+  const currentPath = window.location.pathname;
   const currentPage = currentPath.substring(currentPath.lastIndexOf("/") + 1);
   const sidebarLinks = document.querySelectorAll(".sidebar-link");
 
