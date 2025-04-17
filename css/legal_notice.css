@@ -1,0 +1,62 @@
+.legal_notice {
+  padding: 40px 96px;
+  overflow-y: auto;
+  height: 740px;
+  background-color: var(--white);
+  flex: 1;
+}
+
+h1 {
+  color: var(--primary-color);
+  font-weight: bold;
+  padding-bottom: 16px;
+  font-size: 52px;
+}
+
+h2,
+h3 {
+  color: var(--dark-gray);
+  font-weight: bold;
+  padding-top: 16px;
+}
+
+p {
+  color: var(--black);
+}
+
+.blue {
+  color: var(--light-blue);
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--white);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--light-blue);
+  border-radius: 10px;
+  border: 2px solid var(--white);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-color);
+}
+
+/*Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--light-blue) var(--white);
+}
