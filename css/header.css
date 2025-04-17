@@ -1,0 +1,33 @@
+.header {
+  height: 96px;
+  width: 100%;
+  background-color: var(--white);
+  box-shadow: 0 8px 8px -4px rgba(0, 0, 0, 0.1);
+  font-family: "Inter", sans-serif;
+}
+
+.header-content {
+  height: 96px;
+  width: 100%;
+  padding: 0 30px 0 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 20px;
+  color: var(--black);
+}
+
+.header-user {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--light-blue);
+  border: 2px solid var(--black);
+}

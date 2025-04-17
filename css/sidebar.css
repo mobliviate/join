@@ -1,0 +1,67 @@
+.sidebar {
+    width: 232px;
+    height: 100vh;
+    background-color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: "Inter", sans-serif;
+  }
+  
+  .sidebar-logo {
+    display: flex;
+    justify-content: center;
+    margin: 32px 0;
+  }
+  
+  .sidebar-nav {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 40px;
+    text-decoration: none;
+    color: var(--white);
+    font-size: 16px;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .sidebar-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+  }
+  
+  .sidebar-link.active {
+    background-color: var(--active); /* z.B. #091931 oder deine Wunschfarbe */
+    color: var(--white);
+  }
+  
+  .sidebar-link svg {
+    fill: var(--white);
+    width: 24px;
+    height: 24px;
+  }
+  
+  .sidebar-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 32px 40px;
+    font-size: 14px;
+    color: var(--icons);
+  }
+  
+  .sidebar-footer a {
+    color: var(--icons);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .sidebar-footer a:hover {
+    color: var(--white);
+  }
+  

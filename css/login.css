@@ -9,152 +9,150 @@
 } */
 
 .main-login {
-    height: 100vh;
-    max-width: 1440px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    /* background-color: var(--white); */
-    position: relative;
+  height: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: var(--white); */
+  position: relative;
 }
 
 .logo-cnt {
-    position: absolute;
-    top: 80px;
-    left: 80px;
+  position: absolute;
+  top: 80px;
+  left: 80px;
 
-    & img {
-        width: 100px;
-    }
+  & img {
+    width: 100px;
+  }
 }
 
 header {
-    width: 100%;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    padding: 68px 122px;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 68px 122px;
 
-    & p {
-        padding-right: 36px;
-        font-size: 21px;
-    }
+  & p {
+    padding-right: 36px;
+    font-size: 21px;
+  }
 }
 
 button {
-    border: none;
-    cursor: pointer;
+  border: none;
+  cursor: pointer;
 }
 
 .btn {
-    background-color: var(--primary-color);
-    color: var(--white);
-    padding: 10px 16px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 700;
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .btn-primary {
-    padding: 10px 35px;
-    font-size: 21px;
-    border: 1px solid var(--primary-color);
+  padding: 10px 35px;
+  font-size: 21px;
+  border: 1px solid var(--primary-color);
 }
 
 .btn-secondary {
-    background-color: transparent;
-    font-size: 21px;
-    color: var(--primary-color);
-    padding: 10px 35px;
-    border: 1px solid var(--primary-color);
+  background-color: transparent;
+  font-size: 21px;
+  color: var(--primary-color);
+  padding: 10px 35px;
+  border: 1px solid var(--primary-color);
 }
 
-
 .login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    border-radius: 30px;
-    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 30px;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
 }
 
 .login-cnt {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    gap: 39px;
-    padding: 48px 115px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 39px;
+  padding: 48px 115px;
 }
 
 .login-hdl-cnt {
-    width: fit-content;
-    border-bottom: 3px solid var(--secondary-color);
-
+  width: fit-content;
+  border-bottom: 3px solid var(--secondary-color);
 }
 
 .login-hdl {
-    font-size: 62px;
-    /* font-weight: 700; */
-    padding-bottom: 16px;
-    text-align: center;
+  font-size: 62px;
+  /* font-weight: 700; */
+  padding-bottom: 16px;
+  text-align: center;
 }
 
 .log-in-form {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    gap: 32px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 32px;
 }
 
 .input-cnt {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 21px;
-    border-bottom: 1px solid var(--style);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 21px;
+  border-bottom: 1px solid var(--style);
 }
 
 .login-input {
-    width: 100%;
-    border: none;
-    font-size: 19px;
+  width: 100%;
+  border: none;
+  font-size: 19px;
 }
 
 .login-input::placeholder {
-    color: var(--style);
-    font-size: 19px;
+  color: var(--style);
+  font-size: 19px;
 }
 
 .login-input:focus {
-    outline: none;
+  outline: none;
 }
 
 .form-btn-cnt {
-    align-self: stretch;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 35px;
-    display: inline-flex;
+  align-self: stretch;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 35px;
+  display: inline-flex;
 }
 
 .input-icon {
-    color: var(--icons);
+  color: var(--icons);
 }
 
 .footer-login {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    padding: 48px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 48px 0px;
 
-    & a {
-        color: var(--icons);
-        font-size: 16px;
-    }
+  & a {
+    color: var(--icons);
+    font-size: 16px;
+  }
 }
