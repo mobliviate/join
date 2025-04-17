@@ -1,0 +1,32 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.privacy_policy {
+  padding: 66px 96px;
+  overflow-y: auto;
+  height: 600px;
+  background-color: var(--white);
+  flex: 1;
+}
+
+h1 {
+  color: var(--primary-color);
+  font-weight: bold;
+  padding-bottom: 16px;
+  font-size: 52px;
+}
+
+h2,
+h3 {
+  color: var(--primary-color);
+  font-weight: bold;
+  padding-bottom: 16px;
+  padding-top: 16px;
+}
+
+p {
+  color: #000100;
+}
