@@ -53,8 +53,16 @@ button {
   color: var(--white);
   padding: 10px 16px;
   border-radius: 8px;
+  border: 1px solid var(--primary-color);
   font-size: 16px;
   font-weight: 700;
+
+  &:hover {
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  }
 }
 
 .btn-primary {
@@ -69,6 +77,13 @@ button {
   color: var(--primary-color);
   padding: 10px 35px;
   border: 1px solid var(--primary-color);
+
+  &:hover {
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+    background-color: transparent;
+
+  }
 }
 
 .login {
@@ -113,13 +128,15 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 21px;
-  border-bottom: 1px solid var(--style);
+  position: relative;
 }
 
 .login-input {
-  width: 100%;
-  border: none;
+  width: 442px;
+  padding: 12px 21px;
+  font-size: 20px;
+  border: 1px solid var(--style);
+  border-radius: 10px;
   font-size: 19px;
 }
 
@@ -129,18 +146,23 @@ button {
 }
 
 .login-input:focus {
-  outline: none;
+  outline: 1px solid var(--primary-color);
 }
 
 .form-btn-cnt {
-  align-self: stretch;
+  display: flex;
+  /* align-self: stretch; */
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 35px;
-  display: inline-flex;
+  /* display: inline-flex; */
 }
 
 .input-icon {
+  position: absolute;
+  top: 50%;
+  right: 21px;
+  transform: translateY(-50%);
   color: var(--icons);
 }
 
@@ -154,5 +176,38 @@ button {
   & a {
     color: var(--icons);
     font-size: 16px;
+  }
+}
+
+
+@media (max-width: 430px) {
+  .main-login {
+    padding: 0 16px;
+  }
+
+  .login-cnt {
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 39px; */
+    padding: 32px 16px;
+  }
+
+  .form-btn-cnt {
+
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    width: -webkit-fill-available;
+  }
+
+  /* .login-cnt {
+    padding: 48px 20px;
+  } */
+
+  .login-input {
+    width: 100%;
   }
 }
