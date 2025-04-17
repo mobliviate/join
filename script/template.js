@@ -18,7 +18,7 @@ function getBodyTemplate() {
         </div>
         <div class="right">
           <header class="header" id="header"></header>
-          <main class="main" id="main">Main</main>
+          <main class="main" id="main"></main>
         </div>
       </div>
     `;
