@@ -1,6 +1,6 @@
 function init() {
-    contentRef = document.getElementById("body");    
-    contentRef.innerHTML = getBodyTemplate();
-    loadHeader();
-    highlightActiveSidebarLink();
+  contentRef = document.getElementById("body");
+  contentRef.innerHTML = getBodyTemplate();
+  loadHeader();
+  highlightActiveSidebarLink();
 }

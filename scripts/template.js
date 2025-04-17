@@ -20,8 +20,8 @@ function getBodyTemplate() {
           </a>
         </nav>
         <div class="sidebar-footer">
-          <a href="#">Privacy Policy</a>
-          <a href="legal_notice.html">Legal notice</a>
+          <a href="privacy_policy.html">Privacy Policy</a>
+          <a href="legal_notice.html">Legal Notice</a>
         </div>
       </div>
       <div class="right">
