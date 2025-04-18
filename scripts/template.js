@@ -20,9 +20,10 @@ function getBodyTemplate() {
           </a>
         </nav>
         <div class="sidebar-footer">
-          <a href="privacy_policy.html">Privacy Policy</a>
-          <a href="legal_notice.html">Legal Notice</a>
+          <a href="privacy_policy.html" class="sidebar-link" data-page="privacy_policy.html">Privacy Policy</a>
+          <a href="legal_notice.html" class="sidebar-link" data-page="legal_notice.html">Legal Notice</a>
         </div>
+
       </div>
       <div class="right">
         <header class="header" id="header"></header>
@@ -104,4 +105,16 @@ function getHelpContent() {
       </div>
     </div>
   `;
+}
+
+function createStepHTML(step, index) {
+  return `
+      <div class="steps_use_join">
+        <span class="subheading_help">${index + 1}.</span>
+        <div class="step_use_join">
+          <span class="subheading2_help">${step.title}</span>
+          <span>${step.text}</span>
+        </div>
+      </div>
+    `;
 }

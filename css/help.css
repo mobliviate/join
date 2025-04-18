@@ -58,5 +58,5 @@
 }
 
 .blue {
-    color:#29ABE2;
+    color: var(--light-blue);
 }

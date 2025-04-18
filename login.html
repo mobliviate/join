@@ -1,62 +1,72 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="/css/login.css">
-</head>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="/css/login.css" />
+  </head>
 
-<body>
-
+  <body>
     <main class="main-login">
-        <div class="animation">
-        </div>
-        <div class="logo-cnt">
-            <img src="assets/png/join_logo.png" alt="Join Logo" class="logo">
-        </div>
+      <div class="animation"></div>
+      <div class="logo-cnt">
+        <img src="assets/png/join_logo.png" alt="Join Logo" class="logo" />
+      </div>
 
-        <header>
-            <span>
-                Not a Join user?
-            </span>
-            <a class="btn" href="signup.html">Sign up</a>
-        </header>
+      <header>
+        <span> Not a Join user? </span>
+        <a class="btn" href="signup.html">Sign up</a>
+      </header>
 
-        <div class="login">
-            <div class="login-cnt">
-                <h1 class="login-hdl">Log in</h1>
-                <form action="index.html" method="post" class="log-in-form">
-                    <div class="input-cnt">
-                        <input class="login-input" type="email" id="email" name="email" required placeholder="Email">
-                        <svg class="input-icon" width="24" height="24">
-                            <use href="assets/svg/sprite.svg#mail_icon"></use>
-                        </svg>
-                    </div>
-                    <div class="input-cnt">
-                        <input class="login-input" type="password" id="password" name="password" required
-                            placeholder="Password">
-                        <svg class="input-icon" width="24" height="24">
-                            <use href="assets/svg/sprite.svg#password_icon"></use>
-                        </svg>
-                        <p class="input-warning d-none">Check your email and password. Please try again.</p>
-                    </div>
-
-                </form>
-                <div class="form-btn-cnt">
-                    <button type="submit" class="btn btn-primary">Log in</button>
-                    <button type="button" class="btn btn-secondary">Guest log in</button>
-                </div>
+      <div class="login">
+        <div class="login-cnt">
+          <h1 class="login-hdl">Log in</h1>
+          <form action="index.html" method="post" class="log-in-form">
+            <div class="input-cnt">
+              <input
+                class="login-input"
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="Email"
+              />
+              <svg class="input-icon" width="24" height="24">
+                <use href="assets/svg/sprite.svg#mail_icon"></use>
+              </svg>
             </div>
+            <div class="input-cnt">
+              <input
+                class="login-input"
+                type="password"
+                id="password"
+                name="password"
+                required
+                placeholder="Password"
+              />
+              <svg class="input-icon" width="24" height="24">
+                <use href="assets/svg/sprite.svg#password_icon"></use>
+              </svg>
+              <p class="input-warning d-none">
+                Check your email and password. Please try again.
+              </p>
+            </div>
+          </form>
+          <div class="form-btn-cnt">
+            <button type="submit" class="btn btn-primary">Log in</button>
+            <button type="button" class="btn btn-secondary">
+              Guest log in
+            </button>
+          </div>
         </div>
-        <footer class="footer-login">
-            <a href="privacy_policy.html">Privacy Policy</a>
-            <a href="legal_notice.html">Legal notice</a>
-        </footer>
+      </div>
+      <footer class="footer-login">
+        <a href="privacy_policy.html">Privacy Policy</a>
+        <a href="legal_notice.html">Legal notice</a>
+      </footer>
     </main>
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>

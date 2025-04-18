@@ -1,78 +1,123 @@
 <!DOCTYPE html>
 <html lang="de">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="/css/signup.css" />
-</head>
-
-<body>
+    <link rel="stylesheet" type="text/css" href="css/signup.css" />
+  </head>
+  <body>
     <main class="main-signup">
-        <div class="logo-cnt">
-            <img src="assets/png/join_logo.png" alt="Join Logo" class="logo" />
-        </div>
+      <div class="logo-cnt">
+        <img src="assets/png/join_logo.png" alt="Join Logo" class="logo" />
+      </div>
 
-        <div class="signup">
-            <button class="btn-back" onclick="window.location.href='login.html'">
-                <svg class="arrow-left" width="32" height="32">
-                    <use href="assets/svg/sprite.svg#arrow_left"></use>
-                </svg>
-            </button>
-            <div class="signup-cnt">
-                <h1 class="signup-hdl">Sign up</h1>
-                <form action="index.html" method="post" class="signin-form">
-                    <div class="input-cnt">
-                        <input class="signup-input" type="text" id="name" name="name" required placeholder="Name" />
-                        <svg class="input-icon" width="24" height="24">
-                            <use href="assets/svg/sprite.svg#person_icon"></use>
-                        </svg>
-                    </div>
-                    <div class="input-cnt">
-                        <input class="signup-input" type="" id="email" name="email" required placeholder="Email" />
-                        <svg class="input-icon" width="24" height="24">
-                            <use href="assets/svg/sprite.svg#mail_icon"></use>
-                        </svg>
-                    </div>
-                    <div class="input-cnt">
-                        <input class="signup-input" type="password" id="password" name="password" required
-                            placeholder="Password" />
-                        <svg class="input-icon" width="24" height="24">
-                            <use href="assets/svg/sprite.svg#password_icon"></use>
-                        </svg>
-                    </div>
-                    <div class="input-cnt">
-                        <input class="signup-input" type="password" id="password" name="password" required
-                            placeholder="Confirm Password" />
-                        <svg class="input-icon" width="24" height="24">
-                            <use href="assets/svg/sprite.svg#password_icon"></use>
-                        </svg>
-                        <p class="input-warning d-none">Check your email and password. Please try again.</p>
-                    </div>
-                    <div class="accept-cnt">
-                        <input type="checkbox" id="privacyCheckbox" name="privacyPolicy" required>
-                        <label for="privacyCheckbox">
-                            <svg class="check-box-svg" width="24" height="24">
-                                <use href="assets/svg/sprite.svg#check_box"></use>
-                            </svg>
-                            <span>
-                                I accept the <a href="privacy_policy.html">Privacy
-                                    Policy</a>
-                            </span>
-                        </label>
-                    </div>
-                </form>
-                <div class="form-btn-cnt">
-                    <button type="submit" class="btn btn-primary">Sign up</button>
-                </div>
+      <div class="signup">
+        <button class="btn-back" onclick="window.location.href='login.html'">
+          <svg class="arrow-left" width="32" height="32">
+            <use href="assets/svg/sprite.svg#arrow_left"></use>
+          </svg>
+        </button>
+
+        <div class="signup-cnt">
+          <h1 class="signup-hdl">Sign up</h1>
+          <form
+            action="index.html"
+            method="post"
+            class="signin-form"
+            id="signupForm"
+          >
+            <div class="input-cnt">
+              <input
+                class="signup-input"
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Name"
+              />
+              <svg class="input-icon" width="24" height="24">
+                <use href="assets/svg/sprite.svg#person_icon"></use>
+              </svg>
             </div>
+
+            <div class="input-cnt">
+              <input
+                class="signup-input"
+                type="email"
+                id="email"
+                name="email"
+                required
+                placeholder="Email"
+              />
+              <svg class="input-icon" width="24" height="24">
+                <use href="assets/svg/sprite.svg#mail_icon"></use>
+              </svg>
+            </div>
+
+            <div class="input-cnt">
+              <input
+                class="signup-input"
+                type="password"
+                id="password"
+                name="password"
+                required
+                placeholder="Password"
+              />
+              <svg class="input-icon" width="24" height="24">
+                <use href="assets/svg/sprite.svg#password_icon"></use>
+              </svg>
+            </div>
+
+            <div class="input-cnt">
+              <input
+                class="signup-input"
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                required
+                placeholder="Confirm Password"
+              />
+              <svg class="input-icon" width="24" height="24">
+                <use href="assets/svg/sprite.svg#password_icon"></use>
+              </svg>
+            </div>
+
+            <p class="input-warning d-none">
+              Passwords do not match. Please try again.
+            </p>
+
+            <div class="accept-cnt">
+              <input
+                type="checkbox"
+                id="privacyCheckbox"
+                name="privacyPolicy"
+                required
+              />
+              <label for="privacyCheckbox">
+                <svg class="check-box-svg" width="24" height="24">
+                  <use href="assets/svg/sprite.svg#check_box"></use>
+                </svg>
+                <span>
+                  I accept the <a href="privacy_policy.html">Privacy Policy</a>
+                </span>
+              </label>
+            </div>
+
+            <div class="form-btn-cnt">
+              <button type="submit" class="btn btn-primary">Sign up</button>
+            </div>
+          </form>
         </div>
-        <footer class="footer-login-signup">
-            <a href="privacy_policy.html">Privacy Policy</a>
-            <a href="legal_notice.html">Legal notice</a>
-        </footer>
+      </div>
+
+      <footer class="footer-login-signup">
+        <a href="privacy_policy.html">Privacy Policy</a>
+        <a href="legal_notice.html">Legal notice</a>
+      </footer>
     </main>
+
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

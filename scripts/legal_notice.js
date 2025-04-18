@@ -1,9 +1,7 @@
-/**
- * Initializes the Legal Notice page by injecting layout and legal content.
- */
 function initLegalNotice() {
   document.body.innerHTML = getBodyTemplate();
   loadHeader();
+  highlightActiveSidebarLink();
   document.getElementById("main").innerHTML = getLegalNoticeContent();
 }
 

@@ -14,17 +14,7 @@ function initHelp() {
  * @returns {string} A string of HTML representing one formatted step in the guide.
  */
 
-function createStepHTML(step, index) {
-  return `
-      <div class="steps_use_join">
-        <span class="subheading_help">${index + 1}.</span>
-        <div class="step_use_join">
-          <span class="subheading2_help">${step.title}</span>
-          <span>${step.text}</span>
-        </div>
-      </div>
-    `;
-}
+
 
 /**
  * Combines all steps into a single HTML string for the help guide.

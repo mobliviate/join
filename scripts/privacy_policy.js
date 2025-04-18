@@ -1,6 +1,7 @@
 function initPrivacyPolicy() {
   document.body.innerHTML = getBodyTemplate();
-  loadHeader(); // optional
+  loadHeader();
+  highlightActiveSidebarLink();
   document.getElementById("main").innerHTML = getPrivacyPolicyContent();
 }
 
