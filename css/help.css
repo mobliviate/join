@@ -1,0 +1,62 @@
+.help {
+    padding: 60px 96px;
+    overflow-y: auto;
+    height: 800px;
+}
+
+.display_none{
+    display: none;
+}
+
+.header_help {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 28px;
+    align-items: center;
+}
+
+.heading_help {
+    font-size: 61px;
+    font-weight: 700;
+}
+
+.text {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.subheading_help {
+    font-size: 27px;
+    font-weight: 700;
+}
+
+.steps_use_join {
+    display: flex;
+    gap: 35px;
+}
+
+.subheading2_help {
+ font-size: 20px;
+ font-weight: 700;   
+}
+
+.step_use_join {
+    display: flex;
+    flex-direction: column;
+}
+
+.help_text {
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+}
+
+.explanation_join {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+}
+
+.blue {
+    color:#29ABE2;
+}
