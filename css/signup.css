@@ -1,4 +1,4 @@
-.main-login {
+.main-signup {
   height: 100vh;
   max-width: 1440px;
   margin: 0 auto;
@@ -9,83 +9,16 @@
   position: relative;
 }
 
-.animation {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  background-color: var(--white);
-  animation: fadeOut 1s ease-in-out forwards;
-  animation-delay: 1s;
-  opacity: 1;
-}
-
 .logo-cnt {
-  z-index: 20;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: shrinkDiv 1s ease-in-out forwards;
-  animation-delay: .5s;
+  top: 80px;
+  left: 80px;
 
   & img {
-    width: 274px;
-    animation: shrinkImg 1s ease-in-out forwards;
-    animation-delay: .5s;
-  }
-}
-
-@keyframes fadeOut {
-  0% {
-    opacity: 1;
-    display: block;
-  }
-
-  100% {
-    opacity: 0;
-    display: none;
-  }
-}
-
-@keyframes shrinkImg {
-  from {
-    width: 274px;
-  }
-
-  to {
     width: 100px;
   }
 }
 
-@keyframes shrinkDiv {
-  from {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  to {
-    top: 80px;
-    left: 80px;
-    transform: none;
-  }
-}
-
-header {
-  width: 100%;
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  padding: 68px 122px;
-
-  & span {
-    padding-right: 36px;
-    font-size: 21px;
-  }
-}
 
 button {
   border: none;
@@ -131,40 +64,64 @@ button {
   }
 }
 
-.login {
+.signup {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   border-radius: 30px;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
-.login-cnt {
+.btn-back {
+  position: absolute;
+  top: 64px;
+  left: 48px;
+  background-color: transparent;
+
+  & .arrow-left {
+    color: var(--secondary-color);
+  }
+}
+
+
+
+.signup-cnt {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 39px;
-  padding: 48px 115px;
+  gap: 32px;
+  padding: 48px 88px;
 }
 
-.login-hdl-cnt {
-  width: fit-content;
-  border-bottom: 3px solid var(--secondary-color);
-}
-
-.login-hdl {
-  font-size: 62px;
-  padding-bottom: 16px;
-  text-align: center;
-}
-
-.log-in-form {
+.signup-hdl {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  font-size: 62px;
+  text-align: center;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 75%;
+    height: 3px;
+    background-color: var(--secondary-color);
+    margin-top: 16px;
+  }
+}
+
+.signin-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   width: 100%;
-  gap: 32px;
+  gap: 24px;
 }
 
 .input-cnt {
@@ -175,8 +132,8 @@ button {
   position: relative;
 }
 
-.login-input {
-  width: 442px;
+.signup-input {
+  width: 422px;
   padding: 12px 21px;
   font-size: 20px;
   border: 1px solid var(--style);
@@ -209,16 +166,53 @@ button {
   color: var(--warning-color);
 }
 
-.form-btn-cnt {
+.accept-cnt {
   display: flex;
-  /* align-self: stretch; */
-  justify-content: center;
   align-items: center;
-  gap: 35px;
-  /* display: inline-flex; */
+  padding-top: 15px;
+
+  & input[type="checkbox"] {
+    display: none;
+    /* Verstecke die ursprüngliche Checkbox */
+  }
+
+  & label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+  }
+
+  & .check-box-svg {
+    color: var(--primary-color);
+  }
+
+  & span {
+    font-size: 16px;
+    color: var(--icons);
+
+    & a {
+      color: var(--secondary-color);
+    }
+  }
 }
 
-.footer-login {
+/* Styling für das SVG beim Anhaken */
+/* .accept-cnt input[type="checkbox"]:checked+label svg { */
+/* fill: #2A3647; */
+/* Fülle das Quadrat beim Anhaken */
+/* } */
+
+/* Optional: Häkchen hinzufügen */
+/* .accept-cnt input[type="checkbox"]:checked+label::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  margin-left: 6px;
+  font-weight: bold;
+} */
+
+.footer-login-signup {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -233,11 +227,11 @@ button {
 
 
 @media (max-width: 430px) {
-  .main-login {
+  .main-signup {
     padding: 0 16px;
   }
 
-  .login-cnt {
+  .signup-cnt {
     padding: 32px 16px;
   }
 
@@ -250,7 +244,7 @@ button {
     width: -webkit-fill-available;
   }
 
-  .login-input {
+  .signup-input {
     width: 100%;
   }
 }

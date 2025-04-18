@@ -84,16 +84,6 @@
   }
 }
 
-/* .logo-cnt {
-  position: absolute;
-  top: 80px;
-  left: 80px;
-
-  & img {
-    width: 100px;
-  }
-} */
-
 header {
   width: 100%;
   display: flex;
@@ -167,16 +157,23 @@ button {
   padding: 48px 115px;
 }
 
-.login-hdl-cnt {
-  width: fit-content;
-  border-bottom: 3px solid var(--secondary-color);
-}
-
 .login-hdl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
   font-size: 62px;
-  /* font-weight: 700; */
-  padding-bottom: 16px;
   text-align: center;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 75%;
+    height: 3px;
+    background-color: var(--secondary-color);
+    margin-top: 16px;
+  }
 }
 
 .log-in-form {
@@ -240,7 +237,7 @@ button {
   /* display: inline-flex; */
 }
 
-.footer-login {
+.footer-login-signup {
   display: flex;
   justify-content: center;
   align-items: center;
