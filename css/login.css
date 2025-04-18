@@ -126,6 +126,16 @@ button {
   padding: 10px 35px;
   font-size: 21px;
   border: 1px solid var(--primary-color);
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:enabled {
+    opacity: 1;
+    cursor: pointer;
+  }
 }
 
 .btn-secondary {

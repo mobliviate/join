@@ -6,9 +6,10 @@
     <title>Join</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="/css/login.css" />
+    <script src="scripts/login_signup.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <main class="main-login">
         <div class="animation"></div>
         <div class="logo-cnt">
@@ -41,8 +42,8 @@
                         </p>
                     </div>
                     <div class="form-btn-cnt">
-                        <button type="submit" class="btn btn-primary">Log in</button>
-                        <button type="button" class="btn btn-secondary">
+                        <button type="submit" class="btn btn-primary" disabled>Log in</button>
+                        <button onclick="loadData()" type="button" class="btn btn-secondary">
                             Guest log in
                         </button>
                     </div>
@@ -54,6 +55,5 @@
             <a href="legal_notice.html">Legal notice</a>
         </footer>
     </main>
-    <script src="script.js"></script>
 </body>
 </html>

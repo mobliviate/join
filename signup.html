@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="/css/signup.css" />
 </head>
 
-<body>
+<body onload="init()">
     <main class="main-signup">
         <div class="logo-cnt">
             <img src="assets/png/join_logo.png" alt="Join Logo" class="logo" />
@@ -22,37 +22,41 @@
             </a>
             <div class="signup-cnt">
                 <h1 class="signup-hdl">Sign up</h1>
-                <form action="index.html" method="post" class="signin-form">
+                <form onsubmit="formValidation(event)" class="signin-form">
                     <div class="input-cnt">
-                        <input class="signup-input" type="text" id="name" name="name" required placeholder="Name" />
+                        <input class="signup-input" type="text" id="signup_name" name="name" autocomplete="on" required
+                            placeholder="Name" />
                         <svg class="input-icon" width="24" height="24">
                             <use href="assets/svg/sprite.svg#person_icon"></use>
                         </svg>
                     </div>
                     <div class="input-cnt">
-                        <input class="signup-input" type="" id="email" name="email" required placeholder="Email" />
+                        <input class="signup-input" type="email" id="signup_email" name="email" autocomplete="on"
+                            pattern="(?:[a-z0-9!#$%&'*+=?^_`\{\|\}~\-]+(?:\.[a-z0-9!#$%&'*+=?^_`\{\|\}~\-]+)*|\u0022(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\u0022)@(?:(?:[a-z0-9](?:[a-z0-9\-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9\-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9\-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"
+                            required placeholder="Email" />
                         <svg class="input-icon" width="24" height="24">
                             <use href="assets/svg/sprite.svg#mail_icon"></use>
                         </svg>
                     </div>
                     <div class="input-cnt">
-                        <input class="signup-input" type="password" id="password" name="password" required minlength="8"
-                            placeholder="Password" />
+                        <input class="signup-input" type="password" id="signup_password" name="password" required
+                            minlength="8" placeholder="Password" />
                         <svg class="input-icon" width="24" height="24">
                             <use href="assets/svg/sprite.svg#password_icon"></use>
                         </svg>
                     </div>
                     <div class="input-cnt">
-                        <input class="signup-input" type="password" id="password" name="password" required minlength="8"
-                            placeholder="Confirm Password" />
+                        <input class="signup-input" type="password" id="signup_confirm_password" name="password"
+                            required minlength="8" placeholder="Confirm Password" />
                         <svg class="input-icon" width="24" height="24">
                             <use href="assets/svg/sprite.svg#password_icon"></use>
                         </svg>
-                        <p class="input-warning d-none">Your passwords don't match. Please try again.</p>
+                        <p id="signup_warning" class="input-warning d-none">Your passwords don't match. Please try
+                            again.</p>
                     </div>
                     <div class="accept-cnt">
-                        <input type="checkbox" id="privacyCheckbox" name="privacyPolicy" required>
-                        <label for="privacyCheckbox">
+                        <input type="checkbox" id="signup_privacyCheckbox" name="privacyPolicy" required>
+                        <label for="signup_privacyCheckbox">
                             <img class="check-box-png" src="" alt="Check Box" />
                             <span>
                                 I accept the <a href="privacy_policy.html">Privacy
@@ -61,7 +65,7 @@
                         </label>
                     </div>
                     <div class="form-btn-cnt">
-                        <button type="submit" class="btn btn-primary" disabled>Sign up</button>
+                        <button type="submit" class="btn btn-primary">Sign up</button>
                     </div>
                 </form>
                 <!-- <div class="form-btn-cnt">
@@ -74,6 +78,6 @@
             <a href="legal_notice.html">Legal notice</a>
         </footer>
     </main>
-    <script src="script.js"></script>
+    <script src="scripts/login_signup.js"></script>
 </body>
 </html>
