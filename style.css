@@ -30,6 +30,7 @@
 :root {
   --primary-color: #2a3647;
   --secondary-color: #29abe2;
+  --warning-color: #ff4d4f;
   --white: #ffffff;
   --black: #000000;
   --dark-gray: #647188;
@@ -46,6 +47,10 @@ a {
 body {
   font-family: "Inter", sans-serif;
   height: 100vh;
+}
+
+.d-none {
+  display: none;
 }
 
 .main-div {

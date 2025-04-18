@@ -1,13 +1,3 @@
-/* .main {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-color: var(--primary-color);
-} */
-
 .main-login {
   height: 100vh;
   max-width: 1440px;
@@ -83,16 +73,6 @@
     transform: none;
   }
 }
-
-/* .logo-cnt {
-  position: absolute;
-  top: 80px;
-  left: 80px;
-
-  & img {
-    width: 100px;
-  }
-} */
 
 header {
   width: 100%;
@@ -176,7 +156,6 @@ button {
 
 .login-hdl {
   font-size: 62px;
-  /* font-weight: 700; */
   padding-bottom: 16px;
   text-align: center;
 }
@@ -192,7 +171,6 @@ button {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   position: relative;
 }
@@ -228,8 +206,6 @@ button {
   top: 105%;
   left: 0px;
   font-size: 14px;
-
-  /* transform: translateY(-50%); */
   color: var(--warning-color);
 }
 
