@@ -14,7 +14,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   position: relative;
 }
@@ -84,12 +84,15 @@
   }
 }
 
-header {
-  width: 100%;
-  display: flex;
-  justify-content: right;
-  align-items: center;
-  padding: 68px 122px;
+.header-login {
+  /* width: 100%; */
+  /* display: flex; */
+  /* justify-content: right; */
+  /* align-items: center; */
+  position: absolute;
+  top: 68px;
+  right: 122px;
+  /* padding: 68px 122px; */
 
   & span {
     padding-right: 36px;
@@ -234,10 +237,13 @@ button {
   justify-content: center;
   align-items: center;
   gap: 35px;
+  padding-top: 24px;
   /* display: inline-flex; */
 }
 
 .footer-login-signup {
+  position: absolute;
+  bottom: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
