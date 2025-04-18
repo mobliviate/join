@@ -5,150 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Legal Notice</title>
 
-    <script src="./scripts/header.js"></script>
-    <script src="./scripts/navigate.js"></script>
+    <script src="./scripts/template.js" defer></script>
+    <script src="./scripts/header.js" defer></script>
+    <script src="./scripts/navigate.js" defer></script>
+    <script src="./scripts/legal_notice.js" defer></script>
 
-    <link rel="icon" href="assets/svg/favicon_logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-    <link rel="stylesheet" type="text/css" href="./css/header.css" />
-    <link rel="stylesheet" type="text/css" href="./css/sidebar.css" />
-    <link rel="stylesheet" type="text/css" href="./css/legal_notice.css" />
+    <link rel="icon" href="assets/svg/favicon_logo.svg" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/sidebar.css" />
+    <link rel="stylesheet" href="./css/legal_notice.css" />
   </head>
-
-  <body>
-    <div class="main-div">
-      <div class="left">
-        <div class="sidebar-logo">
-          <img src="assets/svg/join-logo.svg" alt="Join Logo" />
-        </div>
-        <nav class="sidebar-nav">
-          <a href="index.html" class="sidebar-link">
-            <img src="assets/svg/summary-icon.svg" /> Summary
-          </a>
-          <a href="add_task.html" class="sidebar-link">
-            <img src="assets/svg/edit-icon.svg" /> Add Task
-          </a>
-          <a href="board.html" class="sidebar-link">
-            <img src="assets/svg/board-icon.svg" /> Board
-          </a>
-          <a href="contact.html" class="sidebar-link">
-            <img src="assets/svg/contact-icon.svg" /> Contacts
-          </a>
-        </nav>
-        <div class="sidebar-footer">
-          <a href="privacy_policy.html">Privacy Policy</a>
-          <a href="legal_notice.html">Legal Notice</a>
-        </div>
-      </div>
-
-      <div class="right">
-        <header class="header">
-          <div class="header-content">
-            <span class="header-title">Kanban Project Management Tool</span>
-            <div class="header-user">
-              <span class="initials">SM</span>
-            </div>
-          </div>
-        </header>
-
-        <main class="main">
-          <div class="legal_notice">
-            <h1>Legal Notice</h1>
-
-            <h2>Imprint</h2>
-            <br />
-            <ul>
-              <li>
-                <strong
-                  >Marc Odermatt, Gyözö Pere, Srdjan Velickovski, Aledxander
-                  Schmidt, Kevin Karoly</strong
-                >
-              </li>
-              <li><strong>Tassiloplatz 25</strong></li>
-              <li><strong>81541 München</strong></li>
-            </ul>
-
-            <h2>Exploring the Board</h2>
-            <p>Email: info@developerakademie.com</p>
-
-            <h3>Acceptance of Terms</h3>
-            <p>
-              By accessing and using <span class="blue">Join</span>, you
-              acknowledge and agree to the following terms and conditions, and
-              any policies, guidelines, or amendments thereto that may be
-              presented to you from time to time. We, the listed students, may
-              update or change the terms and conditions from time to time
-              without notice.
-            </p>
-
-            <h3>Scope and Ownership of the Product</h3>
-            <p>
-              <span class="blue">Join</span> has been developed as part of a
-              student group project in a web development bootcamp at the
-              <span class="blue">Developer Akademie GmbH</span>. It has an
-              educational purpose and is not intended for extensive personal &
-              business usage. As such, we cannot guarantee consistent
-              availability, reliability, accuracy, or any other aspect of
-              quality regarding this Product.
-            </p>
-
-            <p>
-              The design of <span class="blue">Join</span> is owned by the
-              <span class="blue">Developer Akademie GmbH</span>. Unauthorized
-              use, reproduction, modification, distribution, or replication of
-              the design is strictly prohibited.
-            </p>
-
-            <h3>Proprietary Rights</h3>
-            <p>
-              Aside from the design owned by
-              <span class="blue">Developer Akademie GmbH</span>, we, the listed
-              students, retain all proprietary rights in
-              <span class="blue">Join</span>, including any associated
-              copyrighted material, trademarks, and other proprietary
-              information.
-            </p>
-
-            <h3>Use of the Product</h3>
-            <p>
-              <span class="blue">Join</span> is intended to be used for lawful
-              purposes only, in accordance with all applicable laws and
-              regulations. Any use of <span class="blue">Join</span> for illegal
-              activities, or to harass, harm, threaten, or intimidate another
-              person, is strictly prohibited. You are solely responsible for
-              your interactions with other users of
-              <span class="blue">Join</span>.
-            </p>
-
-            <h3>Disclaimer of Warranties and Limitation of Liability</h3>
-            <p>
-              <span class="blue">Join</span> is provided "as is" without
-              warranty of any kind, whether express or implied, including but
-              not limited to the implied warranties of merchantability, fitness
-              for a particular purpose, and non-infringement. In no event will
-              we, the listed students, or the
-              <span class="blue">Developer Akademie GmbH</span>, be liable for
-              any direct, indirect, incidental, special, consequential or
-              exemplary damages, including but not limited to, damages for loss
-              of profits, goodwill, use, data, or other intangible losses, even
-              if we have been advised of the possibility of such damages,
-              arising out of or in connection with the use or performance of
-              <span class="blue">Join</span>.
-            </p>
-
-            <h3>Indemnity</h3>
-            <p>
-              You agree to indemnify, defend and hold harmless us, the listed
-              students, the <span class="blue">Developer Akademie</span>, and
-              our affiliates, partners, officers, directors, agents, and
-              employees, from and against any claim, demand, loss, damage, cost,
-              or liability (including reasonable legal fees) arising out of or
-              relating to your use of <span class="blue">Join</span> and/or your
-              breach of this Legal Notice.
-            </p>
-          </div>
-        </main>
-      </div>
-    </div>
-  </body>
+  <body onload="initLegalNotice()"></body>
 </html>

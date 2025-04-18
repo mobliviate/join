@@ -24,10 +24,16 @@
   width: 56px;
   height: 56px;
   border-radius: 50%;
+  border: 2px solid var(--black);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
   color: var(--light-blue);
-  border: 2px solid var(--black);
+}
+
+.user-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }

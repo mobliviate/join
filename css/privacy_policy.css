@@ -5,9 +5,8 @@
 }
 
 .privacy_policy {
-  padding: 66px 96px;
-  overflow-y: auto;
-  height: 600px;
+  padding: 50px 96px;
+  height: 800px;
   background-color: var(--white);
   flex: 1;
 }
