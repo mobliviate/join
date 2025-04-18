@@ -15,11 +15,11 @@
         </div>
 
         <div class="signup">
-            <button class="btn-back" onclick="window.location.href='login.html'">
+            <a class="btn-back" href="login.html">
                 <svg class="arrow-left" width="32" height="32">
                     <use href="assets/svg/sprite.svg#arrow_left"></use>
                 </svg>
-            </button>
+            </a>
             <div class="signup-cnt">
                 <h1 class="signup-hdl">Sign up</h1>
                 <form action="index.html" method="post" class="signin-form">
@@ -36,14 +36,14 @@
                         </svg>
                     </div>
                     <div class="input-cnt">
-                        <input class="signup-input" type="password" id="password" name="password" required
+                        <input class="signup-input" type="password" id="password" name="password" required minlength="8"
                             placeholder="Password" />
                         <svg class="input-icon" width="24" height="24">
                             <use href="assets/svg/sprite.svg#password_icon"></use>
                         </svg>
                     </div>
                     <div class="input-cnt">
-                        <input class="signup-input" type="password" id="password" name="password" required
+                        <input class="signup-input" type="password" id="password" name="password" required minlength="8"
                             placeholder="Confirm Password" />
                         <svg class="input-icon" width="24" height="24">
                             <use href="assets/svg/sprite.svg#password_icon"></use>
@@ -53,19 +53,20 @@
                     <div class="accept-cnt">
                         <input type="checkbox" id="privacyCheckbox" name="privacyPolicy" required>
                         <label for="privacyCheckbox">
-                            <svg class="check-box-svg" width="24" height="24">
-                                <use href="assets/svg/sprite.svg#check_box"></use>
-                            </svg>
+                            <img class="check-box-png" src="" alt="Check Box" />
                             <span>
                                 I accept the <a href="privacy_policy.html">Privacy
                                     Policy</a>
                             </span>
                         </label>
                     </div>
+                    <div class="form-btn-cnt">
+                        <button type="submit" class="btn btn-primary" disabled>Sign up</button>
+                    </div>
                 </form>
-                <div class="form-btn-cnt">
+                <!-- <div class="form-btn-cnt">
                     <button type="submit" class="btn btn-primary">Sign up</button>
-                </div>
+                </div> -->
             </div>
         </div>
         <footer class="footer-login-signup">

@@ -4,7 +4,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   position: relative;
 }
@@ -64,16 +64,6 @@ button {
   }
 }
 
-.signup {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border-radius: 30px;
-  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
-  position: relative;
-}
-
 .btn-back {
   position: absolute;
   top: 64px;
@@ -83,6 +73,16 @@ button {
   & .arrow-left {
     color: var(--secondary-color);
   }
+}
+
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 30px;
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
+  position: relative;
 }
 
 
@@ -172,8 +172,11 @@ button {
   padding-top: 15px;
 
   & input[type="checkbox"] {
-    display: none;
-    /* Verstecke die ursprüngliche Checkbox */
+    opacity: 0;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-110px);
   }
 
   & label {
@@ -181,10 +184,19 @@ button {
     align-items: center;
     gap: 8px;
     user-select: none;
+    /* cursor: pointer; */
   }
 
-  & .check-box-svg {
-    color: var(--primary-color);
+  & .check-box-png {
+    width: 24px;
+    height: 24px;
+    content: url('../assets/png/check_box.png');
+    cursor: pointer;
+  }
+
+  /* Checked-Zustand */
+  & input[type="checkbox"]:checked+label .check-box-png {
+    content: url('../assets/png/check_box_checked.png');
   }
 
   & span {
@@ -197,22 +209,19 @@ button {
   }
 }
 
-/* Styling für das SVG beim Anhaken */
-/* .accept-cnt input[type="checkbox"]:checked+label svg { */
-/* fill: #2A3647; */
-/* Fülle das Quadrat beim Anhaken */
-/* } */
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-/* Optional: Häkchen hinzufügen */
-/* .accept-cnt input[type="checkbox"]:checked+label::after {
-  content: '✓';
-  position: absolute;
-  color: white;
-  margin-left: 6px;
-  font-weight: bold;
-} */
+.btn-primary:enabled {
+  opacity: 1;
+  cursor: pointer;
+}
 
 .footer-login-signup {
+  position: absolute;
+  bottom: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -222,6 +231,11 @@ button {
   & a {
     color: var(--icons);
     font-size: 16px;
+    transition: all 0.125s ease-in-out;
+
+    &:hover {
+      color: var(--secondary-color);
+    }
   }
 }
 
