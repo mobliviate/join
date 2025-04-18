@@ -31,3 +31,77 @@ function getBodyTemplate() {
     </div>
   `;
 }
+
+function getPrivacyPolicyContent() {
+  return `
+    <div class="privacy_policy">
+      <h1>Privacy Policy</h1>
+
+      ${getPrivacySections().join("")}
+    </div>
+  `;
+}
+
+function getLegalNoticeContent() {
+  return `
+    <div class="legal_notice">
+      <h1>Legal Notice</h1>
+
+      <h2>Imprint</h2>
+      <ul>
+        <li><strong>Marc Odermatt, Gyözö Pere, Srdjan Velickovski, Aledxander Schmidt, Kevin Karoly</strong></li>
+        <li><strong>Tassiloplatz 25</strong></li>
+        <li><strong>81541 München</strong></li>
+      </ul>
+
+      <h2>Exploring the Board</h2>
+      <p>Email: info@developerakademie.com</p>
+
+      ${getLegalSections().join("")}
+    </div>
+  `;
+}
+
+function getHelpContent() {
+  return `
+    <div class="help">
+      <div class="header_help">
+        <h1 class="heading_help">Help</h1>
+      </div>
+      <div class="help_text">
+        <span class="text">
+          Welcome to the help page for <span class="blue">Join</span>, your guide to using our kanban
+          project management tool. Here, we'll provide an overview of what <span class="blue">Join</span>
+          is, how it can benefit you, and how to use it.
+        </span>
+        <div class="explanation_join">
+          <h2 class="subheading_help">What is Join?</h2>
+          <span>
+            <span class="blue">Join</span> is a kanban-based project management tool designed and
+            built by a group of dedicated students as part of their web development bootcamp at the
+            Developer Akademie.
+            <br><br>
+            Kanban, a Japanese term meaning "billboard", is a highly effective method to visualize
+            work, limit work-in-progress, and maximize efficiency (or flow). <span class="blue">Join</span>
+            leverages the principles of kanban to help users manage their tasks and projects in an
+            intuitive, visual interface.
+            <br><br>
+            It is important to note that <span class="blue">Join</span> is designed as an
+            educational exercise and is not intended for extensive business usage. While we strive to ensure the
+            best possible user experience, we cannot guarantee consistent availability, reliability,
+            accuracy, or other aspects of quality regarding <span class="blue">Join</span>.
+          </span>
+        </div>
+
+        <h2 class="subheading_help">How to use it?</h2>
+        <div class="explanation_join">
+          <span>Here is a step-by-step guide on how to use <span class="blue">Join</span>:</span>
+
+          ${getSteps()}
+          
+          <h2 class="subheading_help">Enjoy using Join!</h2>
+        </div>
+      </div>
+    </div>
+  `;
+}
