@@ -29,6 +29,9 @@
   border-radius: 10px;
   border: 1px solid var(--primary-color);
   cursor: pointer;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 #add-contact-btn:hover {
@@ -150,7 +153,7 @@
 .avatar-circle.large {
   width: 94px;
   height: 94px;
-  font-size: 56px;
+  font-size: 48px;
 }
 
 /* Detail Section */

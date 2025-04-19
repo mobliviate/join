@@ -59,6 +59,12 @@ body {
   width: 100%;
 }
 
+.wrapper {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
 .left {
   background-color: #2f3c53;
   color: white;
