@@ -127,9 +127,6 @@ function showContactDetail(contact) {
 }
 
 /**
- * Handles the form submission to add a new contact.
- */
-/**
  * Reads and trims the values from the "Add Contact" form.
  * @returns {{ name: string, email: string, phone: string }}
  */
@@ -182,10 +179,12 @@ async function handleCreateContact(event) {
 }
 
 /**
- * Shows the overlay by appending its HTML via innerHTML.
+ * Shows the overlay by appending its HTML via appendChild to preserve existing listeners.
  */
 function showAddContactOverlay() {
-  document.body.innerHTML += getAddContactOverlayTemplate();
+  const temp = document.createElement("div");
+  temp.innerHTML = getAddContactOverlayTemplate().trim();
+  document.body.appendChild(temp.firstElementChild);
 }
 
 /**
@@ -215,10 +214,6 @@ async function deleteContact(contactId) {
 
 /**
  * Returns one or two uppercase initials from a full name.
- * Splits the name on spaces, then:
- *  - if there are two or more parts, uses the first letter of the first two parts
- *  - otherwise uses the first letter of the only part
- *
  * @param {string} fullName - The person’s full name (e.g. "Hans Müller").
  * @returns {string} - The initials in uppercase (e.g. "HM" or "A").
  */
@@ -226,11 +221,8 @@ function getInitials(fullName) {
   const nameParts = fullName.trim().split(" ");
   let initials = "";
 
-  // 2) Wenn mindestens zwei Wörter vorhanden sind
   if (nameParts.length >= 2) {
-    const firstInitial = nameParts[0].charAt(0);
-    const secondInitial = nameParts[1].charAt(0);
-    initials = firstInitial + secondInitial;
+    initials = nameParts[0].charAt(0) + nameParts[1].charAt(0);
   } else {
     initials = nameParts[0].charAt(0);
   }
@@ -268,23 +260,19 @@ function createContactItemTemplate(contact) {
  * @param {string} message - The text to show inside the toast.
  */
 function showToast(message) {
-  // Create the toast container
   const toast = document.createElement("div");
   toast.className = "toast";
   toast.textContent = message;
 
-  // Append it to the document body
   document.body.appendChild(toast);
 
-  // After 2 seconds, start fade‑out
   setTimeout(() => {
     toast.classList.add("fade-out");
   }, 2000);
 
-  // After fade‑out transition (0.5s) completes, remove the element
   setTimeout(() => {
     if (toast.parentNode) {
       toast.parentNode.removeChild(toast);
     }
-  }, 2500); // matches the CSS transition-duration of 0.5s
+  }, 2500);
 }

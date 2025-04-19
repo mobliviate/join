@@ -34,6 +34,7 @@ function getBodyTemplate() {
   `;
 }
 
+
 function getPrivacyPolicyContent() {
   return `
     <div class="privacy_policy">
