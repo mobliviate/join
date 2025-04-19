@@ -1,3 +1,38 @@
 function getBoardTemplate() {
-    
+    return`
+        <div>
+          <div>
+            <div>
+              <div>
+                <h1>Board</h1>
+              </div>
+              <div>
+                <input type="text" value="Find Task">
+                <button>Add task +</button>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h3>To do</h3>
+                <button>+</button>
+              </div>
+              <div>
+                <h3>In Progress</h3>
+                <button>+</button>
+              </div>
+              <div>
+                <h3>Await feedback</h3>
+                <button>+</button>
+              </div>
+              <div><h3>Don</h3></div>
+            </div>
+          </div>
+          <div class="column_div">
+            <div id="0" class="columns"></div>
+            <div id="1" class="columns"></div>
+            <div id="2" class="columns"></div>
+            <div id="3" class="columns"></div>
+          </div>
+        </div>
+    `
 }
