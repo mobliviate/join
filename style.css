@@ -60,19 +60,21 @@ body {
 }
 
 .left {
-  width: 194px;
   background-color: #2f3c53;
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 32px 0;
+  flex: 0 0 232px;
 }
 
 .right {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .main {
