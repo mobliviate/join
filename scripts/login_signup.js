@@ -2,16 +2,69 @@
 
 const BASE_URL = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
 let usersData = [];
-let nameInputRef = document.getElementById("signup_name");
-let emailInputRef = document.getElementById("signup_email");
-let passwordInputRef = document.getElementById("signup_password");
-let confPasswordInputRef = document.getElementById("signup_confirm_password");
-let signupWarningRef = document.getElementById("signup_warning");
+const nameInputRef = document.getElementById("signup_name");
+const emailInputRef = document.getElementById("signup_email");
+const passwordInputRef = document.getElementById("signup_password");
+const confPasswordInputRef = document.getElementById("signup_confirm_password");
+const signupWarningRef = document.getElementById("signup_warning");
+const submitBtn = document.getElementById('signup_btn');
+const privacyCheckbox = document.getElementById('signup_privacyCheckbox');
+const formInputs = [
+    nameInputRef,
+    emailInputRef,
+    passwordInputRef,
+    confPasswordInputRef
+];
 
 async function init() {
     await loadData();
 };
 
+
+function passwordOption(inputId, passwordCntId, iconId) {
+    const passwordInputRef = document.getElementById(inputId);
+    const passwordCntRef = document.getElementById(passwordCntId);
+    if (passwordInputRef.value.length > 0) {
+        if (passwordInputRef.type === "password") {
+            passwordCntRef.innerHTML = getButtonTemplate(inputId, iconId);
+        }
+    } else {
+        passwordCntRef.innerHTML = getIconTemplate(iconId);
+    }
+}
+
+function changePasswordIcon(inputId, iconId) {
+    const passwordInputRef = document.getElementById(inputId);
+    const passwordIconRef = document.getElementById(iconId);
+    if (passwordIconRef.src.includes("visibility_off.png")) {
+        passwordIconRef.src = 'assets/png/visibility.png';
+        passwordInputRef.type = "text";
+    } else {
+        passwordIconRef.src = 'assets/png/visibility_off.png';
+        passwordInputRef.type = "password";
+    }
+}
+
+function checkFormValidity() {
+    // Alle Felder müssen nicht leer sein und gültig (HTML5 Validity)  
+    const allFilledAndValid = formInputs.every(input => input.value.trim() !== '' && input.checkValidity());
+
+    // Passwörter müssen übereinstimmen  
+    const passwordsMatch = passwordInputRef.value.trim() === confPasswordInputRef.value.trim();
+
+    // Checkbox muss angehakt sein  
+    const privacyAccepted = privacyCheckbox.checked;
+
+    // Warnung anzeigen, wenn Passwörter nicht übereinstimmen  
+    if (!passwordsMatch && passwordInputRef.value.trim() !== '' && confPasswordInputRef.value.trim() !== '') {
+        signupWarningRef.classList.remove("d-none");
+    } else {
+        signupWarningRef.classList.add("d-none");
+    }
+
+    // Button aktivieren, wenn alles passt  
+    submitBtn.disabled = !(allFilledAndValid && passwordsMatch && privacyAccepted);
+}
 
 async function loadData() {
     let response = await fetch(BASE_URL + ".json");
@@ -19,22 +72,6 @@ async function loadData() {
     usersData = data || [];
     console.log(usersData);
 };
-
-function formValidation(event) {
-    event.preventDefault();
-    const name = nameInputRef.value.trim();
-    const email = emailInputRef.value.trim();
-    const password = passwordInputRef.value.trim();
-    const confPassword = confPasswordInputRef.value.trim();
-
-
-    if (password !== confPassword) {
-        signupWarningRef.classList.remove("d-none");
-    } else {
-        signupWarningRef.classList.add("d-none");
-        addUser();
-    }
-}
 
 function addUser() {
     const name = nameInputRef.value.trim();
@@ -46,12 +83,26 @@ function addUser() {
         email: email,
         password: password
     });
+    showSuccessMsg();
 
     console.log(usersData);
 
 
     // await saveData();
 }
+
+function showSuccessMsg() {
+    const overlay = document.getElementById('success-message-cnt');
+    const message = document.getElementById('success-message');
+    requestAnimationFrame(() => {
+        overlay.classList.add('active');
+        message.classList.add('show-message');
+    });
+    setTimeout(() => {
+        window.location.href = "login.html";
+    }, 2000);
+}
+
 let newUsers = [];
 
 function checkUser() {
@@ -97,3 +148,4 @@ async function saveData() {
         }
     });
 }
+

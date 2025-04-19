@@ -7,6 +7,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  /* overflow: hidden; */
 }
 
 .logo-cnt {
@@ -108,7 +109,7 @@ button {
   }
 }
 
-.signin-form {
+.signup-form {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,6 +152,37 @@ button {
   color: var(--icons);
 }
 
+.input-icon-cnt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 21px;
+  transform: translateY(-50%);
+  color: var(--icons);
+
+  & .input-icon-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover img {
+      transform: scale(1.2);
+      filter: brightness(0.8);
+    }
+
+    & img {
+      width: 24px;
+      height: 24px;
+      transition: all 0.125s ease-in-out;
+    }
+  }
+}
+
 .input-warning {
   position: absolute;
   top: 105%;
@@ -162,7 +194,7 @@ button {
 .accept-cnt {
   display: flex;
   align-items: center;
-  padding-top: 15px;
+  padding-top: 14px;
 
   & input[type="checkbox"] {
     opacity: 0;
@@ -187,7 +219,6 @@ button {
     cursor: pointer;
   }
 
-  /* Checked-Zustand */
   & input[type="checkbox"]:checked+label .check-box-png {
     content: url('../assets/png/check_box_checked.png');
   }
@@ -200,6 +231,49 @@ button {
       color: var(--secondary-color);
     }
   }
+}
+
+.form-btn-cnt {
+  padding-top: 8px;
+}
+
+.success-message-cnt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  transition: background-color 0.5s ease-in-out;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.success-message-cnt.active {
+  background-color: rgba(0, 0, 0, 0.4);
+  pointer-events: auto;
+}
+
+.success-message {
+  background-color: var(--primary-color);
+  color: var(--white);
+  border-radius: 20px;
+  padding: 25px;
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(0);
+  transition: bottom 0.5s ease-in-out, transform 0.5s ease-in-out;
+  font-size: 20px;
+}
+
+.success-message.show-message {
+  bottom: 50%;
+  transform: translateX(-50%) translateY(50%);
 }
 
 .footer-login-signup {
@@ -221,6 +295,8 @@ button {
     }
   }
 }
+
+
 
 
 @media (max-width: 430px) {
