@@ -6,7 +6,6 @@
     <title>Join</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="/css/login.css" />
-    <script src="scripts/login_signup.js"></script>
 </head>
 
 <body onload="init()">
@@ -24,26 +23,28 @@
         <div class="login">
             <div class="login-cnt">
                 <h1 class="login-hdl">Log in</h1>
-                <form action="index.html" method="post" class="log-in-form">
+                <form onsubmit="loginUser(); return false;" class="log-in-form">
                     <div class="input-cnt">
-                        <input class="login-input" type="email" id="email" name="email" required placeholder="Email" />
+                        <input oninput="validateLoginEmail(); checkLoginFormValidity()" class="login-input" type="email"
+                            id="login_email" name="email" required placeholder="Email" />
                         <svg class="input-icon" width="24" height="24">
                             <use href="assets/svg/sprite.svg#mail_icon"></use>
                         </svg>
+                        <p id="login_warning_email" class="input-warning"></p>
                     </div>
                     <div class="input-cnt">
-                        <input class="login-input" type="password" id="password" name="password" minlength="2" required
-                            placeholder="Password" />
-                        <svg class="input-icon" width="24" height="24">
-                            <use href="assets/svg/sprite.svg#password_icon"></use>
-                        </svg>
-                        <p class="input-warning d-none">
-                            Check your email and password. Please try again.
-                        </p>
+                        <input
+                            oninput="passwordOption('login_password', 'login_password_icon_cnt', 'password_icon'); validateLoginPassword(); checkLoginFormValidity()"
+                            class="login-input" type="password" id="login_password" name="password" minlength="8"
+                            placeholder="Password" required />
+                        <div id="login_password_icon_cnt" class="input-icon-cnt">
+                            <img id="password_icon" src="assets/png/lock.png" alt="">
+                        </div>
+                        <p id="login_warning_password" class="input-warning"></p>
                     </div>
                     <div class="form-btn-cnt">
-                        <button type="submit" class="btn btn-primary" disabled>Log in</button>
-                        <button onclick="loadData()" type="button" class="btn btn-secondary">
+                        <button id="login_btn" type="submit" class="btn btn-primary" disabled>Log in</button>
+                        <button onclick="openSummaryPage()" type="button" class="btn btn-secondary">
                             Guest log in
                         </button>
                     </div>
@@ -55,5 +56,8 @@
             <a href="legal_notice.html">Legal notice</a>
         </footer>
     </main>
+    <script src="scripts/login.js"></script>
+    <script src="scripts/signup.js"></script>
+    <script src="scripts/login_signup_template.js"></script>
 </body>
 </html>

@@ -45,19 +45,16 @@
                             oninput="passwordOption('signup_password', 'password_cnt', 'password_icon'); checkFormValidity(); validatePassword()"
                             class="signup-input" type="password" id="signup_password" name="password" required
                             minlength="8" placeholder="Password" />
-
                         <div id="password_cnt" class="input-icon-cnt">
                             <img id="password_icon" src="assets/png/lock.png">
                         </div>
                         <p id="signup_warning_password" class="input-warning"></p>
-
                     </div>
                     <div class="input-cnt">
                         <input
                             oninput="passwordOption('signup_confirm_password', 'confirm_password_cnt', 'confirm_password_icon'); checkFormValidity(); validateConfirmPassword()"
                             class="signup-input" type="password" id="signup_confirm_password" name="password" required
                             minlength="8" placeholder="Confirm Password" />
-
                         <div id="confirm_password_cnt" class="input-icon-cnt">
                             <img id="confirm_password_icon" src="assets/png/lock.png" alt="">
                         </div>
@@ -72,7 +69,6 @@
                                 I accept the <a href="privacy_policy.html">Privacy Policy</a>
                             </span>
                         </label>
-
                     </div>
                     <div class="form-btn-cnt">
                         <button id="signup_btn" type="submit" class="btn btn-primary" disabled>Sign up</button>
@@ -80,8 +76,6 @@
                 </form>
             </div>
         </div>
-
-        <!-- <button onclick="showSuccessMsg()">signup</button> -->
         <footer class="footer-login-signup">
             <a href="privacy_policy.html">Privacy Policy</a>
             <a href="legal_notice.html">Legal notice</a>
@@ -92,7 +86,7 @@
             <span>You Signed Up successfully</span>
         </div>
     </div>
-    <script src="scripts/login_signup.js"></script>
+    <script src="scripts/signup.js"></script>
     <script src="scripts/login_signup_template.js"></script>
 </body>
 </html>

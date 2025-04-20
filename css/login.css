@@ -85,14 +85,9 @@
 }
 
 .header-login {
-  /* width: 100%; */
-  /* display: flex; */
-  /* justify-content: right; */
-  /* align-items: center; */
   position: absolute;
   top: 68px;
   right: 122px;
-  /* padding: 68px 122px; */
 
   & span {
     padding-right: 36px;
@@ -231,34 +226,61 @@ button {
   color: var(--icons);
 }
 
+.input-icon-cnt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  right: 21px;
+  transform: translateY(-50%);
+  color: var(--icons);
+
+  & .input-icon-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+
+    &:hover img {
+      transform: scale(1.2);
+      filter: brightness(0.8);
+    }
+
+    & img {
+      width: 24px;
+      height: 24px;
+      transition: all 0.125s ease-in-out;
+    }
+  }
+}
+
 .input-warning {
   position: absolute;
   top: 105%;
   left: 0px;
   font-size: 14px;
-
-  /* transform: translateY(-50%); */
   color: var(--warning-color);
 }
 
 .form-btn-cnt {
   display: flex;
-  /* align-self: stretch; */
   justify-content: center;
   align-items: center;
   gap: 35px;
   padding-top: 24px;
-  /* display: inline-flex; */
 }
 
 .footer-login-signup {
   position: absolute;
-  bottom: 0px;
+  bottom: 22px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 16px;
-  padding: 48px 0px;
+  padding: 8px 0px;
 
   & a {
     color: var(--icons);
@@ -267,6 +289,20 @@ button {
     &:hover {
       color: var(--secondary-color);
     }
+  }
+}
+
+
+@media (max-width: 750px) {
+  .logo-cnt {
+    top: 38px;
+    left: 38px;
+  }
+
+  .header-login {
+    top: auto;
+    right: auto;
+    bottom: 100px;
   }
 }
 

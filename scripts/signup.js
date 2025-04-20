@@ -6,7 +6,6 @@ const nameInputRef = document.getElementById("signup_name");
 const emailInputRef = document.getElementById("signup_email");
 const passwordInputRef = document.getElementById("signup_password");
 const confPasswordInputRef = document.getElementById("signup_confirm_password");
-const signupWarningRef = document.getElementById("signup_warning");
 const submitBtn = document.getElementById('signup_btn');
 const privacyCheckbox = document.getElementById('signup_privacyCheckbox');
 const formInputs = [
@@ -197,6 +196,6 @@ function showSuccessMsg() {
         message.classList.add('show-message');
     });
     setTimeout(() => {
-        window.location.href = "index.html";
+        window.location.href = "summary.html";
     }, 2000);
 }
