@@ -16,11 +16,36 @@ const formInputs = [
     confPasswordInputRef
 ];
 
+/**
+ * Initializes the application by loading user data from the database.
+ * @async
+ * @function init
+ * @returns {Promise<void>} Resolves when data is loaded.
+ */
 async function init() {
     await loadData();
 };
 
+/**
+ * Loads user data from the database.
+ * @async
+ * @function loadData
+ * @returns {Promise<void>} Resolves when data is loaded and stored in the `usersData` array.
+ */
+async function loadData() {
+    let response = await fetch(BASE_URL + ".json");
+    let data = await response.json();
+    usersData = data.users || [];
+    console.log(usersData);
+};
 
+/**
+ * Change the password input field icon to the visibility icon and updates the icon accordingly.
+ * @function passwordOption
+ * @param {string} inputId - The ID of the password input field.
+ * @param {string} passwordCntId - The ID of the container for the password visibility button.
+ * @param {string} iconId - The ID of the visibility icon.
+ */
 function passwordOption(inputId, passwordCntId, iconId) {
     const passwordInputRef = document.getElementById(inputId);
     const passwordCntRef = document.getElementById(passwordCntId);
@@ -33,6 +58,12 @@ function passwordOption(inputId, passwordCntId, iconId) {
     }
 }
 
+/**
+ * Toggeles the password visibility icon and the input type between "password" and "text".
+ * @function changePasswordIcon
+ * @param {string} inputId - The ID of the password input field.
+ * @param {string} iconId - The ID of the visibility icon.
+ */
 function changePasswordIcon(inputId, iconId) {
     const passwordInputRef = document.getElementById(inputId);
     const passwordIconRef = document.getElementById(iconId);
@@ -45,7 +76,11 @@ function changePasswordIcon(inputId, iconId) {
     }
 }
 
-
+/**
+ * Validates the name input field. At least 6 characters long, no leading or trailing spaces.
+ * @function validateName
+ * @returns {boolean} True if the name is valid, otherwise false.
+ */
 function validateName() {
     const v = nameInputRef.value;
     const w = document.getElementById("signup_warning_name");
@@ -55,14 +90,26 @@ function validateName() {
     w.textContent = ""; return true;
 }
 
+
+/**
+ * Validates the email input field. Checks for a valid email format ("@", "." and min two characters after "."). Checks if the email is already registered.
+ * @function validateEmail
+ * @returns {boolean} True if the email is valid and not already registered, otherwise false.
+ */
 function validateEmail() {
     const v = emailInputRef.value.trim();
     const w = document.getElementById("signup_warning_email");
     if (!v) return w.textContent = "", false;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return w.textContent = "Please enter a valid email address.", false;
+    if (usersData.some(u => u.email.toLowerCase() === v.toLowerCase())) return w.textContent = "This email is already registered.", false;
     w.textContent = ""; return true;
 }
 
+/**
+ * Validates the password input field. Checks for a minimum length of 8 characters and no spaces.
+ * @function validatePassword
+ * @returns {boolean} True if the password is valid, otherwise false.
+ */
 function validatePassword() {
     const v = passwordInputRef.value;
     const w = document.getElementById("signup_warning_password");
@@ -72,6 +119,11 @@ function validatePassword() {
     w.textContent = ""; return true;
 }
 
+/**
+ * Validates the confirm password input field by checking if it matches the password.
+ * @function validateConfirmPassword
+ * @returns {boolean} True if the confirm password matches the password, otherwise false.
+ */
 function validateConfirmPassword() {
     const pwd = passwordInputRef.value.trim();
     const cpwd = confPasswordInputRef.value.trim();
@@ -81,6 +133,10 @@ function validateConfirmPassword() {
     w.textContent = ""; return true;
 }
 
+/**
+ * Checks the overall form validity and enables/disables the submit button accordingly.
+ * @function checkFormValidity
+ */
 function checkFormValidity() {
     const isNameValid = validateName();
     const isEmailValid = validateEmail();
@@ -90,13 +146,12 @@ function checkFormValidity() {
     submitBtn.disabled = !(isNameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && privacyAccepted);
 }
 
-async function loadData() {
-    let response = await fetch(BASE_URL + ".json");
-    let data = await response.json();
-    usersData = data.users || [];
-    console.log(usersData);
-};
-
+/**
+ * Adds a new user to the `usersData` array and saves it to the database.
+ * @async
+ * @function addUser
+ * @returns {Promise<void>} Resolves when the user is added and saved.
+ */
 async function addUser() {
     const name = nameInputRef.value.trim();
     const email = emailInputRef.value.trim();
@@ -113,6 +168,12 @@ async function addUser() {
     console.log(usersData);
 }
 
+/**
+ * Saves the current `usersData` array to the database.
+ * @async
+ * @function saveUserToDB
+ * @returns {Promise<void>} Resolves when the data is successfully saved.
+ */
 async function saveUserToDB() {
     await fetch(BASE_URL + "/users.json", {
         method: "PUT",
@@ -124,6 +185,10 @@ async function saveUserToDB() {
     loadData();
 }
 
+/**
+ * Displays a success message overlay and redirects the user to the index page after a short delay.
+ * @function showSuccessMsg
+ */
 function showSuccessMsg() {
     const overlay = document.getElementById('success-message-cnt');
     const message = document.getElementById('success-message');
@@ -135,50 +200,3 @@ function showSuccessMsg() {
         window.location.href = "index.html";
     }, 2000);
 }
-
-// let newUsers = [];
-
-// function checkUser() {
-//     newUsers = usersData.users;
-//     console.log(newUsers);
-// }
-
-async function saveData() {
-    const dataToSave = {
-        // users: [{
-        //     name: "Anna",
-        //     email: "anna@example.com",
-        //     id: "u1",
-        // },
-        // {
-        //     name: "Ben",
-        //     email: "ben@example.com",
-        //     id: "u2",
-        // }],
-        // tasks: [{
-        //     tastk_name: "Meeting organisieren"
-        // },
-        // {
-        //     task_name: "Design besprechen"
-
-        // }],
-        // contacts: [{
-        //     name: "Christina",
-        //     email: "christina@example.com",
-        //     id: "c1",
-        // },
-        // {
-        //     name: "Daniel",
-        //     email: "Daniel@example.com",
-        //     id: "c2",
-        // }]
-    };
-    await fetch(BASE_URL + ".json", {
-        method: "PUT",
-        body: JSON.stringify(dataToSave),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    });
-}
-
