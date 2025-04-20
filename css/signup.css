@@ -200,6 +200,7 @@ button {
   display: flex;
   align-items: center;
   padding-top: 14px;
+  position: relative;
 
   & input[type="checkbox"] {
     opacity: 0;
@@ -234,6 +235,11 @@ button {
 
     & a {
       color: var(--secondary-color);
+
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
     }
   }
 }

@@ -45,50 +45,83 @@ function changePasswordIcon(inputId, iconId) {
     }
 }
 
+
+function validateName() {
+    const v = nameInputRef.value;
+    const w = document.getElementById("signup_warning_name");
+    if (!v.trim()) return w.textContent = "", false;
+    if (v.trim().length < 6) return w.textContent = "Name must be at least 6 characters long.", false;
+    if (v.match(/^\s|\s$/)) return w.textContent = "Name cannot start or end with a space.", false;
+    w.textContent = ""; return true;
+}
+
+function validateEmail() {
+    const v = emailInputRef.value.trim();
+    const w = document.getElementById("signup_warning_email");
+    if (!v) return w.textContent = "", false;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return w.textContent = "Please enter a valid email address.", false;
+    w.textContent = ""; return true;
+}
+
+function validatePassword() {
+    const v = passwordInputRef.value;
+    const w = document.getElementById("signup_warning_password");
+    if (!v) return w.textContent = "", false;
+    if (v.length < 8) return w.textContent = "Password must be at least 8 characters!", false;
+    if (/\s/.test(v)) return w.textContent = "Password cannot contain spaces.", false;
+    w.textContent = ""; return true;
+}
+
+function validateConfirmPassword() {
+    const pwd = passwordInputRef.value.trim();
+    const cpwd = confPasswordInputRef.value.trim();
+    const w = document.getElementById("signup_warning_confirm_password");
+    if (!cpwd) return w.textContent = "", false;
+    if (pwd !== cpwd) return w.textContent = "Your passwords don't match. Please try again.", false;
+    w.textContent = ""; return true;
+}
+
 function checkFormValidity() {
-    // Alle Felder müssen nicht leer sein und gültig (HTML5 Validity)  
-    const allFilledAndValid = formInputs.every(input => input.value.trim() !== '' && input.checkValidity());
-
-    // Passwörter müssen übereinstimmen  
-    const passwordsMatch = passwordInputRef.value.trim() === confPasswordInputRef.value.trim();
-
-    // Checkbox muss angehakt sein  
+    const isNameValid = validateName();
+    const isEmailValid = validateEmail();
+    const isPasswordValid = validatePassword();
+    const isConfirmPasswordValid = validateConfirmPassword();
     const privacyAccepted = privacyCheckbox.checked;
-
-    // Warnung anzeigen, wenn Passwörter nicht übereinstimmen  
-    if (!passwordsMatch && passwordInputRef.value.trim() !== '' && confPasswordInputRef.value.trim() !== '') {
-        signupWarningRef.classList.remove("d-none");
-    } else {
-        signupWarningRef.classList.add("d-none");
-    }
-
-    // Button aktivieren, wenn alles passt  
-    submitBtn.disabled = !(allFilledAndValid && passwordsMatch && privacyAccepted);
+    submitBtn.disabled = !(isNameValid && isEmailValid && isPasswordValid && isConfirmPasswordValid && privacyAccepted);
 }
 
 async function loadData() {
     let response = await fetch(BASE_URL + ".json");
     let data = await response.json();
-    usersData = data || [];
+    usersData = data.users || [];
     console.log(usersData);
 };
 
-function addUser() {
+async function addUser() {
     const name = nameInputRef.value.trim();
     const email = emailInputRef.value.trim();
     const password = passwordInputRef.value.trim();
 
-    usersData.users.push({
+    usersData.push({
         name: name,
         email: email,
         password: password
     });
+    await saveUserToDB(name, email, password);
     showSuccessMsg();
 
     console.log(usersData);
+}
 
-
-    // await saveData();
+async function saveUserToDB() {
+    await fetch(BASE_URL + "/users.json", {
+        method: "PUT",
+        body: JSON.stringify(usersData),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    loadData();
 }
 
 function showSuccessMsg() {
@@ -99,16 +132,16 @@ function showSuccessMsg() {
         message.classList.add('show-message');
     });
     setTimeout(() => {
-        window.location.href = "login.html";
+        window.location.href = "index.html";
     }, 2000);
 }
 
-let newUsers = [];
+// let newUsers = [];
 
-function checkUser() {
-    newUsers = usersData.users;
-    console.log(newUsers);
-}
+// function checkUser() {
+//     newUsers = usersData.users;
+//     console.log(newUsers);
+// }
 
 async function saveData() {
     const dataToSave = {
