@@ -68,6 +68,11 @@ button {
 
   & .arrow-left {
     color: var(--secondary-color);
+    transition: all 0.125s ease-in-out;
+  }
+
+  &:hover .arrow-left {
+    transform: scale(1.2);
   }
 }
 
