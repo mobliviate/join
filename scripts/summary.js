@@ -12,7 +12,7 @@ function initSummary() {
 
                 <div class="summary_header">
                     <div class="summary-headline">
-                        <span class="summary-headline-title"> Join 360 </span>
+                        <h1 class="summary-headline-title"> Join 360 </h1>
                         <div class="summary-headline-line"></div>
                         <span> Key Metrics at a Glance </span>
                     </div>
