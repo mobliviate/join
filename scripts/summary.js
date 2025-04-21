@@ -2,10 +2,10 @@ function initSummary() {
     document.body.innerHTML = getBodyTemplate();
     loadHeader();
     highlightActiveSidebarLink();
-    document.getElementById("main").innerHTML = getSummeryTemplate();
+    document.getElementById("main").innerHTML = getSummaryTemplate();
   }
 
-  function getSummeryTemplate() {
+  function getSummaryTemplate() {
     return `
         <div class="summary-container">
             <div class="summary-wrapper">
@@ -19,10 +19,10 @@ function initSummary() {
                 </div>
 
                 <div class="summary-content">
-                    <div class="summary-content-left">
+                    <div class="summary-content-left flex_1">
                         <span> Left </span>
                     </div>
-                    <div class="summary-conent-right">
+                    <div class="summary-content-right flex_1">
                         <span> Right </span>
                     </div>
                 </div>
