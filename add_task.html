@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add task</title>
 
-    <script src="./script.js"></script>
-    <script src="./scripts/template.js"></script>
-    <script src="./scripts/header.js"></script>
-    <script src="./scripts/navigate.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add task</title>
 
-    <link rel="icon" href="assets/svg/favicon_logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-    <link rel="stylesheet" type="text/css" href="./css/header.css" />
-    <link rel="stylesheet" type="text/css" href="./css/sidebar.css" />
-  </head>
-  <body onload="init()" id="body"></body>
+  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-database-compat.js"></script>
+
+  <!-- <script src="./script.js"></script> -->
+  <script src="./scripts/add_task.js" defer></script>
+  <script src="./scripts/add_task_template.js" defer></script>
+  <script src="./scripts/template.js" defer></script>
+  <script src="./scripts/header.js" defer></script>
+  <script src="./scripts/navigate.js" defer></script>
+
+  <link rel="icon" href="assets/svg/favicon_logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+  <link rel="stylesheet" type="text/css" href="./css/add_task.css" />
+  <link rel="stylesheet" type="text/css" href="./css/header.css" />
+  <link rel="stylesheet" type="text/css" href="./css/sidebar.css" />
+</head>
+
+<body onload="initAddTask()" id="body"></body>
+
 </html>
