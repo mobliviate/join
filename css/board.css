@@ -6,21 +6,41 @@
 }
 
 .header-board {
+    height: 232px;
+    width: 1208px;
     display: flex;
     flex-direction: column;
+    padding: 0;
 }
 
 .board-search {
+    width: 1056px;
+    height: 152.5px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 79.5px;
+    padding-left: 64px;
+}
+
+.board-search div h1 {
+    font-size: 61px;
 }
 
 .tasks-board {
+    width: 1208px;
+    height: 72px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    padding-top: 48px;
+    padding-left: 64px;
+    padding-right: 64px;
 }
 
-.task-board{
+.task-board {
     width: 244px;
     height: 24px;
     display: flex;
@@ -28,10 +48,14 @@
     justify-content: space-between;
 }
 
+.task-board div h3 {
+    font-size: 20px;
+}
+
 .task-board button {
     width: 24px;
     height: 24px;
-    background-image: url("./assets/svg/plus_button_board.svg");
+    background-image: url("../assets/svg/plus_button_board.svg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
