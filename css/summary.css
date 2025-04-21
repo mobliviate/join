@@ -1,0 +1,31 @@
+.summary-container {
+    /* height: calc(100vh - 96px); */
+    background-color: lightcoral;
+}
+
+.summary-wrapper {
+    height: calc(100vh - 96px);
+    background-color: lightcoral;
+    padding: 64px 48px;
+}
+
+.summary-headline {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+.summary-headline-line {
+    height: 72px;
+    width: 1px;
+    background-color: var(--light-blue);
+
+}
+/* .summary-headline span {
+    font-weight: 32px;
+} */
+
+.summary-headline-title {
+    font-weight: bold;
+    font-size: 64px;
+}
