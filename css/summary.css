@@ -48,9 +48,24 @@
     gap: 16px;
 }
 
+.summary-content-left-top-wrapper,
+.summary-content-left-middle-wrapper,
+.summary-content-left-bottom-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+
 .summary-buttons {
     display: flex;
+    flex: 1;
     height: 168px;
+
+    align-items: center;
+    justify-content: center;
+
     border: 1px solid gray;
     border-radius: 25px;
 }
