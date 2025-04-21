@@ -2,16 +2,22 @@ function initSummary() {
     document.body.innerHTML = getBodyTemplate();
     loadHeader();
     highlightActiveSidebarLink();
-    document.getElementById("main").innerHTML = getSummerySectionTemplate();
+    document.getElementById("main").innerHTML = getSummeryTemplate();
   }
 
-  function getSummerySectionTemplate() {
+  function getSummeryTemplate() {
     return `
-        <section class="summary_container">
-            <div class="summary_wrapper">
-                <div class="summary_header"></div>
-                <div class="summary_content"></div>
+        <div class="summary-container">
+            <div class="summary-wrapper">
+                <div class="summary_header">
+                    <div class="summary-headline">
+                        <span> Join 360 </span>
+                        <hr>
+                        <span> Key Metrics at a Glance </span>
+                    </div>
+                </div>
+                <div class="summary-content"></div>
             </div>
-        </section>
+        </div>
     `;
   }
