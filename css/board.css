@@ -1,0 +1,45 @@
+.main-board {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.header-board {
+    display: flex;
+    flex-direction: column;
+}
+
+.board-search {
+    display: flex;
+    flex-direction: row;
+}
+
+.tasks-board {
+    display: flex;
+    flex-direction: row;
+}
+
+.task-board{
+    width: 244px;
+    height: 24px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.task-board button {
+    width: 24px;
+    height: 24px;
+    background-image: url("./assets/svg/plus_button_board.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+    cursor: pointer;
+}
+
+.column-divs {
+    display: flex;
+    flex-direction: row;
+}
