@@ -9,6 +9,7 @@ function initSummary() {
     return `
         <div class="summary-container">
             <div class="summary-wrapper">
+
                 <div class="summary_header">
                     <div class="summary-headline">
                         <span> Join 360 </span>
@@ -16,7 +17,16 @@ function initSummary() {
                         <span> Key Metrics at a Glance </span>
                     </div>
                 </div>
-                <div class="summary-content"></div>
+
+                <div class="summary-content">
+                    <div class="summary-content-left">
+                        <span> Left </span>
+                    </div>
+                    <div class="summary-conent-right">
+                        <span> Right </span>
+                    </div>
+                </div>
+
             </div>
         </div>
     `;
