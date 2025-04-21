@@ -32,16 +32,27 @@
 
 .summary-content {
     display: flex;
-
     background-color: lightpink;
 }
 
-.flex_1 {
+.summary-content-left,
+.summary-content-right {
     flex: 1;
+    padding: 10px;
 }
 
 .summary-content-left {
+    display: flex;
+    flex-direction: column;
     background-color: lightgreen;    
+    gap: 16px;
+}
+
+.summary-buttons {
+    display: flex;
+    height: 168px;
+    border: 1px solid gray;
+    border-radius: 25px;
 }
 
 .summary-content-right {
