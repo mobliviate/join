@@ -177,7 +177,6 @@
     background:
         #fff url('../assets/svg/arrow_dropdown_up.svg') no-repeat right 21px center;
     outline: none;
-    /* Optional: Fokus‑Outline woanders regeln */
 }
 
 
@@ -296,18 +295,6 @@
     flex-direction: column;
     gap: 0.5rem;
 }
-
-/* .select-box {
-    display: flex;
-    align-items: center;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    cursor: pointer;
-    min-height: 2.5rem;
-    background: #fff;
-    width: 100%;
-
-} */
 
 .selected-chips {
     display: flex;
