@@ -12,7 +12,7 @@ function validateLoginEmail() {
     const w = document.getElementById("login_warning_email");
     if (!v) return w.textContent = "", false;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return w.textContent = "Please enter a valid email address.", false;
-    if (!usersData.some(u => u.email.toLowerCase() === v.toLowerCase())) return w.textContent = "This email is not registered.", false;
+    if (!usersData.some(u => u.toLowerCase() === v.toLowerCase())) return w.textContent = "This email is not registered.", false;
     w.textContent = ""; return true;
 }
 
@@ -22,14 +22,33 @@ function validateLoginPassword() {
     if (!v) return w.textContent = "", false;
     if (v.length < 8) return w.textContent = "Password must be at least 8 characters!", false;
     if (/\s/.test(v)) return w.textContent = "Password cannot contain spaces.", false;
-
-    // Nach mindestens 8 Zeichen und ohne Spaces:  
-    const email = loginEmailInputRef.value.trim().toLowerCase();
-    const user = usersData.find(u => u.email.toLowerCase() === email);
-    if (user && user.password !== v)
-        return w.textContent = "Password is incorrect.", false;
-
     w.textContent = ""; return true;
+}
+
+async function fetchUsers() {
+    const response = await fetch(BASE_URL + ".json");
+    const data = await response.json();
+    return data.users || [];
+}
+
+async function handleLoginSubmit() {
+    const w = document.getElementById("login_warning_password");
+    const v = loginEmailInputRef.value.trim().toLowerCase();
+    const password = loginPasswordInputRef.value;
+
+    try {
+        const users = await fetchUsers();
+        const user = users.find(u => u.email.toLowerCase() === v && u.password === password);
+
+        if (!user) {
+            w.textContent = "Email or password is incorrect.";
+        } else {
+            w.textContent = "";
+            openSummaryPage();
+        }
+    } catch (error) {
+        w.textContent = "Server error. Please try again later.";
+    }
 }
 
 function checkLoginFormValidity() {
@@ -38,11 +57,13 @@ function checkLoginFormValidity() {
     loginBtn.disabled = !(isEmailValid && isPasswordValid);
 }
 
-function loginUser() {
-    openSummaryPage();
-}
-
+// function loginUser() {
+//     openSummaryPage();
+// }
 
 function openSummaryPage() {
     window.location.href = "summary.html";
 }
+
+
+

@@ -1,7 +1,7 @@
 'use strict';
 
 const BASE_URL = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
-let usersData = [];
+let usersEmails = [];
 const nameInputRef = document.getElementById("signup_name");
 const emailInputRef = document.getElementById("signup_email");
 const passwordInputRef = document.getElementById("signup_password");
@@ -22,7 +22,7 @@ const formInputs = [
  * @returns {Promise<void>} Resolves when data is loaded.
  */
 async function init() {
-    await loadData();
+    await loadUsersEmails();
 };
 
 /**
@@ -31,11 +31,26 @@ async function init() {
  * @function loadData
  * @returns {Promise<void>} Resolves when data is loaded and stored in the `usersData` array.
  */
+async function loadUsersEmails() {
+    let data = await loadData();
+    data.forEach(u => {
+        u.email = u.email.toLowerCase();
+        usersEmails.push(u.email);
+    });
+    console.log(usersEmails);
+};
+
 async function loadData() {
     let response = await fetch(BASE_URL + ".json");
     let data = await response.json();
-    usersData = data.users || [];
-    console.log(usersData);
+    return data.users || [];
+}
+
+
+async function loadDataTest() {
+    let response = await fetch(BASE_URL + ".json");
+    let data = await response.json();
+    console.log(data);
 };
 
 /**
@@ -89,7 +104,6 @@ function validateName() {
     w.textContent = ""; return true;
 }
 
-
 /**
  * Validates the email input field. Checks for a valid email format ("@", "." and min two characters after "."). Checks if the email is already registered.
  * @function validateEmail
@@ -100,7 +114,7 @@ function validateEmail() {
     const w = document.getElementById("signup_warning_email");
     if (!v) return w.textContent = "", false;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return w.textContent = "Please enter a valid email address.", false;
-    if (usersData.some(u => u.email.toLowerCase() === v.toLowerCase())) return w.textContent = "This email is already registered.", false;
+    if (usersEmails.some(u => u.toLowerCase() === v.toLowerCase())) return w.textContent = "This email is already registered.", false;
     w.textContent = ""; return true;
 }
 
@@ -155,16 +169,16 @@ async function addUser() {
     const name = nameInputRef.value.trim();
     const email = emailInputRef.value.trim();
     const password = passwordInputRef.value.trim();
-
+    let usersData = await loadData();
     usersData.push({
         name: name,
         email: email,
         password: password
     });
-    await saveUserToDB(name, email, password);
+    await saveUserToDB(usersData);
     showSuccessMsg();
 
-    console.log(usersData);
+    // console.log(usersData);
 }
 
 /**
@@ -173,7 +187,7 @@ async function addUser() {
  * @function saveUserToDB
  * @returns {Promise<void>} Resolves when the data is successfully saved.
  */
-async function saveUserToDB() {
+async function saveUserToDB(usersData) {
     await fetch(BASE_URL + "/users.json", {
         method: "PUT",
         body: JSON.stringify(usersData),
@@ -196,6 +210,6 @@ function showSuccessMsg() {
         message.classList.add('show-message');
     });
     setTimeout(() => {
-        window.location.href = "summary.html";
+        window.location.href = "index.html";
     }, 2000);
 }
