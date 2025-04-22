@@ -1,8 +1,8 @@
 function getBoardTemplate() {
     return`
-        <div>
-          <div>
-            <div>
+        <div class="main-board">
+          <div class="header-board">
+            <div class="board-search">
               <div>
                 <h1>Board</h1>
               </div>
@@ -11,23 +11,25 @@ function getBoardTemplate() {
                 <button>Add task +</button>
               </div>
             </div>
-            <div>
-              <div>
+            <div class="tasks-board">
+              <div class="task-board">
                 <h3>To do</h3>
-                <button>+</button>
+                <button></button>
               </div>
-              <div>
+              <div class="task-board">
                 <h3>In Progress</h3>
-                <button>+</button>
+                <button></button>
               </div>
-              <div>
+              <div class="task-board">
                 <h3>Await feedback</h3>
-                <button>+</button>
+                <button></button>
               </div>
-              <div><h3>Don</h3></div>
+              <div class="task-board">
+                <h3>Don</h3>
+              </div>
             </div>
           </div>
-          <div class="column_div">
+          <div class="column-divs">
             <div id="0" class="columns"></div>
             <div id="1" class="columns"></div>
             <div id="2" class="columns"></div>
