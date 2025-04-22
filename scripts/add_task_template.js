@@ -8,6 +8,7 @@ function getAddTaskTemplate() {
         <div class="form-group">
           <label for="title">Title<span class="required">*</span></label>
           <input type="text" id="title" name="title" placeholder="Enter a title" required />
+          <span class="error-msg">This field is required</span>
         </div>
         <div class="form-group">
           <label for="description">Description</label>

@@ -47,6 +47,15 @@
     margin-left: 2px;
 }
 
+.form-group .error-msg {
+    font-family: 'Poppins', sans-serif;
+    display: none;
+    color: #FF8190;
+    font-size: 12px;
+    line-height: 120%;
+    font-weight: 400;
+}
+
 .form-group input[type="text"],
 .form-group input[type="date"],
 .form-group textarea,
@@ -55,7 +64,6 @@
     font-size: 20px;
     line-height: 120%;
     font-weight: 400;
-    margin-bottom: 10px;
     padding: 12px 21px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -68,30 +76,14 @@
     opacity: 1;
 }
 
-/* Vendor prefixes for full placeholder support */
-.form-group input::-webkit-input-placeholder,
-.form-group textarea::-webkit-input-placeholder {
-    color: #D1D1D1;
-    opacity: 1;
+.form-group input[type="text"]:focus,
+.form-group input[type="date"]:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #29ABE2;
+    outline: none;
 }
 
-.form-group input::-moz-placeholder,
-.form-group textarea::-moz-placeholder {
-    color: #D1D1D1;
-    opacity: 1;
-}
-
-.form-group input:-ms-input-placeholder,
-.form-group textarea:-ms-input-placeholder {
-    color: #D1D1D1;
-    opacity: 1;
-}
-
-.form-group input:-moz-placeholder,
-.form-group textarea:-moz-placeholder {
-    color: #D1D1D1;
-    opacity: 1;
-}
 
 .priority-options {
     display: flex;
