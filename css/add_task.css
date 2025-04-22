@@ -101,7 +101,7 @@
 .prio-btn {
     flex: 1;
     padding: 10px;
-    min-width: 128px;
+    min-width: 135px;
     border: 1px solid #ccc;
     background: #fff;
     border-radius: 10px;
@@ -117,6 +117,8 @@
 
 .prio-btn.selected {
     color: #fff;
+    font-size: 21px;
+    font-weight: 700;
 }
 
 .prio-btn:hover {
