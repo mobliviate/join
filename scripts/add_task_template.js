@@ -41,7 +41,9 @@ function getAddTaskTemplate() {
             <div class="multiselect" id="assigned-box">
                 <div class="select-box">
                 <input type="text" placeholder="Select contacts to assign" id="assigned-input" />
-                <span class="arrow">&#9662;</span>
+                <button type="button" class="arrow-btn" id="assigned-toggle">
+                    <img src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
+                </button>
                 </div>
                 <div class="selected-chips" id="assigned-chips"></div>
                 <div class="checkboxes" id="assigned-options">
@@ -51,11 +53,20 @@ function getAddTaskTemplate() {
         </div>
 
         <div class="form-group">
-          <label for="category">Category<span class="required">*</span></label>
-          <select id="category" name="category" required>
-            <option value="">Select task category</option>
-            <!-- Optionen werden via JS eingefügt -->
-          </select>
+        <label for="category-box">Category<span class="required">*</span></label>
+            <div class="select-single" id="category-box">
+                <div class="select-box category-section" id="category-display" tabindex="0">
+                <span id="category-selected">Select task category</span>
+                <button type="button" class="arrow-btn" id="category-toggle">
+                    <img src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
+                </button>
+                </div>
+                <ul class="options-list" id="category-options">
+                <li data-value="technical-task">Technical Task</li>
+                <li data-value="user-story">User Story</li>
+                </ul>
+            </div>
+            <span class="error-msg">This field is required</span>
         </div>
         
         <div class="form-group">
@@ -65,7 +76,9 @@ function getAddTaskTemplate() {
 
           <div class="select-box">
             <input type="text" id="subtask-input" placeholder="Add new subtask" />
-            <span class="plus">+</span>
+                <button type="button" class="arrow-btn" id="category-toggle">
+                    <img src="./assets/svg/add.svg" alt="Toggle options">
+                </button>
           </div>
         </div>
 
