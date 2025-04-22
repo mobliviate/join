@@ -1,15 +1,17 @@
-/* .main {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    background-color: var(--primary-color);
-} */
+:root {
+  --logo-anim-start-pos-top: 50%;
+  --logo-anim-start-pos-left: 50%;
+  --logo-anim-start-width: 274px;
+  --logo-anim-strat-transform: translate(-50%, -50%);
+  --logo-anim-bg-image: url('../assets/png/join_logo.png');
+  --logo-position: 80px;
+  --logo-width: 100px;
+  --logo-aspect-ratio: 274/334;
+  --animation-bg-color: white;
+}
 
 .main-login {
-  height: 100vh;
+  min-height: 100vh;
   max-width: 1440px;
   margin: 0 auto;
   display: flex;
@@ -26,25 +28,37 @@
   width: 100%;
   height: 100%;
   z-index: 10;
-  background-color: var(--white);
-  animation: fadeOut 1s ease-in-out forwards;
-  animation-delay: 1s;
+  background-color: var(--animation-bg-color);
+  animation: fadeOut 3s ease-in-out forwards;
+  animation-delay: .5s;
   opacity: 1;
 }
 
-.logo-cnt {
+.animation-logo-cnt {
   z-index: 20;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: shrinkDiv 1s ease-in-out forwards;
+  top: var(--logo-anim-start-pos-top);
+  left: var(--logo-anim-start-pos-left);
+  transform: var(--logo-anim-strat-transform);
+  width: var(--logo-anim-start-width);
+  aspect-ratio: var(--logo-aspect-ratio);
+  background-image: var(--logo-anim-bg-imege);
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: shrinkDiv 1.5s ease-in-out forwards;
   animation-delay: .5s;
+}
+
+.logo-cnt {
+  position: absolute;
+  top: var(--logo-position);
+  left: var(--logo-position);
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 2s;
 
   & img {
-    width: 274px;
-    animation: shrinkImg 1s ease-in-out forwards;
-    animation-delay: .5s;
+    width: var(--logo-width);
   }
 }
 
@@ -52,35 +66,64 @@
   0% {
     opacity: 1;
     display: block;
+    background-color: var(--animation-bg-color);
+  }
+
+  50% {
+    opacity: 1;
+    display: block;
+    background-color: transparent;
+  }
+
+  90% {
+    opacity: 1;
+    display: block;
+    background-color: transparent;
   }
 
   100% {
     opacity: 0;
     display: none;
-  }
-}
-
-@keyframes shrinkImg {
-  from {
-    width: 274px;
-  }
-
-  to {
-    width: 100px;
+    background-color: transparent;
   }
 }
 
 @keyframes shrinkDiv {
-  from {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  0% {
+    top: var(--logo-anim-start-pos-top);
+    left: var(--logo-anim-start-pos-left);
+    transform: var(--logo-anim-strat-transform);
+    width: var(--logo-anim-start-width);
+    height: var(--logo-anim-start-height);
+    background-image: url('../assets/png/join_logo_dark.png');
   }
 
-  to {
-    top: 80px;
-    left: 80px;
+  /* 50% {
+    top: var(--logo-position);
+    left: var(--logo-position);
     transform: none;
+    width: var(--logo-width);
+    background-image: url('../assets/png/join_logo.png');
+
+  } */
+
+  100% {
+    top: var(--logo-position);
+    left: var(--logo-position);
+    transform: none;
+    width: var(--logo-width);
+    background-image: url('../assets/png/join_logo.png');
+
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
   }
 }
 
@@ -152,6 +195,7 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 650px;
   border-radius: 30px;
   box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.08);
 }
@@ -161,6 +205,7 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100%;
   gap: 39px;
   padding: 48px 115px;
 }
@@ -171,7 +216,7 @@ button {
   align-items: center;
   flex-direction: column;
   flex-wrap: nowrap;
-  font-size: 62px;
+  font-size: clamp(48px, 8vw, 62px);
   text-align: center;
 
   &::after {
@@ -201,7 +246,7 @@ button {
 }
 
 .login-input {
-  width: 442px;
+  width: 100%;
   padding: 12px 21px;
   font-size: 20px;
   border: 1px solid var(--style);
@@ -293,10 +338,18 @@ button {
 }
 
 
+@media (max-width: 1024px) {
+  :root {
+    --logo-position: 60px;
+    --logo-width: 80px;
+  }
+}
+
 @media (max-width: 750px) {
-  .logo-cnt {
-    top: 38px;
-    left: 38px;
+  :root {
+    --logo-anim-start-width: 200px;
+    --logo-position: 38px;
+    --logo-width: 64px;
   }
 
   .header-login {
@@ -304,11 +357,49 @@ button {
     right: auto;
     bottom: 100px;
   }
+
+  .login {
+    width: 80%;
+  }
+
+  .login-cnt {
+    gap: 32px;
+    padding: 32px 40px;
+  }
+}
+
+@media (max-width: 570px) {
+  /* .main-login {
+    margin: 0 16px;
+  }
+
+  .logo-cnt {
+    left: 22px;
+  } */
+
+  .login {
+    width: calc(100% - 32px);
+  }
+
+  .login-cnt {
+    padding: 32px 16px;
+  }
+
+  .form-btn-cnt {
+    gap: 21px;
+
+    & .btn {
+      font-size: 16px;
+      padding: 16px;
+      width: 180px;
+    }
+  }
 }
 
 @media (max-width: 430px) {
-  .main-login {
-    padding: 0 16px;
+  :root {
+    --logo-anim-start-width: 100px;
+    --animation-bg-color: var(--primary-color);
   }
 
   .login-cnt {
@@ -325,5 +416,21 @@ button {
 
   .login-input {
     width: 100%;
+  }
+
+  .header-login {
+    & span {
+      font-size: 16px;
+    }
+  }
+}
+
+@media (hover: none) and (pointer: coarse) and (max-width: 360px) {
+  :root {
+    --logo-anim-start-pos-top: 30%;
+  }
+
+  .main-login {
+    padding: 160px 0;
   }
 }
