@@ -22,13 +22,13 @@ function getAddTaskTemplate() {
         <div class="form-group">
           <label>Priority</label>
           <div class="priority-options">
-            <button type="button" class="prio-btn" data-prio="urgent">
+            <button type="button" class="prio-btn urgent" data-prio="urgent">
               Urgent <span class="prio-icon"><img src="./assets/svg/prio_high.svg" alt="Prio High"></span>
             </button>
-            <button type="button" class="prio-btn" data-prio="medium">
+            <button type="button" class="prio-btn medium" data-prio="medium">
               Medium <span class="prio-icon"><img src="./assets/svg/prio_medium.svg" alt="Prio Medium"></span>
             </button>
-            <button type="button" class="prio-btn" data-prio="low">
+            <button type="button" class="prio-btn low" data-prio="low">
               Low <span class="prio-icon"><img src="./assets/svg/prio_low.svg" alt="Prio Low"></span>
             </button>
           </div>
