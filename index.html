@@ -9,32 +9,25 @@
 </head>
 
 <body onload="init()">
-    <main class="main-login">
+    <main class="main-login-signup p-top-bottom-160">
         <div class="animation">
             <div class="animation-logo-cnt">
-                <!-- <img src="assets/png/join_logo.png" alt="Join Logo" class="logo" /> -->
-                <!-- <svg class="svg-logo" class="input-icon">
-                    <use href="assets/svg/sprite.svg#join_logo"></use>
-                </svg> -->
             </div>
         </div>
-
-        <div class="logo-cnt">
+        <div class="logo-cnt fade-in">
             <img src="assets/png/join_logo.png" alt="Join Logo" class="join-logo" />
         </div>
-
         <header class="header-login">
             <span> Not a Join user? </span>
             <a class="btn" href="signup.html">Sign up</a>
         </header>
-
-        <div class="login">
+        <div class="login-signup">
             <div class="login-cnt">
-                <h1 class="login-hdl">Log in</h1>
-                <form onsubmit="loginUser(); return false;" class="log-in-form">
+                <h1 class="login-signup-hdl">Log in</h1>
+                <form onsubmit="loginUser(); return false;" class="login-form">
                     <div class="input-cnt">
-                        <input oninput="validateLoginEmail(); checkLoginFormValidity()" class="login-input" type="email"
-                            id="login_email" name="email" required placeholder="Email" />
+                        <input oninput="validateLoginEmail(); checkLoginFormValidity()" class="login-signup-input"
+                            type="email" id="login_email" name="email" required placeholder="Email" />
                         <svg class="input-icon" width="24" height="24">
                             <use href="assets/svg/sprite.svg#mail_icon"></use>
                         </svg>
@@ -43,7 +36,7 @@
                     <div class="input-cnt">
                         <input
                             oninput="passwordOption('login_password', 'login_password_icon_cnt', 'password_icon'); validateLoginPassword(); checkLoginFormValidity()"
-                            class="login-input" type="password" id="login_password" name="password" minlength="8"
+                            class="login-signup-input" type="password" id="login_password" name="password" minlength="8"
                             placeholder="Password" required />
                         <div id="login_password_icon_cnt" class="input-icon-cnt">
                             <img id="password_icon" src="assets/png/lock.png" alt="">

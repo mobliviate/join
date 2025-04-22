@@ -6,25 +6,26 @@
     <title>Join</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="/css/signup.css" />
+    <link rel="stylesheet" type="text/css" href="/css/login.css" />
 </head>
 
 <body onload="init()">
-    <main class="main-signup">
+    <main class="main-login-signup p-top-bottom-160">
         <div class="logo-cnt">
             <img src="assets/png/join_logo.png" alt="Join Logo" class="logo" />
         </div>
 
-        <div class="signup">
+        <div class="login-signup pos-rel w-600">
             <a class="btn-back" href="index.html">
                 <svg class="arrow-left" width="32" height="32">
                     <use href="assets/svg/sprite.svg#arrow_left"></use>
                 </svg>
             </a>
             <div class="signup-cnt">
-                <h1 class="signup-hdl">Sign up</h1>
+                <h1 class="login-signup-hdl">Sign up</h1>
                 <form onsubmit="addUser(); return false;" class="signup-form">
                     <div class="input-cnt">
-                        <input oninput="checkFormValidity(); validateName()" class="signup-input" type="text"
+                        <input oninput="checkFormValidity(); validateName()" class="login-signup-input" type="text"
                             id="signup_name" name="name" autocomplete="name" placeholder="Name" minlength="6"
                             required />
                         <svg class="input-icon" width="24" height="24">
@@ -33,7 +34,7 @@
                         <p id="signup_warning_name" class="input-warning"></p>
                     </div>
                     <div class="input-cnt">
-                        <input oninput="checkFormValidity(); validateEmail()" class="signup-input" type="email"
+                        <input oninput="checkFormValidity(); validateEmail()" class="login-signup-input" type="email"
                             id="signup_email" name="email" autocomplete="on" required placeholder="Email" />
                         <svg class="input-icon" width="24" height="24">
                             <use href="assets/svg/sprite.svg#mail_icon"></use>
@@ -43,7 +44,7 @@
                     <div class="input-cnt">
                         <input
                             oninput="passwordOption('signup_password', 'password_cnt', 'password_icon'); checkFormValidity(); validatePassword()"
-                            class="signup-input" type="password" id="signup_password" name="password" required
+                            class="login-signup-input" type="password" id="signup_password" name="password" required
                             minlength="8" placeholder="Password" />
                         <div id="password_cnt" class="input-icon-cnt">
                             <img id="password_icon" src="assets/png/lock.png">
@@ -53,8 +54,8 @@
                     <div class="input-cnt">
                         <input
                             oninput="passwordOption('signup_confirm_password', 'confirm_password_cnt', 'confirm_password_icon'); checkFormValidity(); validateConfirmPassword()"
-                            class="signup-input" type="password" id="signup_confirm_password" name="password" required
-                            minlength="8" placeholder="Confirm Password" />
+                            class="login-signup-input" type="password" id="signup_confirm_password" name="password"
+                            required minlength="8" placeholder="Confirm Password" />
                         <div id="confirm_password_cnt" class="input-icon-cnt">
                             <img id="confirm_password_icon" src="assets/png/lock.png" alt="">
                         </div>
@@ -80,12 +81,12 @@
             <a href="privacy_policy.html">Privacy Policy</a>
             <a href="legal_notice.html">Legal notice</a>
         </footer>
-    </main>
-    <div class="success-message-cnt" id="success-message-cnt">
-        <div class="success-message" id="success-message">
-            <span>You Signed Up successfully</span>
+        <div class="success-message-cnt" id="success-message-cnt">
+            <div class="success-message" id="success-message">
+                <span>You Signed Up successfully</span>
+            </div>
         </div>
-    </div>
+    </main>
     <script src="scripts/signup.js"></script>
     <script src="scripts/login_signup_template.js"></script>
 </body>

@@ -10,7 +10,7 @@
   --animation-bg-color: white;
 }
 
-.main-login {
+.main-login-signup {
   min-height: 100vh;
   max-width: 1440px;
   margin: 0 auto;
@@ -42,7 +42,7 @@
   transform: var(--logo-anim-strat-transform);
   width: var(--logo-anim-start-width);
   aspect-ratio: var(--logo-aspect-ratio);
-  background-image: var(--logo-anim-bg-imege);
+  background-image: var(--logo-anim-bg-image);
   background-size: contain;
   background-repeat: no-repeat;
   animation: shrinkDiv 1.5s ease-in-out forwards;
@@ -53,13 +53,16 @@
   position: absolute;
   top: var(--logo-position);
   left: var(--logo-position);
-  opacity: 0;
-  animation: fadeIn 1s ease-in-out forwards;
-  animation-delay: 2s;
 
   & img {
     width: var(--logo-width);
   }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+  animation-delay: 2s;
 }
 
 @keyframes fadeOut {
@@ -94,18 +97,8 @@
     left: var(--logo-anim-start-pos-left);
     transform: var(--logo-anim-strat-transform);
     width: var(--logo-anim-start-width);
-    height: var(--logo-anim-start-height);
-    background-image: url('../assets/png/join_logo_dark.png');
+    background-image: var(--logo-anim-bg-image);
   }
-
-  /* 50% {
-    top: var(--logo-position);
-    left: var(--logo-position);
-    transform: none;
-    width: var(--logo-width);
-    background-image: url('../assets/png/join_logo.png');
-
-  } */
 
   100% {
     top: var(--logo-position);
@@ -113,7 +106,6 @@
     transform: none;
     width: var(--logo-width);
     background-image: url('../assets/png/join_logo.png');
-
   }
 }
 
@@ -190,7 +182,7 @@ button {
   }
 }
 
-.login {
+.login-signup {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -210,7 +202,7 @@ button {
   padding: 48px 115px;
 }
 
-.login-hdl {
+.login-signup-hdl {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -229,7 +221,7 @@ button {
   }
 }
 
-.log-in-form {
+.login-form {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -240,15 +232,14 @@ button {
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
   align-items: center;
   position: relative;
 }
 
-.login-input {
+.login-signup-input {
   width: 100%;
   padding: 12px 21px;
-  font-size: 20px;
+  padding-right: 46px;
   border: 1px solid var(--style);
   border-radius: 10px;
   font-size: 19px;
@@ -259,7 +250,7 @@ button {
   }
 
   &:focus {
-    outline: 1px solid var(--primary-color);
+    outline: 1px solid var(--secondary-color);
   }
 }
 
@@ -308,6 +299,7 @@ button {
   left: 0px;
   font-size: 14px;
   color: var(--warning-color);
+  z-index: 10;
 }
 
 .form-btn-cnt {
@@ -340,16 +332,14 @@ button {
 
 @media (max-width: 1024px) {
   :root {
-    --logo-position: 60px;
-    --logo-width: 80px;
+    --logo-position: clamp(38px, 6vw, 60px);
+    --logo-width: clamp(64px, 8vw, 80px);
   }
 }
 
 @media (max-width: 750px) {
   :root {
     --logo-anim-start-width: 200px;
-    --logo-position: 38px;
-    --logo-width: 64px;
   }
 
   .header-login {
@@ -358,31 +348,30 @@ button {
     bottom: 100px;
   }
 
-  .login {
+  .login-signup {
     width: 80%;
-  }
 
-  .login-cnt {
-    gap: 32px;
-    padding: 32px 40px;
+    & .login-cnt {
+      gap: 32px;
+      padding: 32px 40px;
+    }
+
+    & .signup-cnt {
+      padding: 32px 40px;
+    }
   }
 }
 
 @media (max-width: 570px) {
-  /* .main-login {
-    margin: 0 16px;
-  }
 
-  .logo-cnt {
-    left: 22px;
-  } */
-
-  .login {
+  .login-signup,
+  .w-600 {
     width: calc(100% - 32px);
-  }
 
-  .login-cnt {
-    padding: 32px 16px;
+    & .login-cnt,
+    .signup-cnt {
+      padding: 32px 16px;
+    }
   }
 
   .form-btn-cnt {
@@ -400,14 +389,36 @@ button {
   :root {
     --logo-anim-start-width: 100px;
     --animation-bg-color: var(--primary-color);
+    --logo-anim-bg-image: url('../assets/png/join_logo_dark.png');
+  }
+
+  .p-top-bottom-160 {
+    padding: 160px 0;
   }
 
   .login-cnt {
     padding: 32px 16px;
   }
 
+  .login-signup-input {
+    padding: 12px;
+    padding-right: 36px;
+    border: 1px solid var(--style);
+    border-radius: 10px;
+    font-size: 19px;
+  }
+
+  .input-icon {
+    right: 12px;
+  }
+
+  .input-icon-cnt {
+    right: 12px;
+  }
+
   .form-btn-cnt {
     flex-direction: column;
+    padding-top: 8px;
   }
 
   .btn-primary {
@@ -423,14 +434,20 @@ button {
       font-size: 16px;
     }
   }
-}
 
-@media (hover: none) and (pointer: coarse) and (max-width: 360px) {
-  :root {
-    --logo-anim-start-pos-top: 30%;
+  .success-message {
+    font-size: 18px;
   }
 
-  .main-login {
-    padding: 160px 0;
+  .btn-back {
+    top: -100px;
+    left: auto;
+    right: 30px;
+  }
+}
+
+@media (max-width: 350px) {
+  :root {
+    --logo-anim-start-pos-top: 30%;
   }
 }
