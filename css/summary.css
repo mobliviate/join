@@ -1,56 +1,56 @@
-.summary-container {
+.summary_container {
     background-color: lightcoral;
 }
 
-.summary-wrapper {
+.summary_wrapper {
     height: calc(100vh - 96px);
     background-color: lightgray;
     padding: 64px 48px;
 }
 
-.summary-headline {
+.summary_headline {
     display: flex;
     align-items: center;
     gap: 32px;
     background-color: antiquewhite;
 }
 
-.summary-headline-title {
+.summary_headline_title {
     font-size: 56px;
 }
 
-.summary-headline-line {
+.summary_headline_line {
     height: 64px;
     width: 4px;
     background-color: var(--light-blue);
     border-radius: 2px;
 }
 
-.summary-headline span {
+.summary_headline span {
     font-size: 24px;
 }
 
-.summary-content {
+.summary_content {
     display: flex;
     background-color: lightpink;
 }
 
-.summary-content-left,
-.summary-content-right {
+.summary_content_left,
+.summary_content_right {
     flex: 1;
     padding: 10px;
 }
 
-.summary-content-left {
+.summary_content_left {
     display: flex;
     flex-direction: column;
     background-color: lightgreen;    
     gap: 16px;
 }
 
-.summary-content-left-top-wrapper,
-.summary-content-left-middle-wrapper,
-.summary-content-left-bottom-wrapper {
+.summary_content_left_top_wrapper,
+.summary_ontent_left_middle_wrapper,
+.summary_content_left_bottom_wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +58,7 @@
 }
 
 
-.summary-buttons {
+.summary_buttons {
     display: flex;
     flex: 1;
     height: 168px;
@@ -70,6 +70,6 @@
     border-radius: 25px;
 }
 
-.summary-content-right {
+.summary_content_right {
     background-color: lightblue;
 }
