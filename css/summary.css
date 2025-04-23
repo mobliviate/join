@@ -54,7 +54,7 @@
 .summary_content_left_middle_wrapper,
 .summary_content_left_bottom_wrapper {
     display: flex;
-    /* justify-content: center; */
+    justify-content: space-between;
     align-items: center;
     gap: 28px;
 }
@@ -62,9 +62,11 @@
 .summary_button_width_264{
     width: 264px;
 }
+
 .summary_button_width_560{
     width: 560px;
 }
+
 .summary_button_width_168{
     width: 168px;
 }
@@ -97,10 +99,21 @@
     border-radius: 25px;
 }
 
+.summary_bottons_counter_and_text_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.summary_todo_counter {
+    font-weight: 600;
+    font-size: 64px;
+}
 
-
-
+.summary_todo_text {
+    font-weight: 400;
+    font-size: 20px;
+}
 
 /* .summary_buttons_top {
     width: 264px;

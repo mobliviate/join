@@ -29,7 +29,7 @@ function initSummary() {
 
                                     <div class="summary_bottons_counter_and_text_wrapper">
                                         <span class="summary_todo_counter" id="summary-todo-counter">1</span>
-                                        <span>To-do</span>
+                                        <span class="summary_todo_text">To-do</span>
                                     </div>
 
                                 </div>
@@ -47,9 +47,11 @@ function initSummary() {
                                 <div class="summary_buttons summary_button_width_168" id="summary-awaiting-feedback">aw-feedback</div>
                             </div>
                     </div>
+
                     <div class="summary_content_right">
                         <span> Right </span>
                     </div>
+
                 </div>
 
             </div>
