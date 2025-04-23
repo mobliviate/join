@@ -12,7 +12,7 @@ function validateLoginEmail() {
     const w = document.getElementById("login_warning_email");
     if (!v) return w.textContent = "", false;
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return w.textContent = "Please enter a valid email address.", false;
-    if (!usersData.some(u => u.toLowerCase() === v.toLowerCase())) return w.textContent = "This email is not registered.", false;
+    if (!usersEmails.some(u => u.toLowerCase() === v.toLowerCase())) return w.textContent = "This email is not registered.", false;
     w.textContent = ""; return true;
 }
 
