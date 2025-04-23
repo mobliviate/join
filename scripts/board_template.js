@@ -1,5 +1,5 @@
 function getBoardTemplate() {
-    return`
+  return `
         <div class="main-board">
           <div class="header-board">
             <div class="board-search">
@@ -25,7 +25,7 @@ function getBoardTemplate() {
                 <button></button>
               </div>
               <div class="task-board">
-                <h3>Don</h3>
+                <h3>Done</h3>
               </div>
             </div>
           </div>
@@ -36,5 +36,5 @@ function getBoardTemplate() {
             <div id="3" class="columns"></div>
           </div>
         </div>
-    `
+    `;
 }
