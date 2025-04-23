@@ -7,7 +7,7 @@ function getBodyTemplate() {
             <img src="assets/svg/join-logo.svg" alt="Join Logo">
           </div>
           <nav class="sidebar-nav">
-            <a href="index.html" class="sidebar-link" data-page="index.html">
+            <a href="summary.html" class="sidebar-link" data-page="summary.html">
               <img src="assets/svg/summary-icon.svg"> Summary
             </a>
             <a href="add_task.html" class="sidebar-link" data-page="add_task.html">
