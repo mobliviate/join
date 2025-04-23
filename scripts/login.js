@@ -1,12 +1,12 @@
-'use restrict';
+'use strict';
 const loginEmailInputRef = document.getElementById("login_email");
 const loginPasswordInputRef = document.getElementById("login_password");
 const loginBtn = document.getElementById('login_btn');
 
-
-
-
-
+/**
+ * Validates the email input field for login.
+ * @returns {boolean} - Returns true if the email is valid, otherwise false.
+ */
 function validateLoginEmail() {
     const v = loginEmailInputRef.value.trim();
     const w = document.getElementById("login_warning_email");
@@ -16,6 +16,10 @@ function validateLoginEmail() {
     w.textContent = ""; return true;
 }
 
+/**
+ * Validates the password input field for login.
+ * @returns {boolean} - Returns true if the password is valid, otherwise false.
+ */
 function validateLoginPassword() {
     const v = loginPasswordInputRef.value;
     const w = document.getElementById("login_warning_password");
@@ -25,12 +29,24 @@ function validateLoginPassword() {
     w.textContent = ""; return true;
 }
 
+/**
+ * Fetches the list of users from the server.
+ * @async
+ * @returns {Promise<Array>} - A promise that resolves to an array of user objects.
+ */
 async function fetchUsers() {
     const response = await fetch(BASE_URL + ".json");
     const data = await response.json();
     return data.users || [];
 }
 
+/**
+ * Handles the login form submission.
+ * Validates the email and password, and attempts to log in the user.
+ * Displays appropriate warnings if login fails.
+ * @async
+ * @returns {Promise<void>} - A promise that resolves when the login process is complete.
+ */
 async function handleLoginSubmit() {
     const w = document.getElementById("login_warning_password");
     const v = loginEmailInputRef.value.trim().toLowerCase();
@@ -51,16 +67,19 @@ async function handleLoginSubmit() {
     }
 }
 
+/**
+ * Checks the validity of the login form inputs.
+ * Enables or disables the login button based on the validity of the inputs.
+ */
 function checkLoginFormValidity() {
     const isEmailValid = validateLoginEmail();
     const isPasswordValid = validateLoginPassword();
     loginBtn.disabled = !(isEmailValid && isPasswordValid);
 }
 
-// function loginUser() {
-//     openSummaryPage();
-// }
-
+/**
+ * Redirects the user to the summary page upon successful login.
+ */
 function openSummaryPage() {
     window.location.href = "summary.html";
 }

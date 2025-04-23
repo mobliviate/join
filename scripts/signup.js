@@ -16,7 +16,7 @@ const formInputs = [
 ];
 
 /**
- * Initializes the application by loading user data from the database.
+ * Initializes the signup and login form by loading user emails
  * @async
  * @function init
  * @returns {Promise<void>} Resolves when data is loaded.
@@ -26,11 +26,11 @@ async function init() {
 };
 
 /**
- * Loads user data from the database.
- * @async
- * @function loadData
- * @returns {Promise<void>} Resolves when data is loaded and stored in the `usersData` array.
- */
+ * Loads user emails from the database and stores them in the `usersEmails` array.
+ * @async       
+ * @function loadUsersEmails
+ * @returns {Promise<void>} Resolves when data is loaded.
+ * */
 async function loadUsersEmails() {
     let data = await loadData();
     data.forEach(u => {
@@ -40,12 +40,18 @@ async function loadUsersEmails() {
     console.log(usersEmails);
 };
 
+/**
+ * 
+ * Loads user data from the database.
+ * @async
+ * @function loadData
+ * @returns {Promise<Array>} Resolves with the users data from the database.
+ */
 async function loadData() {
     let response = await fetch(BASE_URL + ".json");
     let data = await response.json();
     return data.users || [];
 }
-
 
 async function loadDataTest() {
     let response = await fetch(BASE_URL + ".json");
