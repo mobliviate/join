@@ -39,19 +39,31 @@ async function fetchAndRenderContacts() {
   const snapshot = await database.ref("contacts").once("value");
   const dataObject = snapshot.val() || {};
   const contactArray = [];
+  const userArray = [];
 
-  for (const id in dataObject) {
-    const record = dataObject[id];
-    contactArray.push({
-      id: id,
+  for (const key in dataObject) {
+    const record = dataObject[key];
+    const user = {
       name: record.name,
       email: record.email,
-      phone: record.phone,
-      initials: getInitials(record.name),
+      phone: record.phone
+    };
+    userArray.push(user);
+
+
+    const generatedID = userArray.length - 1;
+
+    contactArray.push({
+      id: generatedID.toString(),
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      initials: getInitials(user.name)
     });
+
+    sortContactsByName(contactArray);
+    renderContactsList(contactArray);
   }
-  sortContactsByName(contactArray);
-  renderContactsList(contactArray);
 }
 
 /**
