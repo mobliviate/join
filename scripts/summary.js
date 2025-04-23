@@ -23,25 +23,28 @@ function initSummary() {
 
                             <div class="summary_content_left_top_wrapper">
                                 
-                                <div class="summary_buttons" id="summary-todo">
-                                    <img src="" alt="">
+                                <div class="summary_buttons summary_button_width_264 gap_16" id="summary-todo">
+
+                                    <img src="./assets/svg/summary-todo-icon.svg" alt="To-do">
+
                                     <div class="summary_bottons_counter_and_text_wrapper">
                                         <span class="summary_todo_counter" id="summary-todo-counter">1</span>
                                         <span>To-do</span>
                                     </div>
+
                                 </div>
 
-                                <div class="summary_buttons" id="summary-done">done</div>
+                                <div class="summary_buttons summary_button_width_264 gap_16" id="summary-done">done</div>
                             </div>
 
                             <div class="summary_content_left_middle_wrapper">
-                                <div class="summary_buttons" id="summary-urgent">urgent</div>
+                                <div class="summary_buttons summary_button_width_560" id="summary-urgent">urgent</div>
                             </div>
 
                             <div class="summary_content_left_bottom_wrapper">
-                                <div class="summary_buttons" id="summary-tasks-in-board">t-i-board</div>
-                                <div class="summary_buttons" id="summary-tasks-in-progress">t-i-progress</div>
-                                <div class="summary_buttons" id="summary-awaiting-feedback">aw-feedback</div>
+                                <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-board">t-i-board</div>
+                                <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-progress">t-i-progress</div>
+                                <div class="summary_buttons summary_button_width_168" id="summary-awaiting-feedback">aw-feedback</div>
                             </div>
                     </div>
                     <div class="summary_content_right">
