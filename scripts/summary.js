@@ -22,7 +22,15 @@ function initSummary() {
                     <div class="summary_content_left">
 
                             <div class="summary_content_left_top_wrapper">
-                                <div class="summary_buttons" id="summary-todo">todo</div>
+                                
+                                <div class="summary_buttons" id="summary-todo">
+                                    <img src="" alt="">
+                                    <div class="summary_bottons_counter_and_text_wrapper">
+                                        <span class="summary_todo_counter" id="summary-todo-counter">1</span>
+                                        <span>To-do</span>
+                                    </div>
+                                </div>
+
                                 <div class="summary_buttons" id="summary-done">done</div>
                             </div>
 
