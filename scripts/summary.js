@@ -12,7 +12,7 @@ function initSummary() {
 
                 <div class="summary_header">
                     <div class="summary_headline">
-                        <h1 class="summary_headline_title"> Join 360 </h1>
+                        <div class="summary_headline_title"> Join 360 </div>
                         <div class="summary_headline_line"></div>
                         <span> Key Metrics at a Glance </span>
                     </div>
@@ -51,20 +51,20 @@ function initSummary() {
                                 <div class="summary_buttons summary_button_width_560" id="summary-urgent">
                                     <div class="summary_urgent_wrapper">
 
-                                        <div class="summary_urgent_left">
+                                        <div class="summary_urgent_left padding_28_48 gap_16">
                                             <img src="./assets/svg/summary-urgent-icon.svg" alt="Urgent">
 
                                             <div class="summary_bottons_amount_and_text_wrapper">
                                                 <span class="summary_amount_font_weight_and_size" id="summary-urgent-amount">1</span>
-                                                <span class="summary_text_font_weight_and_size">Urgent</span>
+                                                <span class="summary_urgent_text_info">Urgent</span>
                                             </div>                                        
                                         </div>
 
                                         <div class="summary_urgent_line"></div>
 
-                                        <div class="summary_urgent_text_wrapper">    
-                                            <span> October 16, 2022 </span>
-                                            <span> Sofia Müller </span>
+                                        <div class="summary_urgent_text_wrapper padding_28_48">    
+                                            <span class="summary_urgent_text_date"> October 16, 2022 </span>
+                                            <span class="summary_urgent_text_info"> Upcoming Deadline </span>
                                         </div>
 
                                     </div>                                
@@ -97,7 +97,10 @@ function initSummary() {
                     </div>
 
                     <div class="summary_content_right">
-                        <span> Right </span>
+                        <div class="summary_content_right_wrapper">
+                            <span class="summary_content_right_greeting"> Good morning, </span>
+                            <span class="summary_content_right_user"> Sofia Müller </span>
+                        </div>
                     </div>
 
                 </div>
