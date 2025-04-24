@@ -105,14 +105,15 @@
     align-items: center;
 }
 
-.summary_todo_amount {
+.summary_amount_font_weight_and_size {
     font-weight: 600;
     font-size: 64px;
 }
 
-.summary_todo_text {
+.summary_text_font_weight_and_size {
     font-weight: 400;
     font-size: 20px;
+    text-align: center;
 }
 
 /* .summary_buttons_top {

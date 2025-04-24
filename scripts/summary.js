@@ -22,19 +22,29 @@ function initSummary() {
                     <div class="summary_content_left">
 
                             <div class="summary_content_left_top_wrapper">
-                                
+
                                 <div class="summary_buttons summary_button_width_264 gap_16" id="summary-todo">
 
                                     <img src="./assets/svg/summary-todo-icon.svg" alt="To-do">
 
                                     <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_todo_amount" id="summary-todo-amount">1</span>
-                                        <span class="summary_todo_text">To-do</span>
+                                        <span class="summary_amount_font_weight_and_size" id="summary-todo-amount">1</span>
+                                        <span class="summary_text_font_weight_and_size">To-do</span>
                                     </div>
 
                                 </div>
 
-                                <div class="summary_buttons summary_button_width_264 gap_16" id="summary-done">done</div>
+                                <div class="summary_buttons summary_button_width_264 gap_16" id="summary-done">
+                                    
+                                    <img src="./assets/svg/summary-done-icon.svg" alt="Done">
+
+                                    <div class="summary_bottons_amount_and_text_wrapper">
+                                        <span class="summary_amount_font_weight_and_size" id="summary-done-amount">1</span>
+                                        <span class="summary_text_font_weight_and_size">Done</span>
+                                    </div>
+                                    
+                                </div>
+
                             </div>
 
                             <div class="summary_content_left_middle_wrapper">
@@ -42,8 +52,21 @@ function initSummary() {
                             </div>
 
                             <div class="summary_content_left_bottom_wrapper">
-                                <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-board">t-i-board</div>
-                                <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-progress">t-i-progress</div>
+
+                                <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-board">
+                                    <div class="summary_bottons_amount_and_text_wrapper">
+                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-board-amount">5</span>
+                                        <span class="summary_text_font_weight_and_size">Tasks in<br>Board</span>
+                                    </div>                                
+                                </div>
+
+                                <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-progress">
+                                    <div class="summary_bottons_amount_and_text_wrapper">
+                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-progress-amount">2</span>
+                                        <span class="summary_text_font_weight_and_size">Tasks in<br>Progress</span>
+                                    </div>                                                                
+                                </div>
+
                                 <div class="summary_buttons summary_button_width_168" id="summary-awaiting-feedback">aw-feedback</div>
                             </div>
                     </div>
