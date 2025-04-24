@@ -23,6 +23,7 @@ const formInputs = [
  */
 async function init() {
     await loadUsersEmails();
+    setLoginState();
 };
 
 /**
@@ -39,6 +40,12 @@ async function loadUsersEmails() {
     });
     console.log(usersEmails);
 };
+
+function setLoginState() {
+    if (localStorage.getItem('isLoggedIn') === null) {
+        localStorage.setItem('isLoggedIn', 'false');
+    }
+}
 
 /**
  * 
