@@ -22,10 +22,10 @@
 }
 
 .summary_headline_line {
-    height: 64px;
+    height: 59px;
     width: 4px;
     background-color: var(--light-blue);
-    border-radius: 2px;
+    border-radius: 3px;
 }
 
 .summary_headline span {
@@ -120,6 +120,11 @@
     width: 264px;
 } */
 
+.summary_urgent_line {
+    height: 102px;
+    width: 2px;
+    background-color: var(--light-blue);
+}
 
 .summary_content_right {
     display: flex;

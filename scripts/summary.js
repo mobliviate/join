@@ -48,7 +48,27 @@ function initSummary() {
                             </div>
 
                             <div class="summary_content_left_middle_wrapper">
-                                <div class="summary_buttons summary_button_width_560" id="summary-urgent">urgent</div>
+                                <div class="summary_buttons summary_button_width_560" id="summary-urgent">
+                                    <div class="summary_urgent_wrapper">
+
+                                        <div class="summary_urgent_left">
+                                            <img src="./assets/svg/summary-urgent-icon.svg" alt="Urgent">
+
+                                            <div class="summary_bottons_amount_and_text_wrapper">
+                                                <span class="summary_amount_font_weight_and_size" id="summary-urgent-amount">1</span>
+                                                <span class="summary_text_font_weight_and_size">Urgent</span>
+                                            </div>                                        
+                                        </div>
+
+                                        <div class="summary_urgent_line"></div>
+
+                                        <div class="summary_urgent_text_wrapper">    
+                                            <span> October 16, 2022 </span>
+                                            <span> Sofia Müller </span>
+                                        </div>
+
+                                    </div>                                
+                                </div>
                             </div>
 
                             <div class="summary_content_left_bottom_wrapper">
@@ -67,7 +87,12 @@ function initSummary() {
                                     </div>                                                                
                                 </div>
 
-                                <div class="summary_buttons summary_button_width_168" id="summary-awaiting-feedback">aw-feedback</div>
+                                <div class="summary_buttons summary_button_width_168" id="summary-awaiting-feedback">
+                                    <div class="summary_bottons_amount_and_text_wrapper">
+                                        <span class="summary_amount_font_weight_and_size" id="summary-awaiting-feedback-amount">2</span>
+                                        <span class="summary_text_font_weight_and_size">Awaiting<br>Feedback</span>
+                                    </div>                                                                                                
+                                </div>
                             </div>
                     </div>
 
