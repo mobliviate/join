@@ -99,13 +99,13 @@
     border-radius: 25px;
 }
 
-.summary_bottons_counter_and_text_wrapper {
+.summary_bottons_amount_and_text_wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.summary_todo_counter {
+.summary_todo_amount {
     font-weight: 600;
     font-size: 64px;
 }

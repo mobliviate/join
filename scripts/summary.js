@@ -27,8 +27,8 @@ function initSummary() {
 
                                     <img src="./assets/svg/summary-todo-icon.svg" alt="To-do">
 
-                                    <div class="summary_bottons_counter_and_text_wrapper">
-                                        <span class="summary_todo_counter" id="summary-todo-counter">1</span>
+                                    <div class="summary_bottons_amount_and_text_wrapper">
+                                        <span class="summary_todo_amount" id="summary-todo-amount">1</span>
                                         <span class="summary_todo_text">To-do</span>
                                     </div>
 
