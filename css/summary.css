@@ -103,7 +103,11 @@
     justify-content: center;
 
     border: 1px solid gray;
-    border-radius: 25px;
+    border-radius: 30px;
+}
+
+.summary_buttons:hover {
+    background-color: var(--primary-color);
 }
 
 .summary_bottons_amount_and_text_wrapper {
@@ -149,7 +153,7 @@
     margin: 33px 0;
     /* height: 102px; */
     width: 2px;
-    background-color: var(--light-blue);
+    background-color: var(--style);
 }
 
 .summary_urgent_text_wrapper {
@@ -179,7 +183,7 @@
 .summary_content_right_wrapper {
     display: flex;
     flex-direction: column;
-    padding: 16px 16px 16px 72px;
+    padding: 16px 16px 16px 48px;
 }
 
 .summary_content_right_greeting {
