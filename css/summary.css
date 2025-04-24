@@ -171,5 +171,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: lightblue;
+    background-color: lightslategray;
+}
+
+.summary_content_right_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary_content_right_greeting {
+    font-weight: 500;
+    font-size: 47px;
+}
+
+.summary_content_right_user {
+    font-weight: 700;
+    font-size: 64px;
+    color: var(--light-blue);
 }

@@ -97,7 +97,10 @@ function initSummary() {
                     </div>
 
                     <div class="summary_content_right">
-                        <span> Right </span>
+                        <div class="summary_content_right_wrapper">
+                            <span class="summary_content_right_greeting"> Good morning, </span>
+                            <span class="summary_content_right_user"> Sofia Müller </span>
+                        </div>
                     </div>
 
                 </div>
