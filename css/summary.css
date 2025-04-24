@@ -18,7 +18,8 @@
 }
 
 .summary_headline_title {
-    font-size: 56px;
+    font-weight: 700;
+    font-size: 61px;
 }
 
 .summary_headline_line {
@@ -29,7 +30,8 @@
 }
 
 .summary_headline span {
-    font-size: 24px;
+    font-weight: 400;
+    font-size: 27px;
 }
 
 .summary_content {
@@ -142,7 +144,6 @@
     width: 70px;
 }
 
-
 .summary_urgent_line {
     margin: 33px 0;
     /* height: 102px; */
@@ -177,6 +178,7 @@
 .summary_content_right_wrapper {
     display: flex;
     flex-direction: column;
+
 }
 
 .summary_content_right_greeting {
