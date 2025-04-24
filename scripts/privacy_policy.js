@@ -1,6 +1,11 @@
 function initPrivacyPolicy() {
-  document.body.innerHTML = getBodyTemplate();
-  loadHeader();
+  if (loginState) {
+    document.body.innerHTML = getBodyTemplate(getSideBarUserTemplate());
+    loadHeader("header.html");
+  } else {
+    document.body.innerHTML = getBodyTemplate(getSideBarWithoutUserTemplate());
+    loadHeader("header_without_user.html");
+  }
   highlightActiveSidebarLink();
   document.getElementById("main").innerHTML = getPrivacyPolicyContent();
 }

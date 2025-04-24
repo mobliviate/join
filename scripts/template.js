@@ -1,4 +1,4 @@
-function getBodyTemplate() {
+function getBodyTemplate(func) {
   return `
     <div class="wrapper">
       <div class="main-div">
@@ -6,20 +6,7 @@ function getBodyTemplate() {
           <div class="sidebar-logo">
             <img src="assets/svg/join-logo.svg" alt="Join Logo">
           </div>
-          <nav class="sidebar-nav">
-            <a href="summary.html" class="sidebar-link" data-page="summary.html">
-              <img src="assets/svg/summary-icon.svg"> Summary
-            </a>
-            <a href="add_task.html" class="sidebar-link" data-page="add_task.html">
-              <img src="assets/svg/edit-icon.svg"> Add Task
-            </a>
-            <a href="board.html" class="sidebar-link" data-page="board.html">
-              <img src="assets/svg/board-icon.svg"> Board
-            </a>
-            <a href="contact.html" class="sidebar-link" data-page="contact.html">
-              <img src="assets/svg/contact-icon.svg"> Contacts
-            </a>
-          </nav>
+          ${func}
           <div class="sidebar-footer">
             <a href="privacy_policy.html" class="sidebar-link" data-page="privacy_policy.html">Privacy Policy</a>
             <a href="legal_notice.html" class="sidebar-link" data-page="legal_notice.html">Legal Notice</a>
@@ -31,6 +18,35 @@ function getBodyTemplate() {
         </div>
       </div>
     </div>
+  `;
+}
+
+function getSideBarUserTemplate() {
+  return `
+      <nav class="sidebar-nav">
+        <a href="summary.html" class="sidebar-link" data-page="summary.html">
+          <img src="assets/svg/summary-icon.svg"> Summary
+        </a>
+        <a href="add_task.html" class="sidebar-link" data-page="add_task.html">
+          <img src="assets/svg/edit-icon.svg"> Add Task
+        </a>
+        <a href="board.html" class="sidebar-link" data-page="board.html">
+          <img src="assets/svg/board-icon.svg"> Board
+        </a>
+        <a href="contact.html" class="sidebar-link" data-page="contact.html">
+          <img src="assets/svg/contact-icon.svg"> Contacts
+        </a>
+      </nav>
+  `;
+}
+
+function getSideBarWithoutUserTemplate() {
+  return `
+      <nav class="sidebar-nav">
+        <a href="index.html" class="sidebar-link" data-page="index.html">
+          <img src="assets/svg/login.svg"> Log In
+        </a>
+      </nav>
   `;
 }
 

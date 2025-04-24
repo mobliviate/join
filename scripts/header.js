@@ -1,5 +1,5 @@
-async function loadHeader() {
-  const response = await fetch("header.html");
+async function loadHeader(htmlFile) {
+  const response = await fetch(htmlFile);
   const headerHTML = await response.text();
   document.getElementById("header").innerHTML = headerHTML;
 }

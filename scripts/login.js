@@ -60,6 +60,7 @@ async function handleLoginSubmit() {
             w.textContent = "Email or password is incorrect.";
         } else {
             w.textContent = "";
+            localStorage.setItem('isLoggedIn', 'true');
             openSummaryPage();
         }
     } catch (error) {
