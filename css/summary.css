@@ -46,6 +46,7 @@
 }
 
 .summary_content_left {
+    max-width: 560px;
     display: flex;
     flex-direction: column;
     background-color: lightgreen;    
@@ -170,7 +171,7 @@
 
 .summary_content_right {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     background-color: lightslategray;
 }
@@ -178,7 +179,7 @@
 .summary_content_right_wrapper {
     display: flex;
     flex-direction: column;
-
+    padding: 16px 16px 16px 72px;
 }
 
 .summary_content_right_greeting {
