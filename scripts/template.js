@@ -1,25 +1,46 @@
-function getBodyTemplate(func) {
+function getBodyTemplate(func = getSideBarUserTemplate()) {
   return `
-    <div class="wrapper">
-      <div class="main-div">
-        <div class="left">
-          <div class="sidebar-logo">
-            <img src="assets/svg/join-logo.svg" alt="Join Logo">
-          </div>
-          ${func}
-          <div class="sidebar-footer">
-            <a href="privacy_policy.html" class="sidebar-link" data-page="privacy_policy.html">Privacy Policy</a>
-            <a href="legal_notice.html" class="sidebar-link" data-page="legal_notice.html">Legal Notice</a>
-          </div>
+    <div class="main-div">
+      <div class="left">
+        <div class="sidebar-logo">
+          <img src="assets/svg/join-logo.svg" alt="Join Logo">
         </div>
-        <div class="right">
-          <header class="header" id="header"></header>
-          <main class="main" id="main"></main>
+        ${func}
+        <div class="sidebar-footer">
+          <a href="privacy_policy.html" class="sidebar-link" data-page="privacy_policy.html">Privacy Policy</a>
+          <a href="legal_notice.html" class="sidebar-link" data-page="legal_notice.html">Legal Notice</a>
         </div>
+      </div>
+      <div class="right">
+        <header class="header" id="header"></header>
+        <main class="main wrapper" id="main"></main>
       </div>
     </div>
   `;
 }
+
+// function getBodyTemplate(func = getSideBarUserTemplate()) {
+//   return `
+//     <div class="wrapper">
+//       <div class="main-div">
+//         <div class="left">
+//           <div class="sidebar-logo">
+//             <img src="assets/svg/join-logo.svg" alt="Join Logo">
+//           </div>
+//           ${func}
+//           <div class="sidebar-footer">
+//             <a href="privacy_policy.html" class="sidebar-link" data-page="privacy_policy.html">Privacy Policy</a>
+//             <a href="legal_notice.html" class="sidebar-link" data-page="legal_notice.html">Legal Notice</a>
+//           </div>
+//         </div>
+//         <div class="right">
+//           <header class="header" id="header"></header>
+//           <main class="main" id="main"></main>
+//         </div>
+//       </div>
+//     </div>
+//   `;
+// }
 
 function getSideBarUserTemplate() {
   return `

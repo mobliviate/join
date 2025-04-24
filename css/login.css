@@ -28,6 +28,7 @@
   width: 100%;
   height: 100%;
   z-index: 10;
+  pointer-events: none;
   background-color: var(--animation-bg-color);
   animation: fadeOut 3s ease-in-out forwards;
   animation-delay: .5s;

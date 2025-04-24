@@ -1,6 +1,6 @@
 function initHelp() {
   document.body.innerHTML = getBodyTemplate();
-  loadHeader();
+  loadHeader("./header_help.html");
   document.getElementById("main").innerHTML = getHelpContent();
 }
 

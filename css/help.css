@@ -1,10 +1,8 @@
 .help {
     padding: 60px 96px;
-    overflow-y: auto;
-    height: 800px;
 }
 
-.display_none{
+.display_none {
     display: none;
 }
 
@@ -36,8 +34,8 @@
 }
 
 .subheading2_help {
- font-size: 20px;
- font-weight: 700;   
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .step_use_join {

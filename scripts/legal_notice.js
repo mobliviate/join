@@ -1,12 +1,11 @@
 function initLegalNotice() {
   if (loginState) {
     document.body.innerHTML = getBodyTemplate(getSideBarUserTemplate());
-    loadHeader("header.html");
+    loadHeader("./header.html");
   } else {
     document.body.innerHTML = getBodyTemplate(getSideBarWithoutUserTemplate());
-    loadHeader("header_without_user.html");
+    loadHeader("./header_without_user.html");
   }
-  loadHeader();
   highlightActiveSidebarLink();
   document.getElementById("main").innerHTML = getLegalNoticeContent();
 }

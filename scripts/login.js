@@ -60,7 +60,6 @@ async function handleLoginSubmit() {
             w.textContent = "Email or password is incorrect.";
         } else {
             w.textContent = "";
-            localStorage.setItem('isLoggedIn', 'true');
             openSummaryPage();
         }
     } catch (error) {
@@ -82,7 +81,10 @@ function checkLoginFormValidity() {
  * Redirects the user to the summary page upon successful login.
  */
 function openSummaryPage() {
-    window.location.href = "summary.html";
+    localStorage.setItem('isLoggedIn', 'true');
+    setTimeout(() => {
+        window.location.href = "summary.html";
+    }, 500);
 }
 
 
