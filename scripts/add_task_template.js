@@ -4,90 +4,117 @@ function getAddTaskTemplate() {
   <h1 class="page-title">Add Task</h1>
   <form id="task-form" class="task-form">
     <div class="form-columns">
-      <div class="form-column form-column--left">
-        <div class="form-group">
-          <label for="title">Title<span class="required">*</span></label>
-          <input type="text" id="title" name="title" placeholder="Enter a title" required />
-          <span class="error-msg">This field is required</span>
+        <div class="form-column form-column--left">
+            <div class="form-group">
+            <label for="title">Title<span class="required">*</span></label>
+            <input type="text" id="title" class="input-default" name="title" placeholder="Enter a title" onblur="validateInputTitel()" />
+            <span id="error-msg-title "class="error-msg d-none">This field is required</span>
+            </div>
+
+            <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" class="textarea-default" name="description" rows="4" placeholder="Enter a description"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="due-date">Due Date<span class="required">*</span></label>
+                <div class="input-container">
+                    <input type="date" id="due-date" class="input-default due-date" name="due-date" required onblur="validateInputDate()"/>
+                        <span id="error-msg-duedate "class="error-msg d-none">This field is required</span>
+                </div>        
+            </div>
         </div>
+
+        <div class="verticalline" id="verticalline"></div>
+
+    <div class="form-column form-column--right">
         <div class="form-group">
-          <label for="description">Description</label>
-          <textarea id="description" name="description" rows="4" placeholder="Enter a description"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="due-date">Due Date<span class="required">*</span></label>
-          <input type="date" id="due-date" name="due-date" required />
-        </div>
-      </div>
-      <div class="form-column form-column--right">
-        <div class="form-group">
-          <label>Priority</label>
-          <div class="priority-options">
-            <button onclick="selectPriority(this)" type="button" class="prio-btn" data-prio="urgent">
-              Urgent <span class="prio-icon"><img src="./assets/svg/prio_high.svg" alt="Prio High"></span>
-            </button>
-            <button onclick="selectPriority(this)" type="button" class="prio-btn selected" data-prio="medium">
-              Medium <span class="prio-icon"><img src="./assets/svg/prio_medium.svg" alt="Prio Medium"></span>
-            </button>
-            <button onclick="selectPriority(this)" type="button" class="prio-btn" data-prio="low">
-              Low <span class="prio-icon"><img src="./assets/svg/prio_low.svg" alt="Prio Low"></span>
-            </button>
-          </div>
+            <label>Priority</label>
+            <div class="priority-options">
+                <button onclick="selectPriority(this)" type="button" class="prio-btn" data-prio="urgent">
+                Urgent <span class="prio-icon"><img src="./assets/svg/prio_high.svg" alt="Prio High"></span>
+                </button>
+                <button onclick="selectPriority(this)" type="button" class="prio-btn selected" data-prio="medium">
+                Medium <span class="prio-icon"><img src="./assets/svg/prio_medium.svg" alt="Prio Medium"></span>
+                </button>
+                <button onclick="selectPriority(this)" type="button" class="prio-btn" data-prio="low">
+                Low <span class="prio-icon"><img src="./assets/svg/prio_low.svg" alt="Prio Low"></span>
+                </button>
+            </div>
         </div>
         
-
         <div class="form-group">
-        <label for="assigned-input">Assigned to</label>
-            <div class="multiselect" id="assigned-box">
-                <div class="select-box">
-                <input type="text" placeholder="Select contacts to assign" id="assigned-input" />
-                <button type="button" class="arrow-btn" id="assigned-toggle">
-                    <img src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
-                </button>
+            <label for="assigned-input">Assigned to</label>
+            <div class="multiselect-container">
+                <div class="multiselect" id="multiselect-assign" onclick="toggleAssignDropdown()">
+                    <input type="text" placeholder="Select contacts to assign" id="multiselect-input-assign" class="multiselect-input" oninput="filterContacts()" autocomplete="off"/>
+                    <img class="multiselect-icon" id="multiselect-icon-assign" src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
                 </div>
-                <div class="selected-chips" id="assigned-chips"></div>
-                <div class="checkboxes" id="assigned-options">
-                <div class="options-list" id="assigned-options-list"></div>
+                <div class="multiselect-options d-none" id="multiselect-assign-options">
+                    <!-- Javascript insert Contacts from Firebase -->
+                </div>
+                <div class="assigned-contacts">
+                    <!-- Javascript insert from Function -->
                 </div>
             </div>
         </div>
 
         <div class="form-group">
-        <label for="category-box">Category<span class="required">*</span></label>
-            <div class="select-single" id="category-box">
-                <div class="select-box category-section" id="category-display" tabindex="0">
-                <span id="category-selected">Select task category</span>
-                <button type="button" class="arrow-btn" id="category-toggle">
-                    <img src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
-                </button>
+            <label for="category-box">Category<span class="required">*</span></label>
+            <div class="multiselect-container">
+                <div class="multiselect" id="multiselect-category" onclick="toggleCategoryDropdown()" onblur="validateCategory()" tabindex="0">
+                    <span class="label-text" id="category-selected">Select task category</span>
+                    <img class="multiselect-icon" id="multiselect-icon-category" src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
                 </div>
-                <ul class="options-list" id="category-options">
-                <li data-value="technical-task">Technical Task</li>
-                <li data-value="user-story">User Story</li>
-                </ul>
+                <div class="multiselect-options d-none" id="multiselect-category-options">
+                    <div class="multiselect-option" onclick="selectOption('Technical Task')">Technical Task</div>
+                    <div class="multiselect-option" onclick="selectOption('User Story')">User Story</div>
+                </div>
             </div>
-            <span class="error-msg">This field is required</span>
+            <span id="error-msg-category" class="error-msg d-none">This field is required</span>
         </div>
         
         <div class="form-group">
-          <label>Subtasks</label>
-
-          <ul id="subtasks-list" class="subtasks-list"></ul>
-
-          <div class="select-box">
-            <input type="text" id="subtask-input" placeholder="Add new subtask" />
-                <button type="button" class="arrow-btn" id="category-toggle">
-                    <img src="./assets/svg/add.svg" alt="Toggle options">
-                </button>
-          </div>
+            <label>Subtasks</label>
+            <div class="input-container">
+                <input id="subtask-input" class="input-custom-subtask" type="text" name="subtasks" placeholder="Add new subtask" onclick="subtaskInput()">
+                <div class="buttons-box">
+                    <img id="add-subtask-icon" class="input-default-icon" src="./assets/svg/subtask_add.svg" alt="Add subtask" onclick="subtaskInputIcon()">
+                    <img id="delete-subtask-icon" class="input-default-icon d-none" src="./assets/svg/subtask_close.svg" alt="Delete subtask" onclick="subtaskDelete()">
+                    <div class="verticalline-subtask d-none"></div>
+                    <img id="save-subtask-icon" class="input-default-icon d-none" src="./assets/svg/subtask_check.svg" alt="Save subtask" onclick="subtaskSave()">
+                </div>
+                <div class="subtask-list">
+                    <!-- Javascript insert from Function -->
+                </div>
+                <div class="input-container">
+                    <input id="subtask-edit" class="input-default d-none" type="text" name="subtask-edit" placeholder="Edit subtask"">
+                    <div class="buttons-box">
+                        <img id="edit-delete-icon" class="input-default-icon d-none" src="assets/svg/subtask_delete.svg" alt="Delete" onclick="cancelEditSubtask()">
+                        <div class="verticalline-subtask"></div>
+                        <img id="edit-save-icon" class="input-default-icon d-none" src="assets/svg/subtask_check.svg" alt="Save" onclick="saveEditedSubtask()">
+                    </div>
+                </div>
+            </div>    
         </div>
 
       </div>
     </div>
-    <div class="form-actions">
-      <button type="reset" class="btn btn-clear">Clear</button>
-      <button type="submit" class="btn btn-primary">Create Task</button>
-    </div>
+    <div id="form-actions-add-task" class="form-actions-add-task">
+        <div class="required-text">
+            <span class="required">*</span>
+            <span class="text">This field is required</span>
+        </div>
+        <div class="form-action-buttons">
+            <button type="button" class="button-clear" onclick="clearForm()"> Clear
+            <div class="button-clear-img">
+                <img class="button-clear-standard-img" src="assets/svg/add_task_cancel.svg" alt="Clear">
+                <img class="button-clear-hover-img" src="assets/svg/add_task_cancel_blue.svg" alt="Clear">
+            </div>
+            </button>
+            <button type="button" class="button-create-task" onclick="createTask()"> Create Task
+                <img src="assets/svg/add_task_check_white.svg" alt="Check">
+            </button>
   </form>
 </div>
 `;
