@@ -1,11 +1,31 @@
+let summaryData = {};
+
 function initSummary() {
     document.body.innerHTML = getBodyTemplate();
     loadHeader();
     highlightActiveSidebarLink();
+    getSummary();
     document.getElementById("main").innerHTML = getSummaryTemplate();
-  }
+}
 
-  function getSummaryTemplate() {
+
+async function getSummary() {
+    try {
+      const response = await fetch('http://localhost:3000/summary');
+  
+      if (!response.ok) {
+        throw new Error('Fehler beim Abrufen');
+      }
+  
+      summaryData = await response.json();
+
+    } catch (error) {
+      console.error('Fehler:', error.message);
+    }
+}
+
+
+function getSummaryTemplate() {
     return `
         <div class="summary_container">
             <div class="summary_wrapper">
@@ -108,4 +128,4 @@ function initSummary() {
             </div>
         </div>
     `;
-  }
+}
