@@ -1,17 +1,33 @@
+const DATABASEURL = "https://summary-project-49fd6-default-rtdb.europe-west1.firebasedatabase.app/";
+
+const summaryDatabaseSample = {
+    todo: 1,
+    done: 1,
+    priority: {
+      amount: 1,
+      status: "Urgent",
+      deadline: "October 16, 2022"
+    },
+    tasksInBoard: 5,
+    tasksInProgress: 2,
+    awaitingFeedback: 2
+  };
+
 let summaryData = {};
+
 
 function initSummary() {
     document.body.innerHTML = getBodyTemplate();
     loadHeader();
     highlightActiveSidebarLink();
-    getSummary();
     document.getElementById("main").innerHTML = getSummaryTemplate();
 }
 
 
+
 async function getSummary() {
     try {
-      const response = await fetch('http://localhost:3000/summary');
+      const response = await fetch('XXX');
   
       if (!response.ok) {
         throw new Error('Fehler beim Abrufen');
@@ -23,6 +39,8 @@ async function getSummary() {
       console.error('Fehler:', error.message);
     }
 }
+
+
 
 
 function getSummaryTemplate() {
