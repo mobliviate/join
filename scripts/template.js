@@ -53,7 +53,23 @@ function getHeaderTemplate(func = getHeaderUserTemplate()) {
     <div class="wrapper">
       <div class="header-content">
         <span class="header-title">Kanban Project Management Tool</span>
-        ${func}        
+        ${func}
+        <div class="user-menu-overlay hidden" id="user_menu_overlay" onclick="toggleUserMenu('close')">
+
+          <div class="wrapper-user-menu">
+            <div class="user-menu" id="user_menu" onclick="event.stopPropagation()">
+              <div class="user-menu-item">
+                <a href="../privacy_policy.html">Privacy Policy</a>
+              </div>
+              <div class="user-menu-item">
+                <a href="../legal_notice.html">Legal Notice</a>
+              </div>
+              <div class="user-menu-item">
+                <button class="logout-btn" onclick="logOut()">Log out</button>
+              </div>
+            </div>
+          </div>
+        </div>       
       </div>
     </div>
   `;
@@ -65,19 +81,19 @@ function getHeaderUserTemplate() {
       <a href="help.html" class="help-link">
         <img src="assets/svg/help.svg" alt="Help" />
       </a>
-      <div class="header-user">
+      <button class="user-button" onclick="toggleUserMenu('open')">
         <span class="initials">SM</span>
-      </div>
+      </button>
     </div>
   `;
 }
 
 function getHeaderHelpTemplate() {
   return `
-    <div class="user-wrapper">
-      <div class="header-user">
+    <div class="user-wrapper">     
+      <button class="user-button" onclick="toggleUserMenu('open')">
         <span class="initials">SM</span>
-      </div>
+      </button>
     </div>
   `;
 }
