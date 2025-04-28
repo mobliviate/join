@@ -1,11 +1,15 @@
+/**
+ * Initializes the legal notice page by setting up the main content and layout.
+ * - Updates the body content with the appropriate template based on the login state.
+ * - Loads the header section of the page.
+ * - Highlights the active link in the sidebar.
+ * - Populates the main content area with the legal notice content.
+ *
+ * @function
+ */
 function initLegalNotice() {
-  if (loginState) {
-    document.body.innerHTML = getBodyTemplate(getSideBarUserTemplate());
-    loadHeader("./header.html");
-  } else {
-    document.body.innerHTML = getBodyTemplate(getSideBarWithoutUserTemplate());
-    loadHeader("./header_without_user.html");
-  }
+  document.body.innerHTML = getBodyTemplate(loginState ? undefined : getSideBarWithoutUserTemplate());
+  loadHeader();
   highlightActiveSidebarLink();
   document.getElementById("main").innerHTML = getLegalNoticeContent();
 }

@@ -1,11 +1,15 @@
+/**
+ * Initializes the Privacy Policy page by setting up the main content and layout.
+ * - Updates the body content with the appropriate sidebar template based on the user's login state.
+ * - Loads the header section of the page.
+ * - Highlights the active link in the sidebar.
+ * - Populates the main content area with the Privacy Policy content.
+ *
+ * @function
+ */
 function initPrivacyPolicy() {
-  if (loginState) {
-    document.body.innerHTML = getBodyTemplate(getSideBarUserTemplate());
-    loadHeader("./header.html");
-  } else {
-    document.body.innerHTML = getBodyTemplate(getSideBarWithoutUserTemplate());
-    loadHeader("./header_without_user.html");
-  }
+  document.body.innerHTML = getBodyTemplate(loginState ? undefined : getSideBarWithoutUserTemplate());
+  loadHeader();
   highlightActiveSidebarLink();
   document.getElementById("main").innerHTML = getPrivacyPolicyContent();
 }

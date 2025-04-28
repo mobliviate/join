@@ -1,8 +1,21 @@
+/**
+ * Initializes the help page by setting up the HTML structure and content.
+ * This function replaces the current body content with a template,
+ * loads the help header, and populates the main section with help content.
+ */
 function initHelp() {
   document.body.innerHTML = getBodyTemplate();
-  loadHeader("./header_help.html");
+  loadHelpHeader();
   document.getElementById("main").innerHTML = getHelpContent();
 }
+
+/**
+ * Loads the help-site header without the help-button by setting the inner HTML of the element with the ID "header".
+ * The content is generated using the `getHeaderTemplate` function with the result of `getHeaderHelpTemplate` as its argument.
+ */
+function loadHelpHeader() {
+  document.getElementById("header").innerHTML = getHeaderTemplate(getHeaderHelpTemplate());
+};
 
 /**
  * Generates the HTML markup for a single step in a help guide.

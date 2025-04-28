@@ -19,29 +19,6 @@ function getBodyTemplate(func = getSideBarUserTemplate()) {
   `;
 }
 
-// function getBodyTemplate(func = getSideBarUserTemplate()) {
-//   return `
-//     <div class="wrapper">
-//       <div class="main-div">
-//         <div class="left">
-//           <div class="sidebar-logo">
-//             <img src="assets/svg/join-logo.svg" alt="Join Logo">
-//           </div>
-//           ${func}
-//           <div class="sidebar-footer">
-//             <a href="privacy_policy.html" class="sidebar-link" data-page="privacy_policy.html">Privacy Policy</a>
-//             <a href="legal_notice.html" class="sidebar-link" data-page="legal_notice.html">Legal Notice</a>
-//           </div>
-//         </div>
-//         <div class="right">
-//           <header class="header" id="header"></header>
-//           <main class="main" id="main"></main>
-//         </div>
-//       </div>
-//     </div>
-//   `;
-// }
-
 function getSideBarUserTemplate() {
   return `
       <nav class="sidebar-nav">
@@ -68,6 +45,40 @@ function getSideBarWithoutUserTemplate() {
           <img src="assets/svg/login.svg"> Log In
         </a>
       </nav>
+  `;
+}
+
+function getHeaderTemplate(func = getHeaderUserTemplate()) {
+  return `
+    <div class="wrapper">
+      <div class="header-content">
+        <span class="header-title">Kanban Project Management Tool</span>
+        ${func}        
+      </div>
+    </div>
+  `;
+}
+
+function getHeaderUserTemplate() {
+  return `
+    <div class="user-wrapper">
+      <a href="help.html" class="help-link">
+        <img src="assets/svg/help.svg" alt="Help" />
+      </a>
+      <div class="header-user">
+        <span class="initials">SM</span>
+      </div>
+    </div>
+  `;
+}
+
+function getHeaderHelpTemplate() {
+  return `
+    <div class="user-wrapper">
+      <div class="header-user">
+        <span class="initials">SM</span>
+      </div>
+    </div>
   `;
 }
 
