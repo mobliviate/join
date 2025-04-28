@@ -269,6 +269,57 @@
     border: 1px solid #ccc;
 }
 
+.multiselect-option-contact {
+    cursor: pointer;
+    height: 56px;
+    padding: 7px 16px;
+    font-family: "Inter", sans-serif;
+    font-size: 20px;
+    line-height: 120%;
+    font-weight: 400;
+    border-radius: 10px;
+}
+
+.multiselect-option-contact:hover {
+    background-color: #EEEEEE;
+}
+
+.multiselect-option-contact.selected {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.multiselect-option-contact.selected:hover {
+    background-color: #091931;
+    color: white;
+}
+
+.name-and-img {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.circle-and-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border: 2px solid white;
+    box-sizing: border-box;
+}
+
+
 .multiselect-option {
     cursor: pointer;
     padding: 16px 12px;
