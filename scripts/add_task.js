@@ -60,15 +60,10 @@ function validateCategory() {
 }
 
 function toggleCategoryDropdown() {
-    const multiselectCategoryOptionsRef = document.getElementById("multiselect-category-options");
-    const multiselectCategoryRef = document.getElementById('multiselect-category');
     if (categoryDropdownOpen) {
-        multiselectCategoryOptionsRef.classList.add("d-none");
-        categoryDropdownOpen = false 
+        closeCategoryDropdown();
     } else {
-        multiselectCategoryOptionsRef.classList.remove("d-none");
-        multiselectCategoryRef.focus();
-        categoryDropdownOpen = true 
+        openCategoryDropdown();
     }
 }
 
@@ -80,11 +75,20 @@ function closeCategoryDropdown() {
     }     
 }
 
-function selectCategoryOption(option) {
+function openCategoryDropdown() {
     const multiselectCategoryOptionsRef = document.getElementById("multiselect-category-options");
+    const multiselectCategoryRef = document.getElementById('multiselect-category');
+    if (!categoryDropdownOpen) {
+        multiselectCategoryRef.focus();
+        multiselectCategoryOptionsRef.classList.remove("d-none");
+        categoryDropdownOpen = true 
+    } 
+}
+
+function selectCategoryOption(option) {
     const multiselectCategorySelectedRef = document.getElementById("category-selected");
     multiselectCategorySelectedRef.innerHTML = option
     validateCategory();
-    multiselectCategoryOptionsRef.classList.add("d-none");    
+    closeCategoryDropdown();    
 }
 
