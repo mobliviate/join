@@ -46,14 +46,14 @@ function getAddTaskTemplate() {
         <div class="form-group">
             <label for="assigned-input">Assigned to</label>
             <div class="multiselect-container">
-                <div class="multiselect" id="multiselect-assign" onclick="toggleAssignDropdown()">
+                <div class="multiselect" id="multiselect-assign" onclick="event.stopPropagation(); toggleAssignDropdown()" onfocusout="closeAssignDropdown()">
                     <input type="text" placeholder="Select contacts to assign" id="multiselect-input-assign" class="multiselect-input" oninput="filterContacts()" autocomplete="off"/>
                     <img class="multiselect-icon" id="multiselect-icon-assign" src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
                 </div>
                 <div class="multiselect-options d-none" id="multiselect-assign-options">
                     <!-- Javascript insert Contacts from Firebase -->
                 </div>
-                <div class="assigned-contacts">
+                <div class="assigned-contacts" id="assigned-contacts">
                     <!-- Javascript insert from Function -->
                 </div>
             </div>
@@ -62,13 +62,13 @@ function getAddTaskTemplate() {
         <div class="form-group">
             <label for="category-box">Category<span class="required">*</span></label>
             <div class="multiselect-container">
-                <div class="multiselect" id="multiselect-category" onclick="toggleCategoryDropdown()" onblur="validateCategory()" tabindex="0">
+                <div class="multiselect" id="multiselect-category" onclick="event.stopPropagation(); toggleCategoryDropdown()" onfocusout="validateCategory()" tabindex="0">
                     <span class="label-text" id="category-selected">Select task category</span>
                     <img class="multiselect-icon" id="multiselect-icon-category" src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
                 </div>
                 <div class="multiselect-options d-none" id="multiselect-category-options">
-                    <div class="multiselect-option" onclick="selectOption('Technical Task')">Technical Task</div>
-                    <div class="multiselect-option" onclick="selectOption('User Story')">User Story</div>
+                    <div class="multiselect-option" onclick="event.stopPropagation(); selectCategoryOption('Technical Task')">Technical Task</div>
+                    <div class="multiselect-option" onclick="event.stopPropagation(); selectCategoryOption('User Story')">User Story</div>
                 </div>
             </div>
             <span id="error-msg-category" class="error-msg d-none">This field is required</span>

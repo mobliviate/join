@@ -1,3 +1,6 @@
+let categoryDropdownOpen = false
+let assignDropdownOpen = false
+
 function initAddTask() {
     document.body.innerHTML = getBodyTemplate();
     loadHeader();
@@ -5,6 +8,10 @@ function initAddTask() {
     document.getElementById("main").innerHTML = getAddTaskTemplate();
     initializeFirebase();
     fetchContactsForAssign();
+}
+
+function onBodyClick() {
+    closeCategoryDropdown();
 }
 
 function selectPriority(btn) {
@@ -39,3 +46,114 @@ function validateInputDate() {
         inputDateRef.classList.remove("red-border");
     }
 }
+
+function validateCategory() {
+    const multiselectCategoryRef = document.getElementById("multiselect-category");
+    const errorMsgCategoryRef = document.getElementById("error-msg-category");
+    const multiselectCategorySelectedRef = document.getElementById("category-selected");
+    if (multiselectCategorySelectedRef.innerHTML === "Select task category") {
+        errorMsgCategoryRef.classList.remove("d-none");
+        multiselectCategoryRef.classList.add("red-border");
+    } else {
+        errorMsgCategoryRef.classList.add("d-none");
+        multiselectCategoryRef.classList.remove("red-border");
+    }
+}
+
+function toggleAssignDropdown() {
+    if (assignDropdownOpen) {
+        closeAssignDropdown()
+    } else {
+        openAssignDropdown()
+    }
+}
+
+function openAssignDropdown() {
+    const multiselectAssignOptionsRef = document.getElementById("multiselect-assign-options");
+    const multiselectAssignRef = document.getElementById("multiselect-assign");
+    multiselectAssignRef.focus();
+    multiselectAssignOptionsRef.classList.remove("d-none");
+    loadContacts();
+    assignDropdownOpen = true;
+}
+
+function closeAssignDropdown() {
+    const multiselectAssignOptionsRef = document.getElementById("multiselect-assign-options");
+    multiselectAssignOptionsRef.classList.add("d-none");
+    assignDropdownOpen = false;
+}
+
+function loadContacts() {
+    const contactInput = singleContactTemplate()
+    const multiselectAssignOptionsRef = document.getElementById("multiselect-assign-options")
+    multiselectAssignOptionsRef.innerHTML = contactInput
+    
+}
+
+function singleContactTemplate() {
+    return `
+    <div class="multiselect-option-contact" onclick="event.stopPropagation(); toggleSelectedContact(this)">
+        <div class="name-and-img">
+            <div class="circle-and-name">
+                <div class="circle" style="background-color: #ff5eb3;">
+                MO
+                </div>
+                <div>Marc Odermatt</div>
+            </div>
+            <div>
+                <img src="./assets/svg/check_box.svg" alt="Checkbox">
+            </div>
+        </div>
+    </div>
+
+    <div class="multiselect-option-contact selected" onclick="event.stopPropagation(); toggleSelectedContact(this)">
+        <div class="name-and-img">
+            <div class="circle-and-name">
+                <div class="circle" style="background-color: #ff5eb3;">
+                TV
+                </div>
+                <div>Tanja Vollenweider</div>
+            </div>
+            <div>
+                <img src="./assets/svg/check_box_checked_white.svg" alt="Checkbox">
+            </div>
+        </div>
+    </div>
+    `
+}
+
+
+
+
+
+
+
+function toggleCategoryDropdown() {
+    if (categoryDropdownOpen) {
+        closeCategoryDropdown();
+    } else {
+        openCategoryDropdown();
+    }
+}
+
+function closeCategoryDropdown() {
+    const multiselectCategoryOptionsRef = document.getElementById("multiselect-category-options");
+    multiselectCategoryOptionsRef.classList.add("d-none");
+    categoryDropdownOpen = false
+}
+
+function openCategoryDropdown() {
+    const multiselectCategoryOptionsRef = document.getElementById("multiselect-category-options");
+    const multiselectCategoryRef = document.getElementById('multiselect-category');
+    multiselectCategoryRef.focus();
+    multiselectCategoryOptionsRef.classList.remove("d-none");
+    categoryDropdownOpen = true
+}
+
+function selectCategoryOption(option) {
+    const multiselectCategorySelectedRef = document.getElementById("category-selected");
+    multiselectCategorySelectedRef.innerHTML = option
+    validateCategory();
+    closeCategoryDropdown();
+}
+
