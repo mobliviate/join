@@ -1,3 +1,5 @@
+let categoryDropdownOpen = false
+
 function initAddTask() {
     document.body.innerHTML = getBodyTemplate();
     loadHeader();
@@ -5,6 +7,10 @@ function initAddTask() {
     document.getElementById("main").innerHTML = getAddTaskTemplate();
     initializeFirebase();
     fetchContactsForAssign();
+}
+
+function onBodyClick() {
+    closeCategoryDropdown();
 }
 
 function selectPriority(btn) {
@@ -39,3 +45,51 @@ function validateInputDate() {
         inputDateRef.classList.remove("red-border");
     }
 }
+
+function validateCategory() {
+    const multiselectCategoryRef = document.getElementById("multiselect-category");
+    const errorMsgCategoryRef = document.getElementById("error-msg-category");
+    const multiselectCategorySelectedRef = document.getElementById("category-selected");    
+
+    if (multiselectCategorySelectedRef.innerHTML === "Select task category") {
+        errorMsgCategoryRef.classList.remove("d-none");
+        multiselectCategoryRef.classList.add("red-border");
+        console.log(multiselectCategorySelectedRef.innerHTML);
+        
+    } else {
+        errorMsgCategoryRef.classList.add("d-none");
+        multiselectCategoryRef.classList.remove("red-border");
+        console.log(multiselectCategorySelectedRef.innerHTML);
+    }
+}
+
+function toggleCategoryDropdown() {
+    const multiselectCategoryOptionsRef = document.getElementById("multiselect-category-options");
+    const multiselectCategoryRef = document.getElementById('multiselect-category');
+    if (categoryDropdownOpen) {
+        multiselectCategoryOptionsRef.classList.add("d-none");
+        categoryDropdownOpen = false 
+    } else {
+        multiselectCategoryOptionsRef.classList.remove("d-none");
+        multiselectCategoryRef.focus();
+        categoryDropdownOpen = true 
+    }
+       
+}
+
+function closeCategoryDropdown() { 
+    const multiselectCategoryOptionsRef = document.getElementById("multiselect-category-options");
+    if (categoryDropdownOpen) {
+        multiselectCategoryOptionsRef.classList.add("d-none");
+        categoryDropdownOpen = false 
+    }     
+}
+
+function selectCategoryOption(option) {
+    const multiselectCategoryOptionsRef = document.getElementById("multiselect-category-options");
+    const multiselectCategorySelectedRef = document.getElementById("category-selected");
+    multiselectCategorySelectedRef.innerHTML = option
+    validateCategory();
+    multiselectCategoryOptionsRef.classList.add("d-none");    
+}
+

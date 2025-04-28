@@ -62,13 +62,13 @@ function getAddTaskTemplate() {
         <div class="form-group">
             <label for="category-box">Category<span class="required">*</span></label>
             <div class="multiselect-container">
-                <div class="multiselect" id="multiselect-category" onclick="toggleCategoryDropdown()" onblur="validateCategory()" tabindex="0">
+                <div class="multiselect" id="multiselect-category" onclick="event.stopPropagation(); toggleCategoryDropdown()" onfocusout="validateCategory()" tabindex="0">
                     <span class="label-text" id="category-selected">Select task category</span>
                     <img class="multiselect-icon" id="multiselect-icon-category" src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
                 </div>
                 <div class="multiselect-options d-none" id="multiselect-category-options">
-                    <div class="multiselect-option" onclick="selectOption('Technical Task')">Technical Task</div>
-                    <div class="multiselect-option" onclick="selectOption('User Story')">User Story</div>
+                    <div class="multiselect-option" onclick="event.stopPropagation(); selectCategoryOption('Technical Task')">Technical Task</div>
+                    <div class="multiselect-option" onclick="event.stopPropagation(); selectCategoryOption('User Story')">User Story</div>
                 </div>
             </div>
             <span id="error-msg-category" class="error-msg d-none">This field is required</span>
