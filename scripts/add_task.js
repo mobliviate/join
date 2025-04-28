@@ -50,16 +50,12 @@ function validateCategory() {
     const multiselectCategoryRef = document.getElementById("multiselect-category");
     const errorMsgCategoryRef = document.getElementById("error-msg-category");
     const multiselectCategorySelectedRef = document.getElementById("category-selected");    
-
     if (multiselectCategorySelectedRef.innerHTML === "Select task category") {
         errorMsgCategoryRef.classList.remove("d-none");
         multiselectCategoryRef.classList.add("red-border");
-        console.log(multiselectCategorySelectedRef.innerHTML);
-        
     } else {
         errorMsgCategoryRef.classList.add("d-none");
         multiselectCategoryRef.classList.remove("red-border");
-        console.log(multiselectCategorySelectedRef.innerHTML);
     }
 }
 
@@ -74,7 +70,6 @@ function toggleCategoryDropdown() {
         multiselectCategoryRef.focus();
         categoryDropdownOpen = true 
     }
-       
 }
 
 function closeCategoryDropdown() { 
