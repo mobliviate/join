@@ -8,7 +8,7 @@ function getAddTaskTemplate() {
             <div class="form-group">
             <label for="title">Title<span class="required">*</span></label>
             <input type="text" id="title" class="input-default" name="title" placeholder="Enter a title" onblur="validateInputTitel()" />
-            <span id="error-msg-title "class="error-msg d-none">This field is required</span>
+            <span id="error-msg-title" class="error-msg d-none">This field is required</span>
             </div>
 
             <div class="form-group">
@@ -20,7 +20,7 @@ function getAddTaskTemplate() {
                 <label for="due-date">Due Date<span class="required">*</span></label>
                 <div class="input-container">
                     <input type="date" id="due-date" class="input-default due-date" name="due-date" required onblur="validateInputDate()"/>
-                        <span id="error-msg-duedate "class="error-msg d-none">This field is required</span>
+                        <span id="error-msg-duedate" class="error-msg d-none">This field is required</span>
                 </div>        
             </div>
         </div>

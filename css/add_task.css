@@ -64,11 +64,14 @@
 
 .form-group .error-msg {
     font-family: 'Poppins', sans-serif;
-    display: none;
     color: #FF8190;
     font-size: 12px;
     line-height: 120%;
     font-weight: 400;
+}
+
+.red-border {
+    border-color: #FF8190 !important;
 }
 
 .input-default {
@@ -127,6 +130,7 @@
     padding: 12px 21px;
     border: 1px solid #ccc;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .textarea-default::placeholder {
