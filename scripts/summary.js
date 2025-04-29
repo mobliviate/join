@@ -1,33 +1,57 @@
-const DATABASEURL = "https://summary-project-49fd6-default-rtdb.europe-west1.firebasedatabase.app/";
+const DATABASEURL = "https://summary-project-49fd6-default-rtdb.europe-west1.firebasedatabase.app/summary.json";
 
 const summaryDatabaseSample = {
     todo: 1,
     done: 1,
     priority: {
-      amount: 1,
-      status: "Urgent",
-      deadline: "October 16, 2022"
+        amount: 1,
+        status: "Urgent",
+        deadline: "October 16, 2022"
     },
     tasksInBoard: 5,
     tasksInProgress: 2,
     awaitingFeedback: 2
-  };
+};
 
 let summaryData = {};
 
 
 function initSummary() {
+    uploadSummaryToFirebase();
     document.body.innerHTML = getBodyTemplate();
     loadHeader();
     highlightActiveSidebarLink();
+    getSummary();
     document.getElementById("main").innerHTML = getSummaryTemplate();
 }
 
 
+async function uploadSummaryToFirebase() {
+    try {
+        const response = await fetch(DATABASEURL, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(summaryDatabaseSample)
+        });
+
+        if (!response.ok) {
+            throw new Error('Fehler beim Hochladen der Daten');
+        }
+
+        const responseData = await response.json();
+        console.log('Upload erfolgreich:', responseData);
+
+    } catch (error) {
+        console.error('Upload fehlgeschlagen:', error);
+    }
+}
+
 
 async function getSummary() {
     try {
-      const response = await fetch('XXX');
+      const response = await fetch(DATABASEURL);
   
       if (!response.ok) {
         throw new Error('Fehler beim Abrufen');
