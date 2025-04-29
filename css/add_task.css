@@ -1,3 +1,6 @@
+.main {
+    background-color: #F0F0F0;
+}
 .add-task-page {
     margin: 110px 96px;
 
@@ -153,7 +156,7 @@
     background: url(../assets/svg/add_task_calendar.svg);
     background-repeat: no-repeat;
     background-position: right 21px center;
-
+    background-color: white;
 }
 
 .priority-options {
@@ -294,6 +297,13 @@
     color: white;
 }
 
+.assigned-contacts {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+
+}
+
 .name-and-img {
     display: flex;
     align-items: center;
@@ -307,8 +317,8 @@
 }
 
 .circle {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     color: white;
     display: flex;
@@ -351,8 +361,7 @@
 .input-default-icon {
     cursor: pointer;
     position: static;
-    display: inline-flex
-;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     width: 24px;
@@ -374,6 +383,57 @@
     height: auto;
 }
 
+.subtask-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.subtask-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 16px;
+    transition: background-color 0.3s ease;
+}
+
+.subtask-item:hover {
+    background-color: #EEEEEE;
+}
+
+.subtask-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.subtask-action-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.subtask-action-icon:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+}
+
+.subtask-edit {
+    font-family: "Inter", sans-serif;
+    color: black;
+    font-size: 20px;
+    line-height: 120%;
+    font-weight: 400;
+    padding: 4px 16px;
+    border: none;
+    border-bottom: 1px solid #29ABE2;
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+}
+
+.input-container.edit {
+    margin-top: 10px;
+}
 
 .form-actions-add-task {
     width: 100%;
@@ -456,6 +516,20 @@
     font-weight: 700;
     padding: 16px;
     transition: all 100ms ease-in-out;
+}
+
+.button-create-task:disabled {
+    background-color: #D1D1D1;
+    border-color: #D1D1D1;
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.button-create-task:disabled:hover {
+    box-shadow: none;
+    background-color: #D1D1D1;
+    border-color: #D1D1D1;
 }
 
 .button-create-task:hover {
