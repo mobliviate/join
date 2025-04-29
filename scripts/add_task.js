@@ -209,6 +209,24 @@ function selectCategoryOption(option) {
     const multiselectCategorySelectedRef = document.getElementById("category-selected");
     multiselectCategorySelectedRef.innerHTML = option
     validateCategory();
+    checkFormValidity();
     closeCategoryDropdown();
+}
+
+function checkFormValidity() {
+    const titleInput = document.getElementById("title");
+    const dueDateInput = document.getElementById("due-date");
+    const categorySelected = document.getElementById("category-selected");
+    const createTaskButton = document.getElementById("create-task-button");
+
+    const titleValid = titleInput.value.trim() !== "";
+    const dueDateValid = dueDateInput.value.trim() !== "";
+    const categoryValid = categorySelected.innerText.trim() !== "Select task category";
+
+    if (titleValid && dueDateValid && categoryValid) {
+        createTaskButton.disabled = false;
+    } else {
+        createTaskButton.disabled = true;
+    }
 }
 

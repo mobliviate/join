@@ -7,7 +7,7 @@ function getAddTaskTemplate() {
         <div class="form-column form-column--left">
             <div class="form-group">
             <label for="title">Title<span class="required">*</span></label>
-            <input type="text" id="title" class="input-default" name="title" placeholder="Enter a title" onblur="validateInputTitel()" />
+            <input type="text" id="title" class="input-default" name="title" placeholder="Enter a title" oninput="validateInputTitel(); checkFormValidity()" onblur="validateInputTitel()" />
             <span id="error-msg-title" class="error-msg d-none">This field is required</span>
             </div>
 
@@ -19,7 +19,7 @@ function getAddTaskTemplate() {
             <div class="form-group">
                 <label for="due-date">Due Date<span class="required">*</span></label>
                 <div class="input-container">
-                    <input type="date" id="due-date" class="input-default due-date" name="due-date" required onblur="validateInputDate()"/>
+                    <input type="date" id="due-date" class="input-default due-date" name="due-date" required oninput="validateInputDate(); checkFormValidity()" onblur="validateInputDate()"/>
                         <span id="error-msg-duedate" class="error-msg d-none">This field is required</span>
                 </div>        
             </div>
@@ -112,7 +112,7 @@ function getAddTaskTemplate() {
                 <img class="button-clear-hover-img" src="assets/svg/add_task_cancel_blue.svg" alt="Clear">
             </div>
             </button>
-            <button type="button" class="button-create-task" onclick="createTask()"> Create Task
+            <button type="button" class="button-create-task" id="create-task-button" onclick="createTask()" disabled> Create Task
                 <img src="assets/svg/add_task_check_white.svg" alt="Check">
             </button>
   </form>
