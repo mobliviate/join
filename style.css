@@ -45,8 +45,8 @@
   --light-blue: #29abe2;
   --style: #d1d1d1;
   --icons: #a8a8a8;
+  --nav-hover: rgba(255, 255, 255, 0.1);
   --active: #090131;
-
 }
 
 a {
@@ -75,7 +75,7 @@ body {
 }
 
 .left {
-  background-color: #2f3c53;
+  background-color: var(--primary-color);
   color: white;
   display: flex;
   flex-direction: column;

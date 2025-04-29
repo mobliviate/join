@@ -14,20 +14,49 @@ function getBodyTemplate(func = getSideBarUserTemplate()) {
       <div class="right">
         <header class="header" id="header"></header>
         <div class="user-menu-overlay hidden" id="user_menu_overlay" onclick="toggleUserMenu('close')"></div>
-          <div class="wrapper-user-menu hidden" id="wrapper_user_menu" onclick="toggleUserMenu('close')">
-            <div class="user-menu" id="user_menu" onclick="event.stopPropagation()">
-              <div class="user-menu-item">
-                <a href="../privacy_policy.html">Privacy Policy</a>
-              </div>
-              <div class="user-menu-item">
-                <a href="../legal_notice.html">Legal Notice</a>
-              </div>
-              <div class="user-menu-item">
-                <button class="logout-btn" onclick="logOut()">Log out</button>
-              </div>
+        <div class="wrapper-user-menu hidden" id="wrapper_user_menu" onclick="toggleUserMenu('close')">
+          <div class="user-menu" id="user_menu" onclick="event.stopPropagation()">
+            <div class="user-menu-item">
+              <a href="../privacy_policy.html">Privacy Policy</a>
+            </div>
+            <div class="user-menu-item">
+              <a href="../legal_notice.html">Legal Notice</a>
+            </div>
+            <div class="user-menu-item">
+              <button class="logout-btn" onclick="logOut()">Log out</button>
             </div>
           </div>
+        </div>
         <main class="main wrapper" id="main"></main>
+      
+        <footer class="footer-nav-cnt">
+          <nav class="footer-nav">
+              <a href="summary.html" class="footer-nav-link" data-page="summary.html">
+                  <div class="footer-nav-link-cnt">
+                      <img src="assets/svg/summary-icon.svg">
+                      <span>Summary</span>
+                  </div>
+              </a>
+              <a href="add_task.html" class="footer-nav-link" data-page="add_task.html">
+                  <div class="footer-nav-link-cnt">
+                      <img src="assets/svg/edit-icon.svg">
+                      <span>Add Task</span>
+                  </div>
+              </a>
+              <a href="board.html" class="footer-nav-link" data-page="board.html">
+                  <div class="footer-nav-link-cnt">
+                      <img src="assets/svg/board-icon.svg">
+                      <span>Board</span>
+                  </div>
+              </a>
+              <a href="contact.html" class="footer-nav-link" data-page="contact.html">
+                  <div class="footer-nav-link-cnt">
+                      <img src="assets/svg/contact-icon.svg">
+                      <span>Contacts</span>
+                  </div>
+              </a>
+          </nav>
+        </footer>
       </div>
     </div>
   `;
