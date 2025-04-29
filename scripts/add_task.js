@@ -352,3 +352,105 @@ function checkFormValidity() {
     }
 }
 
+function collectNewTaskData() {
+    const title = document.getElementById('title').value.trim();
+    const description = document.getElementById('description').value.trim();
+    const dueDate = document.getElementById('due-date').value.trim();
+    const priorityButton = document.querySelector('.prio-btn.selected');
+    const priority = priorityButton ? priorityButton.getAttribute('data-prio') : '';
+    const category = document.getElementById('category-selected').innerText.trim();
+
+    const assignedContacts = Array.from(document.querySelectorAll('.multiselect-option-contact.selected')).map(contact => {
+        const id = contact.dataset.id;
+        const name = contact.querySelector('.circle-and-name div:nth-child(2)').innerText.trim();
+        const initials = contact.querySelector('.circle').innerText.trim();
+        return { id, name, initials };
+    });
+
+    const subtaskElements = document.querySelectorAll('.subtask-item .subtask-text');
+    const subtasks = Array.from(subtaskElements).map(subtask => {
+        return {
+            text: subtask.innerText.replace(/^•\s*/, ''),
+            status: false
+        };
+    });
+
+    const task = {
+        title,
+        description,
+        dueDate,
+        priority,
+        assignedContacts,
+        category,
+        subtasks,
+        createdAt: Date.now()
+    };
+
+    return task;
+}
+
+async function saveNewTaskToFirebase(taskData) {
+    const tasksReference = firebase.database().ref('tasks');
+    const newTaskReference = tasksReference.push();
+    await newTaskReference.set(taskData);
+}
+
+async function createTask() {
+    const taskData = collectNewTaskData();
+
+    try {
+        await saveNewTaskToFirebase(taskData);
+        // ToDo: Overlay
+        clearForm();
+    } catch (error) {
+        console.error("Error creating task:", error);
+    }
+}
+
+function clearTextFields() {
+    document.getElementById('title').value = '';
+    document.getElementById('description').value = '';
+    document.getElementById('due-date').value = '';
+}
+
+function clearErrorMessages() {
+    document.getElementById('error-msg-title').classList.add('d-none');
+    document.getElementById('error-msg-duedate').classList.add('d-none');
+    document.getElementById('error-msg-category').classList.add('d-none');
+    document.getElementById('title').classList.remove('red-border');
+    document.getElementById('due-date').classList.remove('red-border');
+    document.getElementById('multiselect-category').classList.remove('red-border');
+}
+
+function clearPriority() {
+    document.querySelectorAll('.prio-btn').forEach(btn => btn.classList.remove('selected'));
+    document.querySelector('.prio-btn[data-prio="medium"]').classList.add('selected');
+}
+
+function clearCategory() {
+    document.getElementById('category-selected').innerText = 'Select task category';
+}
+
+function clearAssignedContacts() {
+    selectedContactIds = [];
+    document.getElementById('assigned-contacts').innerHTML = '';
+    const options = document.querySelectorAll('.multiselect-option-contact');
+    options.forEach(option => option.classList.remove('selected'));
+}
+
+function clearSubtasks() {
+    document.getElementById('subtask-input').value = '';
+    document.querySelector('.subtask-list').innerHTML = '';
+    subtaskDelete();
+    cancelEditSubtask();
+}
+
+function clearForm() {
+    clearTextFields();
+    clearErrorMessages();
+    clearPriority();
+    clearCategory();
+    clearAssignedContacts();
+    clearSubtasks();
+    document.getElementById('create-task-button').disabled = true;
+}
