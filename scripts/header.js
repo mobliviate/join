@@ -10,18 +10,21 @@ function loadHeader() {
 
 function toggleUserMenu(action) {
   const userMenuOverlayRef = document.getElementById("user_menu_overlay");
+  const userMenuWrapperRef = document.getElementById("wrapper_user_menu");
   const userMenuRef = document.getElementById("user_menu");
   if (action === "close") {
     userMenuRef.classList.remove("show");
     setTimeout(() => {
       userMenuOverlayRef.classList.add("hidden");
-    }, 300);
+      userMenuWrapperRef.classList.add("hidden");
+    }, 100);
     return;
   } else if (action === "open") {
     userMenuOverlayRef.classList.remove("hidden");
+    userMenuWrapperRef.classList.remove("hidden");
     setTimeout(() => {
       userMenuRef.classList.add("show");
-    }, 300);
+    }, 100);
     return;
   }
 }

@@ -40,6 +40,7 @@
   --warning-color: #ff4d4f;
   --white: #ffffff;
   --black: #000000;
+  --light-gray: #cdcdcd;
   --dark-gray: #647188;
   --light-blue: #29abe2;
   --style: #d1d1d1;
@@ -88,7 +89,8 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  min-width: 0;
+  /* min-width: 0; */
+  position: relative;
 }
 
 .main {

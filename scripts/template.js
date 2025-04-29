@@ -13,6 +13,20 @@ function getBodyTemplate(func = getSideBarUserTemplate()) {
       </div>
       <div class="right">
         <header class="header" id="header"></header>
+        <div class="user-menu-overlay hidden" id="user_menu_overlay" onclick="toggleUserMenu('close')"></div>
+          <div class="wrapper-user-menu hidden" id="wrapper_user_menu" onclick="toggleUserMenu('close')">
+            <div class="user-menu" id="user_menu" onclick="event.stopPropagation()">
+              <div class="user-menu-item">
+                <a href="../privacy_policy.html">Privacy Policy</a>
+              </div>
+              <div class="user-menu-item">
+                <a href="../legal_notice.html">Legal Notice</a>
+              </div>
+              <div class="user-menu-item">
+                <button class="logout-btn" onclick="logOut()">Log out</button>
+              </div>
+            </div>
+          </div>
         <main class="main wrapper" id="main"></main>
       </div>
     </div>
@@ -54,22 +68,7 @@ function getHeaderTemplate(func = getHeaderUserTemplate()) {
       <div class="header-content">
         <span class="header-title">Kanban Project Management Tool</span>
         ${func}
-        <div class="user-menu-overlay hidden" id="user_menu_overlay" onclick="toggleUserMenu('close')">
-
-          <div class="wrapper-user-menu">
-            <div class="user-menu" id="user_menu" onclick="event.stopPropagation()">
-              <div class="user-menu-item">
-                <a href="../privacy_policy.html">Privacy Policy</a>
-              </div>
-              <div class="user-menu-item">
-                <a href="../legal_notice.html">Legal Notice</a>
-              </div>
-              <div class="user-menu-item">
-                <button class="logout-btn" onclick="logOut()">Log out</button>
-              </div>
-            </div>
-          </div>
-        </div>       
+               
       </div>
     </div>
   `;
