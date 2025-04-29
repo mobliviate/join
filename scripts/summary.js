@@ -16,12 +16,13 @@ const summaryDatabaseSample = {
 let summaryData = {};
 
 
-function initSummary() {
+async function initSummary() {
     uploadSummaryToFirebase();
     document.body.innerHTML = getBodyTemplate();
     loadHeader();
     highlightActiveSidebarLink();
-    getSummary();
+    await getSummary();
+    console.log(summaryData);
     document.getElementById("main").innerHTML = getSummaryTemplate();
 }
 
@@ -58,6 +59,7 @@ async function getSummary() {
       }
   
       summaryData = await response.json();
+      console.log(summaryData);
 
     } catch (error) {
       console.error('Fehler:', error.message);
@@ -90,7 +92,7 @@ function getSummaryTemplate() {
                                     <img src="./assets/svg/summary-todo-icon.svg" alt="To-do">
 
                                     <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-todo-amount">1</span>
+                                        <span class="summary_amount_font_weight_and_size" id="summary-todo-amount">${summaryData.todo}</span>
                                         <span class="summary_text_font_weight_and_size">To-do</span>
                                     </div>
 
@@ -101,7 +103,7 @@ function getSummaryTemplate() {
                                     <img src="./assets/svg/summary-done-icon.svg" alt="Done">
 
                                     <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-done-amount">1</span>
+                                        <span class="summary_amount_font_weight_and_size" id="summary-done-amount">${summaryData.done}</span>
                                         <span class="summary_text_font_weight_and_size">Done</span>
                                     </div>
                                     
@@ -117,15 +119,15 @@ function getSummaryTemplate() {
                                             <img src="./assets/svg/summary-urgent-icon.svg" alt="Urgent">
 
                                             <div class="summary_bottons_amount_and_text_wrapper">
-                                                <span class="summary_amount_font_weight_and_size" id="summary-urgent-amount">1</span>
-                                                <span class="summary_urgent_text_info">Urgent</span>
+                                                <span class="summary_amount_font_weight_and_size" id="summary-urgent-amount">${summaryData.priority.amount}</span>
+                                                <span class="summary_urgent_text_info">${summaryData.priority.status}</span>
                                             </div>                                        
                                         </div>
 
                                         <div class="summary_urgent_line"></div>
 
                                         <div class="summary_urgent_text_wrapper padding_28_48">    
-                                            <span class="summary_urgent_text_date"> October 16, 2022 </span>
+                                            <span class="summary_urgent_text_date">${summaryData.priority.deadline}</span>
                                             <span class="summary_urgent_text_info"> Upcoming Deadline </span>
                                         </div>
 
@@ -137,21 +139,21 @@ function getSummaryTemplate() {
 
                                 <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-board">
                                     <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-board-amount">5</span>
+                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-board-amount">${summaryData.tasksInBoard}</span>
                                         <span class="summary_text_font_weight_and_size">Tasks in<br>Board</span>
                                     </div>                                
                                 </div>
 
                                 <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-progress">
                                     <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-progress-amount">2</span>
+                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-progress-amount">${summaryData.tasksInProgress}</span>
                                         <span class="summary_text_font_weight_and_size">Tasks in<br>Progress</span>
                                     </div>                                                                
                                 </div>
 
                                 <div class="summary_buttons summary_button_width_168" id="summary-awaiting-feedback">
                                     <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-awaiting-feedback-amount">2</span>
+                                        <span class="summary_amount_font_weight_and_size" id="summary-awaiting-feedback-amount">${summaryData.awaitingFeedback}</span>
                                         <span class="summary_text_font_weight_and_size">Awaiting<br>Feedback</span>
                                     </div>                                                                                                
                                 </div>
