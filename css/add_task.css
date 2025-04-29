@@ -1,3 +1,6 @@
+.main {
+    background-color: #F0F0F0;
+}
 .add-task-page {
     margin: 110px 96px;
 
@@ -153,7 +156,7 @@
     background: url(../assets/svg/add_task_calendar.svg);
     background-repeat: no-repeat;
     background-position: right 21px center;
-
+    background-color: white;
 }
 
 .priority-options {
@@ -294,6 +297,13 @@
     color: white;
 }
 
+.assigned-contacts {
+    margin-top: 8px;
+    display: flex;
+    gap: 8px;
+
+}
+
 .name-and-img {
     display: flex;
     align-items: center;
@@ -307,8 +317,8 @@
 }
 
 .circle {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     color: white;
     display: flex;

@@ -46,11 +46,11 @@ function getAddTaskTemplate() {
         <div class="form-group">
             <label for="assigned-input">Assigned to</label>
             <div class="multiselect-container">
-                <div class="multiselect" id="multiselect-assign" onclick="event.stopPropagation(); toggleAssignDropdown()" onfocusout="closeAssignDropdown()">
+                <div class="multiselect" id="multiselect-assign" onclick="event.stopPropagation(); toggleAssignDropdown()" tabindex="0">
                     <input type="text" placeholder="Select contacts to assign" id="multiselect-input-assign" class="multiselect-input" oninput="filterContacts()" autocomplete="off"/>
                     <img class="multiselect-icon" id="multiselect-icon-assign" src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
                 </div>
-                <div class="multiselect-options d-none" id="multiselect-assign-options">
+                <div class="multiselect-options d-none" id="multiselect-assign-options" onclick="event.stopPropagation()">
                     <!-- Javascript insert Contacts from Firebase -->
                 </div>
                 <div class="assigned-contacts" id="assigned-contacts">

@@ -1,5 +1,36 @@
 let categoryDropdownOpen = false
 let assignDropdownOpen = false
+let selectedContactIds = [];
+
+const firebaseConfig = {
+    databaseURL: "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app"
+};
+
+function initializeFirebase() {
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
+}
+
+function getHueFromString(text) {
+    let hash = 0;
+    for (let i = 0; i < text.length; i++) {
+        hash = (hash * 31 + text.charCodeAt(i)) % 360;
+    }
+    return hash;
+}
+
+function getInitials(fullName) {
+    const nameParts = fullName.trim().split(" ");
+    let initials = "";
+
+    if (nameParts.length >= 2) {
+        initials = nameParts[0].charAt(0).toUpperCase() + nameParts[1].charAt(0).toUpperCase();
+    } else {
+        initials = nameParts[0].charAt(0).toUpperCase();
+    }
+    return initials;
+}
 
 function initAddTask() {
     document.body.innerHTML = getBodyTemplate();
@@ -7,11 +38,11 @@ function initAddTask() {
     highlightActiveSidebarLink();
     document.getElementById("main").innerHTML = getAddTaskTemplate();
     initializeFirebase();
-    fetchContactsForAssign();
 }
 
 function onBodyClick() {
     closeCategoryDropdown();
+    closeAssignDropdown();
 }
 
 function selectPriority(btn) {
@@ -83,46 +114,70 @@ function closeAssignDropdown() {
     assignDropdownOpen = false;
 }
 
-function loadContacts() {
-    const contactInput = singleContactTemplate()
-    const multiselectAssignOptionsRef = document.getElementById("multiselect-assign-options")
-    multiselectAssignOptionsRef.innerHTML = contactInput
+async function loadContacts() {
+    const db = firebase.database();
+    const snapshot = await db.ref('contacts').once('value');
+    const data = snapshot.val() || {};
+    const container = document.getElementById('multiselect-assign-options');
     
-}
+    container.innerHTML = Object.entries(data).map(([id, contact]) => {
+        const initials = getInitials(contact.name);
+        const hue = getHueFromString(contact.name);
+        const isSelected = selectedContactIds.includes(id);
 
-function singleContactTemplate() {
-    return `
-    <div class="multiselect-option-contact" onclick="event.stopPropagation(); toggleSelectedContact(this)">
+        return `
+    <div class="multiselect-option-contact ${isSelected ? 'selected' : ''}" onclick="event.stopPropagation(); toggleSelectedContact(this)" data-id="${id}">
         <div class="name-and-img">
             <div class="circle-and-name">
-                <div class="circle" style="background-color: #ff5eb3;">
-                MO
+                <div class="circle" style="background-color: hsl(${hue}, 70%, 50%)">
+                    ${initials}
                 </div>
-                <div>Marc Odermatt</div>
+                <div>${contact.name}</div>
             </div>
             <div>
-                <img src="./assets/svg/check_box.svg" alt="Checkbox">
+                <img src="./assets/svg/${isSelected ? 'check_box_checked_white' : 'check_box'}.svg" alt="Checkbox">
             </div>
         </div>
-    </div>
-
-    <div class="multiselect-option-contact selected" onclick="event.stopPropagation(); toggleSelectedContact(this)">
-        <div class="name-and-img">
-            <div class="circle-and-name">
-                <div class="circle" style="background-color: #ff5eb3;">
-                TV
-                </div>
-                <div>Tanja Vollenweider</div>
-            </div>
-            <div>
-                <img src="./assets/svg/check_box_checked_white.svg" alt="Checkbox">
-            </div>
-        </div>
-    </div>
-    `
+    </div>`;
+    }).join('');
 }
 
 
+function toggleSelectedContact(contact) {
+    const contactId = contact.dataset.id;
+    const isSelected = contact.classList.toggle('selected');
+    const checkboxImg = contact.querySelector('img');
+
+    if (isSelected) {
+        checkboxImg.src = './assets/svg/check_box_checked_white.svg';
+        if (!selectedContactIds.includes(contactId)) {
+            selectedContactIds.push(contactId);
+        }
+    } else {
+        checkboxImg.src = './assets/svg/check_box.svg';
+        selectedContactIds = selectedContactIds.filter(id => id !== contactId);
+    }
+
+    updateAssignedContacts();
+}
+
+function updateAssignedContacts() {
+    const assignedContactsContainer = document.getElementById('assigned-contacts');
+    const selectedContacts = document.querySelectorAll('.multiselect-option-contact.selected');
+    let assignedHTML = '';
+    selectedContacts.forEach((contact, index) => {
+        if (index < 5) {
+            const initials = contact.querySelector('.circle').innerText.trim();
+            const bgColor = contact.querySelector('.circle').style.backgroundColor;
+            assignedHTML += `
+                <div class="circle" style="background-color: ${bgColor}; margin-right: 5px;">
+                    ${initials}
+                </div>
+            `;
+        }
+    });
+    assignedContactsContainer.innerHTML = assignedHTML;
+}
 
 
 
