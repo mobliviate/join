@@ -105,6 +105,12 @@
     
 }
 
+
+.summary_buttons:hover .todo_icon {
+    content: url('./assets/svg/summary-icon.svg');
+}
+
+
 .summary_bottons_amount_and_text_wrapper {
     display: flex;
     flex-direction: column;

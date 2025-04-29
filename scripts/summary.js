@@ -1,5 +1,4 @@
 const DATABASEURL = "https://summary-project-49fd6-default-rtdb.europe-west1.firebasedatabase.app/summary.json";
-
 const summaryDatabaseSample = {
     todo: 1,
     done: 1,
@@ -12,7 +11,6 @@ const summaryDatabaseSample = {
     tasksInProgress: 2,
     awaitingFeedback: 2
 };
-
 let summaryData = {};
 
 
@@ -67,8 +65,6 @@ async function getSummary() {
 }
 
 
-
-
 function getSummaryTemplate() {
     return `
         <div class="summary_container">
@@ -89,7 +85,7 @@ function getSummaryTemplate() {
 
                                 <div class="summary_buttons summary_button_width_264 gap_16" id="summary-todo">
 
-                                    <img src="./assets/svg/summary-todo-icon.svg" alt="To-do">
+                                    <img class="todo_icon" src="./assets/svg/summary-todo-icon.svg" alt="To-do">
 
                                     <div class="summary_bottons_amount_and_text_wrapper">
                                         <span class="summary_amount_font_weight_and_size" id="summary-todo-amount">${summaryData.todo}</span>
@@ -100,7 +96,7 @@ function getSummaryTemplate() {
 
                                 <div class="summary_buttons summary_button_width_264 gap_16" id="summary-done">
                                     
-                                    <img src="./assets/svg/summary-done-icon.svg" alt="Done">
+                                    <img class="done_icon" src="./assets/svg/summary-done-icon.svg" alt="Done">
 
                                     <div class="summary_bottons_amount_and_text_wrapper">
                                         <span class="summary_amount_font_weight_and_size" id="summary-done-amount">${summaryData.done}</span>
