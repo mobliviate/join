@@ -1,6 +1,7 @@
 let categoryDropdownOpen = false
 let assignDropdownOpen = false
 let selectedContactIds = [];
+let editingSubtaskItem = null;
 
 const firebaseConfig = {
     databaseURL: "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app"
@@ -119,7 +120,7 @@ async function loadContacts() {
     const snapshot = await db.ref('contacts').once('value');
     const data = snapshot.val() || {};
     const container = document.getElementById('multiselect-assign-options');
-    
+
     container.innerHTML = Object.entries(data).map(([id, contact]) => {
         const initials = getInitials(contact.name);
         const hue = getHueFromString(contact.name);
@@ -179,10 +180,6 @@ function updateAssignedContacts() {
     assignedContactsContainer.innerHTML = assignedHTML;
 }
 
-
-
-
-
 function toggleCategoryDropdown() {
     if (categoryDropdownOpen) {
         closeCategoryDropdown();
@@ -211,6 +208,131 @@ function selectCategoryOption(option) {
     validateCategory();
     checkFormValidity();
     closeCategoryDropdown();
+}
+
+function subtaskInputIcon() {
+    const input = document.getElementById('subtask-input');
+    if (input) {
+        input.focus();
+    }
+}
+
+function subtaskInput() {
+    const input = document.getElementById('subtask-input');
+    const addIcon = document.getElementById('add-subtask-icon');
+    const deleteIcon = document.getElementById('delete-subtask-icon');
+    const verticalline = document.querySelector('.verticalline-subtask');
+    const saveIcon = document.getElementById('save-subtask-icon');
+
+    if (input.value.trim() !== '') {
+        addIcon.classList.add('d-none');
+        deleteIcon.classList.remove('d-none');
+        verticalline.classList.remove('d-none');
+        saveIcon.classList.remove('d-none');
+    } else {
+        addIcon.classList.remove('d-none');
+        deleteIcon.classList.add('d-none');
+        verticalline.classList.add('d-none');
+        saveIcon.classList.add('d-none');
+    }
+};
+
+function subtaskSave() {
+    const input = document.getElementById('subtask-input');
+    const subtaskText = input.value.trim();
+    if (!subtaskText) return;
+
+    const subtaskList = document.querySelector('.subtask-list');
+    const subtaskItem = document.createElement('div');
+    subtaskItem.className = 'subtask-item';
+    subtaskItem.setAttribute('onmouseenter', "this.querySelector('.subtask-actions').classList.remove('d-none')");
+    subtaskItem.setAttribute('onmouseleave', "this.querySelector('.subtask-actions').classList.add('d-none')");
+    subtaskItem.setAttribute('ondblclick', "editSubtask(this.querySelector('.subtask-action-icon[alt=\\'Edit\\']))");
+    subtaskItem.innerHTML = `
+        <span class="subtask-text">• ${subtaskText}</span>
+        <div class="subtask-actions d-none">
+            <img src="./assets/svg/subtask_edit.svg" alt="Edit" class="subtask-action-icon" onclick="editSubtask(this)">
+            <img src="./assets/svg/subtask_delete.svg" alt="Delete" class="subtask-action-icon" onclick="deleteSubtask(this)">
+        </div>
+    `;
+    subtaskList.appendChild(subtaskItem);
+
+    input.value = '';
+    subtaskDelete();
+}
+
+function subtaskDelete() {
+    const input = document.getElementById('subtask-input');
+    const addIcon = document.getElementById('add-subtask-icon');
+    const deleteIcon = document.getElementById('delete-subtask-icon');
+    const verticalline = document.querySelector('.verticalline-subtask');
+    const saveIcon = document.getElementById('save-subtask-icon');
+
+    input.value = '';
+    addIcon.classList.remove('d-none');
+    deleteIcon.classList.add('d-none');
+    verticalline.classList.add('d-none');
+    saveIcon.classList.add('d-none');
+}
+
+function deleteSubtask(iconElement) {
+    const subtaskItem = iconElement.closest('.subtask-item');
+    if (subtaskItem) {
+        subtaskItem.remove();
+    }
+}
+
+function editSubtask(iconElement) {
+    const subtaskItem = iconElement.closest('.subtask-item');
+    const subtaskList = document.querySelector(".subtask-list");
+    const textElement = subtaskItem.querySelector('.subtask-text');
+    const editInput = document.getElementById('subtask-edit');
+    const editDeleteIcon = document.getElementById('edit-delete-icon');
+    const editSaveIcon = document.getElementById('edit-save-icon');
+
+    editInput.classList.remove('d-none');
+    editDeleteIcon.classList.remove('d-none');
+    editSaveIcon.classList.remove('d-none');
+
+    editInput.value = textElement.innerText.replace(/^•\s*/, '');
+    subtaskList.style.display = 'none';
+    editingSubtaskItem = subtaskItem;
+
+    editInput.focus();
+}
+
+function cancelEditSubtask() {
+    const subtaskList = document.querySelector(".subtask-list");
+    const editInput = document.getElementById('subtask-edit');
+    const editDeleteIcon = document.getElementById('edit-delete-icon');
+    const editSaveIcon = document.getElementById('edit-save-icon');
+
+    editInput.classList.add('d-none');
+    editDeleteIcon.classList.add('d-none');
+    editSaveIcon.classList.add('d-none');
+    editInput.value = '';
+    if (editingSubtaskItem) {
+        subtaskList.style.display = 'flex';
+    }
+    editingSubtaskItem = null;
+
+}
+
+function saveEditedSubtask() {
+    const subtaskList = document.querySelector(".subtask-list");
+    const editInput = document.getElementById('subtask-edit');
+    const newText = editInput.value.trim();
+
+    if (editingSubtaskItem && newText !== '') {
+        const textElement = editingSubtaskItem.querySelector('.subtask-text');
+        textElement.innerText = `• ${newText}`;
+    }
+
+    if (editingSubtaskItem) {
+        subtaskList.style.display = 'flex';
+    }
+
+    cancelEditSubtask();
 }
 
 function checkFormValidity() {

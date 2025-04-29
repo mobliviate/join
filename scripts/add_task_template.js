@@ -77,25 +77,25 @@ function getAddTaskTemplate() {
         <div class="form-group">
             <label>Subtasks</label>
             <div class="input-container">
-                <input id="subtask-input" class="input-custom-subtask" type="text" name="subtasks" placeholder="Add new subtask" onclick="subtaskInput()">
+                <input id="subtask-input" class="input-custom-subtask" type="text" name="subtasks" placeholder="Add new subtask" oninput="subtaskInput()" onclick="subtaskInput()">
                 <div class="buttons-box">
                     <img id="add-subtask-icon" class="input-default-icon" src="./assets/svg/subtask_add.svg" alt="Add subtask" onclick="subtaskInputIcon()">
                     <img id="delete-subtask-icon" class="input-default-icon d-none" src="./assets/svg/subtask_close.svg" alt="Delete subtask" onclick="subtaskDelete()">
                     <div class="verticalline-subtask d-none"></div>
                     <img id="save-subtask-icon" class="input-default-icon d-none" src="./assets/svg/subtask_check.svg" alt="Save subtask" onclick="subtaskSave()">
                 </div>
-                <div class="subtask-list">
+            </div>  
+            <div class="subtask-list">
                     <!-- Javascript insert from Function -->
-                </div>
-                <div class="input-container">
-                    <input id="subtask-edit" class="input-default d-none" type="text" name="subtask-edit" placeholder="Edit subtask"">
+            </div>
+            <div class="input-container edit">
+                    <input id="subtask-edit" class=" subtask-edit d-none" type="text" name="subtask-edit" placeholder="Edit subtask"">
                     <div class="buttons-box">
                         <img id="edit-delete-icon" class="input-default-icon d-none" src="assets/svg/subtask_delete.svg" alt="Delete" onclick="cancelEditSubtask()">
                         <div class="verticalline-subtask"></div>
                         <img id="edit-save-icon" class="input-default-icon d-none" src="assets/svg/subtask_check.svg" alt="Save" onclick="saveEditedSubtask()">
                     </div>
-                </div>
-            </div>    
+            </div>  
         </div>
 
       </div>
