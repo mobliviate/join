@@ -119,12 +119,12 @@
 }
 
 
-@media (max-width: 768px) {
-  .left {
+@media (max-width: 750px) {
+  .mobile-hide {
     display: none;
   }
 
-  .footer-nav-cnt {
+  .mobile-flex {
     display: flex;
   }
 }
