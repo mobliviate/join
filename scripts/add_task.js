@@ -383,7 +383,8 @@ function collectNewTaskData() {
         assignedContacts,
         category,
         subtasks,
-        createdAt: Date.now()
+        createdAt: Date.now(),
+        status: "todo"
     };
 
     return task;
