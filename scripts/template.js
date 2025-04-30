@@ -1,7 +1,7 @@
 function getBodyTemplate(func = getSideBarUserTemplate()) {
   return `
     <div class="main-div">
-      <div class="left">
+      <div class="left mobile-hide">
         <div class="sidebar-logo">
           <img src="assets/svg/join-logo.svg" alt="Join Logo">
         </div>
@@ -16,6 +16,9 @@ function getBodyTemplate(func = getSideBarUserTemplate()) {
         <div class="user-menu-overlay hidden" id="user_menu_overlay" onclick="toggleUserMenu('close')"></div>
         <div class="wrapper-user-menu hidden" id="wrapper_user_menu" onclick="toggleUserMenu('close')">
           <div class="user-menu" id="user_menu" onclick="event.stopPropagation()">
+            <div class="user-menu-item user-menu-help-item mobile-flex">
+              <a href="../help.html">Help</a>
+            </div>
             <div class="user-menu-item">
               <a href="../privacy_policy.html">Privacy Policy</a>
             </div>
@@ -27,9 +30,10 @@ function getBodyTemplate(func = getSideBarUserTemplate()) {
             </div>
           </div>
         </div>
+        
         <main class="main wrapper" id="main"></main>
       
-        <footer class="footer-nav-cnt">
+        <footer class="footer-nav-cnt mobile-flex">
           <nav class="footer-nav">
               <a href="summary.html" class="footer-nav-link" data-page="summary.html">
                   <div class="footer-nav-link-cnt">
@@ -95,7 +99,8 @@ function getHeaderTemplate(func = getHeaderUserTemplate()) {
   return `
     <div class="wrapper">
       <div class="header-content">
-        <span class="header-title">Kanban Project Management Tool</span>
+        <span class="header-title mobile-hide">Kanban Project Management Tool</span>
+        <img src="assets/svg/join_logo.svg" alt="Join Logo" class="header-logo mobile-flex">
         ${func}
                
       </div>
@@ -106,7 +111,7 @@ function getHeaderTemplate(func = getHeaderUserTemplate()) {
 function getHeaderUserTemplate() {
   return `
     <div class="user-wrapper">
-      <a href="help.html" class="help-link">
+      <a href="help.html" class="help-link mobile-hide">
         <img src="assets/svg/help.svg" alt="Help" />
       </a>
       <button class="user-button" onclick="toggleUserMenu('open')">

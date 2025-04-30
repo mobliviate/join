@@ -11,7 +11,7 @@
 
 .header-content {
   width: 100%;
-  padding: 20px 40px 20px 116px;
+  padding: var(--header-padding);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,6 +20,11 @@
 .header-title {
   font-size: 20px;
   color: var(--black);
+}
+
+.header-logo {
+  display: none;
+  height: 40px;
 }
 
 .help-link img {
@@ -126,5 +131,37 @@
     &:hover {
       color: var(--light-blue);
     }
+  }
+}
+
+.user-menu-help-item {
+  display: none;
+}
+
+
+@media (max-width: 850px) {
+  :root {
+    --header-padding: 20px 32px;
+  }
+}
+
+@media (max-width: 750px) {
+  :root {
+    --header-padding: 20px 40px;
+  }
+
+  .user-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .user-menu {
+    top: 80px;
+  }
+}
+
+@media (max-width: 375px) {
+  :root {
+    --header-padding: 20px 16px;
   }
 }

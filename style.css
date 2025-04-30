@@ -47,6 +47,8 @@
   --icons: #a8a8a8;
   --nav-hover: rgba(255, 255, 255, 0.1);
   --active: #090131;
+
+  --header-padding: 20px 40px 20px 116px;
 }
 
 a {
