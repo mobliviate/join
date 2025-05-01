@@ -30,17 +30,6 @@ function validateLoginPassword() {
 }
 
 /**
- * Fetches the list of users from the server.
- * @async
- * @returns {Promise<Array>} - A promise that resolves to an array of user objects.
- */
-async function fetchUsers() {
-    const response = await fetch(BASE_URL + ".json");
-    const data = await response.json();
-    return data.users || [];
-}
-
-/**
  * Handles the login form submission.
  * Validates the email and password, and attempts to log in the user.
  * Displays appropriate warnings if login fails.
@@ -54,17 +43,28 @@ async function handleLoginSubmit() {
 
     try {
         const users = await fetchUsers();
-        const user = users.find(u => u.email.toLowerCase() === v && u.password === password);
+        const index = users.findIndex(u => u.email.toLowerCase() === v && u.password === password);
 
-        if (!user) {
+        if (index === -1) {
             w.textContent = "Email or password is incorrect.";
         } else {
             w.textContent = "";
-            openSummaryPage();
+            openSummaryPage(index);
         }
     } catch (error) {
         w.textContent = "Server error. Please try again later.";
     }
+}
+
+/**
+ * Fetches the list of users from the server.
+ * @async
+ * @returns {Promise<Array>} - A promise that resolves to an array of user objects.
+ */
+async function fetchUsers() {
+    const response = await fetch(BASE_URL + ".json");
+    const data = await response.json();
+    return data.users || [];
 }
 
 /**
@@ -80,8 +80,9 @@ function checkLoginFormValidity() {
 /**
  * Redirects the user to the summary page upon successful login.
  */
-function openSummaryPage() {
+function openSummaryPage(userIndex) {
     localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('userIndex', userIndex);
     setTimeout(() => {
         window.location.href = "summary.html";
     }, 500);

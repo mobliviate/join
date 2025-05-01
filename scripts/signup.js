@@ -45,6 +45,7 @@ function setLoginState() {
     if (localStorage.getItem('isLoggedIn') === null) {
         localStorage.setItem('isLoggedIn', 'false');
     }
+    localStorage.setItem('userIndex', '-1');
 }
 
 /**
