@@ -391,9 +391,11 @@ function collectNewTaskData() {
 }
 
 async function saveNewTaskToFirebase(taskData) {
-    const tasksReference = firebase.database().ref('tasks');
-    const newTaskReference = tasksReference.push();
-    await newTaskReference.set(taskData);
+    const tasksRef = firebase.database().ref('tasks');
+    const snapshot = await tasksRef.once('value');
+    const existingTasks = snapshot.val() || [];
+    existingTasks.push(taskData);
+    await tasksRef.set(existingTasks);
 }
 
 async function createTask() {
