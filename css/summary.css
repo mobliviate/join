@@ -105,6 +105,11 @@
     
 }
 
+.summary_image_wrapper {
+    height: 70px;
+    width: 70px;
+}
+
 .summary_bottons_amount_and_text_wrapper {
     display: flex;
     flex-direction: column;
