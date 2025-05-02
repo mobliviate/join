@@ -84,9 +84,18 @@ function getSummaryTemplate() {
                             <div class="summary_content_left_top_wrapper">
 
                                 <div class="summary_buttons summary_button_width_264 gap_16" id="summary-todo">
-
-                                    <img class="todo_icon" src="./assets/svg/summary-todo-icon.svg" alt="To-do">
-
+                                    
+                                    <div class="summary_image_wrapper">
+                                        <svg width="69" height="70" viewBox="0 0 69 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="34.5" cy="35" r="34.5" fill="#2A3647"/>
+                                            <mask id="mask0_310617_6282" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="18" y="19" width="33" height="32">
+                                                <rect x="18.5" y="19" width="32" height="32" fill="#D9D9D9"/>
+                                            </mask>
+                                            <g mask="url(#mask0_310617_6282)">
+                                                <path d="M25.1667 44.3332H27.0333L38.5333 32.8332L36.6667 30.9665L25.1667 42.4665V44.3332ZM44.2333 30.8998L38.5667 25.2998L40.4333 23.4332C40.9444 22.9221 41.5722 22.6665 42.3167 22.6665C43.0611 22.6665 43.6889 22.9221 44.2 23.4332L46.0667 25.2998C46.5778 25.8109 46.8444 26.4276 46.8667 27.1498C46.8889 27.8721 46.6444 28.4887 46.1333 28.9998L44.2333 30.8998ZM42.3 32.8665L28.1667 46.9998H22.5V41.3332L36.6333 27.1998L42.3 32.8665Z" fill="white"/>
+                                            </g>
+                                        </svg>                                        
+                                    </div>
                                     <div class="summary_bottons_amount_and_text_wrapper">
                                         <span class="summary_amount_font_weight_and_size" id="summary-todo-amount">${summaryData.todo}</span>
                                         <span class="summary_text_font_weight_and_size">To-do</span>
@@ -95,9 +104,14 @@ function getSummaryTemplate() {
                                 </div>
 
                                 <div class="summary_buttons summary_button_width_264 gap_16" id="summary-done">
-                                    
-                                    <img class="done_icon" src="./assets/svg/summary-done-icon.svg" alt="Done">
 
+                                    <div class="summary_image_wrapper">
+                                        <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="35" cy="35" r="34.5" fill="#2A3647"/>
+                                            <path d="M20.0283 35.0001L31.2571 46.0662L49.9717 23.9341" stroke="white" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>                                
+                                
                                     <div class="summary_bottons_amount_and_text_wrapper">
                                         <span class="summary_amount_font_weight_and_size" id="summary-done-amount">${summaryData.done}</span>
                                         <span class="summary_text_font_weight_and_size">Done</span>
