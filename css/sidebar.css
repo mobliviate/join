@@ -28,6 +28,11 @@
   color: var(--light-gray);
   font-size: 16px;
   transition: background-color 0.2s, color 0.2s;
+
+  & svg {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .sidebar-link:hover {
@@ -97,6 +102,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   min-width: 80px;
   min-height: 76px;
   border-radius: 16px;
@@ -126,5 +132,52 @@
 
   .mobile-flex {
     display: flex;
+  }
+}
+
+/* Footer Nav without User */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+
+}
+
+.login-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-width: 80px;
+  min-height: 76px;
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--light-gray);
+  font-size: 16px;
+  gap: 8px;
+  transition: background-color 0.2s, color 0.2s;
+
+  &:hover {
+    background-color: var(--nav-hover);
+    color: var(--white);
+  }
+
+  .login-icon {
+    width: 17px;
+    height: 17px;
+  }
+}
+
+.footer-link-cnt {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+
+
+  & a {
+    padding: 16px 12px;
   }
 }

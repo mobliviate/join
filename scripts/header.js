@@ -6,6 +6,7 @@
 
 function loadHeader() {
   document.getElementById("header").innerHTML = getHeaderTemplate(loginState ? undefined : "");
+  document.getElementById("footer_mobile").innerHTML = getFooterTemplate(loginState ? undefined : getFooterWithoutUserTemplate());
 }
 
 function toggleUserMenu(action) {
