@@ -32,7 +32,7 @@ function getAddTaskTemplate() {
             <label>Priority</label>
             <div class="priority-options">
                 <button onclick="selectPriority(this)" type="button" class="prio-btn" data-prio="urgent">
-                Urgent <span class="prio-icon"><img src="./assets/svg/prio_high.svg" alt="Prio High"></span>
+                Urgent <span class="prio-icon"><img src="./assets/svg/prio_urgent.svg" alt="Prio High"></span>
                 </button>
                 <button onclick="selectPriority(this)" type="button" class="prio-btn selected" data-prio="medium">
                 Medium <span class="prio-icon"><img src="./assets/svg/prio_medium.svg" alt="Prio Medium"></span>
