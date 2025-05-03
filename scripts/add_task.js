@@ -37,7 +37,7 @@ function initAddTask() {
     document.body.innerHTML = getBodyTemplate();
     loadHeader();
     highlightActiveSidebarLink();
-    document.getElementById("main").innerHTML = getAddTaskTemplate();
+    document.getElementById("main").innerHTML = getAddTaskTemplate("todo");
     initializeFirebase();
 }
 
@@ -352,7 +352,7 @@ function checkFormValidity() {
     }
 }
 
-function collectNewTaskData() {
+function collectNewTaskData(status) {
     const title = document.getElementById('title').value.trim();
     const description = document.getElementById('description').value.trim();
     const dueDate = document.getElementById('due-date').value.trim();
@@ -384,7 +384,7 @@ function collectNewTaskData() {
         category,
         subtasks,
         createdAt: Date.now(),
-        status: "todo"
+        status
     };
 
     return task;
@@ -398,8 +398,8 @@ async function saveNewTaskToFirebase(taskData) {
     await tasksRef.set(existingTasks);
 }
 
-async function createTask() {
-    const taskData = collectNewTaskData();
+async function createTask(status) {
+    const taskData = collectNewTaskData(status);
 
     try {
         await saveNewTaskToFirebase(taskData);
