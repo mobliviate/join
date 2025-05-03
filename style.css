@@ -48,7 +48,8 @@
   --nav-hover: rgba(255, 255, 255, 0.1);
   --active: #090131;
   --no-task-bg: #E7E7E7;
-
+  --technical:#1FD7C1;
+  --user:#0038FF;
   --header-padding: 20px 40px 20px 116px;
 }
 

@@ -14,9 +14,23 @@ async function renderTasks() {
   let taskRefUrlToJson = await taskRefUrl.json();
   for (let indexTask = 0; indexTask < taskRefUrlToJson.length; indexTask++) {
     let taskRef = taskRefUrlToJson[indexTask]
+    let background = "--technical"
+    if (taskRef.category == "User Story") {
+      background = "--user"
+    }
     let taskContentRef = document.getElementById(`${taskRef.status}`);
-    taskContentRef.innerHTML += getRenderTask(taskRef,indexTask);
-    //renderSubtasks(taskRef);
-    //renderInitials(taskRef);
+    taskContentRef.innerHTML += getRenderTask(taskRef,indexTask,background);
+    renderSubtasks(taskRef,indexTask);
+    //renderInitials(taskRef,indexTask);
   }
+}
+
+function renderSubtasks(taskRef,indexTask){
+  let subTasks = taskRef.subtasks.length;
+  let subtaskDone = taskRef.subtasks.filter(subtask => subtask.status === true).length;
+  let widthProgress = (128/subTasks)*subtaskDone;
+  let progresbarContactRef = document.getElementById(`progresbar${indexTask}`);
+  progresbarContactRef.innerHTML = getRenderProgresbar(widthProgress);
+  let subtaskContactRef = document.getElementById(`subtask${indexTask}`);
+  subtaskContactRef.innerHTML = getRenderSubtasks(subTasks, subtaskDone);
 }
