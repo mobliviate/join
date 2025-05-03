@@ -1,4 +1,4 @@
-function getAddTaskTemplate() {
+function getAddTaskTemplate(status) {
     return `
 <div class="add-task-page">
   <h1 class="page-title">Add Task</h1>
@@ -112,7 +112,7 @@ function getAddTaskTemplate() {
                 <img class="button-clear-hover-img" src="assets/svg/add_task_cancel_blue.svg" alt="Clear">
             </div>
             </button>
-            <button type="button" class="button-create-task" id="create-task-button" onclick="createTask()" disabled> Create Task
+            <button type="button" class="button-create-task" id="create-task-button" onclick="createTask('${status}')" disabled> Create Task
                 <img src="assets/svg/add_task_check_white.svg" alt="Check">
             </button>
   </form>
