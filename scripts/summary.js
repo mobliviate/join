@@ -16,7 +16,7 @@ let summaryData = {};
 
 async function initSummary() {
     uploadSummaryToFirebase();
-    document.body.innerHTML = getBodyTemplate();
+    loadBody();
     loadHeader();
     highlightActiveSidebarLink();
     await getSummary();
@@ -50,17 +50,17 @@ async function uploadSummaryToFirebase() {
 
 async function getSummary() {
     try {
-      const response = await fetch(DATABASEURL);
-  
-      if (!response.ok) {
-        throw new Error('Fehler beim Abrufen');
-      }
-  
-      summaryData = await response.json();
-      console.log(summaryData);
+        const response = await fetch(DATABASEURL);
+
+        if (!response.ok) {
+            throw new Error('Fehler beim Abrufen');
+        }
+
+        summaryData = await response.json();
+        console.log(summaryData);
 
     } catch (error) {
-      console.error('Fehler:', error.message);
+        console.error('Fehler:', error.message);
     }
 }
 

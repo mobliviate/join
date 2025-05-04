@@ -4,8 +4,9 @@
  * loads the help header, and populates the main section with help content.
  */
 function initHelp() {
-  document.body.innerHTML = getBodyTemplate();
-  loadHelpHeader();
+  loadBody();
+  loadHeader();
+  hideHelpLink();
   document.getElementById("main").innerHTML = getHelpContent();
 }
 
@@ -26,8 +27,6 @@ function loadHelpHeader() {
  * @param {number} index - The zero-based index of the current step in the list.
  * @returns {string} A string of HTML representing one formatted step in the guide.
  */
-
-
 
 /**
  * Combines all steps into a single HTML string for the help guide.

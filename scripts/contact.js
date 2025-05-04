@@ -13,7 +13,7 @@ const firebaseConfig = {
  * - Loads contacts
  */
 function initContacts() {
-  document.body.innerHTML = getBodyTemplate();
+  loadBody();
   loadHeader();
   highlightActiveSidebarLink();
   document.getElementById("main").innerHTML = getContactsSectionTemplate();
