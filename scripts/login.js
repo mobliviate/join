@@ -49,11 +49,18 @@ async function handleLoginSubmit() {
             w.textContent = "Email or password is incorrect.";
         } else {
             w.textContent = "";
+            localStorage.setItem('userInitials', getUserInitials(users, index));
             openSummaryPage(index);
         }
     } catch (error) {
         w.textContent = "Server error. Please try again later.";
     }
+}
+
+function getUserInitials(users, index) {
+    const name = users[index].name;
+    const initials = name.split(" ").map(word => word[0].toUpperCase()).join("");
+    return initials;
 }
 
 /**

@@ -1,5 +1,5 @@
-let categoryDropdownOpen = false
-let assignDropdownOpen = false
+let categoryDropdownOpen = false;
+let assignDropdownOpen = false;
 let selectedContactIds = [];
 let editingSubtaskItem = null;
 
@@ -34,7 +34,7 @@ function getInitials(fullName) {
 }
 
 function initAddTask() {
-    document.body.innerHTML = getBodyTemplate();
+    loadBody();
     loadHeader();
     highlightActiveSidebarLink();
     document.getElementById("main").innerHTML = getAddTaskTemplate("todo");
@@ -94,9 +94,9 @@ function validateCategory() {
 
 function toggleAssignDropdown() {
     if (assignDropdownOpen) {
-        closeAssignDropdown()
+        closeAssignDropdown();
     } else {
-        openAssignDropdown()
+        openAssignDropdown();
     }
 }
 
@@ -191,7 +191,7 @@ function toggleCategoryDropdown() {
 function closeCategoryDropdown() {
     const multiselectCategoryOptionsRef = document.getElementById("multiselect-category-options");
     multiselectCategoryOptionsRef.classList.add("d-none");
-    categoryDropdownOpen = false
+    categoryDropdownOpen = false;
 }
 
 function openCategoryDropdown() {
@@ -199,12 +199,12 @@ function openCategoryDropdown() {
     const multiselectCategoryRef = document.getElementById('multiselect-category');
     multiselectCategoryRef.focus();
     multiselectCategoryOptionsRef.classList.remove("d-none");
-    categoryDropdownOpen = true
+    categoryDropdownOpen = true;
 }
 
 function selectCategoryOption(option) {
     const multiselectCategorySelectedRef = document.getElementById("category-selected");
-    multiselectCategorySelectedRef.innerHTML = option
+    multiselectCategorySelectedRef.innerHTML = option;
     validateCategory();
     checkFormValidity();
     closeCategoryDropdown();

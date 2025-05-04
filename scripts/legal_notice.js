@@ -8,7 +8,7 @@
  * @function
  */
 function initLegalNotice() {
-  document.body.innerHTML = getBodyTemplate(loginState ? undefined : getSideBarWithoutUserTemplate());
+  loadBody();
   loadHeader();
   highlightActiveSidebarLink();
   document.getElementById("main").innerHTML = getLegalNoticeContent();

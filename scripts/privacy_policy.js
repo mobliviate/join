@@ -8,7 +8,7 @@
  * @function
  */
 function initPrivacyPolicy() {
-  document.body.innerHTML = getBodyTemplate(loginState ? undefined : getSideBarWithoutUserTemplate());
+  loadBody();
   loadHeader();
   highlightActiveSidebarLink();
   document.getElementById("main").innerHTML = getPrivacyPolicyContent();
