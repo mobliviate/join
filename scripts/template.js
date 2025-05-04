@@ -140,7 +140,7 @@ function getFooterWithoutUserTemplate() {
   `;
 }
 
-function getHeaderTemplate() {
+function getHeaderTemplate(initials) {
   return `
     <div class="wrapper">
       <div class="header-content">
@@ -151,7 +151,7 @@ function getHeaderTemplate() {
             <img src="assets/svg/help.svg" alt="Help" />
           </a>
           <button class="user-button" onclick="toggleUserMenu('open')">
-            <span class="initials">SM</span>
+            <span class="initials">${initials}</span>
           </button>
         </div>
                

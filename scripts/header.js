@@ -1,5 +1,5 @@
 function loadHeader() {
-  document.getElementById("header").innerHTML = getHeaderTemplate();
+  document.getElementById("header").innerHTML = getHeaderTemplate(localStorage.getItem('userInitials'));
   hideUserInfo();
 }
 

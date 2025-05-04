@@ -46,6 +46,7 @@ function setLoginState() {
         localStorage.setItem('isLoggedIn', 'false');
     }
     localStorage.setItem('userIndex', '-1');
+    localStorage.setItem('userInitials', 'G');
 }
 
 /**
