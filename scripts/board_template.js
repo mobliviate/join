@@ -6,9 +6,14 @@ function getBoardTemplate() {
               <div>
                 <h1>Board</h1>
               </div>
-              <div>
+              <div class="search-addtask">
                 <input type="text" value="Find Task">
-                <button>Add task +</button>
+                <button class="add-task-board">
+                  <h2>Add task</h2>
+                  <svg width="21" height="21" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.66602 11.3327H0.666016V8.66602H8.66602V0.666016H11.3327V8.66602H19.3327V11.3327H11.3327V19.3327H8.66602V11.3327Z" fill="white"/>
+                  </svg>
+                </button>
               </div>
             </div>
             <div class="tasks-board">
@@ -65,10 +70,7 @@ function getRenderTask(task,indexTask,background) {
         <h3 class="title-board">${task.title}</h3>
         <h4 class="description-board">${task.description}</h4>
       </div>
-      <div class="subtasks-board">
-        <div id="progresbar${indexTask}"></div>
-        <div id="subtask${indexTask}"></div>
-      </div>
+      <div id="progress_subtask"></div>      
       <div class="initials-priority_board">
         <div class="initials-board" id="initials${indexTask}"></div>
         <img class="priority-board" src="./assets/svg/prio_${task.priority}.svg" alt="${task.priority}_icon">
@@ -77,17 +79,15 @@ function getRenderTask(task,indexTask,background) {
   `;
 }
 
-function getRenderProgresbar(widthProgress){
+function getRenderProgresbar(widthProgress, subTasks, subtaskDone){
   return`
-  <svg width="128" height="8" viewBox="0 0 128 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect width="128" height="8" rx="4" fill="#F4F4F4"/>
-    <rect width="${widthProgress}" height="8" rx="4" fill="#4589FF"/>
-  </svg>
+    <div class="subtasks-board">
+      <svg width="128" height="8" viewBox="0 0 128 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="128" height="8" rx="4" fill="#F4F4F4"/>
+        <rect width="${widthProgress}" height="8" rx="4" fill="#4589FF"/>
+      </svg>
+      <h4>${subtaskDone}/${subTasks} Subtasks</h4>
+    </div>
+  
   `;
 }
-
-function getRenderSubtasks(subTasks, subtaskDone){
-  return`
-    <h4>${subtaskDone}/${subTasks} Subtasks</h4>
-  `
-  }

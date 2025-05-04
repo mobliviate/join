@@ -25,12 +25,13 @@ async function renderTasks() {
   }
 }
 
-function renderSubtasks(taskRef,indexTask){
+function renderSubtasks(taskRef, indexTask){
+  if (!taskRef.subtasks) {
+    return    
+  }
   let subTasks = taskRef.subtasks.length;
   let subtaskDone = taskRef.subtasks.filter(subtask => subtask.status === true).length;
   let widthProgress = (128/subTasks)*subtaskDone;
-  let progresbarContactRef = document.getElementById(`progresbar${indexTask}`);
-  progresbarContactRef.innerHTML = getRenderProgresbar(widthProgress);
-  let subtaskContactRef = document.getElementById(`subtask${indexTask}`);
-  subtaskContactRef.innerHTML = getRenderSubtasks(subTasks, subtaskDone);
+  let progresbarContactRef = document.getElementById("progress_subtask");
+  progresbarContactRef.innerHTML = getRenderProgresbar(widthProgress, subTasks, subtaskDone);
 }
