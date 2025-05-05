@@ -6,9 +6,7 @@ function getContactsSectionTemplate() {
   return `
     <div class="contacts-page">
       <aside class="contacts-list">
-        <button id="add-contact-btn"
-                class="btn btn-primary"
-                onclick="showAddContactOverlay()">
+        <button id="add-contact-btn" class="btn btn-primary" onclick="showAddContactOverlay()">
           <span class="btn-text">Add new contact</span>
           <span class="btn-icon">
             <img src="assets/svg/person_add.svg" alt="" />
@@ -16,23 +14,21 @@ function getContactsSectionTemplate() {
         </button>
         <div id="contacts-group-container"></div>
       </aside>
-
       <section class="contact-container">
         <div class="contacts-header">
           <h1 class="contacts-title">Contacts</h1>
           <span class="contacts-separator">|</span>
           <span class="contacts-subtitle">Better with a team</span>
         </div>
-        <div class="contact-detail" id="contact-detail">
-        </div>
+        <div class="contact-detail" id="contact-detail"></div>
       </section>
     </div>
   `;
 }
 
 /**
- * Zeigt die Detail-Ansicht mit Slide-Down/Fade-In-Animation.
- * @param {Object} contact
+ * Displays the contact detail panel with animation.
+ * @param {{id:string,name:string,email?:string,phone?:string,initials:string}} contact
  */
 function showContactDetail(contact) {
   const detailContainer = document.getElementById("contact-detail");
@@ -44,7 +40,7 @@ function showContactDetail(contact) {
 }
 
 /**
- * Returns the HTML for one letter‐group header.
+ * Returns the HTML for a grouping letter header.
  * @param {string} letter
  * @returns {string}
  */
@@ -53,7 +49,7 @@ function createGroupLetterTemplate(letter) {
 }
 
 /**
- * Builds the full contact‑item HTML given its parts.
+ * Builds the HTML for one contact item in the list.
  * @param {string} id
  * @param {string} avatarHTML
  * @param {string} name
@@ -73,7 +69,10 @@ function buildContactItem(id, avatarHTML, name, emailHTML) {
 }
 
 /**
- * Generates an avatar HTML snippet with initials and a unique background color.
+ * Generates an avatar circle with initials.
+ * @param {string} name
+ * @param {string} initials
+ * @returns {string}
  */
 function createAvatarTemplate(name, initials) {
   const hue = getHueFromString(name);
@@ -86,24 +85,22 @@ function createAvatarTemplate(name, initials) {
 }
 
 /**
- * Creates the contact‑item template.
+ * Creates the combined HTML for contact detail (header + info).
+ * @param {{id:string,name:string,email?:string,phone?:string,initials:string}} contact
+ * @returns {string}
  */
 function createContactDetailTemplate(contact) {
-  return buildContactHeaderSection(contact) +
-    buildContactInfoSection(contact);
+  return buildContactHeaderSection(contact) + buildContactInfoSection(contact);
 }
 
 /**
- * Builds the header section (avatar, name & action buttons) for contact details.
+ * Builds the header section in the detail panel.
  * @param {{id:string,name:string,initials:string}} contact
  * @returns {string}
  */
 function buildContactHeaderSection(contact) {
-  const avatarHTML = createAvatarTemplate(
-    contact.name,
-    contact.initials
-  ).replace('avatar-circle"', 'avatar-circle large"');
-
+  const avatarHTML = createAvatarTemplate(contact.name, contact.initials)
+    .replace('avatar-circle"', 'avatar-circle large"');
   return `
     <div class="detail-header">
       ${avatarHTML}
@@ -111,7 +108,7 @@ function buildContactHeaderSection(contact) {
         <h2>${contact.name}</h2>
         <div class="detail-actions">
           <button class="btn-icon btn-secondary edit-btn"
-                  onclick="/* edit not implemented */">
+                  onclick="showEditContactOverlay('${contact.id}')">
             <img src="assets/svg/edit_contacts.svg" alt="Edit">
           </button>
           <button class="btn-icon btn-danger delete-btn"
@@ -125,7 +122,7 @@ function buildContactHeaderSection(contact) {
 }
 
 /**
- * Builds the information section (email & phone) for contact details.
+ * Builds the information section in the detail panel.
  * @param {{email?:string,phone?:string}} contact
  * @returns {string}
  */
@@ -140,15 +137,6 @@ function buildContactInfoSection(contact) {
   }
   infoHTML += `</div>`;
   return infoHTML;
-}
-
-/**
- * Creates the full contact detail HTML by combining header + info.
- * @param {{id:string,name:string,email?:string,phone?:string,initials:string}} contact
- * @returns {string}
- */
-function createContactDetailTemplate(contact) {
-  return buildContactHeaderSection(contact) + buildContactInfoSection(contact);
 }
 
 /**
@@ -168,42 +156,89 @@ function getAddContactOverlayTemplate() {
           <hr>
         </div>
         <div class="overlay-right">
-          <button class="close-btn"
-                  onclick="hideAddContactOverlay()">×</button>
+          <button class="close-btn" onclick="hideAddContactOverlay()">×</button>
           <div class="avatar-placeholder">
             <img src="assets/svg/person_icon.svg" alt="Avatar placeholder">
           </div>
-          <form id="add-contact-form"
-                onsubmit="handleCreateContact(event)">
+          <form id="add-contact-form" onsubmit="handleCreateContact(event)">
             <div class="input-group">
-              <input type="text" id="new-contact-name"
-                     placeholder="Name" required>
-              <img src="assets/svg/person_icon.svg"
-                   class="input-icon" alt="">
+              <input type="text" id="new-contact-name" placeholder="Name" required>
+              <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
             </div>
             <div class="input-group">
-              <input type="email" id="new-contact-email"
-                     placeholder="Email">
-              <img src="assets/svg/mail_icon.svg"
-                   class="input-icon" alt="">
+              <input type="email" id="new-contact-email" placeholder="Email">
+              <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
             </div>
             <div class="input-group">
-              <input type="tel" id="new-contact-phone"
-                     placeholder="Phone">
-              <img src="assets/svg/phone_icon.svg"
-                   class="input-icon" alt="">
+              <input type="tel" id="new-contact-phone" placeholder="Phone">
+              <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
             </div>
             <div class="form-buttons">
-              <button type="button" class="btn cancel-btn"
-                      onclick="hideAddContactOverlay()">Cancel ×</button>
-              <button type="submit"
-                      class="btn btn-primary create-btn">
-                Create contact ✓
-              </button>
+              <button type="button" class="btn cancel-btn" onclick="hideAddContactOverlay()">Cancel ×</button>
+              <button type="submit" class="btn btn-primary create-btn">Create contact ✓</button>
             </div>
           </form>
         </div>
       </div>
     </div>
   `;
+}
+
+/**
+ * Returns the HTML for the "Edit contact" overlay, populated with contact data.
+ * @param {{id:string,name:string,email?:string,phone?:string,initials:string}} contact
+ * @returns {string}
+ */
+function getEditContactOverlayTemplate(contact) {
+  return `
+    <div class="overlay" id="edit-contact-overlay">
+      <div class="overlay-content">
+        <div class="overlay-left">
+          <div class="sidebar-logo">
+            <img src="assets/svg/join-logo.svg" alt="Join Logo">
+          </div>
+          <h2>Edit contact</h2>
+          <p class="overlay-subtitle">Update your team member’s info</p>
+          <hr>
+        </div>
+        <div class="overlay-right">
+          <button class="close-btn" onclick="hideEditContactOverlay()">×</button>
+          <div id="edit-avatar-wrapper">
+            <div class="avatar-circle large" id="edit-avatar">
+              ${contact.initials}
+            </div>
+          </div>
+          <form id="edit-contact-form" onsubmit="handleEditContact(event, '${contact.id}')">
+            <div class="input-group">
+              <input type="text" id="edit-contact-name" placeholder="Name" required value="${contact.name}">
+              <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
+            </div>
+            <div class="input-group">
+              <input type="email" id="edit-contact-email" placeholder="Email" value="${contact.email || ''}">
+              <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
+            </div>
+            <div class="input-group">
+              <input type="tel" id="edit-contact-phone" placeholder="Phone" value="${contact.phone || ''}">
+              <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
+            </div>
+            <div class="form-buttons">
+              <button type="button" class="btn cancel-btn" onclick="hideEditContactOverlay()">Cancel ×</button>
+              <button type="submit" class="btn btn-primary create-btn">Save ✓</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+
+/**
+ * Calculates the HSL-based avatar color from a name.
+ * @param {string} name
+ * @returns {string}
+ */
+function getAvatarColor(name) {
+  const hue = getHueFromString(name);
+  return `hsl(${hue}, 70%, 50%)`;
 }
