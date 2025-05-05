@@ -2,15 +2,11 @@
  * Firebase configuration for Realtime Database.
  */
 const firebaseConfig = {
-  databaseURL:
-    "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL: "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app",
 };
 
 /**
- * Initializes the Contacts page:
- * - Injects layout
- * - Renders header/sidebar
- * - Loads contacts
+ * Initializes the Contacts page layout and data.
  */
 function initContacts() {
   loadBody();
@@ -22,7 +18,7 @@ function initContacts() {
 }
 
 /**
- * Initializes Firebase app.
+ * Initializes the Firebase app if not already initialized.
  */
 function initializeFirebase() {
   if (!firebase.apps.length) {
@@ -31,41 +27,35 @@ function initializeFirebase() {
 }
 
 /**
- * Fetches contacts from the database, sorts them alphabetically by name,
- * and then renders the list.
+ * Fetches contacts, sorts them, stores globally, and renders them.
+ * @async
  */
 async function fetchAndRenderContacts() {
-  const database = firebase.database();
-  const snapshot = await database.ref("contacts").once("value");
+  const snapshot = await firebase.database().ref("contacts").once("value");
   const dataObject = snapshot.val() || {};
-  const contactArray = [];
-
-  for (const id in dataObject) {
-    const record = dataObject[id];
-    contactArray.push({
-      id,
-      name: record.name,
-      email: record.email,
-      phone: record.phone,
-      initials: getInitials(record.name),
-    });
-  }
+  const contactArray = Object.keys(dataObject).map(id => ({
+    id,
+    name: dataObject[id].name,
+    email: dataObject[id].email,
+    phone: dataObject[id].phone,
+    initials: getInitials(dataObject[id].name),
+  }));
   sortContactsByName(contactArray);
+  window.currentContacts = contactArray;
   renderContactsList(contactArray);
 }
 
 /**
- * Sorts an array of contacts in place by their `name` property (A to Z).
- * @param {Array<{name: string}>} contacts
+ * Sorts contacts alphabetically by name.
+ * @param {Array<{name:string}>} contacts
  */
 function sortContactsByName(contacts) {
-  contacts.sort(function (firstContact, secondContact) {
-    return firstContact.name.localeCompare(secondContact.name);
-  });
+  contacts.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /**
- * Renders the contacts into the container and attaches click listeners.
+ * Renders contact list and attaches click listeners.
+ * @param {Array<Object>} contactArray
  */
 function renderContactsList(contactArray) {
   const container = document.getElementById("contacts-group-container");
@@ -74,7 +64,9 @@ function renderContactsList(contactArray) {
 }
 
 /**
- * Generates the grouped HTML for all contacts.
+ * Generates grouped HTML for contacts.
+ * @param {Array<Object>} contactArray
+ * @returns {string}
  */
 function generateContactsListHTML(contactArray) {
   let html = "";
@@ -91,88 +83,86 @@ function generateContactsListHTML(contactArray) {
 }
 
 /**
- * Attaches click listeners to each contact item.
+ * Attaches click listeners for each contact item.
+ * @param {Array<Object>} contactArray
  */
 function attachContactItemListeners(contactArray) {
-  const listItems = document.querySelectorAll(".contact-item");
-  for (const item of listItems) {
+  document.querySelectorAll(".contact-item").forEach(item => {
     item.addEventListener("click", () => selectContact(item, contactArray));
-  }
+  });
 }
 
 /**
- * Highlights the chosen item and shows its details.
+ * Selects a contact, highlights it, and shows its details.
+ * @param {HTMLElement} itemElement
+ * @param {Array<Object>} contactArray
  */
 function selectContact(itemElement, contactArray) {
-  document
-    .querySelectorAll(".contact-item.active")
-    .forEach((el) => el.classList.remove("active"));
+  document.querySelectorAll(".contact-item.active")
+    .forEach(el => el.classList.remove("active"));
   itemElement.classList.add("active");
-
   const selectedId = itemElement.dataset.id;
-  for (const contact of contactArray) {
-    if (contact.id === selectedId) {
-      showContactDetail(contact);
-      break;
-    }
-  }
+  const contact = contactArray.find(c => c.id === selectedId);
+  if (contact) showContactDetail(contact);
 }
 
-
 /**
- * Reads and trims the values from the "Add Contact" form.
- * @returns {{ name: string, email: string, phone: string }}
+ * Reads and trims new contact form values.
+ * @returns {{name:string,email:string,phone:string}}
  */
 function collectNewContactData() {
-  const nameValueInput = document.getElementById("new-contact-name");
-  const emailValueInput = document.getElementById("new-contact-email");
-  const phoneValueInput = document.getElementById("new-contact-phone");
-
   return {
-    name: nameValueInput.value.trim(),
-    email: emailValueInput.value.trim(),
-    phone: phoneValueInput.value.trim(),
+    name: document.getElementById("new-contact-name").value.trim(),
+    email: document.getElementById("new-contact-email").value.trim(),
+    phone: document.getElementById("new-contact-phone").value.trim(),
   };
 }
 
 /**
- * Sends a new contact object to Firebase Realtime Database.
- * @param {{ name: string, email: string, phone: string }} contactData
- * @returns {Promise<void>}
+ * Saves a new contact to Firebase Realtime Database.
+ * @param {{name:string,email:string,phone:string}} contactData
+ * @async
  */
 async function saveNewContactToFirebase(contactData) {
-  const contactsReference = firebase.database().ref("contacts");
-  const newContactReference = contactsReference.push();
-  await newContactReference.set(contactData);
+  const newRef = firebase.database().ref("contacts").push();
+  await newRef.set(contactData);
 }
 
 /**
- * Handles the form submission:
- * - Prevents the default page reload
- * - Collects form data
- * - Saves it to Firebase
- * - Closes the overlay, reloads the list, and shows a toast
- *
+ * Handles new contact form submission.
  * @param {Event} event
+ * @async
  */
 async function handleCreateContact(event) {
   event.preventDefault();
-  const contactData = collectNewContactData();
-
-  try {
-    await saveNewContactToFirebase(contactData);
-
-    hideAddContactOverlay();
-    fetchAndRenderContacts();
-    showToast("Contact successfully created");
-  } catch (error) {
-    console.error("Creating contact failed:", error);
-    alert("Could not add contact. Please try again.");
-  }
+  const data = collectNewContactData();
+  await saveNewContactToFirebase(data);
+  hideAddContactOverlay();
+  fetchAndRenderContacts();
+  showToast("Contact successfully created");
 }
 
 /**
- * Shows the overlay by appending its HTML via appendChild to preserve existing listeners.
+ * Updates an existing contact in Firebase.
+ * @param {Event} event
+ * @param {string} contactId
+ * @async
+ */
+async function handleEditContact(event, contactId) {
+  event.preventDefault();
+  const updated = {
+    name: document.getElementById("edit-contact-name").value.trim(),
+    email: document.getElementById("edit-contact-email").value.trim(),
+    phone: document.getElementById("edit-contact-phone").value.trim(),
+  };
+  await firebase.database().ref(`contacts/${contactId}`).update(updated);
+  hideEditContactOverlay();
+  fetchAndRenderContacts();
+  showToast("Contact successfully updated");
+}
+
+/**
+ * Shows the Add Contact overlay.
  */
 function showAddContactOverlay() {
   const temp = document.createElement("div");
@@ -181,91 +171,114 @@ function showAddContactOverlay() {
 }
 
 /**
- * Removes the overlay from the DOM.
+ * Hides the Add Contact overlay.
  */
 function hideAddContactOverlay() {
-  const overlay = document.getElementById("add-contact-overlay");
-  if (overlay) overlay.remove();
+  const o = document.getElementById("add-contact-overlay");
+  if (o) o.remove();
 }
 
 /**
- * Deletes a contact by its ID from Firebase and refreshes the list.
+ * Shows the Edit Contact overlay for a given contact ID,
+ * injects the template, and sets the avatar color.
+ * @param {string} contactId
+ */
+function showEditContactOverlay(contactId) {
+  const contact = (window.currentContacts || []).find(c => c.id === contactId);
+  if (!contact) return;
+
+  const temp = document.createElement("div");
+  temp.innerHTML = getEditContactOverlayTemplate(contact).trim();
+  document.body.appendChild(temp.firstElementChild);
+
+  const avatarEl = document.getElementById("edit-avatar");
+  if (avatarEl) {
+    const hue = getHueFromString(contact.name);
+    avatarEl.style.setProperty("--avatar-hue", hue);
+  }
+}
+
+/**
+ * Hides the Edit Contact overlay.
+ */
+function hideEditContactOverlay() {
+  const o = document.getElementById("edit-contact-overlay");
+  if (o) o.remove();
+}
+
+/**
+ * Deletes a contact by ID and refreshes the list.
+ * @param {string} contactId
+ * @async
  */
 async function deleteContact(contactId) {
-  try {
-    await firebase
-      .database()
-      .ref("contacts/" + contactId)
-      .remove();
-    fetchAndRenderContacts();
-    document.getElementById("contact-detail").innerHTML = "";
-  } catch (error) {
-    console.error("Error deleting contact:", error);
-    alert("Could not delete contact.");
-  }
+  await firebase.database().ref(`contacts/${contactId}`).remove();
+  fetchAndRenderContacts();
+  document.getElementById("contact-detail").innerHTML = "";
 }
 
 /**
- * Returns one or two uppercase initials from a full name.
- * @param {string} fullName - The person’s full name (e.g. "Hans Müller").
- * @returns {string} - The initials in uppercase (e.g. "HM" or "A").
+ * Computes initials from a full name.
+ * @param {string} fullName
+ * @returns {string}
  */
 function getInitials(fullName) {
-  const nameParts = fullName.trim().split(" ");
-  let initials = "";
-
-  if (nameParts.length >= 2) {
-    initials = nameParts[0].charAt(0) + nameParts[1].charAt(0);
-  } else {
-    initials = nameParts[0].charAt(0);
-  }
-  return initials.toUpperCase();
+  const parts = fullName.trim().split(" ");
+  return (parts[0][0] + (parts[1]?.[0] || "")).toUpperCase();
 }
 
 /**
- * Computes a deterministic hue value (0–359) from a string.
+ * Generates a deterministic hue from text.
+ * @param {string} text
+ * @returns {number}
  */
 function getHueFromString(text) {
   let hash = 0;
-  for (let i = 0; i < text.length; i++) {
-    hash = (hash * 31 + text.charCodeAt(i)) % 360;
-  }
+  for (const char of text) hash = (hash * 31 + char.charCodeAt(0)) % 360;
   return hash;
 }
 
 /**
- * Returns the email HTML fragment (or empty string if no email).
+ * Computes avatar background color for a name.
+ * @param {string} name
+ * @returns {string}
+ */
+function getAvatarColor(name) {
+  return `hsl(${getHueFromString(name)}, 70%, 50%)`;
+}
+
+/**
+ * Returns email HTML fragment or empty string.
+ * @param {string} email
+ * @returns {string}
  */
 function getEmailPart(email) {
   return email ? `<div class="email">${email}</div>` : "";
 }
 
+/**
+ * Builds contact item template.
+ * @param {Object} contact
+ * @returns {string}
+ */
 function createContactItemTemplate(contact) {
-  const emailHTML = getEmailPart(contact.email);
-  const avatarHTML = createAvatarTemplate(contact.name, contact.initials);
-  return buildContactItem(contact.id, avatarHTML, contact.name, emailHTML);
+  return buildContactItem(
+    contact.id,
+    createAvatarTemplate(contact.name, contact.initials),
+    contact.name,
+    getEmailPart(contact.email)
+  );
 }
 
 /**
- * Displays a transient toast message centered at the bottom of the viewport.
- * The toast automatically fades out and is removed after its timeout.
- *
- * @param {string} message - The text to show inside the toast.
+ * Shows a transient toast message.
+ * @param {string} message
  */
 function showToast(message) {
   const toast = document.createElement("div");
   toast.className = "toast";
   toast.textContent = message;
-
   document.body.appendChild(toast);
-
-  setTimeout(() => {
-    toast.classList.add("fade-out");
-  }, 2000);
-
-  setTimeout(() => {
-    if (toast.parentNode) {
-      toast.parentNode.removeChild(toast);
-    }
-  }, 2500);
+  setTimeout(() => toast.classList.add("fade-out"), 2000);
+  setTimeout(() => toast.remove(), 2500);
 }

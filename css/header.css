@@ -1,13 +1,12 @@
 .header {
-  position: fixed;
+  /* height: 96px; */
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100vw;
-  height: 96px;
+  z-index: 10;
+  width: 100%;
   background-color: var(--white);
   box-shadow: 0 8px 8px -4px var(--style);
   font-family: "Inter", sans-serif;
-  z-index: 100;
 }
 
 .header-content {
