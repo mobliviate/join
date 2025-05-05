@@ -1,72 +1,74 @@
-const DATABASEURL = "https://summary-project-49fd6-default-rtdb.europe-west1.firebasedatabase.app/summary.json";
+const DATABASEURL =
+  "https://summary-project-49fd6-default-rtdb.europe-west1.firebasedatabase.app/summary.json";
 const summaryDatabaseSample = {
-    todo: 1,
-    done: 1,
-    priority: {
-        amount: 1,
-        status: "Urgent",
-        deadline: "October 16, 2022"
-    },
-    tasksInBoard: 5,
-    tasksInProgress: 2,
-    awaitingFeedback: 2
+  todo: 1,
+  done: 1,
+  priority: {
+    amount: 1,
+    status: "Urgent",
+    deadline: "October 16, 2022",
+  },
+  tasksInBoard: 5,
+  tasksInProgress: 2,
+  awaitingFeedback: 2,
 };
 let summaryData = {};
 
-
 async function initSummary() {
-    uploadSummaryToFirebase();
-    loadBody();
-    loadHeader();
-    highlightActiveSidebarLink();
-    await getSummary();
-    console.log(summaryData);
-    document.getElementById("main").innerHTML = getSummaryTemplate();
+  uploadSummaryToFirebase();
+  loadBody();
+  loadHeader();
+  highlightActiveSidebarLink();
+  await getSummary();
+  console.log(summaryData);
+  document.getElementById("main").innerHTML = getSummaryTemplate();
+  userGreet();
 }
-
 
 async function uploadSummaryToFirebase() {
-    try {
-        const response = await fetch(DATABASEURL, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(summaryDatabaseSample)
-        });
+  try {
+    const response = await fetch(DATABASEURL, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(summaryDatabaseSample),
+    });
 
-        if (!response.ok) {
-            throw new Error('Fehler beim Hochladen der Daten');
-        }
-
-        const responseData = await response.json();
-        console.log('Upload erfolgreich:', responseData);
-
-    } catch (error) {
-        console.error('Upload fehlgeschlagen:', error);
+    if (!response.ok) {
+      throw new Error("Fehler beim Hochladen der Daten");
     }
-}
 
+    const responseData = await response.json();
+    console.log("Upload erfolgreich:", responseData);
+  } catch (error) {
+    console.error("Upload fehlgeschlagen:", error);
+  }
+}
 
 async function getSummary() {
-    try {
-        const response = await fetch(DATABASEURL);
+  try {
+    const response = await fetch(DATABASEURL);
 
-        if (!response.ok) {
-            throw new Error('Fehler beim Abrufen');
-        }
-
-        summaryData = await response.json();
-        console.log(summaryData);
-
-    } catch (error) {
-        console.error('Fehler:', error.message);
+    if (!response.ok) {
+      throw new Error("Fehler beim Abrufen");
     }
+
+    summaryData = await response.json();
+    console.log(summaryData);
+  } catch (error) {
+    console.error("Fehler:", error.message);
+  }
 }
 
-
 function getSummaryTemplate() {
-    return `
+  return `
+        <div id="greet_overlay" class="greet-overlay d-none">
+            <div class="greet-overlay-content">
+                <h1 id="greet_overlay_title" class="greet-overlay-title">Good Morning,</h1>
+                <span id="greet_overlay_name" class="greet-overlay-name">Sofia Müller</span>
+            </div>
+        </div>
         <div class="summary_container">
             <div class="summary_wrapper">
 
@@ -172,8 +174,8 @@ function getSummaryTemplate() {
 
                     <div class="summary_content_right">
                         <div class="summary_content_right_wrapper">
-                            <span class="summary_content_right_greeting"> Good morning, </span>
-                            <span class="summary_content_right_user"> Sofia Müller </span>
+                            <span id="summary_greeting" class="summary_content_right_greeting"> Good morning, </span>
+                            <span id="summary_user" class="summary_content_right_user"> Sofia Müller </span>
                         </div>
                     </div>
 

@@ -64,17 +64,6 @@ function getUserInitials(users, index) {
 }
 
 /**
- * Fetches the list of users from the server.
- * @async
- * @returns {Promise<Array>} - A promise that resolves to an array of user objects.
- */
-async function fetchUsers() {
-    const response = await fetch(BASE_URL + ".json");
-    const data = await response.json();
-    return data.users || [];
-}
-
-/**
  * Checks the validity of the login form inputs.
  * Enables or disables the login button based on the validity of the inputs.
  */
@@ -90,9 +79,10 @@ function checkLoginFormValidity() {
 function openSummaryPage(userIndex) {
     localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('userIndex', userIndex);
+    localStorage.setItem('showGreeting', 'true');
     setTimeout(() => {
         window.location.href = "summary.html";
-    }, 500);
+    }, 100);
 }
 
 
