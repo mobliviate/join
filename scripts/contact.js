@@ -39,31 +39,19 @@ async function fetchAndRenderContacts() {
   const snapshot = await database.ref("contacts").once("value");
   const dataObject = snapshot.val() || {};
   const contactArray = [];
-  const userArray = [];
 
-  for (const key in dataObject) {
-    const record = dataObject[key];
-    const user = {
+  for (const id in dataObject) {
+    const record = dataObject[id];
+    contactArray.push({
+      id,
       name: record.name,
       email: record.email,
-      phone: record.phone
-    };
-    userArray.push(user);
-
-
-    const generatedID = userArray.length - 1;
-
-    contactArray.push({
-      id: generatedID.toString(),
-      name: user.name,
-      email: user.email,
-      phone: user.phone,
-      initials: getInitials(user.name)
+      phone: record.phone,
+      initials: getInitials(record.name),
     });
-
-    sortContactsByName(contactArray);
-    renderContactsList(contactArray);
   }
+  sortContactsByName(contactArray);
+  renderContactsList(contactArray);
 }
 
 /**
@@ -130,13 +118,6 @@ function selectContact(itemElement, contactArray) {
   }
 }
 
-/**
- * Renders the given contact’s details into the detail panel.
- */
-function showContactDetail(contact) {
-  const detailContainer = document.getElementById("contact-detail");
-  detailContainer.innerHTML = createContactDetailTemplate(contact);
-}
 
 /**
  * Reads and trims the values from the "Add Contact" form.

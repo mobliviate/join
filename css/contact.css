@@ -209,3 +209,30 @@
   margin: 0;
   line-height: 2;
 }
+
+.contact-detail {
+  position: relative;
+  overflow: hidden;
+}
+
+.detail-content {
+  position: relative;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.animate-detail {
+  animation: detailSlideInRight 0.8s ease-out forwards;
+}
+
+@keyframes detailSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

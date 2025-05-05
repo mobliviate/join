@@ -1,6 +1,10 @@
 .sidebar {
-  width: 194px;
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 232px;
   height: 100vh;
+  z-index: 50;
   background-color: var(--primary-color);
   display: flex;
   flex-direction: column;
@@ -11,7 +15,6 @@
 .sidebar-logo {
   display: flex;
   justify-content: center;
-  margin: 32px 0;
 }
 
 .sidebar-nav {

@@ -31,6 +31,19 @@ function getContactsSectionTemplate() {
 }
 
 /**
+ * Zeigt die Detail-Ansicht mit Slide-Down/Fade-In-Animation.
+ * @param {Object} contact
+ */
+function showContactDetail(contact) {
+  const detailContainer = document.getElementById("contact-detail");
+  detailContainer.innerHTML = `
+    <div class="detail-content animate-detail">
+      ${createContactDetailTemplate(contact)}
+    </div>
+  `;
+}
+
+/**
  * Returns the HTML for one letter‐group header.
  * @param {string} letter
  * @returns {string}
@@ -49,8 +62,7 @@ function createGroupLetterTemplate(letter) {
  */
 function buildContactItem(id, avatarHTML, name, emailHTML) {
   return `
-    <div class="contact-item"
-         data-id="${id}">
+    <div class="contact-item" data-id="${id}">
       ${avatarHTML}
       <div class="info">
         <div class="name">${name}</div>
@@ -76,7 +88,10 @@ function createAvatarTemplate(name, initials) {
 /**
  * Creates the contact‑item template.
  */
-
+function createContactDetailTemplate(contact) {
+  return buildContactHeaderSection(contact) +
+    buildContactInfoSection(contact);
+}
 
 /**
  * Builds the header section (avatar, name & action buttons) for contact details.
