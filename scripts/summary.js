@@ -12,8 +12,11 @@
 //     awaitingFeedback: 2
 // };
 const DATABASEURL = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
-let data = {};
-let summaryData = {};
+const userIndex = localStorage.getItem('userIndex');
+// let data = {};
+// let summaryData = {};
+
+
 
 
 async function initSummary() {
@@ -21,33 +24,36 @@ async function initSummary() {
     loadBody();
     loadHeader();
     highlightActiveSidebarLink();
-    await loadDataFromFirebase(DATABASEURL, ".json");
+    // await loadDataFromFirebase(DATABASEURL, ".json");
     // await getSummaryDataFromUserIndex();
     console.log(summaryData);
     document.getElementById("main").innerHTML = getSummaryTemplate();
 }
 
-async function loadUserNameFromFirebase(userIndex) {
+
+function loadLocalStorage(key) {
+    return value = localStorage.getItem(key);
+}
+
+
+// async function loadUserName(userIndex) {
+    
+// }
+
+
+async function loadTasksStatus() {
+
     
 }
 
 
-async function loadTasksFromFirebase() {
-    
-    
-}
-
-
-async function loadDataFromFirebase(DATABASEURL, path) {
+async function getData(DATABASEURL, path) {
     try{
         const response = await fetch(DATABASEURL + path);
-
         if (!response.ok) {
             throw new Error('Fehler beim Abrufen');
         }
-
         return data = await response.json();
-    
     } catch (error) {
         console.error("Error: ", error.message);
     }
