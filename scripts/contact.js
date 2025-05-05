@@ -41,7 +41,6 @@ async function fetchAndRenderContacts() {
     initials: getInitials(dataObject[id].name),
   }));
   sortContactsByName(contactArray);
-  // make available for edit-overlay lookup
   window.currentContacts = contactArray;
   renderContactsList(contactArray);
 }

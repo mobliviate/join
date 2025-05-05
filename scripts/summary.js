@@ -1,52 +1,87 @@
+// const DATABASEURL = "https://summary-project-49fd6-default-rtdb.europe-west1.firebasedatabase.app/summary.json";
+// const summaryDatabaseSample = {
+//     todo: 1,
+//     done: 1,
+//     priority: {
+//         amount: 1,
+//         status: "Urgent",
+//         deadline: "October 16, 2022"
+//     },
+//     tasksInBoard: 5,
+//     tasksInProgress: 2,
+//     awaitingFeedback: 2
+// };
 const DATABASEURL =
-  "https://summary-project-49fd6-default-rtdb.europe-west1.firebasedatabase.app/summary.json";
-const summaryDatabaseSample = {
-  todo: 1,
-  done: 1,
-  priority: {
-    amount: 1,
-    status: "Urgent",
-    deadline: "October 16, 2022",
-  },
-  tasksInBoard: 5,
-  tasksInProgress: 2,
-  awaitingFeedback: 2,
-};
-let summaryData = {};
+  "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
+const userId = localStorage.getItem("userIndex");
+let users = [];
+let tasks = [];
+// let data = {};
+// let summaryData = {};
 
 async function initSummary() {
-  uploadSummaryToFirebase();
+  // uploadSummaryToFirebase();
   loadBody();
   loadHeader();
   highlightActiveSidebarLink();
-  await getSummary();
-  console.log(summaryData);
-  document.getElementById("main").innerHTML = getSummaryTemplate();
-  userGreet();
+  loadUsers();
+  loadTasksStatus();
+
+  // await loadDataFromFirebase(DATABASEURL, ".json");
+  // await getSummaryDataFromUserIndex();
+  // console.log(summaryData);
+  // document.getElementById("main").innerHTML = getSummaryTemplate();
 }
 
-async function uploadSummaryToFirebase() {
+function loadLocalStorage(key) {
+  return (value = localStorage.getItem(key));
+}
+
+async function loadUsers() {
+  users = await getData(DATABASEURL, "users.json");
+}
+
+async function loadUserName(userId) {}
+
+async function loadTasksStatus() {
+  tasks = await getData(DATABASEURL, "tasks.json");
+}
+
+async function getData(url, path) {
   try {
-    const response = await fetch(DATABASEURL, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(summaryDatabaseSample),
-    });
-
+    const response = await fetch(url + path);
     if (!response.ok) {
-      throw new Error("Fehler beim Hochladen der Daten");
+      throw new Error("Fehler beim Abrufen");
     }
-
-    const responseData = await response.json();
-    console.log("Upload erfolgreich:", responseData);
+    return (data = await response.json());
   } catch (error) {
-    console.error("Upload fehlgeschlagen:", error);
+    console.error("Error: ", error.message);
   }
 }
 
-async function getSummary() {
+// async function uploadSummaryToFirebase() {
+//     try {
+//         const response = await fetch(DATABASEURL, {
+//             method: 'PUT',
+//             headers: {
+//                 'Content-Type': 'application/json'
+//             },
+//             body: JSON.stringify(summaryDatabaseSample)
+//         });
+
+//         if (!response.ok) {
+//             throw new Error('Fehler beim Hochladen der Daten');
+//         }
+
+//         const responseData = await response.json();
+//         console.log('Upload erfolgreich:', responseData);
+
+//     } catch (error) {
+//         console.error('Upload fehlgeschlagen:', error);
+//     }
+// }
+
+async function getSummaryDataFromUserIndex() {
   try {
     const response = await fetch(DATABASEURL);
 
