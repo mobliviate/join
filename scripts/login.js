@@ -95,10 +95,4 @@ function openSummaryPage(userIndex) {
     }, 500);
 }
 
-function doGuestLogin() {
-    localStorage.setItem('userInitials', 'SM');
-    localStorage.setItem('isLoggedIn', 'true');
-    window.location.href = 'summary.html';
-}
-
 
