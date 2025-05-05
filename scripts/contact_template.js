@@ -232,13 +232,3 @@ function getEditContactOverlayTemplate(contact) {
   `;
 }
 
-
-/**
- * Calculates the HSL-based avatar color from a name.
- * @param {string} name
- * @returns {string}
- */
-function getAvatarColor(name) {
-  const hue = getHueFromString(name);
-  return `hsl(${hue}, 70%, 50%)`;
-}
