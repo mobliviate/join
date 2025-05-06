@@ -54,3 +54,9 @@ function closeOverlayBoard() {
   let closeOverlayBoard = document.getElementById("open_overlay_board")
   closeOverlayBoard.classList.add("d-none")
 }
+
+//function renderNoTask {
+//  if (condition) {
+//    
+//  }
+//}
