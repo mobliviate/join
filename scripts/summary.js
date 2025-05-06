@@ -17,27 +17,29 @@ let summaryUser = {
 const DATABASEURL =
   "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
 
-let users = [];
+// let users = [];
 let tasks = [];
 
 async function initSummary() {
-  // uploadSummaryToFirebase();
-  loadBody();
-  loadHeader();
-  highlightActiveSidebarLink();
-  await loadUsersAndSetUserName();
-  loadTasksStatus();
+    loadHeaderBodySidebar();
 
-  // await loadDataFromFirebase(DATABASEURL, ".json");
-  // await getSummaryDataFromUserIndex();
-  // console.log(summaryData);
-  document.getElementById("main").innerHTML = getSummaryTemplate();
-  userGreetAndChangeUserName();
+    await loadUsersAndSetUserName();
+    loadTasksStatus();
+
+    document.getElementById("main").innerHTML = getSummaryTemplate();
+
+    userGreetAndChangeUserName();
 }
 
-function loadLocalStorage(key) {
-  return (value = localStorage.getItem(key));
+function loadHeaderBodySidebar() {
+    loadBody();
+    loadHeader();
+    highlightActiveSidebarLink();
 }
+
+// function loadLocalStorage(key) {
+//   return (value = localStorage.getItem(key));
+// }
 
 async function loadUsersAndSetUserName() {
   const users = await getData(DATABASEURL, "users.json");
