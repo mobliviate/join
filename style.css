@@ -52,6 +52,10 @@
   --technical: #1fd7c1;
   --user: #0038ff;
   --header-padding: 20px 40px 20px 116px;
+  --main-padding: 60px 96px;
+  --h1-help-privacy-legal: clamp(47px, 5.2vw, 61px);
+  --h2-help-privacy-legal: 27px;
+  --h3-help-privacy-legal: 20px;
 }
 
 a {
@@ -168,4 +172,23 @@ body {
   font-size: 47px;
   font-weight: 700;
   color: var(--secondary-color);
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+  :root {
+    --main-padding: 48px 32px;
+  }
+}
+
+@media (max-width: 750px) {
+  :root {
+    --main-padding: 48px 32px;
+  }
+}
+
+@media (max-width: 375px) {
+  :root {
+    --main-padding: 48px 16px;
+  }
 }

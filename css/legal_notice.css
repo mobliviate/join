@@ -1,15 +1,30 @@
 .legal_notice {
-  padding: 60px 96px;
+  padding: var(--main-padding);
   /* overflow-y: auto; */
   /* height: 800px; */
   flex: 1;
+}
+
+ul {
+  list-style-position: inside;
+}
+
+h1 {
+  font-size: var(--h1-help-privacy-legal);
+}
+
+h2 {
+  font-size: var(--h2-help-privacy-legal);
+}
+
+h3 {
+  font-size: var(--h3-help-privacy-legal);
 }
 
 h1 {
   color: var(--primary-color);
   font-weight: bold;
   padding-bottom: 16px;
-  font-size: 52px;
 }
 
 h2,
