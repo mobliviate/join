@@ -32,6 +32,25 @@ function renderSubtasks(taskRef, indexTask){
   let subTasks = taskRef.subtasks.length;
   let subtaskDone = taskRef.subtasks.filter(subtask => subtask.status === true).length;
   let widthProgress = (128/subTasks)*subtaskDone;
-  let progresbarContactRef = document.getElementById("progress_subtask");
-  progresbarContactRef.innerHTML = getRenderProgresbar(widthProgress, subTasks, subtaskDone);
+  let progressbarContactRef = document.getElementById(`progress_subtask_${indexTask}`);
+  progressbarContactRef.innerHTML = getRenderProgressbar(widthProgress, subTasks, subtaskDone);
+}
+
+//renderInitials(taskRef,indexTask){
+//
+//}
+
+function addTaskBoard(title){
+  let openOverlayBoard = document.getElementById("open_overlay_board")
+  openOverlayBoard.classList.remove("d-none")
+  document.getElementById("add_task_board").innerHTML = getAddTaskTemplate(title);
+}
+
+function overlayProtection(event) {
+  event.stopPropagation()
+}
+
+function closeOverlayBoard() {
+  let closeOverlayBoard = document.getElementById("open_overlay_board")
+  closeOverlayBoard.classList.add("d-none")
 }

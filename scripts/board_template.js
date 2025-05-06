@@ -7,8 +7,8 @@ function getBoardTemplate() {
                 <h1>Board</h1>
               </div>
               <div class="search-addtask">
-                <input type="text" value="Find Task">
-                <button class="add-task-board">
+                <input type="text" value="Find Task" class="search-board">
+                <button class="add-task-board" onclick="addTaskBoard(todo)">
                   <h2>Add task</h2>
                   <svg width="21" height="21" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M8.66602 11.3327H0.666016V8.66602H8.66602V0.666016H11.3327V8.66602H19.3327V11.3327H11.3327V19.3327H8.66602V11.3327Z" fill="white"/>
@@ -19,7 +19,7 @@ function getBoardTemplate() {
             <div class="tasks-board">
               <div class="task-board">
                 <h3>To do</h3>
-                <button class="button-board">
+                <button class="button-board" onclick="addTaskBoard(todo)">
                   <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
                   <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -29,7 +29,7 @@ function getBoardTemplate() {
               </div>
               <div class="task-board">
                 <h3>In Progress</h3>
-                <button class="button-board">
+                <button class="button-board" onclick="addTaskBoard(progress)">
                   <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
                   <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -39,7 +39,7 @@ function getBoardTemplate() {
               </div>
               <div class="task-board">
                 <h3>Await feedback</h3>
-                <button class="button-board">
+                <button class="button-board" onclick="addTaskBoard(feedback)">
                   <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
                   <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -59,6 +59,10 @@ function getBoardTemplate() {
             <div id="done" class="columns"></div>
           </div>
         </div>
+        <div id="open_overlay_board" class="open-overlay-board d-none" onclick="closeOverlayBoard()">
+          <div id="add_task_board" class="add-task-overlay" onclick="overlayProtection(event)"></div>
+        </div>
+        <div id="open_task_board" class="open-task-overlay"></div>
     `;
 }
 
@@ -70,7 +74,7 @@ function getRenderTask(task,indexTask,background) {
         <h3 class="title-board">${task.title}</h3>
         <h4 class="description-board">${task.description}</h4>
       </div>
-      <div id="progress_subtask"></div>      
+      <div id="progress_subtask_${indexTask}"></div>      
       <div class="initials-priority_board">
         <div class="initials-board" id="initials${indexTask}"></div>
         <img class="priority-board" src="./assets/svg/prio_${task.priority}.svg" alt="${task.priority}_icon">
@@ -79,7 +83,7 @@ function getRenderTask(task,indexTask,background) {
   `;
 }
 
-function getRenderProgresbar(widthProgress, subTasks, subtaskDone){
+function getRenderProgressbar(widthProgress, subTasks, subtaskDone){
   return`
     <div class="subtasks-board">
       <svg width="128" height="8" viewBox="0 0 128 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -88,6 +92,5 @@ function getRenderProgresbar(widthProgress, subTasks, subtaskDone){
       </svg>
       <h4>${subtaskDone}/${subTasks} Subtasks</h4>
     </div>
-  
   `;
 }

@@ -31,6 +31,24 @@
     color: var(--primary-color);
 }
 
+.search-addtask {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.search-board {
+    width: 312px;
+    height: 48px;
+    border-radius: 10px;
+    border:solid 1px var(--icons);
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--style);
+}
+
 .add-task-board {
     width: 160px;
     height: 48px;
@@ -43,6 +61,7 @@
     padding: 8px 16px;
     gap: 4px;
     border: 1px;
+    cursor: pointer;
 }
 
 .add-task-board h2 {
@@ -164,7 +183,7 @@
     margin-bottom: 24px;
 }
 
-.subtasks-board div h4 {
+.subtasks-board h4 {
     font-size: 12px;
     font-weight: 400;
 }
@@ -186,4 +205,25 @@
 .priority-board {
     height: 32px;
     width: 32px;
+}
+
+.open-overlay-board {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #00000010;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.add-task-overlay {
+    width: 1116px;
+    height: 870px;
+    background-color: var(--white);
+    border-radius: 30px;
 }
