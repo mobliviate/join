@@ -18,7 +18,8 @@
 
 .form-columns {
     display: flex;
-    margin-bottom: 86px;
+    margin-bottom: 20px;
+    height: 500px;
 }
 
 .form-column {
@@ -33,6 +34,7 @@
 .form-column--right {
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 .verticalline {
@@ -265,11 +267,23 @@
 }
 
 .multiselect-options {
-    position: relative;
+    position: absolute;
+    z-index: 10;
     width: 100%;
     background-color: white;
     border-radius: 10px;
     border: 1px solid #ccc;
+}
+
+.multiselect-options.assigned {
+    position: absolute;
+    z-index: 11;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    height: 280px;
+    overflow: auto;
 }
 
 .multiselect-option-contact {
