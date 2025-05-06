@@ -1,5 +1,5 @@
 .main {
-    background-color: #F0F0F0;
+    background-color: var(--main-bg);
 }
 .add-task-page {
     margin: 110px 96px;
