@@ -1,45 +1,54 @@
-// const DATABASEURL = "https://summary-project-49fd6-default-rtdb.europe-west1.firebasedatabase.app/summary.json";
-// const summaryDatabaseSample = {
-//     todo: 1,
-//     done: 1,
-//     priority: {
-//         amount: 1,
-//         status: "Urgent",
-//         deadline: "October 16, 2022"
-//     },
-//     tasksInBoard: 5,
-//     tasksInProgress: 2,
-//     awaitingFeedback: 2
-// };
+let summaryUser = {
+  id: localStorage.getItem("userIndex"),
+  name: "",
+  tasks: {
+    todo: 0,
+    done: 0,
+    urgent: {
+      count: 0,
+      deadline: "-",
+    },
+    tasksInBoard: 0,
+    tasksInProgress: 0,
+    awaitingFeedback: 0,
+  },
+};
+
 const DATABASEURL =
   "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
-const userId = localStorage.getItem("userIndex");
+
 let users = [];
 let tasks = [];
-// let data = {};
-// let summaryData = {};
 
 async function initSummary() {
   // uploadSummaryToFirebase();
   loadBody();
   loadHeader();
   highlightActiveSidebarLink();
-  loadUsers();
+  await loadUsersAndSetUserName();
   loadTasksStatus();
 
   // await loadDataFromFirebase(DATABASEURL, ".json");
   // await getSummaryDataFromUserIndex();
   // console.log(summaryData);
-  //   document.getElementById("main").innerHTML = getSummaryTemplate();
-  userGreetAndChangeUserName();
+  document.getElementById("main").innerHTML = getSummaryTemplate();
 }
 
 function loadLocalStorage(key) {
   return (value = localStorage.getItem(key));
 }
 
-async function loadUsers() {
-  users = await getData(DATABASEURL, "users.json");
+async function loadUsersAndSetUserName() {
+  const users = await getData(DATABASEURL, "users.json");
+  getNameFromUserId(users);
+}
+
+function getNameFromUserId(users) {
+  if (summaryUser.id > -1) {
+    summaryUser.name = users[summaryUser.id].name;
+  } else {
+    summaryUser.name = "Guest";
+  }
 }
 
 async function loadUserName(userId) {}
@@ -82,20 +91,20 @@ async function getData(url, path) {
 //     }
 // }
 
-async function getSummaryDataFromUserIndex() {
-  try {
-    const response = await fetch(DATABASEURL);
+// async function getSummaryDataFromUserIndex() {
+//   try {
+//     const response = await fetch(DATABASEURL);
 
-    if (!response.ok) {
-      throw new Error("Fehler beim Abrufen");
-    }
+//     if (!response.ok) {
+//       throw new Error("Fehler beim Abrufen");
+//     }
 
-    summaryData = await response.json();
-    console.log(summaryData);
-  } catch (error) {
-    console.error("Fehler:", error.message);
-  }
-}
+//     summaryData = await response.json();
+//     console.log(summaryData);
+//   } catch (error) {
+//     console.error("Fehler:", error.message);
+//   }
+// }
 
 function getSummaryTemplate() {
   return `
@@ -135,7 +144,7 @@ function getSummaryTemplate() {
                                         </svg>                                        
                                     </div>
                                     <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-todo-amount">${summaryData.todo}</span>
+                                        <span class="summary_amount_font_weight_and_size" id="summary-todo-amount">${summaryUser.tasks.todo}</span>
                                         <span class="summary_text_font_weight_and_size">To-do</span>
                                     </div>
 
@@ -151,7 +160,7 @@ function getSummaryTemplate() {
                                     </div>                                
                                 
                                     <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-done-amount">${summaryData.done}</span>
+                                        <span class="summary_amount_font_weight_and_size" id="summary-done-amount">${summaryUser.tasks.done}</span>
                                         <span class="summary_text_font_weight_and_size">Done</span>
                                     </div>
                                     
@@ -167,15 +176,15 @@ function getSummaryTemplate() {
                                             <img src="./assets/svg/summary-urgent-icon.svg" alt="Urgent">
 
                                             <div class="summary_bottons_amount_and_text_wrapper">
-                                                <span class="summary_amount_font_weight_and_size" id="summary-urgent-amount">${summaryData.priority.amount}</span>
-                                                <span class="summary_urgent_text_info">${summaryData.priority.status}</span>
+                                                <span class="summary_amount_font_weight_and_size" id="summary-urgent-amount">${summaryUser.tasks.urgent.count}</span>
+                                                <span class="summary_urgent_text_info">Urgent</span>
                                             </div>                                        
                                         </div>
 
                                         <div class="summary_urgent_line"></div>
 
                                         <div class="summary_urgent_text_wrapper padding_28_48">    
-                                            <span class="summary_urgent_text_date">${summaryData.priority.deadline}</span>
+                                            <span class="summary_urgent_text_date">${summaryUser.tasks.urgent.deadline}</span>
                                             <span class="summary_urgent_text_info"> Upcoming Deadline </span>
                                         </div>
 
@@ -187,21 +196,21 @@ function getSummaryTemplate() {
 
                                 <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-board">
                                     <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-board-amount">${summaryData.tasksInBoard}</span>
+                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-board-amount">${summaryUser.tasks.tasksInBoard}</span>
                                         <span class="summary_text_font_weight_and_size">Tasks in<br>Board</span>
                                     </div>                                
                                 </div>
 
                                 <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-progress">
                                     <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-progress-amount">${summaryData.tasksInProgress}</span>
+                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-progress-amount">${summaryUser.tasks.tasksInProgress}</span>
                                         <span class="summary_text_font_weight_and_size">Tasks in<br>Progress</span>
                                     </div>                                                                
                                 </div>
 
                                 <div class="summary_buttons summary_button_width_168" id="summary-awaiting-feedback">
                                     <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-awaiting-feedback-amount">${summaryData.awaitingFeedback}</span>
+                                        <span class="summary_amount_font_weight_and_size" id="summary-awaiting-feedback-amount">${summaryUser.tasks.awaitingFeedback}</span>
                                         <span class="summary_text_font_weight_and_size">Awaiting<br>Feedback</span>
                                     </div>                                                                                                
                                 </div>
@@ -211,7 +220,7 @@ function getSummaryTemplate() {
                     <div class="summary_content_right">
                         <div class="summary_content_right_wrapper">
                             <span id="summary_greeting" class="summary_content_right_greeting"> Good morning, </span>
-                            <span id="summary_user" class="summary_content_right_user"> Sofia Müller </span>
+                            <span id="summary_user" class="summary_content_right_user">${summaryUser.name}</span>
                         </div>
                     </div>
 
