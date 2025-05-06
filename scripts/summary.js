@@ -1,24 +1,24 @@
 let summaryUser = {
-    id: localStorage.getItem("userIndex"),
-    name: "",
-    tasks: {
-         todo: 0,
-         done: 0,
-         urgent: {
-             count: 0,
-             deadline: "-"
-         },
-         tasksInBoard: 0,
-         tasksInProgress: 0,
-         awaitingFeedback: 0
-    }
+  id: localStorage.getItem("userIndex"),
+  name: "",
+  tasks: {
+    todo: 0,
+    done: 0,
+    urgent: {
+      count: 0,
+      deadline: "-",
+    },
+    tasksInBoard: 0,
+    tasksInProgress: 0,
+    awaitingFeedback: 0,
+  },
 };
 
-const DATABASEURL = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
+const DATABASEURL =
+  "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
 
 let users = [];
 let tasks = [];
-
 
 async function initSummary() {
   // uploadSummaryToFirebase();
@@ -32,6 +32,7 @@ async function initSummary() {
   // await getSummaryDataFromUserIndex();
   // console.log(summaryData);
   document.getElementById("main").innerHTML = getSummaryTemplate();
+  userGreetAndChangeUserName();
 }
 
 function loadLocalStorage(key) {
@@ -44,11 +45,11 @@ async function loadUsersAndSetUserName() {
 }
 
 function getNameFromUserId(users) {
-    if (summaryUser.id > -1) {
-        summaryUser.name = users[summaryUser.id].name;
-    } else {
-        summaryUser.name = "Guest"
-    }
+  if (summaryUser.id > -1) {
+    summaryUser.name = users[summaryUser.id].name;
+  } else {
+    summaryUser.name = "Guest";
+  }
 }
 
 async function loadUserName(userId) {}
