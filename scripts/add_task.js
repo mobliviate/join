@@ -2,16 +2,10 @@ let categoryDropdownOpen = false;
 let assignDropdownOpen = false;
 let selectedContactIds = [];
 let editingSubtaskItem = null;
+const BASEURL = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app"
 
-const firebaseConfig = {
-    databaseURL: "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app"
-};
 
-function initializeFirebase() {
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
-}
+
 
 function getHueFromString(text) {
     let hash = 0;
@@ -38,7 +32,7 @@ function initAddTask() {
     loadHeader();
     highlightActiveSidebarLink();
     document.getElementById("main").innerHTML = getAddTaskTemplate("todo");
-    initializeFirebase();
+
 }
 
 function onBodyClick() {
@@ -116,31 +110,35 @@ function closeAssignDropdown() {
 }
 
 async function loadContacts() {
-    const db = firebase.database();
-    const snapshot = await db.ref('contacts').once('value');
-    const data = snapshot.val() || {};
+    const contactURL = BASEURL + '/contacts.json';
     const container = document.getElementById('multiselect-assign-options');
+    try {
+        const response = await fetch(contactURL);
+        const data = await response.json() || {};
 
-    container.innerHTML = Object.entries(data).map(([id, contact]) => {
-        const initials = getInitials(contact.name);
-        const hue = getHueFromString(contact.name);
-        const isSelected = selectedContactIds.includes(id);
+        container.innerHTML = Object.entries(data).map(([id, contact]) => {
+            const initials = getInitials(contact.name);
+            const hue = getHueFromString(contact.name);
+            const isSelected = selectedContactIds.includes(id);
 
-        return `
-    <div class="multiselect-option-contact ${isSelected ? 'selected' : ''}" onclick="event.stopPropagation(); toggleSelectedContact(this)" data-id="${id}">
-        <div class="name-and-img">
-            <div class="circle-and-name">
-                <div class="circle" style="background-color: hsl(${hue}, 70%, 50%)">
-                    ${initials}
+            return `
+            <div class="multiselect-option-contact ${isSelected ? 'selected' : ''}" onclick="event.stopPropagation(); toggleSelectedContact(this)" data-id="${id}">
+                <div class="name-and-img">
+                    <div class="circle-and-name">
+                        <div class="circle" style="background-color: hsl(${hue}, 70%, 50%)">
+                            ${initials}
+                        </div>
+                        <div>${contact.name}</div>
+                    </div>
+                    <div>
+                        <img src="./assets/svg/${isSelected ? 'check_box_checked_white' : 'check_box'}.svg" alt="Checkbox">
+                    </div>
                 </div>
-                <div>${contact.name}</div>
-            </div>
-            <div>
-                <img src="./assets/svg/${isSelected ? 'check_box_checked_white' : 'check_box'}.svg" alt="Checkbox">
-            </div>
-        </div>
-    </div>`;
-    }).join('');
+            </div>`;
+        }).join('');
+    } catch (error) {
+        console.error('Error fetching contacts:', error);
+    }
 }
 
 
