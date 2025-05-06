@@ -389,11 +389,27 @@ function collectNewTaskData(status) {
 }
 
 async function saveNewTaskToFirebase(taskData) {
-    const tasksRef = firebase.database().ref('tasks');
-    const snapshot = await tasksRef.once('value');
-    const existingTasks = snapshot.val() || [];
-    existingTasks.push(taskData);
-    await tasksRef.set(existingTasks);
+    const taskURL = BASEURL + '/tasks.json';
+
+    try {
+        const getResponse = await fetch(taskURL);
+        const existingTasks = await getResponse.json() || [];
+
+        const taskArray = Array.isArray(existingTasks)
+            ? existingTasks
+            : Object.values(existingTasks);
+
+        taskArray.push(taskData);
+
+        await fetch(taskURL, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(taskArray)
+        });
+        console.log('All tasks successfully updated');
+    } catch (error) {
+        console.error('Error saving task:', error);
+    }
 }
 
 async function createTask(status) {
