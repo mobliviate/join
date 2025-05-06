@@ -18,13 +18,13 @@ const DATABASEURL =
   "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
 
 // let users = [];
-let tasks = [];
+// let tasks = [];
 
 async function initSummary() {
     loadHeaderBodySidebar();
 
     await loadUsersAndSetUserName();
-    loadTasksStatus();
+    await loadTasksandSetTasksStatus();
 
     document.getElementById("main").innerHTML = getSummaryTemplate();
 
@@ -54,11 +54,39 @@ function getNameFromUserId(users) {
   }
 }
 
-async function loadUserName(userId) {}
 
-async function loadTasksStatus() {
-  tasks = await getData(DATABASEURL, "tasks.json");
+async function loadTasksandSetTasksStatus() {
+    const tasks = await getData(DATABASEURL, "tasks.json");
+
+    getTaskStatus(tasks);
 }
+
+function getTaskStatus(tasks) {
+    tasks.forEach(task => {
+        console.log(task.status);
+        
+        setTaskStatus(task.status);
+    });
+}
+
+function setTaskStatus(taskStatus){
+    switch (taskStatus) {
+        case "todo":
+            summaryUser.tasks.todo += 1;
+            break;
+        case "done":
+            summaryUser.tasks.done += 1;
+            break;
+        case "progress":
+            summaryUser.tasks.tasksInProgress += 1;
+            break;
+        case "feedback":
+            summaryUser.tasks.awaitingFeedback += 1;
+            break;
+        default: break;
+    }
+};
+
 
 async function getData(url, path) {
   try {
