@@ -37,14 +37,12 @@ function loadHeaderBodySidebar() {
     highlightActiveSidebarLink();
 }
 
-// function loadLocalStorage(key) {
-//   return (value = localStorage.getItem(key));
-// }
 
 async function loadUsersAndSetUserName() {
   const users = await getData(DATABASEURL, "users.json");
   getNameFromUserId(users);
 }
+
 
 function getNameFromUserId(users) {
   if (summaryUser.id > -1) {
@@ -61,6 +59,7 @@ async function loadTasksandSetTasksStatus() {
     getTaskStatus(tasks);
 }
 
+
 function getTaskStatus(tasks) {
     tasks.forEach(task => {
         console.log(task.status);
@@ -68,6 +67,7 @@ function getTaskStatus(tasks) {
         setTaskStatus(task.status);
     });
 }
+
 
 function setTaskStatus(taskStatus){
     switch (taskStatus) {
@@ -100,42 +100,11 @@ async function getData(url, path) {
   }
 }
 
-// async function uploadSummaryToFirebase() {
-//     try {
-//         const response = await fetch(DATABASEURL, {
-//             method: 'PUT',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: JSON.stringify(summaryDatabaseSample)
-//         });
 
-//         if (!response.ok) {
-//             throw new Error('Fehler beim Hochladen der Daten');
-//         }
+function openBoardPage(){
+    window.location.href = 'board.html';
+}
 
-//         const responseData = await response.json();
-//         console.log('Upload erfolgreich:', responseData);
-
-//     } catch (error) {
-//         console.error('Upload fehlgeschlagen:', error);
-//     }
-// }
-
-// async function getSummaryDataFromUserIndex() {
-//   try {
-//     const response = await fetch(DATABASEURL);
-
-//     if (!response.ok) {
-//       throw new Error("Fehler beim Abrufen");
-//     }
-
-//     summaryData = await response.json();
-//     console.log(summaryData);
-//   } catch (error) {
-//     console.error("Fehler:", error.message);
-//   }
-// }
 
 function getSummaryTemplate() {
   return `
@@ -161,7 +130,7 @@ function getSummaryTemplate() {
 
                             <div class="summary_content_left_top_wrapper">
 
-                                <div class="summary_buttons summary_button_width_264 gap_16" id="summary-todo">
+                                <div class="summary_buttons summary_button_width_264 gap_16" id="summary-todo" onclick="openBoardPage()">
                                     
                                     <div class="summary_image_wrapper">
                                         <svg width="69" height="70" viewBox="0 0 69 70" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -181,7 +150,7 @@ function getSummaryTemplate() {
 
                                 </div>
 
-                                <div class="summary_buttons summary_button_width_264 gap_16" id="summary-done">
+                                <div class="summary_buttons summary_button_width_264 gap_16" id="summary-done" onclick="openBoardPage()">
 
                                     <div class="summary_image_wrapper">
                                         <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -200,7 +169,7 @@ function getSummaryTemplate() {
                             </div>
 
                             <div class="summary_content_left_middle_wrapper">
-                                <div class="summary_buttons summary_button_width_560" id="summary-urgent">
+                                <div class="summary_buttons summary_button_width_560" id="summary-urgent" onclick="openBoardPage()">
                                     <div class="summary_urgent_wrapper">
 
                                         <div class="summary_urgent_left padding_28_48 gap_16">
@@ -225,21 +194,21 @@ function getSummaryTemplate() {
 
                             <div class="summary_content_left_bottom_wrapper">
 
-                                <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-board">
+                                <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-board" onclick="openBoardPage()">
                                     <div class="summary_bottons_amount_and_text_wrapper">
                                         <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-board-amount">${summaryUser.tasks.tasksInBoard}</span>
                                         <span class="summary_text_font_weight_and_size">Tasks in<br>Board</span>
                                     </div>                                
                                 </div>
 
-                                <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-progress">
+                                <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-progress" onclick="openBoardPage()">
                                     <div class="summary_bottons_amount_and_text_wrapper">
                                         <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-progress-amount">${summaryUser.tasks.tasksInProgress}</span>
                                         <span class="summary_text_font_weight_and_size">Tasks in<br>Progress</span>
                                     </div>                                                                
                                 </div>
 
-                                <div class="summary_buttons summary_button_width_168" id="summary-awaiting-feedback">
+                                <div class="summary_buttons summary_button_width_168" id="summary-awaiting-feedback" onclick="openBoardPage()">
                                     <div class="summary_bottons_amount_and_text_wrapper">
                                         <span class="summary_amount_font_weight_and_size" id="summary-awaiting-feedback-amount">${summaryUser.tasks.awaitingFeedback}</span>
                                         <span class="summary_text_font_weight_and_size">Awaiting<br>Feedback</span>
