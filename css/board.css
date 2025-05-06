@@ -49,6 +49,10 @@
     color: var(--style);
 }
 
+.search-board:focus {
+    border:solid 1px var(--secondary-color);
+}
+
 .add-task-board {
     width: 160px;
     height: 48px;
