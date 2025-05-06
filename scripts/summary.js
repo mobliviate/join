@@ -30,7 +30,8 @@ async function initSummary() {
   // await loadDataFromFirebase(DATABASEURL, ".json");
   // await getSummaryDataFromUserIndex();
   // console.log(summaryData);
-  // document.getElementById("main").innerHTML = getSummaryTemplate();
+  //   document.getElementById("main").innerHTML = getSummaryTemplate();
+  userGreetAndChangeUserName();
 }
 
 function loadLocalStorage(key) {

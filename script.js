@@ -30,7 +30,7 @@ function hideUserInfo() {
   }
 }
 
-function userGreet() {
+function userGreetAndChangeUserName() {
   const overlayRef = document.getElementById("greet_overlay");
   renderUserInSummary();
   if (localStorage.getItem("showGreeting") === "true") {
