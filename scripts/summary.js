@@ -32,6 +32,7 @@ async function initSummary() {
   // await getSummaryDataFromUserIndex();
   // console.log(summaryData);
   document.getElementById("main").innerHTML = getSummaryTemplate();
+  userGreetAndChangeUserName();
 }
 
 function loadLocalStorage(key) {
