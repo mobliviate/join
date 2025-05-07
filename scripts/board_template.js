@@ -53,10 +53,10 @@ function getBoardTemplate() {
             </div>
           </div>
           <div class="column-divs">
-            <div id="todo" class="columns"></div>
-            <div id="progress" class="columns"></div>
-            <div id="feedback" class="columns"></div>
-            <div id="done" class="columns"></div>
+            <div id="todo" class="columns" ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')" ondragover="allowDrop(event); highlight('todo')"></div>
+            <div id="progress" class="columns" ondrop="moveTo('progress')" ondragleave="removeHighlight('progress')" ondragover="allowDrop(event); highlight('progress')"></div>
+            <div id="feedback" class="columns" ondrop="moveTo('feedback')" ondragleave="removeHighlight('feedback')" ondragover="allowDrop(event); highlight('feedback')"></div>
+            <div id="done" class="columns" ondrop="moveTo('done')" ondragleave="removeHighlight('done')" ondragover="allowDrop(event); highlight('done')"></div>
           </div>
         </div>
         <div id="open_overlay_board" class="open-overlay-board d-none" onclick="closeOverlayBoard()">
@@ -66,9 +66,9 @@ function getBoardTemplate() {
     `;
 }
 
-function getRenderTask(task,indexTask,background) {
+function getRenderTask(task,indexTask,background,) {
   return`
-    <div class="task-main">
+    <div class="task-main" draggable="true" ondragstart="startDragging(${indexTask})">
       <div class="category-board" style="background-color:var(${background})">${task.category}</div>
       <div class="title-description-board">
         <h3 class="title-board">${task.title}</h3>
@@ -92,5 +92,11 @@ function getRenderProgressbar(widthProgress, subTasks, subtaskDone){
       </svg>
       <h4>${subtaskDone}/${subTasks} Subtasks</h4>
     </div>
+  `;
+}
+
+function getRenderEmpty(emptyColumn) {
+  return`
+    <div class="empty-task">No tasks ${emptyColumn}</div>
   `;
 }
