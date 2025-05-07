@@ -4,6 +4,10 @@ let loginState = localStorage.getItem("isLoggedIn") === "true";
 let userIndexStr = localStorage.getItem("userIndex");
 let userIndex = Number(userIndexStr);
 
+/**
+ * Loads the body template and footer template, and sets up the sidebar and footer navigation.
+ * @function
+ */
 function loadBody() {
     document.body.innerHTML = getBodyTemplate();
     document.getElementById("footer_mobile").innerHTML = getFooterTemplate();
