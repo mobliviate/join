@@ -97,6 +97,6 @@ function getRenderProgressbar(widthProgress, subTasks, subtaskDone){
 
 function getRenderEmpty(emptyColumn) {
   return`
-    <div class="empty-task">No tasks ${emptyColumn}</div>
+    <div class="empty-task"><h3>No tasks ${emptyColumn}</h3></div>
   `;
 }

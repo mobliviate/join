@@ -12,6 +12,7 @@
     display: flex;
     flex-direction: column;
     padding: 0;
+    margin-bottom: 8px;
 }
 
 .board-search {
@@ -138,6 +139,24 @@
 
 .columns-highlight {
     background-color: rgba(0, 0, 0, 0.1);
+}
+
+.empty-task {
+    width: 246px;
+    height: 48px;
+    border-radius: 10px;
+    border:dashed 1px var(--icons);
+    background-color: rgba(0, 0, 0, 0.16);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.empty-task h3 {
+    font-family: Open Sans;
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--icons);
 }
 
 .task-main {
