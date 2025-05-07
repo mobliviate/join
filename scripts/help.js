@@ -11,6 +11,15 @@ function initHelp() {
 }
 
 /**
+ * Hides the help link in the header.
+ * @function
+ */
+function hideHelpLink() {
+  const helpLinkRef = document.getElementById("help_link");
+  helpLinkRef.style.display = "none";
+}
+
+/**
  * Generates the HTML markup for a single step in a help guide.
  *
  * @param {Object} step - An object containing the step details.
