@@ -1,11 +1,39 @@
-function getBodyTemplate(func = getSideBarUserTemplate()) {
+function getBodyTemplate() {
   return `
     <div class="main-div">
       <div class="left mobile-hide">
         <div class="sidebar-logo">
           <img src="assets/svg/join-logo.svg" alt="Join Logo">
         </div>
-        ${func}
+        <nav id="sidebar_nav_user" class="sidebar-nav d-none">
+          <a href="summary.html" class="sidebar-link" data-page="summary.html">
+            <svg class="nav-icon" viewBox="0 0 26 26">
+              <use href="assets/svg/sprite.svg#summary_icon"></use>
+            </svg> Summary
+          </a>
+          <a href="add_task.html" class="sidebar-link" data-page="add_task.html">
+            <svg class="nav-icon" viewBox="0 0 26 26">
+              <use href="assets/svg/sprite.svg#add_task_icon"></use>
+            </svg> Add Task
+          </a>
+          <a href="board.html" class="sidebar-link" data-page="board.html">
+            <svg class="nav-icon" viewBox="0 0 30 26">
+              <use href="assets/svg/sprite.svg#board_icon"></use>
+            </svg> Board
+          </a>
+          <a href="contact.html" class="sidebar-link" data-page="contact.html">
+            <svg class="nav-icon" viewBox="0 0 24 26">
+              <use href="assets/svg/sprite.svg#contacts_icon"></use>
+            </svg> Contacts
+          </a>
+        </nav>
+        <nav id="sidebar_nav_without_user" class="sidebar-nav d-none">
+          <a href="index.html" class="sidebar-link" data-page="index.html">
+            <svg class="login-icon" viewBox="0 0 20 20">
+              <use href="assets/svg/sprite.svg#login_icon"></use>
+            </svg> Log In
+          </a>
+      </nav>
         <div class="sidebar-footer">
           <a href="privacy_policy.html" class="sidebar-link" data-page="privacy_policy.html">Privacy Policy</a>
           <a href="legal_notice.html" class="sidebar-link" data-page="legal_notice.html">Legal Notice</a>
@@ -40,54 +68,48 @@ function getBodyTemplate(func = getSideBarUserTemplate()) {
   `;
 }
 
-function getSideBarUserTemplate() {
-  return `
-      <nav class="sidebar-nav">
-        <a href="summary.html" class="sidebar-link" data-page="summary.html">
-          <svg class="nav-icon" viewBox="0 0 26 26">
-            <use href="assets/svg/sprite.svg#summary_icon"></use>
-          </svg> Summary
-        </a>
-        <a href="add_task.html" class="sidebar-link" data-page="add_task.html">
-          <svg class="nav-icon" viewBox="0 0 26 26">
-            <use href="assets/svg/sprite.svg#add_task_icon"></use>
-          </svg> Add Task
-        </a>
-        <a href="board.html" class="sidebar-link" data-page="board.html">
-          <svg class="nav-icon" viewBox="0 0 30 26">
-            <use href="assets/svg/sprite.svg#board_icon"></use>
-          </svg> Board
-        </a>
-        <a href="contact.html" class="sidebar-link" data-page="contact.html">
-          <svg class="nav-icon" viewBox="0 0 24 26">
-            <use href="assets/svg/sprite.svg#contacts_icon"></use>
-          </svg> Contacts
-        </a>
-      </nav>
-  `;
-}
+// function getSideBarUserTemplate() {
+//   return `
+//       <nav id="sidebar_nav_user" class="sidebar-nav">
+//         <a href="summary.html" class="sidebar-link" data-page="summary.html">
+//           <svg class="nav-icon" viewBox="0 0 26 26">
+//             <use href="assets/svg/sprite.svg#summary_icon"></use>
+//           </svg> Summary
+//         </a>
+//         <a href="add_task.html" class="sidebar-link" data-page="add_task.html">
+//           <svg class="nav-icon" viewBox="0 0 26 26">
+//             <use href="assets/svg/sprite.svg#add_task_icon"></use>
+//           </svg> Add Task
+//         </a>
+//         <a href="board.html" class="sidebar-link" data-page="board.html">
+//           <svg class="nav-icon" viewBox="0 0 30 26">
+//             <use href="assets/svg/sprite.svg#board_icon"></use>
+//           </svg> Board
+//         </a>
+//         <a href="contact.html" class="sidebar-link" data-page="contact.html">
+//           <svg class="nav-icon" viewBox="0 0 24 26">
+//             <use href="assets/svg/sprite.svg#contacts_icon"></use>
+//           </svg> Contacts
+//         </a>
+//       </nav>
+//   `;
+// }
 
-function getSideBarWithoutUserTemplate() {
-  return `
-      <nav class="sidebar-nav">
-        <a href="index.html" class="sidebar-link" data-page="index.html">
-        <svg class="login-icon" viewBox="0 0 20 20">
-            <use href="assets/svg/sprite.svg#login_icon"></use>
-        </svg> Log In
-        </a>
-      </nav>
-  `;
-}
+// function getSideBarWithoutUserTemplate() {
+//   return `
+//       <nav id="sidebar_nav_without_user" class="sidebar-nav">
+//         <a href="index.html" class="sidebar-link" data-page="index.html">
+//         <svg class="login-icon" viewBox="0 0 20 20">
+//             <use href="assets/svg/sprite.svg#login_icon"></use>
+//         </svg> Log In
+//         </a>
+//       </nav>
+//   `;
+// }
 
-function getFooterTemplate(func = getFooterUserTemplate()) {
+function getFooterTemplate() {
   return `
-    ${func}
-  `;
-}
-
-function getFooterUserTemplate() {
-  return `
-    <nav class="footer-nav">
+    <nav id="footer_nav_user" class="footer-nav d-none">
       <a href="summary.html" class="footer-nav-link" data-page="summary.html">
         <div class="footer-nav-link-cnt">
           <svg class="nav-icon" viewBox="0 0 26 26">
@@ -121,12 +143,7 @@ function getFooterUserTemplate() {
         </div>
       </a>
     </nav>
-  `;
-}
-
-function getFooterWithoutUserTemplate() {
-  return `
-    <nav class="footer">
+    <nav id="footer_without_user" class="footer d-none">
       <a href="index.html" class="login-link" data-page="index.html">
         <svg class="login-icon" viewBox="0 0 20 20">
             <use href="assets/svg/sprite.svg#login_icon"></use>
@@ -139,6 +156,61 @@ function getFooterWithoutUserTemplate() {
     </nav>
   `;
 }
+
+// function getFooterUserTemplate() {
+//   return `
+//     <nav id="footer_nav_user" class="footer-nav">
+//       <a href="summary.html" class="footer-nav-link" data-page="summary.html">
+//         <div class="footer-nav-link-cnt">
+//           <svg class="nav-icon" viewBox="0 0 26 26">
+//             <use href="assets/svg/sprite.svg#summary_icon"></use>
+//           </svg>
+//           <span>Summary</span>
+//         </div>
+//       </a>
+//       <a href="add_task.html" class="footer-nav-link" data-page="add_task.html">
+//         <div class="footer-nav-link-cnt">
+//           <svg class="nav-icon" viewBox="0 0 26 26">
+//             <use href="assets/svg/sprite.svg#add_task_icon"></use>
+//           </svg>
+//           <span>Add Task</span>
+//         </div>
+//       </a>
+//       <a href="board.html" class="footer-nav-link" data-page="board.html">
+//         <div class="footer-nav-link-cnt">
+//           <svg class="nav-icon" viewBox="0 0 30 26">
+//             <use href="assets/svg/sprite.svg#board_icon"></use>
+//           </svg>
+//           <span>Board</span>
+//         </div>
+//       </a>
+//       <a href="contact.html" class="footer-nav-link" data-page="contact.html">
+//         <div class="footer-nav-link-cnt">
+//           <svg class="nav-icon" viewBox="0 0 24 26">
+//             <use href="assets/svg/sprite.svg#contacts_icon"></use>
+//           </svg>
+//           <span>Contacts</span>
+//         </div>
+//       </a>
+//     </nav>
+//   `;
+// }
+
+// function getFooterWithoutUserTemplate() {
+//   return `
+//     <nav id="footer_without_user" class="footer">
+//       <a href="index.html" class="login-link" data-page="index.html">
+//         <svg class="login-icon" viewBox="0 0 20 20">
+//             <use href="assets/svg/sprite.svg#login_icon"></use>
+//         </svg> Log In
+//       </a>
+//       <div class="footer-link-cnt">
+//         <a href="privacy_policy.html" class="footer-nav-link" data-page="privacy_policy.html">Privacy Policy</a>
+//         <a href="legal_notice.html" class="footer-nav-link" data-page="legal_notice.html">Legal Notice</a>
+//       </div>
+//     </nav>
+//   `;
+// }
 
 function getHeaderTemplate(initials) {
   return `

@@ -5,12 +5,20 @@ let userIndexStr = localStorage.getItem("userIndex");
 let userIndex = Number(userIndexStr);
 
 function loadBody() {
-  document.body.innerHTML = getBodyTemplate(
-    loginState ? undefined : getSideBarWithoutUserTemplate()
-  );
-  document.getElementById("footer_mobile").innerHTML = getFooterTemplate(
-    loginState ? undefined : getFooterWithoutUserTemplate()
-  );
+  document.body.innerHTML = getBodyTemplate();
+  document.getElementById("footer_mobile").innerHTML = getFooterTemplate();
+  const sidebarNavRef = document.getElementById("sidebar_nav_user");
+  const sidebarNavWithoutUserRef = document.getElementById("sidebar_nav_without_user");
+  const footerNavRef = document.getElementById("footer_nav_user");
+  const footerWithoutUserRef = document.getElementById("footer_without_user");
+
+  if (loginState) {
+    sidebarNavRef.classList.remove("d-none");
+    footerNavRef.classList.remove("d-none");
+  } else {
+    sidebarNavWithoutUserRef.classList.remove("d-none");
+    footerWithoutUserRef.classList.remove("d-none");
+  }
 }
 
 /**
@@ -84,13 +92,11 @@ async function fetchUsers() {
 
 function getDayTime() {
   const date = new Date();
-
   const berlinHour = new Intl.DateTimeFormat("de-DE", {
     hour: "numeric",
     hour12: false,
     timeZone: "Europe/Berlin",
   }).format(date);
-
   const hour = parseInt(berlinHour, 10);
 
   if (hour >= 5 && hour < 11) {

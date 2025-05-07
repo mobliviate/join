@@ -1,94 +1,69 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Join</title>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join</title>
 
-    <script src="./script.js" defer></script>
-    <script src="./scripts/login.js" defer></script>
-    <script src="./scripts/signup.js" defer></script>
-    <script src="./scripts/login_signup_template.js"></script>
+  <script src="./script.js" defer></script>
+  <script src="./scripts/login.js" defer></script>
+  <script src="./scripts/signup.js" defer></script>
+  <script src="./scripts/login_signup_template.js"></script>
 
-    <link rel="icon" href="assets/svg/favicon_logo.svg" type="image/svg+xml" />
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-    <link rel="stylesheet" type="text/css" href="./css/login.css" />
-  </head>
+  <link rel="icon" href="assets/svg/favicon_logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+  <link rel="stylesheet" type="text/css" href="./css/login.css" />
+</head>
 
-  <body onload="init()">
-    <main class="main-login-signup p-top-bottom-160">
-      <div class="animation">
-        <div class="animation-logo-cnt"></div>
-      </div>
-      <div class="logo-cnt fade-in">
-        <img src="assets/png/join_logo.png" alt="Join Logo" class="join-logo" />
-      </div>
-      <header class="header-login">
-        <span> Not a Join user? </span>
-        <a class="btn" href="signup.html">Sign up</a>
-      </header>
-      <div class="login-signup">
-        <div class="login-cnt">
-          <h1 class="login-signup-hdl">Log in</h1>
-          <form
-            onsubmit="handleLoginSubmit(); return false;"
-            class="login-form"
-          >
-            <div class="input-cnt">
-              <input
-                oninput="validateLoginEmail(); checkLoginFormValidity()"
-                class="login-signup-input"
-                type="email"
-                id="login_email"
-                name="email"
-                required
-                placeholder="Email"
-              />
-              <svg class="input-icon" width="24" height="24">
-                <use href="assets/svg/sprite.svg#mail_icon"></use>
-              </svg>
-              <p id="login_warning_email" class="input-warning"></p>
+<body onload="init()">
+  <main class="main-login-signup p-top-bottom-160">
+    <div class="animation">
+      <div class="animation-logo-cnt"></div>
+    </div>
+    <div class="logo-cnt fade-in">
+      <img src="assets/png/join_logo.png" alt="Join Logo" class="join-logo" />
+    </div>
+    <header class="header-login">
+      <span> Not a Join user? </span>
+      <a class="btn" href="signup.html">Sign up</a>
+    </header>
+    <div class="login-signup">
+      <div class="login-cnt">
+        <h1 class="login-signup-hdl">Log in</h1>
+        <form onsubmit="handleLoginSubmit(); return false;" class="login-form">
+          <div class="input-cnt">
+            <input oninput="validateLoginEmail(); checkLoginFormValidity()" class="login-signup-input" type="email"
+              id="login_email" name="email" required placeholder="Email" />
+            <svg class="input-icon" width="24" height="24">
+              <use href="assets/svg/sprite.svg#mail_icon"></use>
+            </svg>
+            <p id="login_warning_email" class="input-warning"></p>
+          </div>
+          <div class="input-cnt">
+            <input
+              oninput="passwordOption('login_password', 'login_password_icon_cnt', 'password_icon'); validateLoginPassword(); checkLoginFormValidity()"
+              class="login-signup-input" type="password" id="login_password" name="password" minlength="8"
+              placeholder="Password" required />
+            <div id="login_password_icon_cnt" class="input-icon-cnt">
+              <img id="password_icon" src="assets/png/lock.png" alt="" />
             </div>
-            <div class="input-cnt">
-              <input
-                oninput="passwordOption('login_password', 'login_password_icon_cnt', 'password_icon'); validateLoginPassword(); checkLoginFormValidity()"
-                class="login-signup-input"
-                type="password"
-                id="login_password"
-                name="password"
-                minlength="8"
-                placeholder="Password"
-                required
-              />
-              <div id="login_password_icon_cnt" class="input-icon-cnt">
-                <img id="password_icon" src="assets/png/lock.png" alt="" />
-              </div>
-              <p id="login_warning_password" class="input-warning"></p>
-            </div>
-            <div class="form-btn-cnt">
-              <button
-                id="login_btn"
-                type="submit"
-                class="btn btn-primary"
-                disabled
-              >
-                Log in
-              </button>
-              <button
-                onclick="openSummaryPage(-1);"
-                type="button"
-                class="btn btn-secondary"
-              >
-                Guest log in
-              </button>
-            </div>
-          </form>
-        </div>
+            <p id="login_warning_password" class="input-warning"></p>
+          </div>
+          <div class="form-btn-cnt">
+            <button id="login_btn" type="submit" class="btn btn-primary" disabled>
+              Log in
+            </button>
+            <button onclick="openSummaryPage(-1);" type="button" class="btn btn-secondary">
+              Guest log in
+            </button>
+          </div>
+        </form>
       </div>
-      <footer class="footer-login-signup">
-        <a href="privacy_policy.html">Privacy Policy</a>
-        <a href="legal_notice.html">Legal notice</a>
-      </footer>
-    </main>
-  </body>
+    </div>
+    <footer class="footer-login-signup">
+      <a href="privacy_policy.html">Privacy Policy</a>
+      <a href="legal_notice.html">Legal notice</a>
+    </footer>
+  </main>
+</body>
 </html>

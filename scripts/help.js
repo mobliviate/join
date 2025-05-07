@@ -11,14 +11,6 @@ function initHelp() {
 }
 
 /**
- * Loads the help-site header without the help-button by setting the inner HTML of the element with the ID "header".
- * The content is generated using the `getHeaderTemplate` function with the result of `getHeaderHelpTemplate` as its argument.
- */
-function loadHelpHeader() {
-  document.getElementById("header").innerHTML = getHeaderTemplate(getHeaderHelpTemplate());
-};
-
-/**
  * Generates the HTML markup for a single step in a help guide.
  *
  * @param {Object} step - An object containing the step details.
