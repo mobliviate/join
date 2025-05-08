@@ -65,6 +65,7 @@ function getTaskStatus(tasks) {
         console.log(task.status);
         
         setTaskStatus(task.status);
+        setTaskPriority(task.priority)
     });
 }
 
@@ -84,6 +85,13 @@ function setTaskStatus(taskStatus){
             summaryUser.tasks.awaitingFeedback += 1;
             break;
         default: break;
+    }
+};
+
+
+function setTaskPriority(taskPriority){
+    if (taskPriority == "urgent") {
+        summaryUser.tasks.urgent.count += 1;
     }
 };
 
