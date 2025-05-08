@@ -61,9 +61,8 @@ async function loadTasksandSetTasksStatus() {
 
 
 function getTaskStatus(tasks) {
+    summaryUser.tasks.tasksInBoard = tasks.length;
     tasks.forEach(task => {
-        console.log(task.status);
-        
         setTaskStatus(task.status);
         setTaskPriority(task.priority)
     });
