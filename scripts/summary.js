@@ -14,6 +14,8 @@ let summaryUser = {
   },
 };
 
+const urgentDates = [];
+
 const DATABASEURL =
   "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
 
@@ -64,8 +66,9 @@ function getTaskStatus(tasks) {
     summaryUser.tasks.tasksInBoard = tasks.length;
     tasks.forEach(task => {
         setTaskStatus(task.status);
-        setTaskPriority(task.priority)
+        setTaskPriorityAndGetDate(task.priority, task.dueDate);
     });
+    setUpcomingDate();
 }
 
 
@@ -88,11 +91,22 @@ function setTaskStatus(taskStatus){
 };
 
 
-function setTaskPriority(taskPriority){
+function setTaskPriorityAndGetDate(taskPriority, taskDate){
     if (taskPriority == "urgent") {
         summaryUser.tasks.urgent.count += 1;
+        urgentDates.push(new Date(taskDate));
     }
 };
+
+
+function setUpcomingDate(){
+    const upcomingDeadline = new Date(Math.min(...urgentDates)).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    });
+    summaryUser.tasks.urgent.deadline = upcomingDeadline;
+}
 
 
 async function getData(url, path) {
