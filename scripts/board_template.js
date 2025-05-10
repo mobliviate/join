@@ -8,7 +8,7 @@ function getBoardTemplate() {
               </div>
               <div class="search-addtask">
                 <div class="search-wrapper-board">
-                  <input type="text" placeholder="Find Task" class="search-board" onfocus="clearPlaceholder(this)" oninput="handleSearch(this.value)">
+                  <input type="text" placeholder="Find Task" class="search-board" oninput="handleSearch(this.value)">
                    <div class="separetor-board"></div>
                   <button class="button-search-board">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -93,10 +93,16 @@ function getRenderTask(task,indexTask,background,) {
       </div>
       <div id="progress_subtask_${indexTask}"></div>      
       <div class="initials-priority_board">
-        <div class="initials-board" id="initials${indexTask}"></div>
+        <div class="initials-board" id="initials_${indexTask}"></div>
         <img class="priority-board" src="./assets/svg/prio_${task.priority}.svg" alt="${task.priority}_icon">
       </div>
     </div>
+  `;
+}
+
+function getRenderInitials(initial) {
+  return`
+    <div class="initials-single-board"><h3>${initial}</h3></div>
   `;
 }
 

@@ -20,7 +20,7 @@ async function renderTasks() {
     let taskContentRef = document.getElementById(`${taskRef.status}`);
     taskContentRef.innerHTML += getRenderTask(taskRef, indexTask, background,);
     renderSubtasks(taskRef, indexTask);
-    //renderInitials(taskRef,indexTask);
+    renderInitials(taskRef,indexTask);
   }
   findEmptyColumn();
 }
@@ -54,7 +54,7 @@ function renderEmptyColumn(emptyColumn, text) {
   }
 }
 
-function renderSubtasks(taskRef, indexTask){
+function renderSubtasks(taskRef, indexTask) {
   if (!taskRef.subtasks) {
     return    
   }
@@ -65,9 +65,17 @@ function renderSubtasks(taskRef, indexTask){
   progressbarContactRef.innerHTML = getRenderProgressbar(widthProgress, subTasks, subtaskDone);
 }
 
-//renderInitials(taskRef,indexTask){
-//
-//}
+function renderInitials(taskRef, indexTask) {
+  if (!taskRef.assignedContacts) {
+    return
+  }
+  let initialContactRef = document.getElementById(`initials_${indexTask}`);
+  let contactRef = taskRef.assignedContacts;
+  for (let index = 0; index < contactRef.length; index++) {
+    let initial = contactRef[index].initials;
+    initialContactRef.innerHTML += getRenderInitials(initial);
+  }
+}
 
 function addTaskBoard(title){
   let openOverlayBoard = document.getElementById("open_overlay_board")
