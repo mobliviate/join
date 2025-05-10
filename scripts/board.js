@@ -16,10 +16,7 @@ async function renderTasks() {
   let taskRefUrlToJson = await taskRefUrl.json();
   for (let indexTask = 0; indexTask < taskRefUrlToJson.length; indexTask++) {
     let taskRef = taskRefUrlToJson[indexTask];
-    let background = "--technical";
-    if (taskRef.category == "User Story") {
-      background = "--user";
-    }
+    let background = taskRef.category === "User Story" ? "--user" : "--technical";
     let taskContentRef = document.getElementById(`${taskRef.status}`);
     taskContentRef.innerHTML += getRenderTask(taskRef, indexTask, background,);
     renderSubtasks(taskRef, indexTask);
@@ -87,12 +84,6 @@ function closeOverlayBoard() {
   closeOverlayBoard.classList.add("d-none")
 }
 
-//function renderNoTask {
-//  if (condition) {
-//    
-//  }
-//}
-
 function startDragging(id) {
   currentDraggedElement = id;
 }
@@ -122,4 +113,30 @@ function highlight(id) {
 
 function removeHighlight(id) {
   document.getElementById(id).classList.remove('columns-highlight');
+}
+
+function clearPlaceholder(input) {
+  if (input.value === "Find Task") {
+    input.value = "";
+    input.classList.add("active");
+  }
+}
+
+async function handleSearch(searchTerm) {
+  searchTerm = searchTerm.trim().toLowerCase();
+  clearColumns();
+  let response = await fetch(tasksUrl);
+  let data = await response.json();
+  let taskList = Object.values(data);
+  let filteredTasks = taskList.filter(task =>
+    task.title?.toLowerCase().includes(searchTerm) ||
+    task.description?.toLowerCase().includes(searchTerm)
+  );
+  filteredTasks.forEach((taskRef, indexTask) => {
+    let background = taskRef.category === "User Story" ? "--user" : "--technical";
+    let taskContentRef = document.getElementById(`${taskRef.status}`);
+    taskContentRef.innerHTML += getRenderTask(taskRef, indexTask, background);
+    renderSubtasks(taskRef, indexTask);
+  });
+  findEmptyColumn();
 }

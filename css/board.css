@@ -29,7 +29,7 @@
 
 .board-search div h1 {
     font-size: 61px;
-    color: var(--primary-color);
+    color: var(--black);
 }
 
 .search-addtask {
@@ -38,12 +38,21 @@
     gap: 32px;
 }
 
+.search-wrapper-board {
+    width: 312px;
+    height: 48px;
+    display: flex;
+    flex-direction: row;
+
+}
+
 .search-board {
     width: 312px;
     height: 48px;
     border-radius: 10px;
     border:solid 1px var(--icons);
     padding: 8px 16px;
+    padding-right: 64px;
     cursor: pointer;
     font-size: 20px;
     font-weight: 400;
@@ -53,6 +62,30 @@
 
 .search-board:focus {
     border:solid 1px var(--secondary-color);
+}
+
+.search-board.active {
+    color: var(--black);
+}
+
+.separetor-board{
+    position: relative;
+    right: 48px;
+    top: 8px;
+    height: 32px;
+    width: 0;
+    border: solid 1px var(--style);
+    padding-left: -48px;
+
+}
+
+.button-search-board {
+    position: relative;
+    top:2px;
+    right: 33px;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .add-task-board {
@@ -167,6 +200,7 @@
     border-radius: 24px;
     padding: 16px;
     background-color: var(--white);
+    cursor: pointer;
 }
 
 .category-board {
@@ -254,4 +288,11 @@
     height: 870px;
     background-color: var(--white);
     border-radius: 30px;
+}
+
+.task-added-board {
+    width: 326px;
+    height: 74px;
+    border-radius: 20px;
+    background-color: var(--primary-color);
 }
