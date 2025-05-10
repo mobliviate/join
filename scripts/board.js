@@ -115,13 +115,6 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove('columns-highlight');
 }
 
-function clearPlaceholder(input) {
-  if (input.value === "Find Task") {
-    input.value = "";
-    input.classList.add("active");
-  }
-}
-
 async function handleSearch(searchTerm) {
   searchTerm = searchTerm.trim().toLowerCase();
   clearColumns();

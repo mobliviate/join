@@ -56,7 +56,7 @@
     cursor: pointer;
     font-size: 20px;
     font-weight: 400;
-    color: var(--style);
+    color: var(--black);
     outline: none;
 }
 
@@ -64,9 +64,9 @@
     border:solid 1px var(--secondary-color);
 }
 
-.search-board.active {
-    color: var(--black);
-}
+.search-board::placeholder {
+    color: var(--style);
+  }
 
 .separetor-board{
     position: relative;

@@ -8,7 +8,7 @@ function getBoardTemplate() {
               </div>
               <div class="search-addtask">
                 <div class="search-wrapper-board">
-                  <input type="text" value="Find Task" class="search-board" onfocus="clearPlaceholder(this)" oninput="handleSearch(this.value)">
+                  <input type="text" placeholder="Find Task" class="search-board" onfocus="clearPlaceholder(this)" oninput="handleSearch(this.value)">
                    <div class="separetor-board"></div>
                   <button class="button-search-board">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
