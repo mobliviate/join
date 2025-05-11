@@ -223,7 +223,7 @@ function getHeaderTemplate(initials) {
             <img src="assets/svg/help.svg" alt="Help" />
           </a>
           <button class="user-button" onclick="toggleUserMenu('open')">
-            <span class="initials">${initials}</span>
+            <span class="user-initials">${initials}</span>
           </button>
         </div>
                

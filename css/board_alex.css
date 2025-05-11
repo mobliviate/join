@@ -26,7 +26,7 @@
 }
 
 .board-main {
-    height: 100vh;
+    height: 100%;
     width: 100%;
     background-color: #f6f7f8;
     font-size: 16px;
@@ -98,12 +98,18 @@
 .board-section {
     display: flex;
     gap: 26px;
-    padding: 0px 64px;
-    flex-wrap: wrap;
+    padding: 0px 55px;
+    /* flex-wrap: wrap; */
 
     & .section-cnt {
-        flex: 1;
+        /* flex: 1; */
+        width: 252px;
+    }
 
+    & .task-cnt {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
     }
 
     & .section-title-cnt {
@@ -138,7 +144,7 @@
 }
 
 .task-item {
-    width: fit-content;
+    /* width: fit-content; */
     flex-direction: column;
     background-color: white;
     border-radius: 24px;
@@ -147,11 +153,18 @@
 
 .task-category {
     display: inline-block;
-    background-color: var(--user);
     color: var(--white);
     padding: 4px 16px;
     border-radius: 8px;
     font-size: 16px;
+}
+
+.task-category.user {
+    background-color: var(--user);
+}
+
+.task-category.technical {
+    background-color: var(--technical);
 }
 
 .task-title {
@@ -168,6 +181,7 @@
     margin-bottom: 24px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     /* Zeilenanzahl auf 2 begrenzen */
     -webkit-box-orient: vertical;
     overflow: hidden;
@@ -182,6 +196,10 @@
     padding-bottom: 24px;
 }
 
+.subtask-progress {
+    width: 50%;
+}
+
 .assigned-users-cnt {
     display: flex;
     align-items: center;
@@ -192,24 +210,29 @@
 .initials-cnt {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
+    width: 100px;
+    /* maximale Breite des Containers */
+    white-space: nowrap;
+    /* Zeilenumbruch verhindern */
+    overflow-x: auto;
+    /* horizontaler Scrollbalken */
 }
 
 .initials {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 32px;
+    min-width: 32px;
     height: 32px;
     background-color: var(--user);
     color: var(--white);
     border: 2px solid var(--white);
     border-radius: 50%;
     font-size: 12px;
-    margin-left: -10px;
+    margin-left: -6px;
 }
 
-/* Erster Kreis soll keinen negativen Abstand nach links haben */
 .initials:first-child {
     margin-left: 0;
 }
