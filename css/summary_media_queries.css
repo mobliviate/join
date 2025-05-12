@@ -1,0 +1,13 @@
+@media (max-width: 1164px) {
+    .summary_content_right {
+        display: none;
+    }
+    
+    .summary_content {
+        justify-content: center;
+    }
+
+    .summary_headline {
+        justify-content: center;
+    }
+}
