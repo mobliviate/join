@@ -68,9 +68,10 @@ function getBoardTemplate() {
           </div>
         </div>
         <div id="open_overlay_board" class="open-overlay-board d-none" onclick="closeOverlayBoard()">
-          <div id="add_task_board" class="add-task-overlay" onclick="overlayProtection(event)"></div>
+          <div id="add_task_board" class="add-task-overlay d-none" onclick="overlayProtection(event)"></div>
         </div>
-        <div id="open_task_board" class="open-task-overlay"></div>
+        <div id="open_task_board" class="open-task-overlay d-none"></div>
+        <div id="edit_task_board" class="edit-task-overlay d-none"></div>
         <div class="task-added-board d-none">
           <h3>Task added to board</h3>
           <svg width="30" height="30" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,6 +87,8 @@ function getBoardTemplate() {
 function getRenderTask(task,indexTask,background,) {
   return`
     <div class="task-main" draggable="true" ondragstart="startDragging(${indexTask})">
+      <button class="d-none move-to-board" onclick="moveToBoard">
+      </button>
       <div class="category-board" style="background-color:var(${background})">${task.category}</div>
       <div class="title-description-board">
         <h3 class="title-board">${task.title}</h3>
@@ -121,5 +124,11 @@ function getRenderProgressbar(widthProgress, subTasks, subtaskDone){
 function getRenderEmpty(emptyColumn) {
   return`
     <div class="empty-task"><h3>No tasks ${emptyColumn}</h3></div>
+  `;
+}
+
+function getOpenTaskBoard(){
+  return`
+  
   `;
 }

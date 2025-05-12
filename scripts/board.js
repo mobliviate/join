@@ -80,6 +80,7 @@ function renderInitials(taskRef, indexTask) {
 function addTaskBoard(title){
   let openOverlayBoard = document.getElementById("open_overlay_board")
   openOverlayBoard.classList.remove("d-none")
+  toggleDiv()
   document.getElementById("add_task_board").innerHTML = getAddTaskTemplate(title);
 }
 
@@ -88,8 +89,25 @@ function overlayProtection(event) {
 }
 
 function closeOverlayBoard() {
+  toggleDiv()
   let closeOverlayBoard = document.getElementById("open_overlay_board")
   closeOverlayBoard.classList.add("d-none")
+}
+
+function toggleDiv() {
+  const div = document.getElementById("add_task_board");
+
+  if (div.classList.contains("d-none")) {
+    div.classList.remove("d-none", "slide-out");
+    div.classList.add("slide-in");
+  } else {
+    div.classList.remove("slide-in");
+    div.classList.add("slide-out");
+    div.addEventListener("animationend", function handleAnimationEnd() {
+      div.classList.add("d-none");
+      div.removeEventListener("animationend", handleAnimationEnd);
+    });
+  }
 }
 
 function startDragging(id) {
@@ -140,4 +158,8 @@ async function handleSearch(searchTerm) {
     renderSubtasks(taskRef, indexTask);
   });
   findEmptyColumn();
+}
+
+function openTaskBoard() {
+  let openTaskContentRef = document.getElementById();
 }
