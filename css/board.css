@@ -332,11 +332,11 @@
 }
   
 .slide-in {
-  animation: slideInRight 0.5s forwards;
+  animation: slideInRight 0.2s forwards;
 }
 
 .slide-out {
-  animation: slideOutRight 0.5s forwards;
+  animation: slideOutRight 0.2s forwards;
 }
 
 .task-added-board {

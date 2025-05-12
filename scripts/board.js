@@ -80,7 +80,7 @@ function renderInitials(taskRef, indexTask) {
 function addTaskBoard(title){
   let openOverlayBoard = document.getElementById("open_overlay_board")
   openOverlayBoard.classList.remove("d-none")
-  toggleDiv()
+  showDiv('add_task_board')
   document.getElementById("add_task_board").innerHTML = getAddTaskTemplate(title);
 }
 
@@ -89,25 +89,27 @@ function overlayProtection(event) {
 }
 
 function closeOverlayBoard() {
-  toggleDiv()
-  let closeOverlayBoard = document.getElementById("open_overlay_board")
-  closeOverlayBoard.classList.add("d-none")
+  hideDiv('add_task_board')
+  setTimeout(() => {
+    let closeOverlayBoard = document.getElementById("open_overlay_board");
+    closeOverlayBoard.classList.add("d-none");
+  }, 200);
+  
 }
 
-function toggleDiv() {
-  const div = document.getElementById("add_task_board");
+function showDiv(divID) {
+  const div = document.getElementById(divID);
+  div.classList.remove("d-none", "slide-out");
+  div.classList.add("slide-in");
+}
 
-  if (div.classList.contains("d-none")) {
-    div.classList.remove("d-none", "slide-out");
-    div.classList.add("slide-in");
-  } else {
-    div.classList.remove("slide-in");
-    div.classList.add("slide-out");
-    div.addEventListener("animationend", function handleAnimationEnd() {
-      div.classList.add("d-none");
-      div.removeEventListener("animationend", handleAnimationEnd);
-    });
-  }
+function hideDiv(divID) {
+  const div = document.getElementById(divID);
+  div.classList.remove("slide-in");
+  div.classList.add("slide-out");
+  setTimeout(() => {
+    div.classList.remove("d-none");
+  }, 200);
 }
 
 function startDragging(id) {
