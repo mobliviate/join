@@ -2,7 +2,7 @@
   --logo-anim-start-pos-top: 50%;
   --logo-anim-start-pos-left: 50%;
   --logo-anim-start-width: 274px;
-  --logo-anim-strat-transform: translate(-50%, -50%);
+  --logo-anim-start-transform: translate(-50%, -50%);
   --logo-anim-bg-image: url('../assets/png/join_logo.png');
   --logo-position: 80px;
   --logo-width: 100px;
@@ -26,7 +26,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: 10;
   pointer-events: none;
   background-color: var(--animation-bg-color);
@@ -40,7 +40,7 @@
   position: absolute;
   top: var(--logo-anim-start-pos-top);
   left: var(--logo-anim-start-pos-left);
-  transform: var(--logo-anim-strat-transform);
+  transform: var(--logo-anim-start-transform);
   width: var(--logo-anim-start-width);
   aspect-ratio: var(--logo-aspect-ratio);
   background-image: var(--logo-anim-bg-image);
@@ -96,7 +96,7 @@
   0% {
     top: var(--logo-anim-start-pos-top);
     left: var(--logo-anim-start-pos-left);
-    transform: var(--logo-anim-strat-transform);
+    transform: var(--logo-anim-start-transform);
     width: var(--logo-anim-start-width);
     background-image: var(--logo-anim-bg-image);
   }
@@ -341,6 +341,8 @@ button {
 @media (max-width: 750px) {
   :root {
     --logo-anim-start-width: 200px;
+    --animation-bg-color: var(--primary-color);
+    --logo-anim-bg-image: url('../assets/png/join_logo_dark.png');
   }
 
   .header-login {
@@ -388,9 +390,10 @@ button {
 
 @media (max-width: 430px) {
   :root {
+    /* --logo-anim-start-pos-top: 30%; */
     --logo-anim-start-width: 100px;
-    --animation-bg-color: var(--primary-color);
-    --logo-anim-bg-image: url('../assets/png/join_logo_dark.png');
+    /* --animation-bg-color: var(--primary-color);
+    --logo-anim-bg-image: url('../assets/png/join_logo_dark.png'); */
   }
 
   .p-top-bottom-160 {
@@ -447,8 +450,8 @@ button {
   }
 }
 
-@media (max-width: 350px) {
+/* @media (max-width: 350px) {
   :root {
     --logo-anim-start-pos-top: 30%;
   }
-}
+} */
