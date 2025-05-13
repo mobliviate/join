@@ -1,0 +1,157 @@
+@media (max-width: 1300px) {
+    .add-task-page {
+        margin: 110px 24px; 
+    }
+
+}
+
+
+@media (max-width: 1200px) {
+
+    .form-column {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .input-default,
+    .textarea-default,
+    .multiselect,
+    .input-custom-subtask {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .prio-btn {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .prio-btn.selected {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .verticalline {
+    margin: 0 16px;
+    }
+
+    .form-columns {
+        gap: 5px;
+    }
+}
+
+@media (max-width: 950px) {
+    .add-task-page {
+        margin: 80px 20px 80px 20px;
+    }
+
+    .page-title {
+        font-size: 36px;
+    }
+
+    .form-columns {
+        flex-direction: column;
+        height: auto;
+        gap: 24px;
+    }
+
+    .verticalline {
+        display: none;
+    }
+
+    .form-column {
+        width: 100%;
+    }
+
+    .form-actions-add-task {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .form-action-buttons {
+        width: 100%;
+        flex-direction: column-reverse;
+        gap: 10px;
+    }
+
+    .button-clear,
+    .button-create-task {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .add-task-page {
+        margin: 80px 16px;
+    }
+
+    .page-title {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .form-group label,
+    .input-default,
+    .textarea-default,
+    .multiselect,
+    .input-custom-subtask {
+        font-size: 16px;
+    }
+
+    .priority-options {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .prio-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    .add-task-page {
+        margin: 60px 12px;
+    }
+
+    .page-title {
+        font-size: 28px;
+    }
+
+    .form-action-buttons,
+    .form-actions-add-task {
+        gap: 8px;
+    }
+
+    .button-clear,
+    .button-create-task {
+        font-size: 16px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 320px) {
+    .add-task-page {
+        margin: 40px 8px;
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .prio-btn,
+    .button-clear,
+    .button-create-task {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-actions-add-task {
+        gap: 6px;
+    }
+}
