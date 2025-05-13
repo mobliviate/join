@@ -40,6 +40,8 @@ html, body {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+    scrollbar-width: none;
+
 }
 
 .verticalline {
@@ -317,7 +319,6 @@ html, body {
 }
 
 .assigned-contacts {
-    margin-top: 8px;
     display: flex;
     gap: 8px;
 
