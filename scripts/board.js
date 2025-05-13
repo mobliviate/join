@@ -20,54 +20,54 @@ async function renderTasks() {
     let taskContentRef = document.getElementById(`${taskRef.status}`);
     taskContentRef.innerHTML += getRenderTask(taskRef, indexTask, background,);
     renderSubtasks(taskRef, indexTask);
-    renderInitials(taskRef,indexTask);
+    renderInitials(taskRef, indexTask);
   }
   findEmptyColumn();
 }
 
 function clearColumns() {
-  let columnConntetRef = document.getElementById("todo")
-  columnConntetRef.innerHTML = ""
-  columnConntetRef = document.getElementById("progress")
-  columnConntetRef.innerHTML = ""
-  columnConntetRef = document.getElementById("feedback")
-  columnConntetRef.innerHTML = ""
-  columnConntetRef = document.getElementById("done")
-  columnConntetRef.innerHTML = ""
+  let columnConntetRef = document.getElementById("todo");
+  columnConntetRef.innerHTML = "";
+  columnConntetRef = document.getElementById("progress");
+  columnConntetRef.innerHTML = "";
+  columnConntetRef = document.getElementById("feedback");
+  columnConntetRef.innerHTML = "";
+  columnConntetRef = document.getElementById("done");
+  columnConntetRef.innerHTML = "";
 }
 
 function findEmptyColumn() {
-  const columnIds = {todo: "To do",progress: "In Progress",feedback: "Await feedback",done: "Done"};
+  const columnIds = { todo: "To do", progress: "In Progress", feedback: "Await feedback", done: "Done" };
   Object.keys(columnIds).forEach(id => {
     const column = document.getElementById(id);
     if (column && column.children.length === 0) {
-      renderEmptyColumn(id, columnIds[id] );
+      renderEmptyColumn(id, columnIds[id]);
     }
   });
 }
 
 function renderEmptyColumn(emptyColumn, text) {
-  let emptyConntetRef = document.getElementById(emptyColumn)
+  let emptyConntetRef = document.getElementById(emptyColumn);
   if (emptyConntetRef) {
-    emptyConntetRef.innerHTML = ""
+    emptyConntetRef.innerHTML = "";
     emptyConntetRef.innerHTML = getRenderEmpty(text);
   }
 }
 
 function renderSubtasks(taskRef, indexTask) {
   if (!taskRef.subtasks) {
-    return    
+    return;
   }
   let subTasks = taskRef.subtasks.length;
   let subtaskDone = taskRef.subtasks.filter(subtask => subtask.status === true).length;
-  let widthProgress = (128/subTasks)*subtaskDone;
+  let widthProgress = (128 / subTasks) * subtaskDone;
   let progressbarContactRef = document.getElementById(`progress_subtask_${indexTask}`);
   progressbarContactRef.innerHTML = getRenderProgressbar(widthProgress, subTasks, subtaskDone);
 }
 
 function renderInitials(taskRef, indexTask) {
   if (!taskRef.assignedContacts) {
-    return
+    return;
   }
   let initialContactRef = document.getElementById(`initials_${indexTask}`);
   let contactRef = taskRef.assignedContacts;
@@ -77,21 +77,21 @@ function renderInitials(taskRef, indexTask) {
   }
 }
 
-function addTaskBoard(title){
-  let openOverlayBoard = document.getElementById("open_overlay_board")
-  openOverlayBoard.classList.remove("d-none")
-  toggleDiv()
+function addTaskBoard(title) {
+  let openOverlayBoard = document.getElementById("open_overlay_board");
+  openOverlayBoard.classList.remove("d-none");
+  toggleDiv();
   document.getElementById("add_task_board").innerHTML = getAddTaskTemplate(title);
 }
 
 function overlayProtection(event) {
-  event.stopPropagation()
+  event.stopPropagation();
 }
 
 function closeOverlayBoard() {
-  toggleDiv()
-  let closeOverlayBoard = document.getElementById("open_overlay_board")
-  closeOverlayBoard.classList.add("d-none")
+  toggleDiv();
+  let closeOverlayBoard = document.getElementById("open_overlay_board");
+  closeOverlayBoard.classList.add("d-none");
 }
 
 function toggleDiv() {
@@ -119,18 +119,18 @@ function allowDrop(ev) {
 }
 
 async function moveTo(category) {
-  let taskUrlRef = `https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${currentDraggedElement}/status.json`
+  let taskUrlRef = `https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${currentDraggedElement}/status.json`;
   let updatedTask = await fetch(taskUrlRef, {
     method: "PUT",
     headers: {
-        "Content-Type": "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(category),
   });
   if (updatedTask.ok) {
     renderTasks();
   }
-  removeHighlight(`${category}`)
+  removeHighlight(`${category}`);
 }
 
 function highlight(id) {
