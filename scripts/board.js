@@ -165,3 +165,64 @@ async function handleSearch(searchTerm) {
 function openTaskBoard() {
   let openTaskContentRef = document.getElementById();
 }
+
+// added from Alex
+function openMoveToOverlay(indexTask, status) {
+  let moveToBtnRef = document.getElementById(`move_to_btn_${indexTask}`);
+
+  let existingOverlay = document.querySelector('.move-task-cnt');
+  if (existingOverlay) {
+    existingOverlay.remove();
+  }
+  const overlay = document.createElement('div');
+  overlay.classList.add('move-task-cnt');
+  overlay.innerHTML = getMoveTaskOverlayTemplate();
+  const rect = moveToBtnRef.getBoundingClientRect();
+  overlay.style.top = `${rect.bottom + window.scrollY}px`;
+  overlay.style.left = `${rect.left + window.scrollX}px`;
+
+  document.body.appendChild(overlay);
+  hideMoveToOverlayElements(status);
+  enableOverlayCloseOnOutsideClickAndScroll();
+}
+
+function hideMoveToOverlayElements(status) {
+  const hideMap = {
+    todo: ["move_to_to_do", "move_to_feedback", "move_to_done"],
+    progress: ["move_to_progress", "move_to_done"],
+    feedback: ["move_to_to_do", "move_to_feedback"],
+    done: ["move_to_to_do", "move_to_progress", "move_to_done"],
+  };
+
+  (hideMap[status] || []).forEach(id =>
+    document.getElementById(id)?.classList.add("d-none")
+  );
+
+  const imgSelector = { todo: "#move_to_progress img", progress: "#move_to_feedback img" }[status];
+  if (imgSelector) {
+    const img = document.querySelector(imgSelector);
+    if (img) img.src = "../assets/svg/move_to_arrow_downward.svg";
+  }
+}
+
+function enableOverlayCloseOnOutsideClickAndScroll() {
+  const overlay = document.querySelector('.move-task-cnt');
+  const scrollContainer = document.getElementById('main');
+  function closeMoveToOverlay() {
+    if (overlay) {
+      overlay.remove();
+      document.removeEventListener('click', outsideClickListener);
+      scrollContainer.removeEventListener('scroll', scrollListener);
+    }
+  }
+  function outsideClickListener(event) {
+    if (overlay && !overlay.contains(event.target)) {
+      closeMoveToOverlay();
+    }
+  }
+  function scrollListener() {
+    closeMoveToOverlay();
+  }
+  document.addEventListener('click', outsideClickListener);
+  scrollContainer.addEventListener('scroll', scrollListener);
+}
