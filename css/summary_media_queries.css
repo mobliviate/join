@@ -18,6 +18,56 @@
 }
 
 @media (max-width: 900px) {
+    .summary_headline {
+        flex-direction: column;
+        align-items: start;
+        gap: 16px;
+    }
     
+    .summary_headline_line {
+        display: none;
+    }
 
+    .summary_headline_line_mobile {
+        display: flex;
+    }
+
+    .summary_headline_title {
+        font-size: 47px;
+    }
+
+    .summary_headline span {
+        font-size: 20px;
+    }
+
+    .summary_button_width_264 {
+        width: 186px;
+    }
+
+    .summary_button_width_560 {
+        width: 396px;
+    }
+
+    .summary_button_width_168 {
+        width: 116px;
+    }
+
+    .gap_16 {
+        gap: 10px;
+    }
+    
+    .summary_image_wrapper {
+        height: 40px;
+        width: 40px;
+    }
+
+    .summary_image_wrapper svg {
+        height: 40px;
+        width: 40px;
+    }
+
+    .summary_urgent_left img {
+        height: 40px;
+        width: 40px;
+    }
 }

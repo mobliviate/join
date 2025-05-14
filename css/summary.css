@@ -23,11 +23,10 @@
 }
 
 .summary_headline_line_mobile {
-  height: 90px;
-  width: 4px;
+  height: 4px;
+  width: 90px;
   background-color: var(--light-blue);
   border-radius: 3px;
-  transform: rotate(90deg);
   display: none;
 }
 
@@ -58,7 +57,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 28px;
 }
 
 .summary_button_width_264 {
