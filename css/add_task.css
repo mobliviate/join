@@ -458,7 +458,7 @@ html, body {
 .form-actions-add-task {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .required-text {
