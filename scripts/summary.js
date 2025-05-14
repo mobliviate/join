@@ -19,17 +19,11 @@ const urgentDates = [];
 const DATABASEURL =
   "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
 
-// let users = [];
-// let tasks = [];
 
 async function initSummary() {
     loadHeaderBodySidebar();
-
-    await loadUsersAndSetUserName();
     await loadTasksandSetTasksStatus();
-
     document.getElementById("main").innerHTML = getSummaryTemplate();
-
     userGreetAndChangeUserName();
 }
 
@@ -37,21 +31,6 @@ function loadHeaderBodySidebar() {
     loadBody();
     loadHeader();
     highlightActiveSidebarLink();
-}
-
-
-async function loadUsersAndSetUserName() {
-  const users = await getData(DATABASEURL, "users.json");
-  getNameFromUserId(users);
-}
-
-
-function getNameFromUserId(users) {
-  if (summaryUser.id > -1) {
-    summaryUser.name = users[summaryUser.id].name;
-  } else {
-    summaryUser.name = "Guest";
-  }
 }
 
 
