@@ -1,7 +1,6 @@
 let categoryDropdownOpen = false;
 let assignDropdownOpen = false;
 let selectedContactIds = [];
-let editingSubtaskItem = null;
 const BASEURL = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app"
 
 function initAddTask() {
@@ -176,8 +175,6 @@ function subtaskInputIcon() {
     }
 }
 
-
-
 function checkFormValidity() {
     const titleInput = document.getElementById("title");
     const dueDateInput = document.getElementById("due-date");
@@ -195,63 +192,49 @@ function checkFormValidity() {
     }
 }
 
+function getAssignedContacts() {
+    return Array.from(document.querySelectorAll('.multiselect-option-contact.selected')).map(c => ({
+        id: c.dataset.id,
+        name: c.querySelector('.circle-and-name div:nth-child(2)').innerText.trim(),
+        initials: c.querySelector('.circle').innerText.trim()
+    }));
+}
+
 function collectNewTaskData(status) {
     const title = document.getElementById('title').value.trim();
     const description = document.getElementById('description').value.trim();
     const dueDate = document.getElementById('due-date').value.trim();
-    const priorityButton = document.querySelector('.prio-btn.selected');
-    const priority = priorityButton ? priorityButton.getAttribute('data-prio') : '';
+    const priority = document.querySelector('.prio-btn.selected')?.dataset.prio || '';
     const category = document.getElementById('category-selected').innerText.trim();
 
-    const assignedContacts = Array.from(document.querySelectorAll('.multiselect-option-contact.selected')).map(contact => {
-        const id = contact.dataset.id;
-        const name = contact.querySelector('.circle-and-name div:nth-child(2)').innerText.trim();
-        const initials = contact.querySelector('.circle').innerText.trim();
-        return { id, name, initials };
-    });
-
-    const subtaskElements = document.querySelectorAll('.subtask-item .subtask-text');
-    const subtasks = Array.from(subtaskElements).map(subtask => {
-        return {
-            text: subtask.innerText.replace(/^•\s*/, ''),
-            status: false
-        };
-    });
-
-    const task = {
+    return {
         title,
         description,
         dueDate,
         priority,
-        assignedContacts,
+        assignedContacts: getAssignedContacts(),
         category,
-        subtasks,
+        subtasks: getSubtasks(),
         createdAt: Date.now(),
         status
     };
-
-    return task;
 }
 
 async function saveNewTaskToFirebase(taskData) {
     const taskURL = BASEURL + '/tasks.json';
-
     try {
         const getResponse = await fetch(taskURL);
         const existingTasks = await getResponse.json() || [];
-
         const taskArray = Array.isArray(existingTasks)
             ? existingTasks
             : Object.values(existingTasks);
 
         taskArray.push(taskData);
-
         await fetch(taskURL, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(taskArray)
         });
-        console.log('All tasks successfully updated');
     } catch (error) {
         console.error('Error saving task:', error);
     }

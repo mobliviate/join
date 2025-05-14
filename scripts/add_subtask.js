@@ -85,3 +85,10 @@ function saveEditedSubtask() {
 
     cancelEditSubtask();
 }
+
+function getSubtasks() {
+    return Array.from(document.querySelectorAll('.subtask-item .subtask-text')).map(s => ({
+        text: s.innerText.replace(/^•\s*/, ''),
+        status: false
+    }));
+}
