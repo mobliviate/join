@@ -1,3 +1,9 @@
+/**
+ * Returns the HTML template string for the Add Task view.
+ *
+ * @param {string} status - The initial task status to be passed into the "Create Task" button logic.
+ * @returns {string} - HTML string to be injected into the DOM.
+ */
 function getAddTaskTemplate(status) {
     return `
 
@@ -158,6 +164,13 @@ function getAddTaskTemplate(status) {
 `;
 }
 
+/**
+ * Returns the HTML string for one contact option element for the assignment multiselect.
+ *
+ * @param {string} id - Unique ID of the contact from Firebase.
+ * @param {{ name: string }} contact - Contact object containing at least the `name` property.
+ * @returns {string} - HTML string representing a contact option in the dropdown.
+ */
 function createContactOptionHTML(id, contact) {
     const initials = getInitials(contact.name);
     const hue = getHueFromString(contact.name);
