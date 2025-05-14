@@ -309,6 +309,16 @@
     border-radius: 30px;
 }
 
+.open-task-overlay {
+    width: 640px;
+    height: auto;
+    background-color: var(--white);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 @keyframes slideInRight {
   from {
     transform: translateX(100%);

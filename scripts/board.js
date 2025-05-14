@@ -89,12 +89,25 @@ function overlayProtection(event) {
 }
 
 function closeOverlayBoard() {
-  hideDiv('add_task_board');
-  setTimeout(() => {
-    let closeOverlayBoard = document.getElementById("open_overlay_board");
-    closeOverlayBoard.classList.add("d-none");
-  }, 200);
+  let closeOverlayBoard = document.getElementById("open_overlay_board");
+  let visibleDiv = closeOverlayBoard.querySelector(":not(.d-none)");
+  let divID = visibleDiv.id
+  hideDiv(divID)
+  function handleEnd() {
+  closeOverlayBoard.classList.add("d-none");
+  closeOverlayBoard.removeEventListener("animationend", handleEnd);
+  }
+  closeOverlayBoard.addEventListener("animationend", handleEnd);
+}
 
+function closeOverlayButtonBoard(divID) {
+  let closeOverlayBoard = document.getElementById("open_overlay_board");
+  hideDiv(divID)
+  function handleEnd() {
+  closeOverlayBoard.classList.add("d-none");
+  closeOverlayBoard.removeEventListener("animationend", handleEnd);
+  }
+  closeOverlayBoard.addEventListener("animationend", handleEnd);
 }
 
 function showDiv(divID) {
@@ -107,9 +120,11 @@ function hideDiv(divID) {
   const div = document.getElementById(divID);
   div.classList.remove("slide-in");
   div.classList.add("slide-out");
-  setTimeout(() => {
-    div.classList.remove("d-none");
-  }, 200);
+  function handleEnd() {
+    div.classList.add("d-none");
+    div.removeEventListener("animationend", handleEnd);
+  }
+  div.addEventListener("animationend", handleEnd);
 }
 
 function startDragging(id) {
@@ -162,8 +177,11 @@ async function handleSearch(searchTerm) {
   findEmptyColumn();
 }
 
-function openTaskBoard() {
-  let openTaskContentRef = document.getElementById();
+function openTaskBoard(task, color) {
+  let openOverlayBoard = document.getElementById("open_overlay_board")
+  openOverlayBoard.classList.remove("d-none");
+  showDiv('open_task_board');
+  document.getElementById("open_task_board").innerHTML = getOpenTaskBoard(task, color);
 }
 
 // added from Alex
