@@ -7,24 +7,25 @@
 }
 
 .header-board {
-    height: 232px;
-    width: 1208px;
+    /* height: 232px; */
+    /* width: 1208px; */
     display: flex;
     flex-direction: column;
-    padding: 0;
-    margin-bottom: 8px;
+    /* padding: 0; */
+    /* margin-bottom: 8px; */
+    padding: 80px 64px 0 64px;
 }
 
 .board-search {
-    width: 1056px;
-    height: 152.5px;
+    /* width: 1056px; */
+    /* height: 152.5px; */
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding-top: 79.5px;
-    padding-left: 64px;
+    /* padding-top: 79.5px; */
+    /* padding-left: 64px; */
 }
 
 .board-search div h1 {
@@ -43,7 +44,6 @@
     height: 48px;
     display: flex;
     flex-direction: row;
-
 }
 
 .search-board {
@@ -76,7 +76,6 @@
     width: 0;
     border: solid 1px var(--style);
     padding-left: -48px;
-
 }
 
 .button-search-board {
@@ -116,22 +115,34 @@
 }
 
 .tasks-board {
-    width: 1208px;
-    height: 72px;
+    /* width: 1208px; */
+    /* height: 72px; */
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: space-between;
-    padding-top: 48px;
-    padding-left: 64px;
-    padding-right: 64px;
+    /* padding-top: 48px; */
+    /* padding-left: 64px; */
+    /* padding-right: 64px; */
+    padding: 48px 64px;
+    gap: 26px;
 }
 
 .task-board {
-    width: 244px;
-    height: 24px;
+    /* width: 244px; */
+    /* height: 24px; */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: space-between; */
+}
+
+/* added from Alex */
+.board-task-header {
+    display: flex;
     justify-content: space-between;
+    align-items: center;
+    /* width: 244px; */
+    padding: 0px 4px 16px 4px;
 }
 
 .task-board h3 {
@@ -367,6 +378,67 @@
 }
 
 /* added from Alex */
+.board-header-mobile {
+    padding-bottom: 40px;
+}
+
+.search-addtask-mobile {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.search-wrapper-board-mobile {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+}
+
+.search-board-mobile {
+    width: 100%;
+    border-radius: 10px;
+    border: solid 1px var(--icons);
+    padding: 12px 16px;
+    padding-right: 70px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--black);
+    outline: none;
+}
+
+.search-btn-cnt-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    position: absolute;
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+}
+
+.separetor-board-mobile {
+    /* position: relative; */
+    /* right: 48px; */
+    /* top: 8px; */
+    /* height: 32px; */
+    width: 1px;
+    height: 32px;
+    background-color: var(--icons);
+    /* padding-left: -48px; */
+}
+
+.button-search-board-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 .move-task-btn {
     display: flex;
     align-items: center;
@@ -413,5 +485,74 @@
         font-family: 'Mulish', sans-serif;
         color: var(--white);
         white-space: nowrap;
+    }
+}
+
+.board-mobile-hide {
+    display: flex;
+}
+
+.board-mobile-flex {
+    display: none;
+}
+
+
+@media (max-width: 1400px) {
+    .tasks-board {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 1075px) {
+    .board-mobile-hide {
+        display: none;
+    }
+
+    .board-mobile-flex {
+        display: flex;
+    }
+
+    .board-search {
+        flex-direction: column;
+    }
+
+    .board-header-mobile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .board-search div h1 {
+        font-size: 47px;
+    }
+
+    .add-task-board {
+        width: fit-content;
+        height: fit-content;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 750px) {
+    .columns {
+        flex-direction: row;
+        width: calc(100vw - 128px);
+        overflow-x: scroll;
+        scrollbar-width: none;
+    }
+}
+
+@media (max-width: 475px) {
+    .header-board {
+        padding: 48px 16px;
+    }
+
+    .tasks-board {
+        padding: 24px 16px;
+    }
+
+    .columns {
+        width: calc(100vw - 32px);
     }
 }
