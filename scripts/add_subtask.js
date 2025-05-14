@@ -1,3 +1,8 @@
+let editingSubtaskItem = null;
+
+/**
+ * Toggles visibility of subtask icons based on input field content.
+ */
 function subtaskInput() {
     const input = document.getElementById('subtask-input');
     const show = input.value.trim() !== '';
@@ -7,6 +12,9 @@ function subtaskInput() {
     document.getElementById('save-subtask-icon').classList.toggle('d-none', !show);
 }
 
+/**
+ * Creates a new subtask DOM element and adds it to the subtask list.
+ */
 function subtaskSave() {
     const input = document.getElementById('subtask-input');
     const text = input.value.trim();
@@ -27,6 +35,9 @@ function subtaskSave() {
     subtaskDelete();
 }
 
+/**
+ * Clears the subtask input field and hides action icons.
+ */
 function subtaskDelete() {
     const input = document.getElementById('subtask-input');
     const addIcon = document.getElementById('add-subtask-icon');
@@ -41,6 +52,11 @@ function subtaskDelete() {
     saveIcon.classList.add('d-none');
 }
 
+/**
+ * Deletes the subtask element from the list.
+ * 
+ * @param {HTMLElement} iconElement - The clicked delete icon inside a subtask.
+ */
 function deleteSubtask(iconElement) {
     const subtaskItem = iconElement.closest('.subtask-item');
     if (subtaskItem) {
@@ -48,6 +64,11 @@ function deleteSubtask(iconElement) {
     }
 }
 
+/**
+ * Activates edit mode for the selected subtask item.
+ * 
+ * @param {HTMLElement} icon - The edit icon that was clicked.
+ */
 function editSubtask(icon) {
     const item = icon.closest('.subtask-item');
     const input = document.getElementById('subtask-edit');
@@ -60,6 +81,9 @@ function editSubtask(icon) {
     input.focus();
 }
 
+/**
+ * Cancels subtask edit mode and restores original state.
+ */
 function cancelEditSubtask() {
     document.getElementById('subtask-edit').classList.add('d-none');
     document.getElementById('edit-delete-icon').classList.add('d-none');
@@ -69,6 +93,9 @@ function cancelEditSubtask() {
     editingSubtaskItem = null;
 }
 
+/**
+ * Saves changes to the currently edited subtask.
+ */
 function saveEditedSubtask() {
     const subtaskList = document.querySelector(".subtask-list");
     const editInput = document.getElementById('subtask-edit');
@@ -86,6 +113,11 @@ function saveEditedSubtask() {
     cancelEditSubtask();
 }
 
+/**
+ * Returns an array of all current subtasks from the DOM.
+ * 
+ * @returns {Array<{text: string, status: boolean}>} Array of subtask objects.
+ */
 function getSubtasks() {
     return Array.from(document.querySelectorAll('.subtask-item .subtask-text')).map(s => ({
         text: s.innerText.replace(/^•\s*/, ''),
