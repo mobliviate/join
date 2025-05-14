@@ -1,4 +1,4 @@
-@media (max-width: 1164px) {
+@media (max-width: 1250px) {
     .summary_content_right {
         display: none;
     }
@@ -10,4 +10,8 @@
     .summary_headline {
         justify-content: center;
     }
+}
+
+@media (max-width: 1050px) {
+    
 }

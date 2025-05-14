@@ -7,6 +7,7 @@
   align-items: center;
   gap: 32px;
   padding-bottom: 32px;
+  white-space: nowrap;
 }
 
 .summary_headline_title {
@@ -171,7 +172,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-}
+}         
 
 .summary_content_right_greeting {
   font-weight: 500;
