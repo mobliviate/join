@@ -122,6 +122,7 @@ function getSummaryTemplate() {
                         <div class="summary_headline_title"> Join 360 </div>
                         <div class="summary_headline_line"></div>
                         <span> Key Metrics at a Glance </span>
+                        <div class="summary_headline_line_mobile"></div>
                     </div>
                 </div>
 

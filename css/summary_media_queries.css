@@ -1,4 +1,13 @@
 @media (max-width: 1250px) {
+
+    .summary_container {
+        height: calc(100% - 60px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
+
     .summary_content_right {
         display: none;
     }
@@ -6,12 +15,9 @@
     .summary_content {
         justify-content: center;
     }
-
-    .summary_headline {
-        justify-content: center;
-    }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 900px) {
     
+
 }

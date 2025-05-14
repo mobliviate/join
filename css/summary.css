@@ -22,6 +22,15 @@
   border-radius: 3px;
 }
 
+.summary_headline_line_mobile {
+  height: 90px;
+  width: 4px;
+  background-color: var(--light-blue);
+  border-radius: 3px;
+  transform: rotate(90deg);
+  display: none;
+}
+
 .summary_headline span {
   font-weight: 400;
   font-size: 27px;
