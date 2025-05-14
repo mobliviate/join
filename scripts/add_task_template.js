@@ -1,5 +1,5 @@
 function getAddTaskTemplate(status) {
-return `
+    return `
 
 <div class="add-task-page">
     <h1 class="page-title">Add Task</h1>
@@ -151,10 +151,31 @@ return `
         </div>
     </div>
 </div>
-
 <div id="task-overlay" class="task-overlay">
     <span class="task-overlay-text">Task added to board</span>
     <img src="./assets/svg/board-icon.svg" alt="Board Icon" class="task-overlay-icon" />
 </div>
 `;
+}
+
+function createContactOptionHTML(id, contact) {
+    const initials = getInitials(contact.name);
+    const hue = getHueFromString(contact.name);
+    const isSelected = selectedContactIds.includes(id);
+
+    return `
+<div class="multiselect-option-contact ${isSelected ? 'selected' : ''}"
+    onclick="event.stopPropagation(); toggleSelectedContact(this)" data-id="${id}">
+    <div class="name-and-img">
+        <div class="circle-and-name">
+            <div class="circle" style="background-color: hsl(${hue}, 70%, 50%)">
+                ${initials}
+            </div>
+            <div>${contact.name}</div>
+        </div>
+        <div>
+            <img src="./assets/svg/${isSelected ? 'check_box_checked_white' : 'check_box'}.svg" alt="Checkbox">
+        </div>
+    </div>
+</div>`;
 }
