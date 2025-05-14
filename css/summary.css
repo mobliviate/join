@@ -166,21 +166,17 @@
   font-size: 16px;
 }
 
-.summary_content_right {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .summary_content_right_wrapper {
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  padding: 16px 32px;
+  align-items: center;
 }
 
 .summary_content_right_greeting {
   font-weight: 500;
   font-size: 47px;
+  padding-left: 80px;
 }
 
 .summary_content_right_user {
