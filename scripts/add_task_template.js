@@ -128,28 +128,33 @@ return `
                 </div>
 
             </div>
-            <div id="form-actions-add-task" class="form-actions-add-task">
-                <div class="required-text">
-                    <span class="required">*</span>
-                    <span class="text">This field is required</span>
-                </div>
-                <div class="form-action-buttons">
-                    <button type="button" class="button-clear" onclick="clearForm()"> Clear
-                        <div class="button-clear-img">
-                            <img class="button-clear-standard-img" src="assets/svg/add_task_cancel.svg" alt="Clear">
-                            <img class="button-clear-hover-img" src="assets/svg/add_task_cancel_blue.svg" alt="Clear">
-                        </div>
-                    </button>
-                    <button type="button" class="button-create-task" id="create-task-button"
-                        onclick="createTask('${status}')" disabled> Create Task
-                        <img src="assets/svg/add_task_check_white.svg" alt="Check">
-                    </button>
-                </div>
-            </div>
-        </form>
 
+        </form>
+        <div class="required-text">
+            <span class="required">*</span>
+            <span class="text">This field is required</span>
+        </div>
+    </div>
+    <div id="form-actions-add-task" class="form-actions-add-task">
+
+        <div class="form-action-buttons">
+            <button type="button" class="button-clear" onclick="clearForm()"> Clear
+                <div class="button-clear-img">
+                    <img class="button-clear-standard-img" src="assets/svg/add_task_cancel.svg" alt="Clear">
+                    <img class="button-clear-hover-img" src="assets/svg/add_task_cancel_blue.svg" alt="Clear">
+                </div>
+            </button>
+            <button type="button" class="button-create-task" id="create-task-button" onclick="createTask('${status}')"
+                disabled> Create Task
+                <img src="assets/svg/add_task_check_white.svg" alt="Check">
+            </button>
+        </div>
     </div>
 </div>
 
+<div id="task-overlay" class="task-overlay">
+    <span class="task-overlay-text">Task added to board</span>
+    <img src="./assets/svg/board-icon.svg" alt="Board Icon" class="task-overlay-icon" />
+</div>
 `;
 }
