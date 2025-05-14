@@ -201,6 +201,10 @@
     .button-create-task {
         padding: 10px;
     }
+
+    .task-overlay {
+        width: 300px;
+    }
 }
 
 @media (max-width: 320px) {

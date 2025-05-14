@@ -417,8 +417,8 @@ async function createTask(status) {
 
     try {
         await saveNewTaskToFirebase(taskData);
-        // ToDo: Overlay
         clearForm();
+        showTaskOverlay();
     } catch (error) {
         console.error("Error creating task:", error);
     }
@@ -470,4 +470,13 @@ function clearForm() {
     clearAssignedContacts();
     clearSubtasks();
     document.getElementById('create-task-button').disabled = true;
+}
+
+function showTaskOverlay() {
+    const overlay = document.getElementById('task-overlay');
+    overlay.classList.add('show');
+
+    setTimeout(() => {
+        window.location.href = "board.html";
+    }, 700);
 }
