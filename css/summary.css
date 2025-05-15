@@ -135,9 +135,10 @@
 }
 
 .summary_urgent_wrapper {
-  display: flex;
   height: 100%;
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .summary_urgent_left {
@@ -152,9 +153,10 @@
 }
 
 .summary_urgent_line {
-  margin: 33px 0;
+  height: 102px;
   width: 2px;
   background-color: var(--style);
+  border-radius: 2px;
 }
 
 .summary_urgent_text_wrapper {
