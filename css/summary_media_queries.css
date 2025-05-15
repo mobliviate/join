@@ -18,6 +18,10 @@
 }
 
 @media (max-width: 900px) {
+    .summary_wrapper {
+        margin: 4px;
+    }
+
     .summary_headline {
         flex-direction: column;
         align-items: start;
@@ -40,6 +44,10 @@
         font-size: 20px;
     }
 
+    .summary_buttons {
+        height: 110px;
+    }
+
     .summary_button_width_264 {
         width: 186px;
     }
@@ -55,7 +63,15 @@
     .gap_16 {
         gap: 10px;
     }
+
+    .padding_28_48 {
+        padding: 14px 24px;
+    }
     
+    .summary_urgent_left {
+        justify-content: center;
+    }
+
     .summary_image_wrapper {
         height: 40px;
         width: 40px;
@@ -70,4 +86,25 @@
         height: 40px;
         width: 40px;
     }
+
+    .summary_amount_font_weight_and_size {
+        font-size: 47px;
+    }
+
+    .summary_text_font_weight_and_size {
+        font-size: 14px;
+    }
+
+    .summary_urgent_text_date {
+        font-size: 16px;
+    }
+
+    .summary_urgent_text_info {
+        font-size: 14px;
+    }
+
+    .summary_urgent_text_wrapper {
+        gap: 8px
+    }
+
 }
