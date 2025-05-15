@@ -8,7 +8,9 @@ function getAddTaskTemplate(status) {
     return `
 
 <div class="add-task-page">
-    <h1 class="page-title">Add Task</h1>
+    <div class="add-task-hdl">
+        <h1 class="page-title">Add Task</h1>
+    </div>
     <div class="form-scroll-container">
         <form id="task-form" class="task-form">
             <div class="form-columns">

@@ -1,11 +1,13 @@
-html, body {
-    overflow-x: hidden;
+html,
+body {
+    /* overflow-x: hidden; */
     max-width: 100%;
 }
 
 .main {
     background-color: var(--main-bg);
 }
+
 .add-task-page {
     margin: 110px 96px;
 
@@ -48,7 +50,7 @@ html, body {
     width: 1px;
     background-color: #D1D1D1;
     margin: 0 36px;
-    
+
 }
 
 .form-group {
@@ -159,7 +161,7 @@ html, body {
 .input-container input[type="date"]::-webkit-calendar-picker-indicator {
     opacity: 0;
     cursor: pointer;
-  }
+}
 
 .due-date {
     background: url(../assets/svg/add_task_calendar.svg);
@@ -465,6 +467,7 @@ html, body {
     display: flex;
     align-items: flex-end;
 }
+
 .text {
     font-family: "Inter", sans-serif;
     font-size: 16px;
@@ -505,7 +508,7 @@ html, body {
 .button-clear-img {
     display: flex;
     align-items: center;
-    
+
 }
 
 .button-clear:hover img.button-clear-hover-img {
@@ -562,7 +565,8 @@ html, body {
     position: fixed;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, 100vh); /* Start: außerhalb unten */
+    transform: translate(-50%, 100vh);
+    /* Start: außerhalb unten */
     width: 326px;
     height: 74px;
     background-color: #2A3647;
@@ -580,7 +584,8 @@ html, body {
 }
 
 .task-overlay.show {
-    transform: translate(-50%, -50%); /* Ziel: Mitte */
+    transform: translate(-50%, -50%);
+    /* Ziel: Mitte */
     opacity: 1;
     pointer-events: auto;
 }

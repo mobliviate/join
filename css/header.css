@@ -139,7 +139,7 @@
 }
 
 
-@media (max-width: 850px) {
+@media (max-width: 980px) {
   :root {
     --header-padding: 20px 32px;
   }
