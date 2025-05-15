@@ -1,48 +1,51 @@
 /**
- * Firebase configuration for Realtime Database.
+ * Base URL for Realtime Database REST endpoint.
+ * @type {string}
  */
-const firebaseConfig = {
-  databaseURL: "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app",
-};
+const BASEURL =
+  "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app";
 
 /**
  * Initializes the Contacts page layout and data.
+ * @returns {void}
  */
 function initContacts() {
   loadBody();
   loadHeader();
   highlightActiveSidebarLink();
   document.getElementById("main").innerHTML = getContactsSectionTemplate();
-  initializeFirebase();
   fetchAndRenderContacts();
 }
 
 /**
- * Initializes the Firebase app if not already initialized.
- */
-function initializeFirebase() {
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-}
-
-/**
- * Fetches contacts, sorts them, stores globally, and renders them.
+ * Fetch contacts via REST, sort them, store globally,
+ *
  * @async
+ * @returns {Promise<void>}
  */
 async function fetchAndRenderContacts() {
-  const snapshot = await firebase.database().ref("contacts").once("value");
-  const dataObject = snapshot.val() || {};
-  const contactArray = Object.keys(dataObject).map(id => ({
-    id,
-    name: dataObject[id].name,
-    email: dataObject[id].email,
-    phone: dataObject[id].phone,
-    initials: getInitials(dataObject[id].name),
-  }));
-  sortContactsByName(contactArray);
-  window.currentContacts = contactArray;
-  renderContactsList(contactArray);
+  try {
+    const response = await fetch(`${BASEURL}/contacts.json`);
+    const dataObject = (await response.json()) || {};
+    const contactArray = [];
+
+    for (const id in dataObject) {
+      if (!dataObject.hasOwnProperty(id)) continue;
+      const record = dataObject[id];
+      contactArray.push({
+        id: id,
+        name: record.name,
+        email: record.email,
+        phone: record.phone,
+        initials: getInitials(record.name),
+      });
+    }
+    sortContactsByName(contactArray);
+    window.currentContacts = contactArray;
+    renderContactsList(contactArray);
+  } catch (err) {
+    console.error("Failed to load contacts:", err);
+  }
 }
 
 /**
@@ -87,23 +90,44 @@ function generateContactsListHTML(contactArray) {
  * @param {Array<Object>} contactArray
  */
 function attachContactItemListeners(contactArray) {
-  document.querySelectorAll(".contact-item").forEach(item => {
+  document.querySelectorAll(".contact-item").forEach((item) => {
     item.addEventListener("click", () => selectContact(item, contactArray));
   });
 }
 
 /**
- * Selects a contact, highlights it, and shows its details.
- * @param {HTMLElement} itemElement
- * @param {Array<Object>} contactArray
+ * Removes the "active" class from all currently selected contact items
+ * and adds it to the specified item element.
+ *
+ * @param {HTMLElement} itemElement - The contact element that was clicked.
+ */
+function highlightSelectedContact(itemElement) {
+  const activeElements = document.querySelectorAll(".contact-item.active");
+  for (let i = 0; i < activeElements.length; i++) {
+    activeElements[i].classList.remove("active");
+  }
+  itemElement.classList.add("active");
+}
+
+/**
+ * Handles the selection of a contact: highlights it and shows its details.
+ *
+ * @param {HTMLElement} itemElement - The clicked contact element.
+ * @param {Array<Object>} contactArray - The list of contact objects.
  */
 function selectContact(itemElement, contactArray) {
-  document.querySelectorAll(".contact-item.active")
-    .forEach(el => el.classList.remove("active"));
-  itemElement.classList.add("active");
+  highlightSelectedContact(itemElement);
   const selectedId = itemElement.dataset.id;
-  const contact = contactArray.find(c => c.id === selectedId);
-  if (contact) showContactDetail(contact);
+  let contact = null;
+  for (let i = 0; i < contactArray.length; i++) {
+    if (contactArray[i].id === selectedId) {
+      contact = contactArray[i];
+      break;
+    }
+  }
+  if (contact !== null) {
+    showContactDetail(contact);
+  }
 }
 
 /**
@@ -119,19 +143,24 @@ function collectNewContactData() {
 }
 
 /**
- * Saves a new contact to Firebase Realtime Database.
+ * Saves a new contact via REST POST.
  * @param {{name:string,email:string,phone:string}} contactData
  * @async
+ * @returns {Promise<void>}
  */
 async function saveNewContactToFirebase(contactData) {
-  const newRef = firebase.database().ref("contacts").push();
-  await newRef.set(contactData);
+  await fetch(`${BASEURL}/contacts.json`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(contactData),
+  });
 }
 
 /**
  * Handles new contact form submission.
  * @param {Event} event
  * @async
+ * @returns {Promise<void>}
  */
 async function handleCreateContact(event) {
   event.preventDefault();
@@ -143,10 +172,11 @@ async function handleCreateContact(event) {
 }
 
 /**
- * Updates an existing contact in Firebase.
+ * Updates an existing contact via REST PATCH.
  * @param {Event} event
  * @param {string} contactId
  * @async
+ * @returns {Promise<void>}
  */
 async function handleEditContact(event, contactId) {
   event.preventDefault();
@@ -155,16 +185,25 @@ async function handleEditContact(event, contactId) {
     email: document.getElementById("edit-contact-email").value.trim(),
     phone: document.getElementById("edit-contact-phone").value.trim(),
   };
-  await firebase.database().ref(`contacts/${contactId}`).update(updated);
+  await fetch(`${BASEURL}/contacts/${contactId}.json`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(updated),
+  });
   hideEditContactOverlay();
   fetchAndRenderContacts();
   showToast("Contact successfully updated");
 }
 
-/**
- * Shows the Add Contact overlay.
- */
 function showAddContactOverlay() {
+  if (window.innerWidth <= 980) {
+    showAddContactOverlayMobile();
+  } else {
+    showAddContactOverlayDesktop();
+  }
+}
+
+function showAddContactOverlayDesktop() {
   const temp = document.createElement("div");
   temp.innerHTML = getAddContactOverlayTemplate().trim();
   document.body.appendChild(temp.firstElementChild);
@@ -174,23 +213,33 @@ function showAddContactOverlay() {
  * Hides the Add Contact overlay.
  */
 function hideAddContactOverlay() {
-  const o = document.getElementById("add-contact-overlay");
-  if (o) o.remove();
+  const overlay = document.getElementById("add-contact-overlay");
+  if (overlay) overlay.remove();
 }
 
 /**
- * Shows the Edit Contact overlay for a given contact ID,
- * injects the template, and sets the avatar color.
+ * Hides the Add Contact overlay in Mobile view.
+ */
+function hideAddContactOverlayMobile() {
+  const overlay = document.getElementById("add-contact-overlay-mobile");
+  if (overlay) {
+    overlay.remove();
+    document.body.style.overflow = "";
+  }
+}
+
+/**
+ * Shows the Edit Contact overlay for a given contact ID.
  * @param {string} contactId
  */
 function showEditContactOverlay(contactId) {
-  const contact = (window.currentContacts || []).find(c => c.id === contactId);
+  const contact = (window.currentContacts || []).find(
+    (contact) => contact.id === contactId
+  );
   if (!contact) return;
-
   const temp = document.createElement("div");
   temp.innerHTML = getEditContactOverlayTemplate(contact).trim();
   document.body.appendChild(temp.firstElementChild);
-
   const avatarEl = document.getElementById("edit-avatar");
   if (avatarEl) {
     const hue = getHueFromString(contact.name);
@@ -202,17 +251,20 @@ function showEditContactOverlay(contactId) {
  * Hides the Edit Contact overlay.
  */
 function hideEditContactOverlay() {
-  const o = document.getElementById("edit-contact-overlay");
-  if (o) o.remove();
+  const overlay = document.getElementById("edit-contact-overlay");
+  if (overlay) overlay.remove();
 }
 
 /**
- * Deletes a contact by ID and refreshes the list.
+ * Deletes a contact via REST DELETE and refreshes the list.
  * @param {string} contactId
  * @async
+ * @returns {Promise<void>}
  */
 async function deleteContact(contactId) {
-  await firebase.database().ref(`contacts/${contactId}`).remove();
+  await fetch(`${BASEURL}/contacts/${contactId}.json`, {
+    method: "DELETE",
+  });
   fetchAndRenderContacts();
   document.getElementById("contact-detail").innerHTML = "";
 }
@@ -248,7 +300,7 @@ function getAvatarColor(name) {
 }
 
 /**
- * Returns email HTML fragment or empty string.
+ * Returns email HTML fragment or an empty string.
  * @param {string} email
  * @returns {string}
  */

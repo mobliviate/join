@@ -19,9 +19,14 @@ function getContactsSectionTemplate() {
           <h1 class="contacts-title">Contacts</h1>
           <span class="contacts-separator">|</span>
           <span class="contacts-subtitle">Better with a team</span>
+          <div class="bottomDivider"></div>
         </div>
         <div class="contact-detail" id="contact-detail"></div>
+        <button id="edit-contact-btn-mobile" class="btn btn-secondary" onclick="showEditOverlayMobile()"><img src="assets/svg/more_vert.svg" alt="options" />
+      </button>
       </section>
+      <button id="add-contact-btn-mobile" class="btn btn-secondary" onclick="showAddContactOverlayMobile()"><img src="assets/svg/person_add.svg" alt="+" />
+      </button>
     </div>
   `;
 }
@@ -31,12 +36,28 @@ function getContactsSectionTemplate() {
  * @param {{id:string,name:string,email?:string,phone?:string,initials:string}} contact
  */
 function showContactDetail(contact) {
-  const detailContainer = document.getElementById("contact-detail");
-  detailContainer.innerHTML = `
-    <div class="detail-content animate-detail">
-      ${createContactDetailTemplate(contact)}
-    </div>
-  `;
+  if (window.innerWidth <= 1080) {
+    const detail = document.getElementById("contact-detail");
+    detail.innerHTML = createContactDetailTemplate(contact);
+    document.body.classList.add("mobile-detail-open");
+    const header = detail
+      .closest(".contact-container")
+      .querySelector(".contacts-header");
+    header.addEventListener(
+      "click",
+      () => {
+        document.body.classList.remove("mobile-detail-open");
+      },
+      { once: true }
+    );
+  } else {
+    const detail = document.getElementById("contact-detail");
+    detail.innerHTML = `
+      <div class="detail-content animate-detail">
+        ${createContactDetailTemplate(contact)}
+      </div>
+    `;
+  }
 }
 
 /**
@@ -99,8 +120,10 @@ function createContactDetailTemplate(contact) {
  * @returns {string}
  */
 function buildContactHeaderSection(contact) {
-  const avatarHTML = createAvatarTemplate(contact.name, contact.initials)
-    .replace('avatar-circle"', 'avatar-circle large"');
+  const avatarHTML = createAvatarTemplate(
+    contact.name,
+    contact.initials
+  ).replace('avatar-circle"', 'avatar-circle large"');
   return `
     <div class="detail-header">
       ${avatarHTML}
@@ -185,6 +208,53 @@ function getAddContactOverlayTemplate() {
 }
 
 /**
+ * Öffnet das Add-Contact-Overlay im Mobile-Look
+ */
+function showAddContactOverlayMobile() {
+  const overlay = document.createElement("div");
+  overlay.id = "add-contact-overlay-mobile";
+  overlay.className = "overlay-mobile";
+  overlay.innerHTML = `
+    <div class="overlay-mobile-content">
+      <button class="close-btn-mobile" aria-label="Close" onclick="hideAddContactOverlayMobile()">×</button>
+      <div class="mobile-header">
+        <h2>Add contact</h2>
+        <p>Tasks are better with a team!</p>
+        <div class="underline"></div>
+      </div>
+      <div class="mobile-avatar">
+        <img src="assets/svg/person_icon.svg" alt="Avatar placeholder">
+      </div>
+      <form id="add-contact-form-mobile" onsubmit="handleCreateContact(event)">
+        <div class="input-group-mobile">
+          <input type="text" id="new-contact-name" placeholder="Name" required>
+          <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
+        </div>
+        <div class="input-group-mobile">
+          <input type="email" id="new-contact-email" placeholder="Email">
+          <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
+        </div>
+        <div class="input-group-mobile">
+          <input type="tel" id="new-contact-phone" placeholder="Phone">
+          <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
+        </div>
+        <button type="submit" class="btn btn-primary mobile-create-btn">
+          Create contact&nbsp;✓
+        </button>
+      </form>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  document.body.style.overflow = "hidden";
+}
+
+function hideAddContactOverlayMobile() {
+  const overlay = document.getElementById("add-contact-overlay-mobile");
+  if (overlay) overlay.remove();
+  document.body.style.overflow = "";
+}
+
+/**
  * Returns the HTML for the "Edit contact" overlay, populated with contact data.
  * @param {{id:string,name:string,email?:string,phone?:string,initials:string}} contact
  * @returns {string}
@@ -208,17 +278,25 @@ function getEditContactOverlayTemplate(contact) {
               ${contact.initials}
             </div>
           </div>
-          <form id="edit-contact-form" onsubmit="handleEditContact(event, '${contact.id}')">
+          <form id="edit-contact-form" onsubmit="handleEditContact(event, '${
+            contact.id
+          }')">
             <div class="input-group">
-              <input type="text" id="edit-contact-name" placeholder="Name" required value="${contact.name}">
+              <input type="text" id="edit-contact-name" placeholder="Name" required value="${
+                contact.name
+              }">
               <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
             </div>
             <div class="input-group">
-              <input type="email" id="edit-contact-email" placeholder="Email" value="${contact.email || ''}">
+              <input type="email" id="edit-contact-email" placeholder="Email" value="${
+                contact.email || ""
+              }">
               <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
             </div>
             <div class="input-group">
-              <input type="tel" id="edit-contact-phone" placeholder="Phone" value="${contact.phone || ''}">
+              <input type="tel" id="edit-contact-phone" placeholder="Phone" value="${
+                contact.phone || ""
+              }">
               <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
             </div>
             <div class="form-buttons">
@@ -231,4 +309,3 @@ function getEditContactOverlayTemplate(contact) {
     </div>
   `;
 }
-

@@ -1,0 +1,94 @@
+/* Overlay Slide-Down & Fade-In */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(-50px);
+  animation: overlaySlideDown 0.5s ease-out forwards;
+}
+@keyframes overlaySlideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Content Pop-Up with Scale & Rotate */
+.overlay-content {
+  background: var(--white);
+  border-radius: 12px;
+  width: 80%;
+  max-width: 900px;
+  display: flex;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.8) rotate(-2deg);
+  animation: contentPopUp 0.4s ease-in-out 0.2s forwards;
+}
+@keyframes contentPopUp {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) rotate(-2deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.05) rotate(1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+/* Left Column */
+.overlay-left {
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 40px;
+  flex: 0 0 300px;
+}
+.overlay-left h2 {
+  margin-top: 32px;
+  font-size: 32px;
+}
+.overlay-subtitle {
+  margin-top: 16px;
+  font-size: 16px;
+  opacity: 0.8;
+}
+.overlay-left hr {
+  margin: 24px 0;
+  border: 0;
+  height: 2px;
+  background: var(--secondary-color);
+  width: 60px;
+}
+
+/* Right Column */
+.overlay-right {
+  position: relative;
+  padding: 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Close-Button */
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: var(--dark-gray);
+}
