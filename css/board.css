@@ -312,11 +312,12 @@
 .open-task-overlay {
     width: 640px;
     height: auto;
+    padding: 48px 40px;
     background-color: var(--white);
     border-radius: 30px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 24px;
 }
 
 @keyframes slideInRight {
@@ -352,6 +353,32 @@
 .task-added-board {
     width: 326px;
     height: 74px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     border-radius: 20px;
     background-color: var(--primary-color);
+    position: absolute;
+    z-index: 1000;
+}
+
+.task-added-board h3 {
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--white);
+}
+
+.open-task-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.close-button-open-task-board{
+    width: 32px;
+    height: 32px;
+    background-color:var(--white);
+    border: none;
+    cursor: pointer;
 }

@@ -88,10 +88,8 @@ function overlayProtection(event) {
   event.stopPropagation();
 }
 
-function closeOverlayBoard() {
-  let closeOverlayBoard = document.getElementById("open_overlay_board");
-  let visibleDiv = closeOverlayBoard.querySelector(":not(.d-none)");
-  let divID = visibleDiv.id
+function closeOverlayBoard(divID,overlay) {
+  let closeOverlayBoard = document.getElementById(overlay);
   hideDiv(divID)
   function handleEnd() {
   closeOverlayBoard.classList.add("d-none");
@@ -100,12 +98,12 @@ function closeOverlayBoard() {
   closeOverlayBoard.addEventListener("animationend", handleEnd);
 }
 
-function closeOverlayButtonBoard(divID) {
-  let closeOverlayBoard = document.getElementById("open_overlay_board");
+function closeOverlayButtonBoard(divID,overlay) {
+  let closeOverlayBoard = document.getElementById(overlay);
   hideDiv(divID)
   function handleEnd() {
-  closeOverlayBoard.classList.add("d-none");
-  closeOverlayBoard.removeEventListener("animationend", handleEnd);
+    closeOverlayBoard.classList.add("d-none");
+    closeOverlayBoard.removeEventListener("animationend", handleEnd);
   }
   closeOverlayBoard.addEventListener("animationend", handleEnd);
 }
@@ -177,11 +175,13 @@ async function handleSearch(searchTerm) {
   findEmptyColumn();
 }
 
-function openTaskBoard(task, color) {
-  let openOverlayBoard = document.getElementById("open_overlay_board")
+async function openTaskBoard(indexTask, color) {
+  let openTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`)
+  let openTaskRefToJson = await openTaskRef.json();
+  let openOverlayBoard = document.getElementById("open_overlay_task_board")
   openOverlayBoard.classList.remove("d-none");
   showDiv('open_task_board');
-  document.getElementById("open_task_board").innerHTML = getOpenTaskBoard(task, color);
+  document.getElementById("open_task_board").innerHTML = getOpenTaskBoard(openTaskRefToJson, color);
 }
 
 // added from Alex
