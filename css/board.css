@@ -75,7 +75,6 @@
     height: 32px;
     width: 0;
     border: solid 1px var(--style);
-    padding-left: -48px;
 
 }
 
@@ -372,6 +371,7 @@
 .open-task-header {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
 }
 
@@ -381,4 +381,101 @@
     background-color:var(--white);
     border: none;
     cursor: pointer;
+}
+
+.open-task-title {
+    font-family: inter;
+    font-weight: 700;
+    font-size: 61px;
+    color: var(--black);
+}
+
+.open-task-description {
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--black);
+}
+
+.open-task-date-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+}
+
+.open-task-text {
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--primary-color);
+}
+
+.open-task-date {
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--black);
+}
+
+.open-task-priority-div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 25px;
+}
+
+.open-task-priority {
+    font-family: inter;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.open-task-priority img {
+    width: 17px;
+    height: auto;
+    align-items: center;
+}
+
+.open-task-assigned-div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.open-task-subtasks-div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.open-task-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+}
+
+.open-task-button {
+    background-color: var(--white);
+    border: none;
+    cursor: pointer;
+    color: var(--primary-color);
+    stroke-width: 1;
+}
+
+.open-task-button:hover {
+    color: var(--secondary-color);
+    stroke-width: 3;
+}
+
+.open-task-separetor {
+    height: 24px;
+    width: 0;
+    border: solid 1px var(--style);
 }
