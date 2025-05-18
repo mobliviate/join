@@ -23,7 +23,7 @@
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 670px) {
     .summary_wrapper {
         margin: 4px;
     }

@@ -39,11 +39,6 @@
   display: flex;
 }
 
-.summary_content_left,
-.summary_content_right {
-  flex: 1;
-}
-
 .summary_content_left {
   max-width: 560px;
   display: flex;
@@ -52,7 +47,6 @@
 }
 
 .summary_content_left_top_wrapper,
-.summary_content_left_middle_wrapper,
 .summary_content_left_bottom_wrapper {
   display: flex;
   justify-content: space-between;
