@@ -1,4 +1,4 @@
-/* Overlay Slide-Down & Fade-In */
+/* === Overlay Container === */
 .overlay {
   position: fixed;
   top: 0;
@@ -14,14 +14,7 @@
   transform: translateY(-50px);
   animation: overlaySlideDown 0.5s ease-out forwards;
 }
-@keyframes overlaySlideDown {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-/* Content Pop-Up with Scale & Rotate */
 .overlay-content {
   background: var(--white);
   border-radius: 12px;
@@ -33,6 +26,85 @@
   transform: scale(0.8) rotate(-2deg);
   animation: contentPopUp 0.4s ease-in-out 0.2s forwards;
 }
+
+/* === Overlay Left Column === */
+.overlay-left {
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 40px;
+  flex: 0 0 300px;
+}
+
+.overlay-left h2 {
+  margin-top: 32px;
+  font-size: 32px;
+}
+
+.overlay-subtitle {
+  margin-top: 16px;
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.overlay-left hr {
+  margin: 24px 0;
+  border: 0;
+  height: 2px;
+  background: var(--secondary-color);
+  width: 60px;
+}
+
+/* === Overlay Right Column === */
+.overlay-right {
+  position: relative;
+  padding: 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Toast Notification === */
+.toast {
+  position: fixed;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary-color);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  z-index: 2000;
+  font-weight: 500;
+  white-space: nowrap;
+  text-align: center;
+  max-width: 90%;
+}
+
+.toast.fade-out {
+  opacity: 0;
+}
+
+/* === Divider === */
+.bottomDivider {
+  height: 3px;
+  width: 90px;
+  margin-top: 10px;
+  background-color: #29abe2;
+  border-radius: 4px;
+  display: none;
+}
+
+/* === Keyframes === */
+@keyframes overlaySlideDown {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes contentPopUp {
   0% {
     opacity: 0;
@@ -48,40 +120,7 @@
   }
 }
 
-/* Left Column */
-.overlay-left {
-  background: var(--primary-color);
-  color: var(--white);
-  padding: 40px;
-  flex: 0 0 300px;
-}
-.overlay-left h2 {
-  margin-top: 32px;
-  font-size: 32px;
-}
-.overlay-subtitle {
-  margin-top: 16px;
-  font-size: 16px;
-  opacity: 0.8;
-}
-.overlay-left hr {
-  margin: 24px 0;
-  border: 0;
-  height: 2px;
-  background: var(--secondary-color);
-  width: 60px;
-}
-
-/* Right Column */
-.overlay-right {
-  position: relative;
-  padding: 40px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* Close-Button */
+/* === Close Buttons === */
 .close-btn {
   position: absolute;
   top: 16px;
@@ -92,3 +131,15 @@
   cursor: pointer;
   color: var(--dark-gray);
 }
+
+.close-btn-mobile {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 32px;
+  cursor: pointer;
+  color: var(--white);
+}
+

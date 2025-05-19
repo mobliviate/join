@@ -1,4 +1,4 @@
-/* Mobile Overlay */
+/* === Mobile Overlay === */
 .overlay-mobile {
   position: fixed;
   top: 0;
@@ -25,18 +25,22 @@
   animation: contentPopUp 0.3s ease-out forwards;
 }
 
-.close-btn-mobile {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: none;
-  border: none;
-  font-size: 32px;
-  cursor: pointer;
-  color: var(--white);
+.overlay-mobile-content .form-buttons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin: 20px 16px 0 16px;
+  max-width: 340px; /* Zum Beispiel */
+  margin-left: auto;
+  margin-right: auto;
 }
 
+/* === Mobile Header === */
 .mobile-header {
+  padding-block: 120px;
+}
+
+.overlay-mobile-content .mobile-header {
   background: var(--primary-color);
   color: var(--white);
   padding: 24px 16px;
@@ -44,18 +48,22 @@
   border-top-right-radius: 12px;
   padding-block: 96px;
 }
-.mobile-header h2 {
+
+.overlay-mobile-content .mobile-header h2 {
   margin: 0;
   font-size: 47px;
 }
-.mobile-header .underline {
-  width: 70px;
+
+.overlay-mobile-content .mobile-header .underline {
+  width: 85px;
   height: 3px;
   background: var(--secondary-color);
-  margin: 8px 0 16px;
+  margin-top: 8px;
+  margin-bottom: 16px;
   border-radius: 2px;
 }
 
+/* === Mobile Avatar === */
 .mobile-avatar {
   margin: -65px auto 16px;
   width: 130px;
@@ -68,6 +76,7 @@
   justify-content: center;
   position: relative;
 }
+
 .mobile-avatar img {
   width: 86px;
   height: 86px;
@@ -75,36 +84,122 @@
   filter: invert(1) brightness(3);
 }
 
-.input-group-mobile {
-  position: relative;
-  margin: 12px 16px;
-}
-.input-group-mobile input {
-  width: 100%;
-  padding: 12px 40px 12px 16px;
-  border: 1px solid var(--style);
-  border-radius: 8px;
-  font-size: 16px;
-}
-.input-group-mobile .input-icon {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  opacity: 0.5;
+/* === Add Contact Mobile Button === */
+#add-contact-btn-mobile {
+  display: none;
+  position: fixed;
+  bottom: 100px;
+  right: 14px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--secondary-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: none;
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.mobile-create-btn {
-  display: block;
-  margin: 24px auto;
-  background: var(--primary-color);
-  color: var(--white);
+#add-contact-btn-mobile img {
+  width: 24px;
+  height: 24px;
+}
+
+/* === Back Button === */
+.back-btn-mobile {
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  background: none;
   border: none;
-  border-radius: 8px;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 4px;
   cursor: pointer;
+}
+
+.back-btn-mobile img {
+  width: 32px;
+  height: 32px;
+}
+
+/* === Options Menu === */
+#mobile-options-menu-container.hidden {
+  display: none;
+}
+
+.mobile-options-menu {
+  position: fixed;
+  bottom: 90px;
+  right: 5px;
+  background: white;
+  border-radius: 16px 16px 0 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 8px 0;
+  z-index: 9999;
+  width: 140px;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.18s, transform 0.18s;
+}
+
+.mobile-options-menu.closing {
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+}
+
+.mobile-options-menu .option-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #333;
+}
+
+.mobile-options-menu .option-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* === Mobile Menu Button === */
+.mobile-menu-btn {
+  display: none;
+}
+
+#add-contact-form-mobile {
+  margin-top: 60px;
+}
+
+#edit-contact-btn-mobile {
+  display: none;
+}
+
+/* === Delete Button ===*/
+.delete-btn {
+  background: #fff;
+  border: 2px solid #2a3647;
+  color: #2a3647;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: none;
+  min-width: 90px;
+  margin-right: 12px;
+}
+
+.delete-btn:hover,
+.delete-btn:focus {
+  background: #f9f9f9;
+  color: #2a3647;
+  border-color: #2a3647;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
