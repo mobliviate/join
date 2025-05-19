@@ -42,6 +42,10 @@ async function loadUsersEmails() {
     console.log(usersEmails);
 };
 
+/**
+ * Sets the login state in the local storage.
+ * @function setLoginState
+ */
 function setLoginState() {
     if (localStorage.getItem('isLoggedIn') === null) {
         localStorage.setItem('isLoggedIn', 'false');
@@ -51,7 +55,6 @@ function setLoginState() {
 }
 
 /**
- * 
  * Loads user data from the database.
  * @async
  * @function loadData
@@ -63,6 +66,12 @@ async function loadData() {
     return data.users || [];
 }
 
+/**
+ * Loads user data from the database.
+ * @async
+ * @function loadDataTest
+ * @returns {Promise<Array>} Resolves with the users data from the database.
+ */
 async function loadDataTest() {
     let response = await fetch(BASE_URL + ".json");
     let data = await response.json();

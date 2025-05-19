@@ -107,21 +107,17 @@ async function fetchUsers() {
  * @returns {string} A greeting message.
  */
 function getDayTime() {
-    const date = new Date();
-    const berlinHour = new Intl.DateTimeFormat("de-DE", {
-        hour: "numeric",
-        hour12: false,
-        timeZone: "Europe/Berlin",
-    }).format(date);
-    const hour = parseInt(berlinHour, 10);
+    const hour = parseInt(
+        new Intl.DateTimeFormat("de-DE", {
+            hour: "numeric",
+            hour12: false,
+            timeZone: "Europe/Berlin",
+        }).format(new Date()),
+        10
+    );
 
-    if (hour >= 5 && hour < 11) {
-        return "Good Morning";
-    } else if (hour >= 11 && hour < 17) {
-        return "Good Afternoon";
-    } else if (hour >= 17 && hour < 22) {
-        return "Good Evening";
-    } else {
-        return "Good Night";
-    }
+    if (hour >= 5 && hour < 11) return "Good Morning";
+    if (hour >= 11 && hour < 17) return "Good Afternoon";
+    if (hour >= 17 && hour < 22) return "Good Evening";
+    return "Good Night";
 }
