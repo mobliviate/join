@@ -35,20 +35,39 @@ function loadHeaderBodySidebar() {
 
 
 async function loadTasksandSetTasksStatus() {
-    const tasks = await getData(DATABASEURL, "tasks.json");
-
-    getTaskStatus(tasks);
+    try{
+        const tasks = await getData(DATABASEURL, "tasks.json");
+        console.log(tasks);
+        console.log(tasks.length);
+        
+        getTaskStatus(tasks);   
+    } catch(error) {
+        console.error("Error: Can not load and set Tasks", error.message);
+    }
+    // const tasks = await getData(DATABASEURL, "tasks.json");
+    // getTaskStatus(tasks);
 }
 
-
+// Second Version (from Oject to Array)
 function getTaskStatus(tasks) {
-    summaryUser.tasks.tasksInBoard = tasks.length;
-    tasks.forEach(task => {
+    const taskArray = Object.values(tasks);
+    summaryUser.tasks.tasksInBoard = taskArray.length;
+    taskArray.forEach(task => {
         setTaskStatus(task.status);
         setTaskPriorityAndGetDate(task.priority, task.dueDate);
     });
     setUpcomingDate();
 }
+
+
+// function getTaskStatus(tasks) {
+//     summaryUser.tasks.tasksInBoard = tasks.length;
+//     tasks.forEach(task => {
+//         setTaskStatus(task.status);
+//         setTaskPriorityAndGetDate(task.priority, task.dueDate);
+//     });
+//     setUpcomingDate();
+// }
 
 
 function setTaskStatus(taskStatus){
