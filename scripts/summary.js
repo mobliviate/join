@@ -49,25 +49,25 @@ async function loadTasksandSetTasksStatus() {
 }
 
 // Second Version (from Oject to Array)
-function getTaskStatus(tasks) {
-    const taskArray = Object.values(tasks);
-    summaryUser.tasks.tasksInBoard = taskArray.length;
-    taskArray.forEach(task => {
-        setTaskStatus(task.status);
-        setTaskPriorityAndGetDate(task.priority, task.dueDate);
-    });
-    setUpcomingDate();
-}
-
-
 // function getTaskStatus(tasks) {
-//     summaryUser.tasks.tasksInBoard = tasks.length;
-//     tasks.forEach(task => {
+//     const taskArray = Object.values(tasks);
+//     summaryUser.tasks.tasksInBoard = taskArray.length;
+//     taskArray.forEach(task => {
 //         setTaskStatus(task.status);
 //         setTaskPriorityAndGetDate(task.priority, task.dueDate);
 //     });
 //     setUpcomingDate();
 // }
+
+
+function getTaskStatus(tasks) {
+    summaryUser.tasks.tasksInBoard = tasks.length;
+    tasks.forEach(task => {
+        setTaskStatus(task.status);
+        setTaskPriorityAndGetDate(task.priority, task.dueDate);
+    });
+    setUpcomingDate();
+}
 
 
 function setTaskStatus(taskStatus){
