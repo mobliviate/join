@@ -1,7 +1,7 @@
 let categoryDropdownOpen = false;
 let assignDropdownOpen = false;
 let selectedContactIds = [];
-const BASEURL = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app"
+const BASE = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app"
 
 /**
  * Initializes the Add Task page by loading base layout and template.
@@ -112,7 +112,7 @@ function closeAssignDropdown() {
  * Loads contacts from Firebase and renders them in the multiselect list.
  */
 async function loadContacts() {
-    const contactURL = BASEURL + '/contacts.json';
+    const contactURL = BASE + '/contacts.json';
     const container = document.getElementById('multiselect-assign-options');
 
     try {
@@ -272,7 +272,7 @@ function collectNewTaskData(status) {
  * @param {Object} taskData - The task object to store.
  */
 async function saveNewTaskToFirebase(taskData) {
-    const taskURL = BASEURL + '/tasks.json';
+    const taskURL = BASE + '/tasks.json';
     try {
         const getResponse = await fetch(taskURL);
         const existingTasks = await getResponse.json() || [];
