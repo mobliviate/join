@@ -137,12 +137,12 @@
   display: flex;
   align-items: center;
   padding: 0 39px;
+  white-space: nowrap;
 }
 
 .summary_urgent_left {
   display: flex;
   align-items: center;
-  flex: 0.85;
 }
 
 .summary_urgent_left img {
