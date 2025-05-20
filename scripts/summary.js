@@ -27,6 +27,7 @@ async function initSummary() {
     userGreetAndChangeUserName();
 }
 
+
 function loadHeaderBodySidebar() {
     loadBody();
     loadHeader();
@@ -37,27 +38,11 @@ function loadHeaderBodySidebar() {
 async function loadTasksandSetTasksStatus() {
     try{
         const tasks = await getData(DATABASEURL, "tasks.json");
-        console.log(tasks);
-        console.log(tasks.length);
-        
         getTaskStatus(tasks);   
     } catch(error) {
-        console.error("Error: Can not load and set Tasks", error.message);
+        console.error("Error: Cannot load and set Tasks", error.message);
     }
-    // const tasks = await getData(DATABASEURL, "tasks.json");
-    // getTaskStatus(tasks);
 }
-
-// Second Version (from Oject to Array)
-// function getTaskStatus(tasks) {
-//     const taskArray = Object.values(tasks);
-//     summaryUser.tasks.tasksInBoard = taskArray.length;
-//     taskArray.forEach(task => {
-//         setTaskStatus(task.status);
-//         setTaskPriorityAndGetDate(task.priority, task.dueDate);
-//     });
-//     setUpcomingDate();
-// }
 
 
 function getTaskStatus(tasks) {
