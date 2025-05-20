@@ -144,9 +144,15 @@
     .summary_content_left_bottom_wrapper {
         gap: 16px;
     }
+}
 
-    
+@media (max-width: 350px) {
+    .summary_content_left {
+        gap: 8px;
+    }
 
-
-
+    .summary_content_left_top_wrapper,
+    .summary_content_left_bottom_wrapper {
+        gap: 8px;
+    }    
 }
