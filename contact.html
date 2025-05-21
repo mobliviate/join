@@ -34,6 +34,8 @@
 
   <body id="body">
     <script>
+      window.addContactOverlayOpen = false;
+      window.currentEditContactId = null;
       window.addEventListener("DOMContentLoaded", function () {
         initContacts();
         handleViewportResize();

@@ -1,3 +1,7 @@
+/**
+ * Returns the main contacts section template.
+ * @returns {string}
+ */
 function getContactsSectionTemplate() {
   return `
     <div class="contacts-page">
@@ -33,7 +37,6 @@ function getContactsSectionTemplate() {
 
 /**
  * Render the contact detail view for desktop.
- * (Assumes function is defined in template file.)
  * @param {Object} contact
  */
 function renderDesktopContactDetail(contact) {
@@ -45,6 +48,11 @@ function renderDesktopContactDetail(contact) {
   `;
 }
 
+/**
+ * Returns the mobile options menu HTML template for a contact.
+ * @param {string} contactId - The unique ID of the contact.
+ * @returns {string} The HTML string for the mobile options menu.
+ */
 function getMobileOptionsMenuTemplate(contactId) {
   return `
     <div id="mobile-options-menu" class="mobile-options-menu">
@@ -58,6 +66,11 @@ function getMobileOptionsMenuTemplate(contactId) {
   `;
 }
 
+/**
+ * Returns the contact detail HTML template for mobile view.
+ * @param {Object} contact - The contact object to display details for.
+ * @returns {string} The HTML string for the mobile contact detail view.
+ */
 function getMobileContactDetailHTML(contact) {
   return `
     <div class="mobile-contact-wrapper">
@@ -75,10 +88,23 @@ function getMobileContactDetailHTML(contact) {
   `;
 }
 
+/**
+ * Returns the HTML for the group letter heading in the contact list.
+ * @param {string} letter
+ * @returns {string}
+ */
 function createGroupLetterTemplate(letter) {
   return `<div class="group-letter">${letter}</div>`;
 }
 
+/**
+ * Builds the HTML for a single contact item in the list.
+ * @param {string} id - The contact's ID.
+ * @param {string} avatarHTML - HTML for the avatar.
+ * @param {string} name - The contact's name.
+ * @param {string} emailHTML - HTML for the email.
+ * @returns {string}
+ */
 function buildContactItem(id, avatarHTML, name, emailHTML) {
   return `
     <div class="contact-item" data-id="${id}" onclick="selectContactById('${id}')">
@@ -91,6 +117,12 @@ function buildContactItem(id, avatarHTML, name, emailHTML) {
   `;
 }
 
+/**
+ * Generates the avatar circle for a contact.
+ * @param {string} name - The contact's name.
+ * @param {string} initials - Initials of the contact.
+ * @returns {string}
+ */
 function createAvatarTemplate(name, initials) {
   const hue = getHueFromString(name);
   const color = `hsl(${hue}, 70%, 50%)`;
@@ -101,10 +133,20 @@ function createAvatarTemplate(name, initials) {
   `;
 }
 
+/**
+ * Builds the complete contact detail HTML (header + info section).
+ * @param {Object} contact
+ * @returns {string}
+ */
 function createContactDetailTemplate(contact) {
   return buildContactHeaderSection(contact) + buildContactInfoSection(contact);
 }
 
+/**
+ * Builds the contact header section including avatar and actions.
+ * @param {Object} contact
+ * @returns {string}
+ */
 function buildContactHeaderSection(contact) {
   const avatarHTML = createAvatarTemplate(
     contact.name,
@@ -130,6 +172,11 @@ function buildContactHeaderSection(contact) {
   `;
 }
 
+/**
+ * Builds the contact information section with email and phone.
+ * @param {Object} contact
+ * @returns {string}
+ */
 function buildContactInfoSection(contact) {
   let infoHTML = `<div class="detail-info"><h3>Contact Information</h3>`;
   if (contact.email) {
@@ -143,6 +190,10 @@ function buildContactInfoSection(contact) {
   return infoHTML;
 }
 
+/**
+ * Returns the Add Contact overlay template for desktop.
+ * @returns {string}
+ */
 function getAddContactOverlayTemplate() {
   return `
     <div class="overlay" id="add-contact-overlay">
@@ -184,9 +235,12 @@ function getAddContactOverlayTemplate() {
   `;
 }
 
-function showAddContactOverlayMobile() {
-  const container = document.getElementById("add-contact-overlay-mobile");
-  container.innerHTML = `
+/**
+ * Returns the Add Contact overlay template for mobile.
+ * @returns {string}
+ */
+function getAddContactOverlayMobileTemplate() {
+  return `
     <div class="overlay-mobile">
       <div class="overlay-mobile-content">
         <button class="close-btn-mobile" aria-label="Close" onclick="hideAddContactOverlayMobile()">×</button>
@@ -218,19 +272,18 @@ function showAddContactOverlayMobile() {
       </div>
     </div>
   `;
-
-  container.classList.remove("hidden");
-  document.body.style.overflow = "hidden";
 }
 
-function hideAddContactOverlayMobile() {
-  const container = document.getElementById("add-contact-overlay-mobile");
-  if (!container) return;
-  container.innerHTML = "";
-  container.classList.add("hidden");
-  document.body.style.overflow = "";
-}
-
+/**
+ * Returns the HTML template for the Edit Contact overlay on desktop.
+ * @param {Object} contact - The contact object to edit.
+ * @param {string} contact.id - The contact's unique identifier.
+ * @param {string} contact.name - The contact's name.
+ * @param {string} [contact.email] - The contact's email address.
+ * @param {string} [contact.phone] - The contact's phone number.
+ * @param {string} [contact.initials] - The contact's initials.
+ * @returns {string} The HTML string for the desktop edit contact overlay.
+ */
 function getEditContactOverlayTemplate(contact) {
   return `
     <div class="overlay" id="edit-contact-overlay">
@@ -274,7 +327,6 @@ function getEditContactOverlayTemplate(contact) {
               <button type="button" class="btn delete-btn" onclick="deleteContact('${
                 contact.id
               }');">Delete</button>
-            <button
               <button type="submit" class="btn btn-primary create-btn">Save ✓</button>
             </div>
           </form>
@@ -284,6 +336,16 @@ function getEditContactOverlayTemplate(contact) {
   `;
 }
 
+/**
+ * Returns the HTML template for the Edit Contact overlay on mobile devices.
+ * @param {Object} contact - The contact object to edit.
+ * @param {string} contact.id - The contact's unique identifier.
+ * @param {string} contact.name - The contact's name.
+ * @param {string} [contact.email] - The contact's email address.
+ * @param {string} [contact.phone] - The contact's phone number.
+ * @param {string} [contact.initials] - The contact's initials.
+ * @returns {string} The HTML string for the mobile edit contact overlay.
+ */
 function getEditContactOverlayMobileTemplate(contact) {
   const initials = contact.initials || getInitials(contact.name);
   const hue = getHueFromString(contact.name);
