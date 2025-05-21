@@ -92,7 +92,7 @@ function getRenderTask(task, indexTask, background,) {
     <div class="task-main" draggable="true" ondragstart="startDragging(${indexTask})" onclick="openTaskBoard('${indexTask}','${background}')">
       <div class="board-task-header-cnt">
         <div class="category-board" style="background-color:var(${background})">${task.category}</div>
-        <button id="move_to_btn_${indexTask}" class="move-to-btn" onclick="openMoveToOverlay(${indexTask}, '${task.status}'); overlayProtection(event); startDragging(${indexTask})">
+        <button id="move_to_btn_${indexTask}" class="move-to-btn" onclick="openMoveToOverlay('${indexTask}', '${task.status}'); overlayProtection(event); startDragging(${indexTask})">
           <svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.75" y="25.25" width="24.5" height="22.5" rx="5.25" transform="rotate(-90 0.75 25.25)" stroke="#2A3647" stroke-width="1.5"/>
             <mask id="mask0_294678_9869" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="3" width="20" height="20">
@@ -141,7 +141,7 @@ function getRenderEmpty(emptyColumn) {
   `;
 }
 
-function getOpenTaskBoard(task, color){
+function getOpenTaskBoard(task, color, indexTask){
   return`
     <div class="open-task-header">
       <div class="category-board" style="background-color:var(${color})">${task.category}</div>
@@ -172,10 +172,10 @@ function getOpenTaskBoard(task, color){
     </div>
     <div class="open-task-subtasks-div">
       <h3 class="open-task-text">Subtasks</h3>
-      <div id="opem_task_subtasks" class="open-task-subtasks"></div>
+      <div id="open_task_subtasks" class="open-task-subtasks"></div>
     </div>
     <div class="open-task-buttons">
-      <button class="open-task-button">
+      <button class="open-task-button" onclick="deleteTask('${indexTask}')">
         <svg width="81" height="24" viewBox="0 0 81 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0_71348_10326" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
           <rect width="24" height="24" fill="currentcolor"/>
@@ -198,6 +198,63 @@ function getOpenTaskBoard(task, color){
           <path d="M33.4091 17.5V5.86364H40.4318V7.11364H34.8182V11.0455H40.0682V12.2955H34.8182V16.25H40.5227V17.5H33.4091ZM46.0852 17.6818C45.358 17.6818 44.7159 17.4981 44.1591 17.1307C43.6023 16.7595 43.1667 16.2367 42.8523 15.5625C42.5379 14.8845 42.3807 14.0833 42.3807 13.1591C42.3807 12.2424 42.5379 11.447 42.8523 10.7727C43.1667 10.0985 43.6042 9.57765 44.1648 9.21023C44.7254 8.8428 45.3731 8.65909 46.108 8.65909C46.6761 8.65909 47.125 8.75379 47.4545 8.94318C47.7879 9.12879 48.0417 9.34091 48.2159 9.57955C48.3939 9.81439 48.5322 10.0076 48.6307 10.1591H48.7443V5.86364H50.0852V17.5H48.7898V16.1591H48.6307C48.5322 16.3182 48.392 16.5189 48.2102 16.7614C48.0284 17 47.7689 17.214 47.4318 17.4034C47.0947 17.589 46.6458 17.6818 46.0852 17.6818ZM46.267 16.4773C46.8049 16.4773 47.2595 16.3371 47.6307 16.0568C48.0019 15.7727 48.2841 15.3807 48.4773 14.8807C48.6705 14.3769 48.767 13.7955 48.767 13.1364C48.767 12.4848 48.6723 11.9148 48.483 11.4261C48.2936 10.9337 48.0133 10.5511 47.642 10.2784C47.2708 10.0019 46.8125 9.86364 46.267 9.86364C45.6989 9.86364 45.2254 10.0095 44.8466 10.3011C44.4716 10.589 44.1894 10.9811 44 11.4773C43.8144 11.9697 43.7216 12.5227 43.7216 13.1364C43.7216 13.7576 43.8163 14.322 44.0057 14.8295C44.1989 15.3333 44.483 15.7348 44.858 16.0341C45.2367 16.3295 45.7064 16.4773 46.267 16.4773ZM52.7273 17.5V8.77273H54.0682V17.5H52.7273ZM53.4091 7.31818C53.1477 7.31818 52.9223 7.22917 52.733 7.05114C52.5473 6.87311 52.4545 6.65909 52.4545 6.40909C52.4545 6.15909 52.5473 5.94508 52.733 5.76705C52.9223 5.58902 53.1477 5.5 53.4091 5.5C53.6705 5.5 53.8939 5.58902 54.0795 5.76705C54.2689 5.94508 54.3636 6.15909 54.3636 6.40909C54.3636 6.65909 54.2689 6.87311 54.0795 7.05114C53.8939 7.22917 53.6705 7.31818 53.4091 7.31818ZM60.3196 8.77273V9.90909H55.7969V8.77273H60.3196ZM57.1151 6.68182H58.456V15C58.456 15.3788 58.5109 15.6629 58.6207 15.8523C58.7344 16.0379 58.8783 16.1629 59.0526 16.2273C59.2306 16.2879 59.4181 16.3182 59.6151 16.3182C59.7628 16.3182 59.884 16.3106 59.9787 16.2955C60.0734 16.2765 60.1491 16.2614 60.206 16.25L60.4787 17.4545C60.3878 17.4886 60.2609 17.5227 60.098 17.5568C59.9351 17.5947 59.7287 17.6136 59.4787 17.6136C59.0999 17.6136 58.7287 17.5322 58.3651 17.3693C58.0052 17.2064 57.706 16.9583 57.4673 16.625C57.2325 16.2917 57.1151 15.8712 57.1151 15.3636V6.68182Z" fill="currentcolor"/>
         </svg>
       </button>
+    </div>
+  `;
+}
+
+function getrenderSubtasksFalseBoard(subtask,indexTask,subtaskIndex){
+  return`
+    <button onclick="setSubtaskTrue('${indexTask}','${subtaskIndex}')" class="subtask-button-board">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <h3>${subtask.text}</h3>
+    </button>
+  `;
+}
+
+function getrenderSubtasksTrueBoard(subtask,indexTask,subtaskIndex){
+  return`
+    <button onclick="setSubtaskFalse('${indexTask}','${subtaskIndex}')" class="subtask-button-board">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20 11V17C20 18.6569 18.6569 20 17 20H7C5.34315 20 4 18.6569 4 17V7C4 5.34315 5.34315 4 7 4H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <path d="M8 12L12 16L20 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <h3>${subtask.text}</h3>
+    </button>
+  `;
+}
+
+function getEditTaskBoard(task){
+  return`
+    <div>
+      <div>
+        <h2></h2>
+        <input type="text" value="">
+      </div>
+      <div>
+        <h2></h2>
+        <input type="text" value="">
+      </div>
+      <div>
+        <h2></h2>
+        <div>
+          <button></button>
+          <button></button>
+          <button></button>
+        </div>
+      </div>
+      <div>
+        <select name="" id=""></select>
+      </div>
+      <div>
+        <h2></h2>
+        <div>
+          <input type="text" placeholder="Add new subtask">
+          svg
+        </div>
+        <div>Subtext</div>
+      </div>
     </div>
   `;
 }

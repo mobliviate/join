@@ -82,6 +82,7 @@ function addTaskBoard(title) {
   openOverlayBoard.classList.remove("d-none");
   showDiv('add_task_board');
   document.getElementById("add_task_board").innerHTML = getAddTaskTemplate(title);
+  renderTasks()
 }
 
 function overlayProtection(event) {
@@ -96,6 +97,7 @@ function closeOverlayBoard(divID,overlay) {
   closeOverlayBoard.removeEventListener("animationend", handleEnd);
   }
   closeOverlayBoard.addEventListener("animationend", handleEnd);
+  renderTasks()
 }
 
 function closeOverlayButtonBoard(divID,overlay) {
@@ -106,6 +108,7 @@ function closeOverlayButtonBoard(divID,overlay) {
     closeOverlayBoard.removeEventListener("animationend", handleEnd);
   }
   closeOverlayBoard.addEventListener("animationend", handleEnd);
+  renderTasks()
 }
 
 function showDiv(divID) {
@@ -181,7 +184,71 @@ async function openTaskBoard(indexTask, color) {
   let openOverlayBoard = document.getElementById("open_overlay_task_board")
   openOverlayBoard.classList.remove("d-none");
   showDiv('open_task_board');
-  document.getElementById("open_task_board").innerHTML = getOpenTaskBoard(openTaskRefToJson, color);
+  document.getElementById("open_task_board").innerHTML = getOpenTaskBoard(openTaskRefToJson, color, indexTask);
+  if (openTaskRefToJson.subtasks?.length > 0) {
+    renderOpenSubtasks(indexTask)
+  }
+}
+
+async function renderOpenSubtasks(indexTask){
+  let openTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`)
+  let openTaskRefToJson = await openTaskRef.json();
+  let allSubtasks = openTaskRefToJson.subtasks
+  let subtaskContentRef = document.getElementById("open_task_subtasks")
+  subtaskContentRef.innerHTML = ""
+  for (let subtaskIndex = 0; subtaskIndex < allSubtasks.length; subtaskIndex++) {
+    if (allSubtasks[subtaskIndex].status === true) {
+      subtaskContentRef.innerHTML += getrenderSubtasksTrueBoard(allSubtasks[subtaskIndex],indexTask,subtaskIndex)
+    } else {
+      subtaskContentRef.innerHTML += getrenderSubtasksFalseBoard(allSubtasks[subtaskIndex],indexTask,subtaskIndex)
+    }    
+  }
+}
+
+async function setSubtaskTrue(openedTask,subtaskIndex){
+  let taskUrlRef = `https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${openedTask}/subtasks/${subtaskIndex}/status.json`;
+  let updatedSubtask = await fetch(taskUrlRef, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(true),
+  });
+  if (updatedSubtask.ok) {
+    renderOpenSubtasks(openedTask);
+  }
+}
+
+async function setSubtaskFalse(openedTask,subtaskIndex){
+  let taskUrlRef = `https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${openedTask}/subtasks/${subtaskIndex}/status.json`;
+  let updatedSubtask = await fetch(taskUrlRef, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(false),
+  });
+  if (updatedSubtask.ok) {
+    renderOpenSubtasks(openedTask);
+  }
+}
+
+async function deleteTask(openedTask) {
+  const url = 'https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks.json';
+  const res = await fetch(url);
+  const tasks = await res.json();
+  if (!Array.isArray(tasks)) return;
+    tasks.splice(openedTask, 1);
+    let deleteCompleted = await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(tasks)
+  });
+  if (deleteCompleted.ok) {
+    closeOverlayButtonBoard('open_task_board', 'open_overlay_task_board');
+  }
 }
 
 // added from Alex
