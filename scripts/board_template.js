@@ -117,9 +117,9 @@ function getRenderTask(task, indexTask, background,) {
   `;
 }
 
-function getRenderInitials(initial) {
+function getRenderInitials(initial, color) { // edited from Alex
   return `
-    <div class="initials-single-board"><h3>${initial}</h3></div>
+    <div class="initials-single-board" style="background-color:${color}"><h3>${initial}</h3></div>
   `;
 }
 
@@ -141,8 +141,8 @@ function getRenderEmpty(emptyColumn) {
   `;
 }
 
-function getOpenTaskBoard(task, color, indexTask){
-  return`
+function getOpenTaskBoard(task, color, indexTask) {
+  return `
     <div class="open-task-header">
       <div class="category-board" style="background-color:var(${color})">${task.category}</div>
       <button class="close-button-open-task-board" onclick="closeOverlayButtonBoard('open_task_board', 'open_overlay_task_board')">
@@ -202,8 +202,8 @@ function getOpenTaskBoard(task, color, indexTask){
   `;
 }
 
-function getrenderSubtasksFalseBoard(subtask,indexTask,subtaskIndex){
-  return`
+function getrenderSubtasksFalseBoard(subtask, indexTask, subtaskIndex) {
+  return `
     <button onclick="setSubtaskTrue('${indexTask}','${subtaskIndex}')" class="subtask-button-board">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="4" y="4" width="16" height="16" rx="3" stroke="currentColor" stroke-width="2"/>
@@ -213,8 +213,8 @@ function getrenderSubtasksFalseBoard(subtask,indexTask,subtaskIndex){
   `;
 }
 
-function getrenderSubtasksTrueBoard(subtask,indexTask,subtaskIndex){
-  return`
+function getrenderSubtasksTrueBoard(subtask, indexTask, subtaskIndex) {
+  return `
     <button onclick="setSubtaskFalse('${indexTask}','${subtaskIndex}')" class="subtask-button-board">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M20 11V17C20 18.6569 18.6569 20 17 20H7C5.34315 20 4 18.6569 4 17V7C4 5.34315 5.34315 4 7 4H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -225,8 +225,8 @@ function getrenderSubtasksTrueBoard(subtask,indexTask,subtaskIndex){
   `;
 }
 
-function getEditTaskBoard(task){
-  return`
+function getEditTaskBoard(task) {
+  return `
     <div>
       <div>
         <h2></h2>
