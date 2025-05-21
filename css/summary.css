@@ -48,7 +48,6 @@
 .summary_content_left_top_wrapper,
 .summary_content_left_bottom_wrapper {
   display: flex;
-  /* justify-content: space-between; */
   align-items: center;
   gap: 28px;
 }
@@ -79,13 +78,10 @@
 .summary_buttons {
   display: flex;
   height: 168px;
-
   align-items: center;
   justify-content: center;
-
   border: 1px solid gray;
   border-radius: 30px;
-
   transition: 125ms;
 }
 
@@ -132,8 +128,6 @@
 }
 
 .summary_urgent_wrapper {
-  /* height: 100%;
-  width: 100%; */
   display: flex;
   align-items: center;
   padding: 0 39px;
