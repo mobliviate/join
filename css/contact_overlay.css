@@ -1,4 +1,21 @@
 /* === Overlay Container === */
+html,
+body {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+}
+
+.contacts-page,
+.main-div,
+.right,
+.contact-container,
+.contacts-list {
+  max-width: 100vw !important;
+  overflow-x: hidden !important;
+  min-width: 0 !important;
+  box-sizing: border-box;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -142,4 +159,3 @@
   cursor: pointer;
   color: var(--white);
 }
-

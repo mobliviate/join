@@ -1,41 +1,7 @@
+/* ========== Layout Containers ========== */
 .contacts-page {
   display: flex;
   height: 100%;
-}
-
-.contacts-list {
-  width: 400px;
-  height: calc(100vh - 96px);
-  border-right: 1px solid var(--white);
-  padding: 16px;
-  overflow-y: auto;
-  box-sizing: border-box;
-  box-shadow: 3px 0 3px 0 var(--style);
-}
-
-#add-contact-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  width: 100%;
-  padding: 4px 0;
-  background-color: var(--primary-color);
-  color: var(--white);
-  font-size: 18px;
-  font-weight: 700;
-  border-radius: 10px;
-  border: 1px solid var(--primary-color);
-  cursor: pointer;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-
-#add-contact-btn:hover {
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .contact-container {
@@ -68,6 +34,44 @@
   margin: 0;
 }
 
+/* ========== Contacts List Panel ========== */
+.contacts-list {
+  width: 400px;
+  height: calc(100vh - 96px);
+  border-right: 1px solid var(--white);
+  padding: 16px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  box-shadow: 3px 0 3px 0 var(--style);
+}
+
+/* ========== Add Contact Button ========== */
+#add-contact-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 4px 0;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+#add-contact-btn:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ========== Grouping Letters (A-Z) ========== */
 .group-letter {
   position: relative;
   font-weight: bold;
@@ -86,6 +90,7 @@
   background: var(--style);
 }
 
+/* ========== Contact List Items ========== */
 .contact-item {
   display: flex;
   align-items: center;
@@ -107,6 +112,7 @@
   color: var(--white);
 }
 
+/* ========== Avatar + Info inside list ========== */
 .contact-item .avatar {
   width: 32px;
   height: 32px;
@@ -130,6 +136,7 @@
   color: var(--light-blue);
 }
 
+/* ========== Avatar General Styles ========== */
 .avatar-circle {
   width: 42px;
   height: 42px;
@@ -150,12 +157,22 @@
   font-size: 48px;
 }
 
+#edit-avatar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* ========== Contact Detail Panel ========== */
 .contact-detail {
   flex-grow: 1;
   padding: 32px;
   box-sizing: border-box;
-  overflow-y: auto;
+  position: relative;
+  overflow: hidden;
 }
+
 
 .detail-header {
   display: flex;
@@ -181,6 +198,7 @@
   font-size: 28px;
 }
 
+/* ========== Contact Action Buttons ========== */
 .detail-actions button {
   background: none;
   border: none;
@@ -189,13 +207,7 @@
   margin-right: 12px;
 }
 
-#edit-avatar-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
+/* ========== Contact Info Section ========== */
 .detail-info h3 {
   margin-bottom: 24px;
   color: var(--active);
@@ -207,11 +219,7 @@
   line-height: 2;
 }
 
-.contact-detail {
-  position: relative;
-  overflow: hidden;
-}
-
+/* ========== Animation for Detail View ========== */
 .detail-content {
   position: relative;
   opacity: 0;
@@ -230,11 +238,5 @@
   to {
     opacity: 1;
     transform: translateX(0);
-  }
-}
-
-@media (max-width: 980px) {
-  .contact-detail {
-    padding: 8px;
   }
 }

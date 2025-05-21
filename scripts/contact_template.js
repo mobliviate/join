@@ -117,7 +117,7 @@ function buildContactHeaderSection(contact) {
         <h2>${contact.name}</h2>
         <div class="detail-actions">
           <button class="btn-icon btn-secondary edit-btn"
-                  onclick="showEditContactOverlay('${contact.id}')">
+                  onclick="showEditContactOverlayResponsive('${contact.id}')">
             <img src="assets/svg/edit_contacts.svg" alt="Edit">
           </button>
           <button class="btn-icon btn-danger delete-btn"

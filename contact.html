@@ -8,12 +8,18 @@
     <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-database-compat.js"></script>
 
-    <script src="./script.js" defer></script>
-    <script src="./scripts/template.js" defer></script>
-    <script src="./scripts/header.js" defer></script>
-    <script src="./scripts/navigate.js" defer></script>
-    <script src="./scripts/contact_template.js" defer></script>
-    <script src="./scripts/contact.js" defer></script>
+    <script src="./script.js"></script>
+    <script src="./scripts/template.js"></script>
+    <script src="./scripts/header.js"></script>
+    <script src="./scripts/navigate.js"></script>
+    <script src="./scripts/contact_template.js"></script>
+    <script src="./scripts/contact_utils.js"></script>
+    <script src="./scripts/contact_api.js"></script>
+    <script src="./scripts/contact_list.js"></script>
+    <script src="./scripts/contact_overlay.js"></script>
+    <script src="./scripts/contact_detail.js"></script>
+    <script src="./scripts/contact_menu_mobile.js"></script>
+    <script src="./scripts/contact_init.js"></script>
 
     <link rel="icon" href="assets/svg/favicon_logo.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./style.css" />
@@ -24,11 +30,14 @@
     <link rel="stylesheet" href="css/contact_overlay_mobile.css" />
     <link rel="stylesheet" href="css/contact_form.css" />
     <link rel="stylesheet" href="css/contact_responsive.css" />
-
-    <!-- <link rel="stylesheet" href="css/add_contact_overlay.css" /> -->
   </head>
 
-  <body onload="initContacts()" id="body">
-    <div id="add-contact-overlay-mobile" class="hidden"></div>
+  <body id="body">
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        initContacts();
+        handleViewportResize();
+      });
+    </script>
   </body>
 </html>

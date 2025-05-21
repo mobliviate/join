@@ -135,7 +135,7 @@
   position: fixed;
   bottom: 90px;
   right: 5px;
-  background: white;
+  background: var(--white);
   border-radius: 16px 16px 0 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   padding: 8px 0;
@@ -159,11 +159,11 @@
   gap: 8px;
   cursor: pointer;
   font-size: 16px;
-  color: #333;
+  color: var(--primary-color);
 }
 
 .mobile-options-menu .option-item:hover {
-  background-color: #f5f5f5;
+  background-color: var(--white);
 }
 
 /* === Mobile Menu Button === */
@@ -181,9 +181,9 @@
 
 /* === Delete Button ===*/
 .delete-btn {
-  background: #fff;
-  border: 2px solid #2a3647;
-  color: #2a3647;
+  background: var(--white);
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
   border-radius: 8px;
   padding: 10px 18px;
   font-size: 16px;
@@ -198,8 +198,8 @@
 
 .delete-btn:hover,
 .delete-btn:focus {
-  background: #f9f9f9;
-  color: #2a3647;
-  border-color: #2a3647;
+  background: var(--white);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
