@@ -44,8 +44,7 @@ function hideUserInfo() {
 function userGreetAndChangeUserName() {
     const overlayRef = document.getElementById("greet_overlay");
     renderUserInSummary();
-    if (localStorage.getItem("showGreeting") === "true") {
-        localStorage.removeItem("showGreeting");
+    if (window.innerWidth <= 980 && localStorage.getItem("showGreeting") === "true") {
         overlayRef.classList.remove("d-none");
         renderUserInOverlay();
         setTimeout(() => {
@@ -53,6 +52,7 @@ function userGreetAndChangeUserName() {
             setTimeout(() => overlayRef.classList.add("d-none"), 1000);
         }, 2000);
     }
+    localStorage.removeItem("showGreeting");
 }
 
 /**
