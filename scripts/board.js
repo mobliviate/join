@@ -207,7 +207,8 @@ async function renderOpenAssignedContacts(indexTask){
   let assignedContactsContentRef = document.getElementById("open-task-assigned")
   for (let assignedContactsIndex = 0; assignedContactsIndex < allAssignedContacts.length; assignedContactsIndex++) {
     let contact = allAssignedContacts[assignedContactsIndex]
-   assignedContactsContentRef.innerHTML += getRenderAssignedContacts(contact.initials, contact.name);
+    let color = getHueFromString(contact.name);
+   assignedContactsContentRef.innerHTML += getRenderAssignedContacts(contact.initials, contact.name, color);
   }
 }
 
