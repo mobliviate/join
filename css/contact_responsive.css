@@ -146,6 +146,22 @@
 }
 
 @media (max-width: 520px) {
+  .contact-detail {
+    padding: 10px;
+  }
+
+  .contacts-title {
+    font-size: 38px;
+  }
+
+  .contacts-subtitle {
+    font-size: 16px;
+  }
+
+  .bottomDivider {
+    width: 43px;
+  }
+
   .contacts-header {
     display: flex;
     flex-direction: column;
@@ -163,5 +179,9 @@
   }
   .overlay-mobile-content .mobile-header .underline {
     width: 65px;
+  }
+
+  .overlay-mobile-content {
+    height: 72vh;
   }
 }
