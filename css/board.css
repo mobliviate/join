@@ -256,6 +256,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding-left: 10px;
 }
 
 .initials-board {
@@ -310,7 +311,7 @@
 
 .open-task-overlay {
     width: 640px;
-    height: auto;
+    max-height: 1080px;
     padding: 48px 40px;
     background-color: var(--white);
     border-radius: 30px;
@@ -376,9 +377,7 @@
 }
 
 .close-button-open-task-board{
-    width: 32px;
-    height: 32px;
-    background-color:var(--white);
+    background-color: transparent;
     border: none;
     cursor: pointer;
 }
@@ -447,6 +446,32 @@
     gap: 8px;
 }
 
+.open-task-assigned {
+    display: flex;
+    gap: 4px;
+}
+
+.assigned-contact-open-task {
+    padding-left: 26px;
+    padding-right: 16px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.assigned-contact-open-task div h3 {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.assigned-contact-open-task h3 {
+    font-weight: 400;
+    font-size: 19px;
+}
+
 .open-task-subtasks-div {
     display: flex;
     flex-direction: column;
@@ -478,4 +503,52 @@
     height: 24px;
     width: 0;
     border: solid 1px var(--style);
+}
+
+.open-task-subtasks-div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.subtask-button-board {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 6px 16px;
+    background-color: transparent;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.subtask-button-board:hover {
+    background-color: var(--no-task-bg);
+}
+
+.subtask-icon-board {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+}
+
+.subtask-button-board:hover .subtask-icon-board {
+    background-color: var(--style);
+    border-radius: 50%;
+}
+
+.subtask-button-board h3 {
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--black);
+    padding: 0;
+}
+
+.edit-task-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
 }
