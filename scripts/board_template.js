@@ -211,10 +211,10 @@ function getOpenTaskBoard(task, color, indexTask){
   `;
 }
 
-function getRenderAssignedContacts(initial, name){
+function getRenderAssignedContacts(initial, name, color){
   return`
     <div class="assigned-contact-open-task">
-      <div class="initials-single-board"><h3>${initial}</h3></div>
+      <div class="initials-single-board" style="background-color:${color}"><h3>${initial}</h3></div>
       <h3>${name}</h3>
     </div>
   `
