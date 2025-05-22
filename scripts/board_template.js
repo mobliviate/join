@@ -249,122 +249,132 @@ function getrenderSubtasksTrueBoard(subtask,indexTask,subtaskIndex){
 
 function getRenderEditBoard(task){
   return`
-    <div class="edit-task-header">
-      <button class="close-button-open-task-board" onclick="closeOverlayButtonBoard('open_task_board', 'open_overlay_task_board')">
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <mask id="mask0_71720_5535" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="24" height="24">
-          <rect x="4" y="4" width="24" height="24" fill="#D9D9D9"/>
-          </mask>
-          <g mask="url(#mask0_71720_5535)">
-          <path d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6833 22.575 10.4 22.575C10.1167 22.575 9.88333 22.4834 9.7 22.3C9.51667 22.1167 9.425 21.8834 9.425 21.6C9.425 21.3167 9.51667 21.0834 9.7 20.9L14.6 16L9.7 11.1C9.51667 10.9167 9.425 10.6834 9.425 10.4C9.425 10.1167 9.51667 9.88338 9.7 9.70005C9.88333 9.51672 10.1167 9.42505 10.4 9.42505C10.6833 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0833 9.51672 21.3167 9.42505 21.6 9.42505C21.8833 9.42505 22.1167 9.51672 22.3 9.70005C22.4833 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4833 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4833 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4833 22.1167 22.3 22.3C22.1167 22.4834 21.8833 22.575 21.6 22.575C21.3167 22.575 21.0833 22.4834 20.9 22.3L16 17.4Z" fill="#2A3647"/>
-          </g>
-        </svg>
-      </button>
-    </div>
-    <div class="form-group">
-      <label for="title">Title<span class="required">*</span></label>
-      <input type="text" id="title" class="input-default" name="title" placeholder="Enter a title"
-        oninput="validateInputTitel(); checkFormValidity()" onblur="validateInputTitel()" value="${task.title}"/>
-      <span id="error-msg-title" class="error-msg d-none">This field is required</span>
-    </div>
-    <div class="form-group">
-      <label for="description">Description</label>
-      <textarea id="description" class="textarea-default" name="description" rows="4"
-        placeholder="Enter a description" value="${task.description}"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="due-date">Due Date<span class="required">*</span></label>
-      <div class="input-container">
-        <input type="date" id="due-date" class="input-default due-date" name="due-date" required
-          oninput="validateInputDate(); checkFormValidity()" onblur="validateInputDate()" value="${task.dueDate}"/>
-        <span id="error-msg-duedate" class="error-msg d-none">This field is required</span>
-      </div>
-    </div>
-    <div class="form-group">
-      <label>Priority</label>
-      <div class="priority-options">
-        <button onclick="selectPriority(this)" type="button" class="prio-btn" data-prio="urgent">
-          Urgent <span class="prio-icon"><img src="./assets/svg/prio_urgent.svg"
-                  alt="Prio High"></span>
-        </button>
-        <button onclick="selectPriority(this)" type="button" class="prio-btn selected"
-          data-prio="medium">
-          Medium <span class="prio-icon"><img src="./assets/svg/prio_medium.svg"
-                  alt="Prio Medium"></span>
-        </button>
-        <button onclick="selectPriority(this)" type="button" class="prio-btn" data-prio="low">
-          Low <span class="prio-icon"><img src="./assets/svg/prio_low.svg" alt="Prio Low"></span>
+    <div class="edit-scroll-column">
+      <div class="edit-task-header">
+        <button class="close-button-open-task-board" onclick="closeOverlayButtonBoard('open_task_board', 'open_overlay_task_board')">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <mask id="mask0_71720_5535" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="24" height="24">
+            <rect x="4" y="4" width="24" height="24" fill="#D9D9D9"/>
+            </mask>
+            <g mask="url(#mask0_71720_5535)">
+            <path d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6833 22.575 10.4 22.575C10.1167 22.575 9.88333 22.4834 9.7 22.3C9.51667 22.1167 9.425 21.8834 9.425 21.6C9.425 21.3167 9.51667 21.0834 9.7 20.9L14.6 16L9.7 11.1C9.51667 10.9167 9.425 10.6834 9.425 10.4C9.425 10.1167 9.51667 9.88338 9.7 9.70005C9.88333 9.51672 10.1167 9.42505 10.4 9.42505C10.6833 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0833 9.51672 21.3167 9.42505 21.6 9.42505C21.8833 9.42505 22.1167 9.51672 22.3 9.70005C22.4833 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4833 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4833 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4833 22.1167 22.3 22.3C22.1167 22.4834 21.8833 22.575 21.6 22.575C21.3167 22.575 21.0833 22.4834 20.9 22.3L16 17.4Z" fill="#2A3647"/>
+            </g>
+          </svg>
         </button>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="assigned-input">Assigned to</label>
-      <div class="multiselect-container">
-        <div class="multiselect" id="multiselect-assign"
-          onclick="event.stopPropagation(); toggleAssignDropdown()" tabindex="0">
-          <input type="text" placeholder="Select contacts to assign" id="multiselect-input-assign"
-            class="multiselect-input" oninput="filterContacts()" autocomplete="off"/>
-          <img class="multiselect-icon" id="multiselect-icon-assign"
-            src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
-        </div>
-        <div class="multiselect-options assigned d-none" id="multiselect-assign-options"
-          onclick="event.stopPropagation()">
-          <!-- Javascript insert Contacts from Firebase -->
-        </div>
-        <div class="assigned-contacts" id="assigned-contacts">
-          <!-- Javascript insert from Function -->
+      <div class="form-group">
+        <label for="title">Title<span class="required">*</span></label>
+        <input type="text" id="title" class="input-default" name="title" placeholder="Enter a title"
+          oninput="validateInputTitel(); checkFormValidity()" onblur="validateInputTitel()" value="${task.title}"/>
+        <span id="error-msg-title" class="error-msg d-none">This field is required</span>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" class="textarea-default" name="description" rows="4"
+          placeholder="Enter a description" value="${task.description}"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="due-date">Due Date<span class="required">*</span></label>
+        <div class="input-container">
+          <input type="date" id="due-date" class="input-default due-date" name="due-date" required
+            oninput="validateInputDate(); checkFormValidity()" onblur="validateInputDate()" value="${task.dueDate}"/>
+          <span id="error-msg-duedate" class="error-msg d-none">This field is required</span>
         </div>
       </div>
-    </div>
-    <div class="form-group">
-      <label for="category-box">Category<span class="required">*</span></label>
-      <div class="multiselect-container">
-        <div class="multiselect" id="multiselect-category"
-          onclick="event.stopPropagation(); toggleCategoryDropdown()"
-          onfocusout="validateCategory()" tabindex="0">
-          <span class="label-text" id="category-selected">${task.category}</span>
-          <img class="multiselect-icon" id="multiselect-icon-category"
-                src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
+      <div class="form-group">
+        <label>Priority</label>
+        <div class="priority-options">
+          <button onclick="selectPriority(this)" type="button" class="prio-btn" data-prio="urgent">
+            Urgent <span class="prio-icon"><img src="./assets/svg/prio_urgent.svg"
+                    alt="Prio High"></span>
+          </button>
+          <button onclick="selectPriority(this)" type="button" class="prio-btn selected"
+            data-prio="medium">
+            Medium <span class="prio-icon"><img src="./assets/svg/prio_medium.svg"
+                    alt="Prio Medium"></span>
+          </button>
+          <button onclick="selectPriority(this)" type="button" class="prio-btn" data-prio="low">
+            Low <span class="prio-icon"><img src="./assets/svg/prio_low.svg" alt="Prio Low"></span>
+          </button>
         </div>
-        <div class="multiselect-options d-none" id="multiselect-category-options">
-          <div class="multiselect-option"
-            onclick="event.stopPropagation(); selectCategoryOption('Technical Task')">Technical
-            Task</div>
-          <div class="multiselect-option"
-            onclick="event.stopPropagation(); selectCategoryOption('User Story')">User Story
+      </div>
+      <div class="form-group">
+        <label for="assigned-input">Assigned to</label>
+        <div class="multiselect-container">
+          <div class="multiselect" id="multiselect-assign"
+            onclick="event.stopPropagation(); toggleAssignDropdown()" tabindex="0">
+            <input type="text" placeholder="Select contacts to assign" id="multiselect-input-assign"
+              class="multiselect-input" oninput="filterContacts()" autocomplete="off"/>
+            <img class="multiselect-icon" id="multiselect-icon-assign"
+              src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
+          </div>
+          <div class="multiselect-options assigned d-none" id="multiselect-assign-options"
+            onclick="event.stopPropagation()">
+            <!-- Javascript insert Contacts from Firebase -->
+          </div>
+          <div class="assigned-contacts" id="assigned-contacts">
+            <!-- Javascript insert from Function -->
           </div>
         </div>
       </div>
-      <span id="error-msg-category" class="error-msg d-none">This field is required</span>
+      <div class="form-group">
+        <label for="category-box">Category<span class="required">*</span></label>
+        <div class="multiselect-container">
+          <div class="multiselect" id="multiselect-category"
+            onclick="event.stopPropagation(); toggleCategoryDropdown()"
+            onfocusout="validateCategory()" tabindex="0">
+            <span class="label-text" id="category-selected">${task.category}</span>
+            <img class="multiselect-icon" id="multiselect-icon-category"
+                  src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
+          </div>
+          <div class="multiselect-options d-none" id="multiselect-category-options">
+            <div class="multiselect-option"
+              onclick="event.stopPropagation(); selectCategoryOption('Technical Task')">Technical
+              Task</div>
+            <div class="multiselect-option"
+              onclick="event.stopPropagation(); selectCategoryOption('User Story')">User Story
+            </div>
+          </div>
+        </div>
+        <span id="error-msg-category" class="error-msg d-none">This field is required</span>
+      </div>
+      <div class="form-group">
+        <label>Subtasks</label>
+        <div class="input-container">
+          <input id="subtask-input" class="input-custom-subtask" type="text" name="subtasks"
+            placeholder="Add new subtask" oninput="subtaskInput()" onclick="subtaskInput()">
+          <div class="buttons-box">
+            <img id="add-subtask-icon" class="input-default-icon" src="./assets/svg/subtask_add.svg"
+              alt="Add subtask" onclick="subtaskInputIcon()">
+            <img id="delete-subtask-icon" class="input-default-icon d-none"
+              src="./assets/svg/subtask_close.svg" alt="Delete subtask" onclick="subtaskDelete()">
+            <div class="verticalline-subtask d-none"></div>
+            <img id="save-subtask-icon" class="input-default-icon d-none"
+              src="./assets/svg/subtask_check.svg" alt="Save subtask" onclick="subtaskSave()">
+          </div>
+        </div>
+        <div class="subtask-list">
+            <!-- Javascript insert from Function -->
+        </div>
+        <div class="input-container edit">
+          <input id="subtask-edit" class=" subtask-edit d-none" type="text" name="subtask-edit"
+            placeholder="Edit subtask">
+          <div class=" buttons-box">
+            <img id="edit-delete-icon" class="input-default-icon d-none"
+              src="assets/svg/subtask_delete.svg" alt="Delete" onclick="cancelEditSubtask()">
+            <div class="verticalline-subtask"></div>
+            <img id="edit-save-icon" class="input-default-icon d-none"
+              src="assets/svg/subtask_check.svg" alt="Save" onclick="saveEditedSubtask()">
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Subtasks</label>
-      <div class="input-container">
-        <input id="subtask-input" class="input-custom-subtask" type="text" name="subtasks"
-          placeholder="Add new subtask" oninput="subtaskInput()" onclick="subtaskInput()">
-        <div class="buttons-box">
-          <img id="add-subtask-icon" class="input-default-icon" src="./assets/svg/subtask_add.svg"
-            alt="Add subtask" onclick="subtaskInputIcon()">
-          <img id="delete-subtask-icon" class="input-default-icon d-none"
-            src="./assets/svg/subtask_close.svg" alt="Delete subtask" onclick="subtaskDelete()">
-          <div class="verticalline-subtask d-none"></div>
-          <img id="save-subtask-icon" class="input-default-icon d-none"
-            src="./assets/svg/subtask_check.svg" alt="Save subtask" onclick="subtaskSave()">
-        </div>
-      </div>
-      <div class="subtask-list">
-          <!-- Javascript insert from Function -->
-      </div>
-      <div class="input-container edit">
-        <input id="subtask-edit" class=" subtask-edit d-none" type="text" name="subtask-edit"
-          placeholder="Edit subtask">
-        <div class=" buttons-box">
-          <img id="edit-delete-icon" class="input-default-icon d-none"
-            src="assets/svg/subtask_delete.svg" alt="Delete" onclick="cancelEditSubtask()">
-          <div class="verticalline-subtask"></div>
-          <img id="edit-save-icon" class="input-default-icon d-none"
-            src="assets/svg/subtask_check.svg" alt="Save" onclick="saveEditedSubtask()">
-        </div>
+    <div id="form-actions-add-task" class="form-actions-add-task">
+      <div class="form-action-buttons">
+        <button type="button" class="button-create-task" id="create-task-button" onclick="saveEditedTask('${task}')"
+            disabled> Ok
+          <img src="assets/svg/add_task_check_white.svg" alt="Check">
+        </button>
       </div>
     </div>
   `;

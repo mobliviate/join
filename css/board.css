@@ -311,7 +311,7 @@
 
 .open-task-overlay {
     width: 640px;
-    height: auto;
+    max-height: 1080px;
     padding: 48px 40px;
     background-color: var(--white);
     border-radius: 30px;
