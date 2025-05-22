@@ -73,8 +73,15 @@ function renderInitials(taskRef, indexTask) {
   let contactRef = taskRef.assignedContacts;
   for (let index = 0; index < contactRef.length; index++) {
     let initial = contactRef[index].initials;
-    initialContactRef.innerHTML += getRenderInitials(initial);
+    let color = getHueFromString(contactRef[index].name);
+    initialContactRef.innerHTML += getRenderInitials(initial, color);
   }
+}
+
+function getHueFromString(text) {
+  let hash = 0;
+  for (const char of text) hash = (hash * 31 + char.charCodeAt(0)) % 360;
+  return `hsl(${hash}, 70%, 50%)`;
 }
 
 function addTaskBoard(title) {

@@ -126,9 +126,9 @@ function getRenderTask(task, indexTask, background,) {
   `;
 }
 
-function getRenderInitials(initial) {
+function getRenderInitials(initial, color) {
   return `
-    <div class="initials-single-board"><h3>${initial}</h3></div>
+    <div class="initials-single-board" style="background-color:${color}"><h3>${initial}</h3></div>
   `;
 }
 
