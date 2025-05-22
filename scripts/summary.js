@@ -36,7 +36,8 @@ async function initSummary() {
 
 
 /**
- * Loads the HTML layout (header, body, sidebar and the active sidebar link).
+ * Loads the HTML layout of the page, including the header, body, and sidebar.
+ * Also highlights the currently active link in the sidebar.
  *
  * @returns {void}
  */
@@ -46,7 +47,12 @@ function loadHeaderBodySidebar() {
     highlightActiveSidebarLink();
 }
 
-
+/**
+ * Loads tasks from the database and updates the task status.
+ *
+ * @async
+ * @returns {Promise<void>} Loads tasks and updates status.
+ */
 async function loadTasksandSetTasksStatus() {
     try {
         const tasks = await getData(DATABASEURL, 'tasks.json');
