@@ -1,29 +1,24 @@
 let summaryUser = {
-//   id: localStorage.getItem("userIndex"),
-//   name: "",
-  tasks: {
-    todo: 0,
-    done: 0,
-    urgent: {
-      count: 0,
-      deadline: "-",
+    tasks: {
+        todo: 0,
+        done: 0,
+        urgent: {
+            count: 0,
+            deadline: '-',
+        },
+        tasksInBoard: 0,
+        tasksInProgress: 0,
+        awaitingFeedback: 0,
     },
-    tasksInBoard: 0,
-    tasksInProgress: 0,
-    awaitingFeedback: 0,
-  },
 };
-
 const urgentDates = [];
-
-const DATABASEURL =
-  "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
+const DATABASEURL = 'https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/';
 
 
 async function initSummary() {
     loadHeaderBodySidebar();
     await loadTasksandSetTasksStatus();
-    document.getElementById("main").innerHTML = getSummaryTemplate();
+    document.getElementById('main').innerHTML = getSummaryTemplate();
     userGreetAndChangeUserName();
 }
 
@@ -36,18 +31,18 @@ function loadHeaderBodySidebar() {
 
 
 async function loadTasksandSetTasksStatus() {
-    try{
-        const tasks = await getData(DATABASEURL, "tasks.json");
-        getTaskStatus(tasks);   
-    } catch(error) {
-        console.error("Error: Cannot load and set Tasks", error.message);
+    try {
+        const tasks = await getData(DATABASEURL, 'tasks.json');
+        getTaskStatus(tasks);
+    } catch (error) {
+        console.error('Error: Cannot load and set Tasks', error.message);
     }
 }
 
 
 function getTaskStatus(tasks) {
     summaryUser.tasks.tasksInBoard = tasks.length;
-    tasks.forEach(task => {
+    tasks.forEach((task) => {
         setTaskStatus(task.status);
         setTaskPriorityAndGetDate(task.priority, task.dueDate);
     });
@@ -55,67 +50,70 @@ function getTaskStatus(tasks) {
 }
 
 
-function setTaskStatus(taskStatus){
+function setTaskStatus(taskStatus) {
     switch (taskStatus) {
-        case "todo":
+        case 'todo':
             summaryUser.tasks.todo += 1;
             break;
-        case "done":
+        case 'done':
             summaryUser.tasks.done += 1;
             break;
-        case "progress":
+        case 'progress':
             summaryUser.tasks.tasksInProgress += 1;
             break;
-        case "feedback":
+        case 'feedback':
             summaryUser.tasks.awaitingFeedback += 1;
             break;
-        default: break;
+        default:
+            break;
     }
-};
+}
 
 
-function setTaskPriorityAndGetDate(taskPriority, taskDate){
-    if (taskPriority == "urgent") {
+function setTaskPriorityAndGetDate(taskPriority, taskDate) {
+    if (taskPriority == 'urgent') {
         summaryUser.tasks.urgent.count += 1;
         urgentDates.push(new Date(taskDate));
     }
-};
+}
 
 
-function setUpcomingDate(){
-    const upcomingDeadline = new Date(Math.min(...urgentDates)).toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "long",
-        day: "numeric"
+function setUpcomingDate() {
+    const upcomingDeadline = new Date(
+        Math.min(...urgentDates)
+    ).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
     });
     summaryUser.tasks.urgent.deadline = upcomingDeadline;
 }
 
 
 async function getData(url, path) {
-  try {
-    const response = await fetch(url + path);
-    if (!response.ok) {
-      throw new Error("Fehler beim Abrufen");
+    try {
+        const response = await fetch(url + path);
+        if (!response.ok) {
+            throw new Error('Fehler beim Abrufen');
+        }
+        return (data = await response.json());
+    } catch (error) {
+        console.error('Error: ', error.message);
     }
-    return (data = await response.json());
-  } catch (error) {
-    console.error("Error: ", error.message);
-  }
 }
 
 
-function openBoardPage(){
+function openBoardPage() {
     window.location.href = 'board.html';
 }
 
 
 function getSummaryTemplate() {
-  return `
+    return `
         <div id="greet_overlay" class="greet-overlay d-none">
             <div class="greet-overlay-content">
-                <h1 id="greet_overlay_title" class="greet-overlay-title">Good Morning,</h1>
-                <span id="greet_overlay_name" class="greet-overlay-name">Sofia Müller</span>
+                <h1 id="greet_overlay_title" class="greet-overlay-title"></h1>
+                <span id="greet_overlay_name" class="greet-overlay-name"></span>
             </div>
         </div>
         <div class="summary_container">
