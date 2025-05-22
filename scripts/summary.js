@@ -15,6 +15,18 @@ const urgentDates = [];
 const DATABASEURL = 'https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/';
 
 
+/**
+ * Initializes the summary page.
+ *
+ * Performs the following steps:
+ * 1. Loads the HTML layout (header, body and sidebar).
+ * 2. Loads tasks and sets their status.
+ * 3. Renders the summary template into the main content of the page.
+ * 4. Greets the user (depending on the time of day and if necessary by name)
+ *
+ * @async
+ * @returns {Promise<void>} Executes asynchronous initialization steps.
+ */
 async function initSummary() {
     loadHeaderBodySidebar();
     await loadTasksandSetTasksStatus();
@@ -23,6 +35,11 @@ async function initSummary() {
 }
 
 
+/**
+ * Loads the HTML layout (header, body, sidebar and the active sidebar link).
+ *
+ * @returns {void}
+ */
 function loadHeaderBodySidebar() {
     loadBody();
     loadHeader();
