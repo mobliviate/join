@@ -73,12 +73,12 @@ function renderInitials(taskRef, indexTask) {
   let contactRef = taskRef.assignedContacts;
   for (let index = 0; index < contactRef.length; index++) {
     let initial = contactRef[index].initials;
-    let color = getHueFromString(contactRef[index].name);
+    let color = getColorBoard(contactRef[index].name);
     initialContactRef.innerHTML += getRenderInitials(initial, color);
   }
 }
 
-function getHueFromString(text) {
+function getColorBoard(text) {
   let hash = 0;
   for (const char of text) hash = (hash * 31 + char.charCodeAt(0)) % 360;
   return `hsl(${hash}, 70%, 50%)`;
@@ -207,7 +207,7 @@ async function renderOpenAssignedContacts(indexTask){
   let assignedContactsContentRef = document.getElementById("open-task-assigned")
   for (let assignedContactsIndex = 0; assignedContactsIndex < allAssignedContacts.length; assignedContactsIndex++) {
     let contact = allAssignedContacts[assignedContactsIndex]
-    let color = getHueFromString(contact.name);
+    let color = getColorBoard(contact.name);
    assignedContactsContentRef.innerHTML += getRenderAssignedContacts(contact.initials, contact.name, color);
   }
 }
