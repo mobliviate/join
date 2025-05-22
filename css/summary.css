@@ -172,13 +172,14 @@
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 80px;
 }         
 
 .summary_content_right_greeting {
   font-weight: 500;
   font-size: 47px;
-  padding-left: 80px;
 }
 
 .summary_content_right_user {

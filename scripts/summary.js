@@ -1,6 +1,6 @@
 let summaryUser = {
-  id: localStorage.getItem("userIndex"),
-  name: "",
+//   id: localStorage.getItem("userIndex"),
+//   name: "",
   tasks: {
     todo: 0,
     done: 0,
@@ -225,7 +225,7 @@ function getSummaryTemplate() {
                     <div class="summary_content_right">
                         <div class="summary_content_right_wrapper">
                             <span id="summary_greeting" class="summary_content_right_greeting"> Good morning, </span>
-                            <span id="summary_user" class="summary_content_right_user">${summaryUser.name}</span>
+                            <span id="summary_user" class="summary_content_right_user"></span>
                         </div>
                     </div>
 
