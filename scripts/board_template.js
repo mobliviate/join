@@ -169,7 +169,7 @@ function getOpenTaskBoard(task, color, indexTask){
     <h3 class="open-task-description">${task.description}</h3>
     <div class="open-task-date-div">
       <h3 class="open-task-text">Due date:</h3>
-      <h3 class="open-task-date">${task.dueDate}</h3>
+      <input type="date" class="open-task-date"value="${task.dueDate}"/>
     </div>
     <div class="open-task-priority-div">
       <h3 class="open-task-text">Priority:</h3>
@@ -271,7 +271,7 @@ function getRenderEditBoard(task){
       <div class="form-group">
         <label for="description">Description</label>
         <textarea id="description" class="textarea-default" name="description" rows="4"
-          placeholder="Enter a description" value="${task.description}"></textarea>
+          placeholder="Enter a description">${task.description}</textarea>
       </div>
       <div class="form-group">
         <label for="due-date">Due Date<span class="required">*</span></label>
@@ -371,8 +371,8 @@ function getRenderEditBoard(task){
     </div>
     <div id="form-actions-add-task" class="form-actions-add-task">
       <div class="form-action-buttons">
-        <button type="button" class="button-create-task" id="create-task-button" onclick="saveEditedTask('${task}')"
-            disabled> Ok
+        <button type="button" class="button-create-task" id="create-task-button" onclick="saveEditedTask('${task}')">
+          Ok
           <img src="assets/svg/add_task_check_white.svg" alt="Check">
         </button>
       </div>

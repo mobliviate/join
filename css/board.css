@@ -411,10 +411,19 @@
 }
 
 .open-task-date {
+    border: none;
+    background-color: transparent;
+    pointer-events: none;
+    appearance: none;
+    -webkit-appearance: none;
     font-family: inter;
     font-weight: 400;
     font-size: 20px;
     color: var(--black);
+}
+
+.open-task-date::-webkit-calendar-picker-indicator {
+  display: none;
 }
 
 .open-task-priority-div {
