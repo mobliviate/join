@@ -173,6 +173,23 @@ function updateAssignedContacts() {
 }
 
 /**
+ * Filters the contact list in the assign dropdown based on user input.
+ */
+function filterContacts() {
+    const input = document.getElementById('multiselect-input-assign').value.toLowerCase();
+    const contactElements = document.querySelectorAll('.multiselect-option-contact');
+
+    contactElements.forEach(contact => {
+        const name = contact.innerText.toLowerCase();
+        if (name.includes(input)) {
+            contact.style.display = '';
+        } else {
+            contact.style.display = 'none';
+        }
+    });
+}
+
+/**
  * Toggles visibility of the category dropdown.
  */
 function toggleCategoryDropdown() {
