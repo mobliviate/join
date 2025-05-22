@@ -44,7 +44,7 @@ function hideUserInfo() {
 function userGreetAndChangeUserName() {
     const overlayRef = document.getElementById("greet_overlay");
     renderUserInSummary();
-    if (window.innerWidth <= 980 && localStorage.getItem("showGreeting") === "true") {
+    if (window.innerWidth <= 1340 && localStorage.getItem("showGreeting") === "true") {
         overlayRef.classList.remove("d-none");
         renderUserInOverlay();
         setTimeout(() => {

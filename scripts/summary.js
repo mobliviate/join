@@ -22,7 +22,7 @@ const DATABASEURL = 'https://join-bc74a-default-rtdb.europe-west1.firebasedataba
  * 1. Loads the HTML layout (header, body and sidebar).
  * 2. Loads tasks and sets their status.
  * 3. Renders the summary template into the main content of the page.
- * 4. Greets the user (depending on the time of day and if necessary by name)
+ * 4. Greets the user (depending on the time of day and if necessary by name).
  *
  * @async
  * @returns {Promise<void>} Executes asynchronous initialization steps.
@@ -46,6 +46,7 @@ function loadHeaderBodySidebar() {
     loadHeader();
     highlightActiveSidebarLink();
 }
+
 
 /**
  * Loads tasks from the database and updates the task status.
