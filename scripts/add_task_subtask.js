@@ -124,3 +124,16 @@ function getSubtasks() {
         status: false
     }));
 }
+
+/**
+ * Handles the Enter key press in the subtask input field.
+ * Prevents the default form submission and triggers saving the subtask.
+ * 
+ * @param {KeyboardEvent} event - The keydown event triggered in the input field.
+ */
+function handleSubtaskEnter(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        subtaskSave();
+    }
+}
