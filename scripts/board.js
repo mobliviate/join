@@ -2,6 +2,8 @@ const tasksUrl = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.
 
 let currentDraggedElement;
 
+let openedElement;
+
 function initBoard() {
   loadBody();
   loadHeader();
@@ -194,8 +196,7 @@ async function openTaskBoard(indexTask, color) {
   document.getElementById("open_task_board").innerHTML = getOpenTaskBoard(openTaskRefToJson, color, indexTask);
   if (openTaskRefToJson.assignedContacts?.length > 0) {
     renderOpenAssignedContacts(indexTask)
-  }
-  if (openTaskRefToJson.subtasks?.length > 0) {
+  } if (openTaskRefToJson.subtasks?.length > 0) {
     renderOpenSubtasks(indexTask)
   }
 }
@@ -279,6 +280,44 @@ async function editTasskBoard(indexTask){
   let openOverlayBoard = document.getElementById("open_task_board")
   openOverlayBoard.innerHTML = ""
   openOverlayBoard.innerHTML = getRenderEditBoard(editTaskRefToJson)
+  setPriority(indexTask)
+  if (editTaskRefToJson.assignedContacts?.length > 0) {
+    setAssignedContacts(indexTask);
+  } if (editTaskRefToJson.subtasks?.length > 0) {
+    setSubtasks(indexTask)
+  }
+}
+
+async function setPriority(indexTask) {
+  let priorityRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}/priority.json`)
+  let priorityRefToJson = await priorityRef.json();
+  let setButtons = document.querySelectorAll('[data-prio]');
+  setButtons.forEach(btn => {
+    if (btn.dataset.prio === priorityRefToJson) {
+      btn.classList.add('selected');
+    }
+  });
+}
+
+async function setAssignedContacts(indexTask){
+  let setAssignedContactsRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}/assignedContacts.json`)
+  let setAssignedContactsRefToJson = await setAssignedContactsRef.json();
+  let setAssignedContacts = document.querySelectorAll('[data-id]');
+  let assignedIds = new Set(setAssignedContactsRefToJson.map(contact => contact.id));
+  setAssignedContacts.forEach(el => {
+    if (assignedIds.has(el.dataset.id)) {
+      el.classList.add('selected');
+    }
+  });
+}
+
+async function setSubtasks(indexTask){
+  let setSubtasksRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}/subtasks.json`)
+  let setSubtasksRefToJson = await setSubtasksRef.json();
+  let setSubtasksContentRef = document.getElementById("subtesk_edit_board")
+  for (let indexSetSubtasks = 0; indexSetSubtasks < setSubtasksRefToJson.length; indexSetSubtasks++) {
+    setSubtasksContentRef.innerHTML += getRenderEditSubtasks(setSubtasksRefToJson[indexSetSubtasks].text)
+  }
 }
 
 // added from Alex

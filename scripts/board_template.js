@@ -288,7 +288,7 @@ function getRenderEditBoard(task){
             Urgent <span class="prio-icon"><img src="./assets/svg/prio_urgent.svg"
                     alt="Prio High"></span>
           </button>
-          <button onclick="selectPriority(this)" type="button" class="prio-btn selected"
+          <button onclick="selectPriority(this)" type="button" class="prio-btn"
             data-prio="medium">
             Medium <span class="prio-icon"><img src="./assets/svg/prio_medium.svg"
                     alt="Prio Medium"></span>
@@ -353,7 +353,7 @@ function getRenderEditBoard(task){
               src="./assets/svg/subtask_check.svg" alt="Save subtask" onclick="subtaskSave()">
           </div>
         </div>
-        <div class="subtask-list">
+        <div id="subtesk_edit_board" class="subtask-list">
             <!-- Javascript insert from Function -->
         </div>
         <div class="input-container edit">
@@ -375,6 +375,18 @@ function getRenderEditBoard(task){
           Ok
           <img src="assets/svg/add_task_check_white.svg" alt="Check">
         </button>
+      </div>
+    </div>
+  `;
+}
+
+function getRenderEditSubtasks(subtask){
+  return`
+    <div class="subtask-item">
+      <span class="subtask-text">• ${subtask}</span>
+      <div class="subtask-actions d-none">
+        <img src="./assets/svg/subtask_edit.svg" alt="Edit" class="subtask-action-icon" onclick="editSubtask(this)">
+        <img src="./assets/svg/subtask_delete.svg" alt="Delete" class="subtask-action-icon" onclick="deleteSubtask(this)">
       </div>
     </div>
   `;
