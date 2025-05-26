@@ -7,7 +7,7 @@
  * @param {Array} contacts
  */
 function sortContactsByName(contacts) {
-  contacts.sort((a, b) => a.name.localeCompare(b.name));
+    contacts.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 /**
@@ -15,9 +15,9 @@ function sortContactsByName(contacts) {
  * @param {Array} contactArray
  */
 function renderContactsList(contactArray) {
-  const container = document.getElementById("contacts-group-container");
-  if (!container) return;
-  container.innerHTML = generateContactsListHTML(contactArray);
+    const container = document.getElementById("contacts-group-container");
+    if (!container) return;
+    container.innerHTML = generateContactsListHTML(contactArray);
 }
 
 /**
@@ -26,17 +26,17 @@ function renderContactsList(contactArray) {
  * @returns {string}
  */
 function generateContactsListHTML(contactArray) {
-  let html = "";
-  let lastInitial = "";
-  for (const contact of contactArray) {
-    const initial = contact.name.charAt(0).toUpperCase();
-    if (initial !== lastInitial) {
-      lastInitial = initial;
-      html += createGroupLetterTemplate(initial);
+    let html = "";
+    let lastInitial = "";
+    for (const contact of contactArray) {
+        const initial = contact.name.charAt(0).toUpperCase();
+        if (initial !== lastInitial) {
+            lastInitial = initial;
+            html += createGroupLetterTemplate(initial);
+        }
+        html += createContactItemTemplate(contact);
     }
-    html += createContactItemTemplate(contact);
-  }
-  return html;
+    return html;
 }
 
 /**
@@ -46,17 +46,17 @@ function generateContactsListHTML(contactArray) {
  * - Resets the last selected contact ID.
  */
 function clearSelectedContact() {
-  window.lastSelectedContactId = null;
+    window.lastSelectedContactId = null;
 
-  let items = document.querySelectorAll(".contact-item.active");
-  for (let i = 0; i < items.length; i++) {
-    items[i].classList.remove("active");
-  }
+    let items = document.querySelectorAll(".contact-item.active");
+    for (let i = 0; i < items.length; i++) {
+        items[i].classList.remove("active");
+    }
 
-  let detail = document.getElementById("contact-detail");
-  if (detail) {
-    detail.innerHTML = "";
-  }
+    let detail = document.getElementById("contact-detail");
+    if (detail) {
+        detail.innerHTML = "";
+    }
 }
 
 /**
@@ -67,26 +67,26 @@ function clearSelectedContact() {
  * @param {string} contactId - The ID of the contact to select.
  */
 function selectContactById(contactId) {
-  if (window.lastSelectedContactId === contactId) {
-    clearSelectedContact();
-    return;
-  }
-
-  window.lastSelectedContactId = contactId;
-
-  let items = document.querySelectorAll(".contact-item");
-  let selectedElement = null;
-
-  for (let i = 0; i < items.length; i++) {
-    if (items[i].dataset.id === contactId) {
-      selectedElement = items[i];
-      break;
+    if (window.lastSelectedContactId === contactId) {
+        clearSelectedContact();
+        return;
     }
-  }
 
-  if (selectedElement) {
-    selectContact(selectedElement, window.currentContacts);
-  }
+    window.lastSelectedContactId = contactId;
+
+    let items = document.querySelectorAll(".contact-item");
+    let selectedElement = null;
+
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].dataset.id === contactId) {
+            selectedElement = items[i];
+            break;
+        }
+    }
+
+    if (selectedElement) {
+        selectContact(selectedElement, window.currentContacts);
+    }
 }
 
 /**
@@ -94,11 +94,11 @@ function selectContactById(contactId) {
  * @param {Element} itemElement
  */
 function highlightSelectedContact(itemElement) {
-  const activeElements = document.querySelectorAll(".contact-item.active");
-  for (let i = 0; i < activeElements.length; i++) {
-    activeElements[i].classList.remove("active");
-  }
-  itemElement.classList.add("active");
+    const activeElements = document.querySelectorAll(".contact-item.active");
+    for (let i = 0; i < activeElements.length; i++) {
+        activeElements[i].classList.remove("active");
+    }
+    itemElement.classList.add("active");
 }
 
 /**
@@ -107,16 +107,16 @@ function highlightSelectedContact(itemElement) {
  * @param {Array} contactArray
  */
 function selectContact(itemElement, contactArray) {
-  highlightSelectedContact(itemElement);
-  const selectedId = itemElement.dataset.id;
-  let contact = null;
-  for (let i = 0; i < contactArray.length; i++) {
-    if (contactArray[i].id === selectedId) {
-      contact = contactArray[i];
-      break;
+    highlightSelectedContact(itemElement);
+    const selectedId = itemElement.dataset.id;
+    let contact = null;
+    for (let i = 0; i < contactArray.length; i++) {
+        if (contactArray[i].id === selectedId) {
+            contact = contactArray[i];
+            break;
+        }
     }
-  }
-  if (contact !== null) {
-    showContactDetail(contact);
-  }
+    if (contact !== null) {
+        showContactDetail(contact);
+    }
 }

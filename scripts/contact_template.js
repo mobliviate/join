@@ -3,7 +3,7 @@
  * @returns {string}
  */
 function getContactsSectionTemplate() {
-  return `
+    return `
     <div class="contacts-page">
       <aside class="contacts-list">
         <button id="add-contact-btn" class="btn btn-primary" onclick="showAddContactOverlay();">
@@ -40,8 +40,8 @@ function getContactsSectionTemplate() {
  * @param {Object} contact
  */
 function renderDesktopContactDetail(contact) {
-  const detail = document.getElementById("contact-detail");
-  detail.innerHTML = `
+    const detail = document.getElementById("contact-detail");
+    detail.innerHTML = `
     <div class="detail-content animate-detail">
       ${getContactDetailHTML(contact)}
     </div>
@@ -54,7 +54,7 @@ function renderDesktopContactDetail(contact) {
  * @returns {string} The HTML string for the mobile options menu.
  */
 function getMobileOptionsMenuTemplate(contactId) {
-  return `
+    return `
     <div id="mobile-options-menu" class="mobile-options-menu">
       <div class="option-item" onclick="closeMobileOptionsMenuWithAnimation(); setTimeout(() => showEditContactOverlayMobile('${contactId}'), 180);">
         <img src="assets/svg/edit_contacts.svg" alt="Edit">
@@ -72,7 +72,7 @@ function getMobileOptionsMenuTemplate(contactId) {
  * @returns {string} The HTML string for the mobile contact detail view.
  */
 function getMobileContactDetailHTML(contact) {
-  return `
+    return `
     <div class="mobile-contact-wrapper">
       <div class="contacts-header">
         <button class="back-btn-mobile" onclick="closeMobileContactDetail()">
@@ -94,7 +94,7 @@ function getMobileContactDetailHTML(contact) {
  * @returns {string}
  */
 function createGroupLetterTemplate(letter) {
-  return `<div class="group-letter">${letter}</div>`;
+    return `<div class="group-letter">${letter}</div>`;
 }
 
 /**
@@ -106,7 +106,7 @@ function createGroupLetterTemplate(letter) {
  * @returns {string}
  */
 function buildContactItem(id, avatarHTML, name, emailHTML) {
-  return `
+    return `
     <div class="contact-item" data-id="${id}" onclick="selectContactById('${id}')">
       ${avatarHTML}
       <div class="info">
@@ -124,9 +124,9 @@ function buildContactItem(id, avatarHTML, name, emailHTML) {
  * @returns {string}
  */
 function createAvatarTemplate(name, initials) {
-  const hue = getHueFromString(name);
-  const color = `hsl(${hue}, 70%, 50%)`;
-  return `
+    const hue = getHueFromString(name);
+    const color = `hsl(${hue}, 70%, 50%)`;
+    return `
     <div class="avatar-circle" style="background-color: ${color}">
       ${initials}
     </div>
@@ -139,7 +139,9 @@ function createAvatarTemplate(name, initials) {
  * @returns {string}
  */
 function createContactDetailTemplate(contact) {
-  return buildContactHeaderSection(contact) + buildContactInfoSection(contact);
+    return (
+        buildContactHeaderSection(contact) + buildContactInfoSection(contact)
+    );
 }
 
 /**
@@ -148,11 +150,11 @@ function createContactDetailTemplate(contact) {
  * @returns {string}
  */
 function buildContactHeaderSection(contact) {
-  const avatarHTML = createAvatarTemplate(
-    contact.name,
-    contact.initials
-  ).replace('avatar-circle"', 'avatar-circle large"');
-  return `
+    const avatarHTML = createAvatarTemplate(
+        contact.name,
+        contact.initials
+    ).replace('avatar-circle"', 'avatar-circle large"');
+    return `
     <div class="detail-header">
       ${avatarHTML}
       <div class="detail-title">
@@ -178,16 +180,16 @@ function buildContactHeaderSection(contact) {
  * @returns {string}
  */
 function buildContactInfoSection(contact) {
-  let infoHTML = `<div class="detail-info"><h3>Contact Information</h3>`;
-  if (contact.email) {
-    infoHTML += `<p><strong>Email</strong><br>
+    let infoHTML = `<div class="detail-info"><h3>Contact Information</h3>`;
+    if (contact.email) {
+        infoHTML += `<p><strong>Email</strong><br>
                   <a href="mailto:${contact.email}">${contact.email}</a></p>`;
-  }
-  if (contact.phone) {
-    infoHTML += `<p><strong>Phone</strong><br>${contact.phone}</p>`;
-  }
-  infoHTML += `</div>`;
-  return infoHTML;
+    }
+    if (contact.phone) {
+        infoHTML += `<p><strong>Phone</strong><br>${contact.phone}</p>`;
+    }
+    infoHTML += `</div>`;
+    return infoHTML;
 }
 
 /**
@@ -195,7 +197,7 @@ function buildContactInfoSection(contact) {
  * @returns {string}
  */
 function getAddContactOverlayTemplate() {
-  return `
+    return `
     <div class="overlay" id="add-contact-overlay">
       <div class="overlay-content">
         <div class="overlay-left">
@@ -240,7 +242,7 @@ function getAddContactOverlayTemplate() {
  * @returns {string}
  */
 function getAddContactOverlayMobileTemplate() {
-  return `
+    return `
     <div class="overlay-mobile">
       <div class="overlay-mobile-content">
         <button class="close-btn-mobile" aria-label="Close" onclick="hideAddContactOverlayMobile()">×</button>
@@ -285,7 +287,7 @@ function getAddContactOverlayMobileTemplate() {
  * @returns {string} The HTML string for the desktop edit contact overlay.
  */
 function getEditContactOverlayTemplate(contact) {
-  return `
+    return `
     <div class="overlay" id="edit-contact-overlay">
       <div class="overlay-content">
         <div class="overlay-left">
@@ -303,29 +305,29 @@ function getEditContactOverlayTemplate(contact) {
             </div>
           </div>
           <form id="edit-contact-form" onsubmit="handleEditContact(event, '${
-            contact.id
+              contact.id
           }')">
             <div class="input-group">
               <input type="text" id="edit-contact-name" placeholder="Name" required value="${
-                contact.name
+                  contact.name
               }">
               <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
             </div>
             <div class="input-group">
               <input type="email" id="edit-contact-email" placeholder="Email" value="${
-                contact.email || ""
+                  contact.email || ""
               }">
               <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
             </div>
             <div class="input-group">
               <input type="tel" id="edit-contact-phone" placeholder="Phone" value="${
-                contact.phone || ""
+                  contact.phone || ""
               }">
               <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
             </div>
             <div class="form-buttons-desktop">
               <button type="button" class="btn delete-btn" onclick="deleteContact('${
-                contact.id
+                  contact.id
               }');">Delete</button>
               <button type="submit" class="btn btn-primary create-btn">Save ✓</button>
             </div>
@@ -347,11 +349,11 @@ function getEditContactOverlayTemplate(contact) {
  * @returns {string} The HTML string for the mobile edit contact overlay.
  */
 function getEditContactOverlayMobileTemplate(contact) {
-  const initials = contact.initials || getInitials(contact.name);
-  const hue = getHueFromString(contact.name);
-  const color = `hsl(${hue}, 70%, 50%)`;
+    const initials = contact.initials || getInitials(contact.name);
+    const hue = getHueFromString(contact.name);
+    const color = `hsl(${hue}, 70%, 50%)`;
 
-  return `
+    return `
     <div class="overlay-mobile">
       <div class="overlay-mobile-content">
         <button class="close-btn-mobile" aria-label="Close" onclick="hideEditContactOverlayMobile()">×</button>
@@ -363,7 +365,7 @@ function getEditContactOverlayMobileTemplate(contact) {
           <span style="font-size: 38px; color: #fff; font-weight: bold;">${initials}</span>
         </div>
         <form id="edit-contact-form-mobile" onsubmit="handleEditContactMobile(event, '${
-          contact.id
+            contact.id
         }')">
           <div class="input-group-mobile">
             <input 
@@ -392,7 +394,7 @@ function getEditContactOverlayMobileTemplate(contact) {
           </div>
           <div class="form-buttons-mobile">
             <button type="button" class="btn delete-btn" onclick="deleteContact('${
-              contact.id
+                contact.id
             }');">Delete</button>
             <button 
               type="submit" 
