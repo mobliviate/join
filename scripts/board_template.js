@@ -196,7 +196,7 @@ function getOpenTaskBoard(task, color, indexTask){
         </svg>
       </button>
       <div class="open-task-separetor"></div>
-      <button class="open-task-button" onclick="editTasskBoard('${indexTask}')">
+      <button class="open-task-button" onclick="editTasskBoard('${indexTask}'); loadTask('${indexTask}')">
         <svg width="62" height="24" viewBox="0 0 62 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0_71348_10328" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
           <rect width="24" height="24" fill="currentcolor"/>
@@ -353,7 +353,7 @@ function getRenderEditBoard(task){
               src="./assets/svg/subtask_check.svg" alt="Save subtask" onclick="subtaskSave()">
           </div>
         </div>
-        <div id="subtesk_edit_board" class="subtask-list">
+        <div id="subtask_edit_board" class="subtask-list">
             <!-- Javascript insert from Function -->
         </div>
         <div class="input-container edit">
