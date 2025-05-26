@@ -113,7 +113,15 @@ function setUpcomingDate() {
     summaryUser.tasks.urgent.deadline = upcomingDeadline;
 }
 
-
+/**
+ * Asynchronously retrieves data from a specified URL with a specific path.
+ * Returns the parsed JSON data if the fetch is successful.
+ * If an error occurs, it will be displayed in the console.
+ *
+ * @param {string} url - The base URL of the API or data source.
+ * @param {string} path - The path appended to the URL to retrieve the resource.
+ * @returns {Promise<any | undefined>} - Returns the retrieved data as an object or `undefined` on error.
+ */
 async function getData(url, path) {
     try {
         const response = await fetch(url + path);
@@ -127,11 +135,21 @@ async function getData(url, path) {
 }
 
 
+/**
+ * Opens the page "board.html".
+ *
+ * @returns {void}
+ */
 function openBoardPage() {
     window.location.href = 'board.html';
 }
 
 
+/**
+ * Generates the HTML template for the summary page.
+ *
+ * @returns {string} HTML string of the summary template.
+ */
 function getSummaryTemplate() {
     return `
         <div id="greet_overlay" class="greet-overlay d-none">
