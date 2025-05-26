@@ -7,50 +7,50 @@
  * If the menu is already open, it will close it instead.
  */
 function showEditOverlayMobile() {
-  const menuContainer = document.getElementById(
-    "mobile-options-menu-container"
-  );
+    const menuContainer = document.getElementById(
+        "mobile-options-menu-container"
+    );
 
-  if (!menuContainer.classList.contains("hidden")) {
-    closeMobileOptionsMenuWithAnimation();
-    return;
-  }
+    if (!menuContainer.classList.contains("hidden")) {
+        closeMobileOptionsMenuWithAnimation();
+        return;
+    }
 
-  const activeElement = document.querySelector(".contact-item.active");
-  if (!activeElement) return;
+    const activeElement = document.querySelector(".contact-item.active");
+    if (!activeElement) return;
 
-  const contactId = activeElement.dataset.id;
-  if (!contactId) return;
+    const contactId = activeElement.dataset.id;
+    if (!contactId) return;
 
-  menuContainer.innerHTML = getMobileOptionsMenuTemplate(contactId);
-  menuContainer.classList.remove("hidden");
-  mobileOptionsMenuOpen = true;
+    menuContainer.innerHTML = getMobileOptionsMenuTemplate(contactId);
+    menuContainer.classList.remove("hidden");
+    mobileOptionsMenuOpen = true;
 
-  showMobileMenuWithAnimation();
-  addMobileMenuEventListeners();
+    showMobileMenuWithAnimation();
+    addMobileMenuEventListeners();
 }
 
 /**
  * Triggers animation and sets up delayed visual transition for the menu.
  */
 function showMobileMenuWithAnimation() {
-  setTimeout(function () {
-    const menu = document.getElementById("mobile-options-menu");
-    if (menu) {
-      menu.classList.add("show");
-    }
-  }, 10);
+    setTimeout(function () {
+        const menu = document.getElementById("mobile-options-menu");
+        if (menu) {
+            menu.classList.add("show");
+        }
+    }, 10);
 }
 
 /**
  * Adds global event listeners for menu close interactions (outside click, ESC key).
  */
 function addMobileMenuEventListeners() {
-  setTimeout(function () {
-    window.addEventListener("mousedown", handleClickOutsideMobileMenu);
-    window.addEventListener("touchstart", handleClickOutsideMobileMenu);
-    window.addEventListener("keydown", handleEscMobileMenu);
-  }, 0);
+    setTimeout(function () {
+        window.addEventListener("mousedown", handleClickOutsideMobileMenu);
+        window.addEventListener("touchstart", handleClickOutsideMobileMenu);
+        window.addEventListener("keydown", handleEscMobileMenu);
+    }, 0);
 }
 
 /**
@@ -58,10 +58,10 @@ function addMobileMenuEventListeners() {
  * @param {MouseEvent|TouchEvent} event
  */
 function handleClickOutsideMobileMenu(event) {
-  const menu = document.getElementById("mobile-options-menu");
-  if (menu && !menu.contains(event.target)) {
-    closeMobileOptionsMenuWithAnimation();
-  }
+    const menu = document.getElementById("mobile-options-menu");
+    if (menu && !menu.contains(event.target)) {
+        closeMobileOptionsMenuWithAnimation();
+    }
 }
 
 /**
@@ -69,34 +69,34 @@ function handleClickOutsideMobileMenu(event) {
  * @param {KeyboardEvent} e
  */
 function handleEscMobileMenu(e) {
-  if (e.key === "Escape") {
-    closeMobileOptionsMenuWithAnimation();
-  }
+    if (e.key === "Escape") {
+        closeMobileOptionsMenuWithAnimation();
+    }
 }
 
 /**
  * Close the mobile options menu with animation and remove all event listeners.
  */
 function closeMobileOptionsMenuWithAnimation() {
-  const menuContainer = document.getElementById(
-    "mobile-options-menu-container"
-  );
-  const menu = document.getElementById("mobile-options-menu");
+    const menuContainer = document.getElementById(
+        "mobile-options-menu-container"
+    );
+    const menu = document.getElementById("mobile-options-menu");
 
-  window.removeEventListener("mousedown", handleClickOutsideMobileMenu);
-  window.removeEventListener("touchstart", handleClickOutsideMobileMenu);
-  window.removeEventListener("keydown", handleEscMobileMenu);
-  mobileOptionsMenuOpen = false;
+    window.removeEventListener("mousedown", handleClickOutsideMobileMenu);
+    window.removeEventListener("touchstart", handleClickOutsideMobileMenu);
+    window.removeEventListener("keydown", handleEscMobileMenu);
+    mobileOptionsMenuOpen = false;
 
-  if (menu) {
-    menu.classList.remove("show");
-    menu.classList.add("closing");
-    setTimeout(() => {
-      menuContainer.innerHTML = "";
-      menuContainer.classList.add("hidden");
-    }, 180);
-  } else {
-    menuContainer.innerHTML = "";
-    menuContainer.classList.add("hidden");
-  }
+    if (menu) {
+        menu.classList.remove("show");
+        menu.classList.add("closing");
+        setTimeout(() => {
+            menuContainer.innerHTML = "";
+            menuContainer.classList.add("hidden");
+        }, 180);
+    } else {
+        menuContainer.innerHTML = "";
+        menuContainer.classList.add("hidden");
+    }
 }
