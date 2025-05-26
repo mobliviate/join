@@ -1,3 +1,19 @@
+/**
+ * Represents the summarized task information for the Summary view.
+ * Contains counters for various task statuses and the earliest deadline for urgent tasks.
+ * Updated dynamically upon page initialization.
+ * 
+ * @type {Object}
+ * @property {Object} tasks - Structured overview of task status.
+ * @property {number} tasks.todo - Number of open tasks.
+ * @property {number} tasks.done - Number of completed tasks.
+ * @property {Object} tasks.urgent - Information about urgent tasks.
+ * @property {number} tasks.urgent.count - Number of urgent tasks.
+ * @property {string} tasks.urgent.deadline - Next deadline in readable date format.
+ * @property {number} tasks.tasksInBoard - Total number of all tasks in the board.
+ * @property {number} tasks.tasksInProgress - Number of tasks in progress.
+ * @property {number} tasks.awaitingFeedback - Number of tasks in feedback status.
+ */
 let summaryUser = {
     tasks: {
         todo: 0,
@@ -11,7 +27,23 @@ let summaryUser = {
         awaitingFeedback: 0,
     },
 };
+
+
+/**
+ * 
+ * Collection of all deadlines for tasks with priority "urgent."
+ * Used to calculate the earliest due date.
+ * 
+ * @type {Date[]}
+ */
 const urgentDates = [];
+
+
+/**
+ * Base URL to the Firebase Realtime Database.
+ * 
+ * @constant {string}
+ */
 const DATABASEURL = 'https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/';
 
 
@@ -64,6 +96,14 @@ async function loadTasksandSetTasksStatus() {
 }
 
 
+/**
+ * Analyzes the submitted tasks and updates the counters for various statuses
+ * (To-do, Done, Urgent, etc.) in the global `summaryUser` object.
+ * It also determines the next due date for an urgent task.
+ *
+ * @param {Array<Object>} tasks - A list of task objects containing status and priorities.
+ * @returns {void}
+ */
 function getTaskStatus(tasks) {
     summaryUser.tasks.tasksInBoard = tasks.length;
     tasks.forEach((task) => {
@@ -74,6 +114,19 @@ function getTaskStatus(tasks) {
 }
 
 
+/**
+ * Increments the corresponding counter in the global `summary User` object
+ * based on the passed task status.
+ *
+ * Supported status values:
+ * - 'todo' -> Increases the number of open tasks
+ * - 'done' -> Increases the number of completed tasks
+ * - 'progress' -> Increases the number of tasks in progress
+ * - 'feedback' -> Increases the number of tasks with pending feedback
+ *
+ * @param {string} taskStatus - The status of a task.
+ * @returns {void}
+ */
 function setTaskStatus(taskStatus) {
     switch (taskStatus) {
         case 'todo':
@@ -94,24 +147,63 @@ function setTaskStatus(taskStatus) {
 }
 
 
+/**
+ * Increments the urgent task counter if the priority is "urgent"
+ * and stores a valid due date in the global `urgentDates` array.
+ *
+ * Skips erroneous or invalid date values.
+ *
+ * @param {string} taskPriority - The priority of the task (e.g. 'urgent', 'medium', 'low').
+ * @param {string} taskDate - The due date of the task in ISO format (e.g. '2025-05-21').
+ * @returns {void}
+ */
 function setTaskPriorityAndGetDate(taskPriority, taskDate) {
-    if (taskPriority == 'urgent') {
-        summaryUser.tasks.urgent.count += 1;
-        urgentDates.push(new Date(taskDate));
+    if (taskPriority !== 'urgent') return;
+    const date = new Date(taskDate);
+    if (!isValidDate(date)) {
+        console.warn(`Invalid date skipped: ${taskDate}`);
+        return;
     }
+    summaryUser.tasks.urgent.count += 1;
+    urgentDates.push(date);
 }
 
 
+/**
+ * Checks whether a Date object represents a valid date.
+ *
+ * @param {Date} date - The Date object to be checked.
+ * @returns {boolean} true if the date is valid, otherwise false.
+ */
+function isValidDate(date) {
+    return date instanceof Date && !isNaN(date);
+}
+
+
+/**
+ * Determines the nearest valid date in the `urgentDates` list and
+ * stores it formatted in the `summaryUser.tasks.urgent.deadline` field.
+ *
+ * - If no valid data is present, `"-"` is set.
+ * - The date is displayed in the format "month day, year" (e.g. "June 5, 2025").
+ *
+ * @returns {void}
+ */
 function setUpcomingDate() {
-    const upcomingDeadline = new Date(
-        Math.min(...urgentDates)
-    ).toLocaleDateString('en-US', {
+    const validDates = urgentDates.filter(isValidDate);
+    if (!validDates.length) {
+        summaryUser.tasks.urgent.deadline = "-";
+        return;
+    }
+    const earliest = new Date(Math.min(...validDates));
+    const formatted = earliest.toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
     });
-    summaryUser.tasks.urgent.deadline = upcomingDeadline;
+    summaryUser.tasks.urgent.deadline = formatted;
 }
+
 
 /**
  * Asynchronously retrieves data from a specified URL with a specific path.
