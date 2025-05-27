@@ -6,7 +6,7 @@
     flex-direction: column;
 }
 
-.header-board {
+/* .header-board {
     height: 232px;
     width: 1208px;
     display: flex;
@@ -25,6 +25,28 @@
     align-items: center;
     padding-top: 79.5px;
     padding-left: 64px;
+} */
+
+.header-board {
+    /* height: 232px; */
+    /* width: 1208px; */
+    display: flex;
+    flex-direction: column;
+    /* padding: 0; */
+    /* margin-bottom: 8px; */
+    padding: 80px 64px 0 64px;
+}
+
+.board-search {
+    /* width: 1056px; */
+    /* height: 152.5px; */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* padding-top: 79.5px; */
+    /* padding-left: 64px; */
 }
 
 .board-search div h1 {
@@ -50,7 +72,7 @@
     width: 312px;
     height: 48px;
     border-radius: 10px;
-    border:solid 1px var(--icons);
+    border: solid 1px var(--icons);
     padding: 8px 16px;
     padding-right: 64px;
     cursor: pointer;
@@ -61,14 +83,14 @@
 }
 
 .search-board:focus {
-    border:solid 1px var(--secondary-color);
+    border: solid 1px var(--secondary-color);
 }
 
 .search-board::placeholder {
     color: var(--style);
-  }
+}
 
-.separetor-board{
+.separetor-board {
     position: relative;
     right: 48px;
     top: 8px;
@@ -80,7 +102,7 @@
 
 .button-search-board {
     position: relative;
-    top:2px;
+    top: 2px;
     right: 33px;
     background: none;
     border: none;
@@ -108,13 +130,13 @@
     color: var(--white);
 }
 
-.add-task-board:hover{
+.add-task-board:hover {
     background-color: var(--secondary-color);
     border: none;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 2.56251px 2.56251px 0px;
 }
 
-.tasks-board {
+/* .tasks-board {
     width: 1208px;
     height: 72px;
     display: flex;
@@ -123,14 +145,36 @@
     padding-top: 48px;
     padding-left: 64px;
     padding-right: 64px;
+} */
+
+.tasks-board {
+    /* width: 1208px; */
+    /* height: 72px; */
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-between;
+    /* padding-top: 48px; */
+    /* padding-left: 64px; */
+    /* padding-right: 64px; */
+    padding: 48px 64px;
+    gap: 26px;
 }
 
-.task-board {
+/* .task-board {
     width: 244px;
     height: 24px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+} */
+
+.task-board {
+    /* width: 244px; */
+    /* height: 24px; */
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: space-between; */
 }
 
 .task-board h3 {
@@ -177,7 +221,7 @@
     width: 246px;
     height: 48px;
     border-radius: 10px;
-    border:dashed 1px var(--icons);
+    border: dashed 1px var(--icons);
     background-color: rgba(0, 0, 0, 0.16);
     display: flex;
     justify-content: center;
@@ -211,10 +255,10 @@
     padding-right: 16px;
     padding-bottom: 4px;
     padding-left: 16px;
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
 }
 
-.title-description-board{
+.title-description-board {
     width: 220px;
     height: auto;
     gap: 8px;
@@ -225,6 +269,7 @@
     font-size: 18px;
     font-weight: 700;
     color: var(--primary-color);
+    padding-top: 24px;
 }
 
 .description-board {
@@ -234,7 +279,7 @@
     color: var(--icons);
 }
 
-.subtasks-board{
+.subtasks-board {
     width: 220px;
     height: 16px;
     display: flex;
@@ -321,33 +366,35 @@
 }
 
 @keyframes slideInRight {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
-  
+
 @keyframes slideOutRight {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(100%);
-    opacity: 0;
-  }
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
 }
-  
+
 .slide-in {
-  animation: slideInRight 0.2s forwards;
+    animation: slideInRight 0.2s forwards;
 }
 
 .slide-out {
-  animation: slideOutRight 0.2s forwards;
+    animation: slideOutRight 0.2s forwards;
 }
 
 .task-added-board {
@@ -376,7 +423,7 @@
     justify-content: space-between;
 }
 
-.close-button-open-task-board{
+.close-button-open-task-board {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -423,7 +470,7 @@
 }
 
 .open-task-date::-webkit-calendar-picker-indicator {
-  display: none;
+    display: none;
 }
 
 .open-task-priority-div {
@@ -562,6 +609,6 @@
     justify-content: end;
 }
 
-.edit-scroll-column{
+.edit-scroll-column {
     overflow: auto;
 }

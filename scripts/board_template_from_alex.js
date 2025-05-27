@@ -33,7 +33,7 @@ function getBoardTemplate() {
         <div class="board-search">
           <div class="board-header-mobile">
             <h1>Boad</h1>
-             <button class="add-task-board" onclick="addTaskBoard('todo')">
+            <button class="add-task-board" onclick="addTaskBoard('todo')">
               <svg width="21" height="21" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M8.66602 11.3327H0.666016V8.66602H8.66602V0.666016H11.3327V8.66602H19.3327V11.3327H11.3327V19.3327H8.66602V11.3327Z"
@@ -71,7 +71,8 @@ function getBoardTemplate() {
             </button>
           </div>
           <div id="todo" class="columns" ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')"
-            ondragover="allowDrop(event); highlight('todo')"></div>
+            ondragover="allowDrop(event); highlight('todo')">
+          </div>
         </div>
         <div class="task-board">
           <div class="board-task-header">
@@ -85,7 +86,8 @@ function getBoardTemplate() {
             </button>
           </div>
           <div id="progress" class="columns" ondrop="moveTo('progress')" ondragleave="removeHighlight('progress')"
-            ondragover="allowDrop(event); highlight('progress')"></div>
+            ondragover="allowDrop(event); highlight('progress')">
+          </div>
         </div>
         <div class="task-board">
           <div class="board-task-header">
@@ -99,14 +101,16 @@ function getBoardTemplate() {
             </button>
           </div>
           <div id="feedback" class="columns" ondrop="moveTo('feedback')" ondragleave="removeHighlight('feedback')"
-            ondragover="allowDrop(event); highlight('feedback')"></div>
+            ondragover="allowDrop(event); highlight('feedback')">
+          </div>
         </div>
         <div class="task-board">
           <div class="board-task-header">
             <h3>Done</h3>
           </div>
           <div id="done" class="columns" ondrop="moveTo('done')" ondragleave="removeHighlight('done')"
-            ondragover="allowDrop(event); highlight('done')"></div>
+            ondragover="allowDrop(event); highlight('done')">
+          </div>
         </div>
       </div>
       <div id="open_overlay_board" class="open-overlay-board d-none" onclick="closeOverlayBoard()">
