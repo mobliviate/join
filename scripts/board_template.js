@@ -101,7 +101,7 @@ function getRenderTask(task, indexTask, background,) {
     <div class="task-main" draggable="true" ondragstart="startDragging(${indexTask})" onclick="openTaskBoard('${indexTask}','${background}')">
       <div class="board-task-header-cnt">
         <div class="category-board" style="background-color:var(${background})">${task.category}</div>
-        <button id="move_to_btn_${indexTask}" class="move-to-btn d-none" onclick="openMoveToOverlay('${indexTask}', '${task.status}'); overlayProtection(event); startDragging(${indexTask})">
+        <button id="move_to_btn_${indexTask}" class="move-to-btn" onclick="openMoveToOverlay('${indexTask}', '${task.status}'); overlayProtection(event); startDragging(${indexTask})">
           <svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.75" y="25.25" width="24.5" height="22.5" rx="5.25" transform="rotate(-90 0.75 25.25)" stroke="#2A3647" stroke-width="1.5"/>
             <mask id="mask0_294678_9869" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="3" width="20" height="20">
@@ -150,8 +150,8 @@ function getRenderEmpty(emptyColumn) {
   `;
 }
 
-function getOpenTaskBoard(task, color, indexTask){
-  return`
+function getOpenTaskBoard(task, color, indexTask) {
+  return `
     <div class="open-task-header">
       <div class="category-board" style="background-color:var(${color})">${task.category}</div>
       <button class="close-button-open-task-board" onclick="closeOverlayButtonBoard('open_task_board', 'open_overlay_task_board')">
@@ -211,17 +211,17 @@ function getOpenTaskBoard(task, color, indexTask){
   `;
 }
 
-function getRenderAssignedContacts(initial, name, color){
-  return`
+function getRenderAssignedContacts(initial, name, color) {
+  return `
     <div class="assigned-contact-open-task">
       <div class="initials-single-board" style="background-color:${color}"><h3>${initial}</h3></div>
       <h3>${name}</h3>
     </div>
-  `
+  `;
 }
 
-function getrenderSubtasksFalseBoard(subtask,indexTask,subtaskIndex){
-  return`
+function getrenderSubtasksFalseBoard(subtask, indexTask, subtaskIndex) {
+  return `
     <button onclick="setSubtaskTrue('${indexTask}','${subtaskIndex}')" class="subtask-button-board">
       <div class="subtask-icon-board">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -233,8 +233,8 @@ function getrenderSubtasksFalseBoard(subtask,indexTask,subtaskIndex){
   `;
 }
 
-function getrenderSubtasksTrueBoard(subtask,indexTask,subtaskIndex){
-  return`
+function getrenderSubtasksTrueBoard(subtask, indexTask, subtaskIndex) {
+  return `
     <button onclick="setSubtaskFalse('${indexTask}','${subtaskIndex}')" class="subtask-button-board">
     <div class="subtask-icon-board">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -247,8 +247,8 @@ function getrenderSubtasksTrueBoard(subtask,indexTask,subtaskIndex){
   `;
 }
 
-function getRenderEditBoard(task, indexTask, color){
-  return`
+function getRenderEditBoard(task, indexTask, color) {
+  return `
     <div class="edit-task-header">
       <button class="close-button-open-task-board" onclick="closeOverlayButtonBoard('open_task_board', 'open_overlay_task_board')">
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -380,8 +380,8 @@ function getRenderEditBoard(task, indexTask, color){
   `;
 }
 
-function getRenderEditSubtasks(subtask){
-  return`
+function getRenderEditSubtasks(subtask) {
+  return `
     <div class="subtask-item">
       <span class="subtask-text">• ${subtask}</span>
       <div class="subtask-actions d-none">
