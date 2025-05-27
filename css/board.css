@@ -1,5 +1,4 @@
 .main-board {
-    width: calc(100vw - 243px);
     height: 100%;
     background-color: #F6F7F8;
     display: flex;
@@ -325,7 +324,7 @@
 
 .open-task-overlay {
     width: 640px;
-    max-height: 1080px;
+    max-height: 850px;
     padding: 48px 40px;
     background-color: var(--white);
     border-radius: 30px;

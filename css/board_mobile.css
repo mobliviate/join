@@ -142,7 +142,11 @@
 }
 
 
-@media (max-width: 1400px) {
+@media (max-width: 1440px) {
+    .main-board {
+    width: calc(100vw - 243px);
+    }
+    
     .tasks-board {
         flex-wrap: wrap;
     }

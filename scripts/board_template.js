@@ -389,7 +389,7 @@ function getRenderEditBoard(task, indexTask, color) {
         <label>Subtasks</label>
         <div class="input-container">
           <input id="subtask-input" class="input-custom-subtask" type="text" name="subtasks"
-            placeholder="Add new subtask" oninput="subtaskInput()" onclick="subtaskInput()">
+            placeholder="Add new subtask" oninput="subtaskInput()" onclick="subtaskInput()" onkeydown="handleSubtaskEnter(event)">
           <div class="buttons-box">
             <img id="add-subtask-icon" class="input-default-icon" src="./assets/svg/subtask_add.svg"
               alt="Add subtask" onclick="subtaskInputIcon()">
