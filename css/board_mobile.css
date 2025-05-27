@@ -179,12 +179,22 @@
     }
 }
 
+@media (max-width: 980px) {
+    .main-board {
+        width: calc(100vw - 12px);
+    }
+}
+
 @media (max-width: 750px) {
     .columns {
         flex-direction: row;
-        width: calc(100vw - 128px);
+        width: calc(100vw - 90px);
         overflow-x: scroll;
         scrollbar-width: none;
+    }
+
+    .tasks-board {
+        padding: 40px 40px;
     }
 }
 
@@ -202,6 +212,6 @@
     }
 
     .columns {
-        width: calc(100vw - 32px);
+        width: calc(100vw - 42px);
     }
 }

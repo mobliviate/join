@@ -1,52 +1,22 @@
 .main-board {
-    width: 100%;
+    width: calc(100vw - 243px);
     height: 100%;
     background-color: #F6F7F8;
     display: flex;
     flex-direction: column;
 }
 
-/* .header-board {
-    height: 232px;
-    width: 1208px;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin-bottom: 8px;
-}
-
-.board-search {
-    width: 1056px;
-    height: 152.5px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 79.5px;
-    padding-left: 64px;
-} */
-
 .header-board {
-    /* height: 232px; */
-    /* width: 1208px; */
     display: flex;
     flex-direction: column;
-    /* padding: 0; */
-    /* margin-bottom: 8px; */
     padding: 80px 64px 0 64px;
 }
 
 .board-search {
-    /* width: 1056px; */
-    /* height: 152.5px; */
-    box-sizing: border-box;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* padding-top: 79.5px; */
-    /* padding-left: 64px; */
 }
 
 .board-search div h1 {
@@ -65,7 +35,6 @@
     height: 48px;
     display: flex;
     flex-direction: row;
-
 }
 
 .search-board {
