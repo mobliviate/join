@@ -196,7 +196,7 @@ function getOpenTaskBoard(task, color, indexTask){
         </svg>
       </button>
       <div class="open-task-separetor"></div>
-      <button class="open-task-button" onclick="editTasskBoard('${indexTask}'); loadTask('${indexTask}')">
+      <button class="open-task-button" onclick="editTasskBoard('${indexTask}','${color}'); loadTask('${indexTask}')">
         <svg width="62" height="24" viewBox="0 0 62 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0_71348_10328" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
           <rect width="24" height="24" fill="currentcolor"/>
@@ -247,21 +247,21 @@ function getrenderSubtasksTrueBoard(subtask,indexTask,subtaskIndex){
   `;
 }
 
-function getRenderEditBoard(task){
+function getRenderEditBoard(task, indexTask, color){
   return`
+    <div class="edit-task-header">
+      <button class="close-button-open-task-board" onclick="closeOverlayButtonBoard('open_task_board', 'open_overlay_task_board')">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0_71720_5535" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="24" height="24">
+          <rect x="4" y="4" width="24" height="24" fill="#D9D9D9"/>
+          </mask>
+          <g mask="url(#mask0_71720_5535)">
+          <path d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6833 22.575 10.4 22.575C10.1167 22.575 9.88333 22.4834 9.7 22.3C9.51667 22.1167 9.425 21.8834 9.425 21.6C9.425 21.3167 9.51667 21.0834 9.7 20.9L14.6 16L9.7 11.1C9.51667 10.9167 9.425 10.6834 9.425 10.4C9.425 10.1167 9.51667 9.88338 9.7 9.70005C9.88333 9.51672 10.1167 9.42505 10.4 9.42505C10.6833 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0833 9.51672 21.3167 9.42505 21.6 9.42505C21.8833 9.42505 22.1167 9.51672 22.3 9.70005C22.4833 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4833 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4833 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4833 22.1167 22.3 22.3C22.1167 22.4834 21.8833 22.575 21.6 22.575C21.3167 22.575 21.0833 22.4834 20.9 22.3L16 17.4Z" fill="#2A3647"/>
+          </g>
+        </svg>
+      </button>
+    </div>
     <div class="edit-scroll-column">
-      <div class="edit-task-header">
-        <button class="close-button-open-task-board" onclick="closeOverlayButtonBoard('open_task_board', 'open_overlay_task_board')">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <mask id="mask0_71720_5535" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="24" height="24">
-            <rect x="4" y="4" width="24" height="24" fill="#D9D9D9"/>
-            </mask>
-            <g mask="url(#mask0_71720_5535)">
-            <path d="M16 17.4L11.1 22.3C10.9167 22.4834 10.6833 22.575 10.4 22.575C10.1167 22.575 9.88333 22.4834 9.7 22.3C9.51667 22.1167 9.425 21.8834 9.425 21.6C9.425 21.3167 9.51667 21.0834 9.7 20.9L14.6 16L9.7 11.1C9.51667 10.9167 9.425 10.6834 9.425 10.4C9.425 10.1167 9.51667 9.88338 9.7 9.70005C9.88333 9.51672 10.1167 9.42505 10.4 9.42505C10.6833 9.42505 10.9167 9.51672 11.1 9.70005L16 14.6L20.9 9.70005C21.0833 9.51672 21.3167 9.42505 21.6 9.42505C21.8833 9.42505 22.1167 9.51672 22.3 9.70005C22.4833 9.88338 22.575 10.1167 22.575 10.4C22.575 10.6834 22.4833 10.9167 22.3 11.1L17.4 16L22.3 20.9C22.4833 21.0834 22.575 21.3167 22.575 21.6C22.575 21.8834 22.4833 22.1167 22.3 22.3C22.1167 22.4834 21.8833 22.575 21.6 22.575C21.3167 22.575 21.0833 22.4834 20.9 22.3L16 17.4Z" fill="#2A3647"/>
-            </g>
-          </svg>
-        </button>
-      </div>
       <div class="form-group">
         <label for="title">Title<span class="required">*</span></label>
         <input type="text" id="title" class="input-default" name="title" placeholder="Enter a title"
@@ -371,7 +371,7 @@ function getRenderEditBoard(task){
     </div>
     <div id="form-actions-add-task" class="form-actions-add-task">
       <div class="form-action-buttons">
-        <button type="button" class="button-create-task" id="create-task-button" onclick="saveEditedTask('${task}')">
+        <button type="button" class="button-create-task" id="create-task-button" onclick="updateCurrentTask('${indexTask}','${color}')">
           Ok
           <img src="assets/svg/add_task_check_white.svg" alt="Check">
         </button>

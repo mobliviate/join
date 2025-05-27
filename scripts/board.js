@@ -191,6 +191,8 @@ async function openTaskBoard(indexTask, color) {
   let openTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`)
   let openTaskRefToJson = await openTaskRef.json();
   let openOverlayBoard = document.getElementById("open_overlay_task_board")
+  let openOverlayTaskBoard = document.getElementById("open_task_board")
+  openOverlayTaskBoard.innerHTML = ""
   openOverlayBoard.classList.remove("d-none");
   showDiv('open_task_board');
   document.getElementById("open_task_board").innerHTML = getOpenTaskBoard(openTaskRefToJson, color, indexTask);
@@ -274,12 +276,12 @@ async function deleteTask(openedTask) {
   }
 }
 
-async function editTasskBoard(indexTask){
+async function editTasskBoard(indexTask, color){
   let editTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`)
   let editTaskRefToJson = await editTaskRef.json();
-  let openOverlayBoard = document.getElementById("open_task_board")
-  openOverlayBoard.innerHTML = ""
-  openOverlayBoard.innerHTML = getRenderEditBoard(editTaskRefToJson)
+  let openOverlayEditBoard = document.getElementById("open_task_board")
+  openOverlayEditBoard.innerHTML = ""
+  openOverlayEditBoard.innerHTML = getRenderEditBoard(editTaskRefToJson, indexTask, color)
   setPriority(indexTask)
   if (editTaskRefToJson.assignedContacts?.length > 0) {
     setAssignedContacts(indexTask);
@@ -323,11 +325,11 @@ async function setSubtasks(indexTask){
     item.onmouseleave = () => item.querySelector('.subtask-actions').classList.add('d-none');
     item.ondblclick = () => editSubtask(item.querySelector('[alt="Edit"]'));
     item.innerHTML = `
-        <span class="subtask-text">• ${setSubtasksRefToJson[indexSetSubtasks].text}</span>
-        <div class="subtask-actions d-none">
-            <img src="./assets/svg/subtask_edit.svg" alt="Edit" class="subtask-action-icon" onclick="editSubtask(this)">
-            <img src="./assets/svg/subtask_delete.svg" alt="Delete" class="subtask-action-icon" onclick="deleteSubtask(this)">
-        </div>`;
+      <span class="subtask-text">• ${setSubtasksRefToJson[indexSetSubtasks].text}</span>
+      <div class="subtask-actions d-none">
+        <img src="./assets/svg/subtask_edit.svg" alt="Edit" class="subtask-action-icon" onclick="editSubtask(this)">
+        <img src="./assets/svg/subtask_delete.svg" alt="Delete" class="subtask-action-icon" onclick="deleteSubtask(this)">
+      </div>`;
     document.querySelector('.subtask-list').appendChild(item);
   }
 }
@@ -335,20 +337,72 @@ async function setSubtasks(indexTask){
 async function loadTask(indexTask) {
   let currentTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`)
   currentTask = await currentTaskRef.json();
-  console.log(currentTask);
 }
 
-async function saveTaskToDataBase(openedTask){
+async function updateCurrentTask(indexTask, color){
+  currentTask.title = document.getElementById("title").value;
+  currentTask.description = document.getElementById("description").value;
+  currentTask.dueDate = document.getElementById("due-date").value;
+  currentTask.priority = document.querySelector('.prio-btn.selected').dataset.prio;
+  await assignedValue();
+  currentTask.category = document.getElementById("category-selected").textContent;
+  subtasksValue()
+  await saveTaskToDataBase(indexTask, color)
+}
+
+async function assignedValue(){
+  currentTask.assignedContacts = [];
+  let selectedElements = document.querySelectorAll('.selected[data-id]');
+  let contactsRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`)
+  let contactsRefToJson = await contactsRef.json();
+  for (let i = 0; i < selectedElements.length; i++) {
+    let id = selectedElements[i].dataset.id;
+    let contact = contactsRefToJson[id];
+    if (contact) {
+      let name = contact.name;
+      let initials = getInitials(name);
+      currentTask.assignedContacts.push({
+        id: id,
+        initials: initials,
+        name: name
+      });
+    }
+  }
+}
+
+function subtasksValue() {
+  let subtaskElements = document.querySelectorAll('#subtask_edit_board .subtask-item .subtask-text');
+  let newSubtasks = [];
+  for (let el of subtaskElements) {
+    let rawText = el.innerText.trim();
+    let cleanText = rawText.replace(/^•\s*/, '');
+    let existing = currentTask.subtasks?.find(st => st.text === cleanText);
+    newSubtasks.push({
+      text: cleanText,
+      status: existing ? existing.status : false
+    });
+  }
+  currentTask.subtasks = newSubtasks;
+}
+
+function getInitials(name) {
+  return name
+    .split(' ')
+    .map(word => word[0].toUpperCase())
+    .join('');
+}
+
+async function saveTaskToDataBase(openedTask, color){
   let taskUrlRef = `https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${openedTask}.json`;
-  let updatedSubtask = await fetch(taskUrlRef, {
+  let updatedTask = await fetch(taskUrlRef, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(true),
+    body: JSON.stringify(currentTask),
   });
-  if (updatedSubtask.ok) {
-    renderOpenSubtasks(openedTask);
+  if (updatedTask.ok) {
+    openTaskBoard(openedTask, color)
   }
 }
 
