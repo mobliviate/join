@@ -2,6 +2,7 @@ function getBoardTemplate() {
   return `
     <div class="main-board">
       <div class="header-board board-mobile-hide">
+      <div class="header-board board-mobile-hide">
         <div class="board-search">
           <div>
             <h1>Board</h1>
@@ -63,8 +64,17 @@ function getBoardTemplate() {
                 <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
                 <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
+                <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               </svg>
             </button>
+          </div>
+          <div id="todo" class="columns" ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')"
+            ondragover="allowDrop(event); highlight('todo')"></div>
+        </div>
+        <div class="task-board">
+          <div class="board-task-header">
           </div>
           <div id="todo" class="columns" ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')"
             ondragover="allowDrop(event); highlight('todo')"></div>
@@ -77,8 +87,17 @@ function getBoardTemplate() {
                 <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
                 <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
+                <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               </svg>
             </button>
+          </div>
+          <div id="progress" class="columns" ondrop="moveTo('progress')" ondragleave="removeHighlight('progress')"
+            ondragover="allowDrop(event); highlight('progress')"></div>
+        </div>
+        <div class="task-board">
+          <div class="board-task-header">
           </div>
           <div id="progress" class="columns" ondrop="moveTo('progress')" ondragleave="removeHighlight('progress')"
             ondragover="allowDrop(event); highlight('progress')"></div>
@@ -88,6 +107,9 @@ function getBoardTemplate() {
             <h3>Await feedback</h3>
             <button class="button-board" onclick="addTaskBoard('feedback')">
               <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
+                <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
                 <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
                 <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
@@ -101,6 +123,8 @@ function getBoardTemplate() {
           <div class="board-task-header">
             <h3>Done</h3>
           </div>
+          <div id="done" class="columns" ondrop="moveTo('done')" ondragleave="removeHighlight('done')"
+            ondragover="allowDrop(event); highlight('done')"></div>
           <div id="done" class="columns" ondrop="moveTo('done')" ondragleave="removeHighlight('done')"
             ondragover="allowDrop(event); highlight('done')"></div>
         </div>
@@ -140,6 +164,7 @@ function getRenderTask(task, indexTask, background,) {
     <div class="task-main" draggable="true" ondragstart="startDragging(${indexTask})" onclick="openTaskBoard('${indexTask}','${background}')">
       <div class="board-task-header-cnt">
         <div class="category-board" style="background-color:var(${background})">${task.category}</div>
+        <button id="move_to_btn_${indexTask}" class="move-to-btn d-none" onclick="openMoveToOverlay('${indexTask}', '${task.status}'); overlayProtection(event); startDragging(${indexTask})">
         <button id="move_to_btn_${indexTask}" class="move-to-btn d-none" onclick="openMoveToOverlay('${indexTask}', '${task.status}'); overlayProtection(event); startDragging(${indexTask})">
           <svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.75" y="25.25" width="24.5" height="22.5" rx="5.25" transform="rotate(-90 0.75 25.25)" stroke="#2A3647" stroke-width="1.5"/>
