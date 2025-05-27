@@ -1,7 +1,7 @@
 function getBoardTemplate() {
   return `
     <div class="main-board">
-      <div class="header-board">
+      <div class="header-board board-mobile-hide">
         <div class="board-search">
           <div>
             <h1>Board</h1>
@@ -24,47 +24,86 @@ function getBoardTemplate() {
             </button>
           </div>
         </div>
-        <div class="tasks-board">
-          <div class="task-board">
-            <h3>To do</h3>
+      </div>
+      <div class="header-board board-mobile-flex">
+        <div class="board-search">
+          <div class="board-header-mobile">
+            <h1>Boad</h1>
             <button class="button-board" onclick="addTaskBoard('todo')">
               <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
-              <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
+                <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
               </svg>
             </button>
           </div>
-          <div class="task-board">
-            <h3>In Progress</h3>
-            <button class="button-board" onclick="addTaskBoard('progress')">
-              <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
-              <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              </svg>
-            </button>
-          </div>
-          <div class="task-board">
-            <h3>Await feedback</h3>
-            <button class="button-board" onclick="addTaskBoard('feedback')">
-              <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
-              <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-              </svg>
-            </button>
-          </div>
-          <div class="task-board">
-            <h3>Done</h3>
+          <div class="search-addtask-mobile">
+            <div class="search-wrapper-board-mobile">
+              <input type="text" placeholder="Find Task" class="search-board-mobile" oninput="handleSearch(this.value)">
+              <div class="search-btn-cnt-mobile">
+                <div class="separetor-board-mobile"></div>
+                <button class="button-search-board-mobile">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M6.71181 13.2137C4.89463 13.2137 3.35669 12.5843 2.098 11.3256C0.839307 10.0669 0.209961 8.52899 0.209961 6.71181C0.209961 4.89463 0.839307 3.35669 2.098 2.098C3.35669 0.839307 4.89463 0.209961 6.71181 0.209961C8.52899 0.209961 10.0669 0.839307 11.3256 2.098C12.5843 3.35669 13.2137 4.89463 13.2137 6.71181C13.2137 7.44535 13.097 8.13721 12.8636 8.7874C12.6302 9.43758 12.3134 10.0127 11.9133 10.5129L17.5149 16.1145C17.6983 16.2979 17.79 16.5313 17.79 16.8147C17.79 17.0981 17.6983 17.3315 17.5149 17.5149C17.3315 17.6983 17.0981 17.79 16.8147 17.79C16.5313 17.79 16.2979 17.6983 16.1145 17.5149L10.5129 11.9133C10.0127 12.3134 9.43758 12.6302 8.7874 12.8636C8.13721 13.097 7.44535 13.2137 6.71181 13.2137ZM6.71181 11.2131C7.96217 11.2131 9.02497 10.7755 9.90022 9.90022C10.7755 9.02497 11.2131 7.96217 11.2131 6.71181C11.2131 5.46145 10.7755 4.39865 9.90022 3.5234C9.02497 2.64815 7.96217 2.21053 6.71181 2.21053C5.46145 2.21053 4.39865 2.64815 3.5234 3.5234C2.64815 4.39865 2.21053 5.46145 2.21053 6.71181C2.21053 7.96217 2.64815 9.02497 3.5234 9.90022C4.39865 10.7755 5.46145 11.2131 6.71181 11.2131Z"
+                      fill="#2A3647" />
+                  </svg>
+                </button>
+              </div>
+            </div>           
           </div>
         </div>
       </div>
-      <div class="column-divs">
-        <div id="todo" class="columns" ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')" ondragover="allowDrop(event); highlight('todo')"></div>
-        <div id="progress" class="columns" ondrop="moveTo('progress')" ondragleave="removeHighlight('progress')" ondragover="allowDrop(event); highlight('progress')"></div>
-        <div id="feedback" class="columns" ondrop="moveTo('feedback')" ondragleave="removeHighlight('feedback')" ondragover="allowDrop(event); highlight('feedback')"></div>
-        <div id="done" class="columns" ondrop="moveTo('done')" ondragleave="removeHighlight('done')" ondragover="allowDrop(event); highlight('done')"></div>
+      <div class="tasks-board">
+        <div class="task-board">
+          <div class="board-task-header">
+            <h3>To do</h3>
+            <button class="button-board" onclick="addTaskBoard('todo')">
+              <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
+                <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div id="todo" class="columns" ondrop="moveTo('todo')" ondragleave="removeHighlight('todo')"
+            ondragover="allowDrop(event); highlight('todo')"></div>
+        </div>
+        <div class="task-board">
+          <div class="board-task-header">
+            <h3>In Progress</h3>
+            <button class="button-board" onclick="addTaskBoard('progress')">
+              <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
+                <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div id="progress" class="columns" ondrop="moveTo('progress')" ondragleave="removeHighlight('progress')"
+            ondragover="allowDrop(event); highlight('progress')"></div>
+        </div>
+        <div class="task-board">
+          <div class="board-task-header">
+            <h3>Await feedback</h3>
+            <button class="button-board" onclick="addTaskBoard('feedback')">
+              <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="1.6665" y="1.5" width="22" height="22" rx="7" stroke="currentColor" stroke-width="2" />
+                <path d="M12.6665 8.5V16.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                <path d="M16.6665 12.5754L8.6665 12.5754" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+              </svg>
+            </button>
+          </div>
+          <div id="feedback" class="columns" ondrop="moveTo('feedback')" ondragleave="removeHighlight('feedback')"
+            ondragover="allowDrop(event); highlight('feedback')"></div>
+        </div>
+        <div class="task-board">
+          <div class="board-task-header">
+            <h3>Done</h3>
+          </div>
+          <div id="done" class="columns" ondrop="moveTo('done')" ondragleave="removeHighlight('done')"
+            ondragover="allowDrop(event); highlight('done')"></div>
+        </div>
       </div>
     </div>
     <div id="open_overlay_board" class="open-overlay-board d-none" onclick="closeOverlayBoard('add_task_board','open_overlay_board')">
@@ -101,7 +140,7 @@ function getRenderTask(task, indexTask, background,) {
     <div class="task-main" draggable="true" ondragstart="startDragging(${indexTask})" onclick="openTaskBoard('${indexTask}','${background}')">
       <div class="board-task-header-cnt">
         <div class="category-board" style="background-color:var(${background})">${task.category}</div>
-        <button id="move_to_btn_${indexTask}" class="move-to-btn" onclick="openMoveToOverlay('${indexTask}', '${task.status}'); overlayProtection(event); startDragging(${indexTask})">
+        <button id="move_to_btn_${indexTask}" class="move-to-btn d-none" onclick="openMoveToOverlay('${indexTask}', '${task.status}'); overlayProtection(event); startDragging(${indexTask})">
           <svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="0.75" y="25.25" width="24.5" height="22.5" rx="5.25" transform="rotate(-90 0.75 25.25)" stroke="#2A3647" stroke-width="1.5"/>
             <mask id="mask0_294678_9869" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="2" y="3" width="20" height="20">
