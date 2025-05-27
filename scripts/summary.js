@@ -280,8 +280,8 @@ function getSummaryTemplate() {
                                             </g>
                                         </svg>                                        
                                     </div>
-                                    <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-todo-amount">${summaryUser.tasks.todo}</span>
+                                    <div class="summary_bottons_counter_and_text_wrapper">
+                                        <span class="summary_counter_font_weight_and_size" id="summary-todo-counter">${summaryUser.tasks.todo}</span>
                                         <span class="summary_text_font_weight_and_size">To-do</span>
                                     </div>
 
@@ -296,8 +296,8 @@ function getSummaryTemplate() {
                                         </svg>
                                     </div>                                
                                 
-                                    <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-done-amount">${summaryUser.tasks.done}</span>
+                                    <div class="summary_bottons_counter_and_text_wrapper">
+                                        <span class="summary_counter_font_weight_and_size" id="summary-done-counter">${summaryUser.tasks.done}</span>
                                         <span class="summary_text_font_weight_and_size">Done</span>
                                     </div>
                                     
@@ -312,8 +312,8 @@ function getSummaryTemplate() {
                                         <div class="summary_urgent_left padding_28_48 gap_16">
                                             <img src="./assets/svg/summary-urgent-icon.svg" alt="Urgent">
 
-                                            <div class="summary_bottons_amount_and_text_wrapper">
-                                                <span class="summary_amount_font_weight_and_size" id="summary-urgent-amount">${summaryUser.tasks.urgent.count}</span>
+                                            <div class="summary_bottons_counter_and_text_wrapper">
+                                                <span class="summary_counter_font_weight_and_size" id="summary-urgent-counter">${summaryUser.tasks.urgent.count}</span>
                                                 <span class="summary_urgent_text_info">Urgent</span>
                                             </div>                                        
                                         </div>
@@ -332,22 +332,22 @@ function getSummaryTemplate() {
                             <div class="summary_content_left_bottom_wrapper">
 
                                 <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-board" onclick="openBoardPage()">
-                                    <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-board-amount">${summaryUser.tasks.tasksInBoard}</span>
+                                    <div class="summary_bottons_counter_and_text_wrapper">
+                                        <span class="summary_counter_font_weight_and_size" id="summary-tasks-in-board-counter">${summaryUser.tasks.tasksInBoard}</span>
                                         <span class="summary_text_font_weight_and_size">Tasks in<br>Board</span>
                                     </div>                                
                                 </div>
 
                                 <div class="summary_buttons summary_button_width_168" id="summary-tasks-in-progress" onclick="openBoardPage()">
-                                    <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-tasks-in-progress-amount">${summaryUser.tasks.tasksInProgress}</span>
+                                    <div class="summary_bottons_counter_and_text_wrapper">
+                                        <span class="summary_counter_font_weight_and_size" id="summary-tasks-in-progress-counter">${summaryUser.tasks.tasksInProgress}</span>
                                         <span class="summary_text_font_weight_and_size">Tasks in<br>Progress</span>
                                     </div>                                                                
                                 </div>
 
                                 <div class="summary_buttons summary_button_width_168" id="summary-awaiting-feedback" onclick="openBoardPage()">
-                                    <div class="summary_bottons_amount_and_text_wrapper">
-                                        <span class="summary_amount_font_weight_and_size" id="summary-awaiting-feedback-amount">${summaryUser.tasks.awaitingFeedback}</span>
+                                    <div class="summary_bottons_counter_and_text_wrapper">
+                                        <span class="summary_counter_font_weight_and_size" id="summary-awaiting-feedback-counter">${summaryUser.tasks.awaitingFeedback}</span>
                                         <span class="summary_text_font_weight_and_size">Awaiting<br>Feedback</span>
                                     </div>                                                                                                
                                 </div>

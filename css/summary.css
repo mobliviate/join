@@ -110,13 +110,13 @@
     width: 70px;
 }
 
-.summary_bottons_amount_and_text_wrapper {
+.summary_bottons_counter_and_text_wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.summary_amount_font_weight_and_size {
+.summary_counter_font_weight_and_size {
     font-weight: 600;
     font-size: 64px;
 }
