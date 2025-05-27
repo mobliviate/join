@@ -323,6 +323,7 @@ body {
 .assigned-contacts {
     display: flex;
     gap: 8px;
+    padding-top: 8px;
 
 }
 

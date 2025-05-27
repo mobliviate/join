@@ -53,7 +53,7 @@ function updateAssignedContacts() {
             const initials = contact.querySelector('.circle').innerText.trim();
             const bgColor = contact.querySelector('.circle').style.backgroundColor;
             assignedHTML += `
-                <div class="circle" style="background-color: ${bgColor}; margin-right: 5px;">
+                <div class="circle" style="background-color: ${bgColor};">
                     ${initials}
                 </div>
             `;
