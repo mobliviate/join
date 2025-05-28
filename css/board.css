@@ -219,11 +219,7 @@
     height: 27px;
     color: var(--white);
     border-radius: 8px;
-    padding-top: 4px;
-    padding-right: 16px;
-    padding-bottom: 4px;
-    padding-left: 16px;
-    /* margin-bottom: 24px; */
+    padding: 4px 16px;
 }
 
 .title-description-board {
@@ -282,7 +278,6 @@
     height: 32px;
     border-radius: 32px;
     border: solid 1px var(--white);
-    background-color: var(--secondary-color);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -391,10 +386,18 @@
     justify-content: space-between;
 }
 
+.open-task-main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow: auto;
+}
+
 .close-button-open-task-board {
     background-color: transparent;
     border: none;
     cursor: pointer;
+    display: flex;
 }
 
 .open-task-title {
@@ -579,4 +582,97 @@
 
 .edit-scroll-column {
     overflow: auto;
+}
+@media (max-width: 720px){
+    .open-task-overlay {
+    width: 320px;
+    max-height: 550px;
+    padding: 20px 18px;
+    border-radius: 15px;
+    gap: 12px;
+    }
+
+    .open-task-main {
+    gap: 12px;
+    }
+
+    .category-board {
+    height: 25px;
+    padding: 4px 8px;
+    font-size: small;
+    }
+
+    .open-task-title {
+    font-size: 28px;
+    }
+    
+    .open-task-description {
+    font-size: 15px;
+    }
+
+    .open-task-date-div {
+    gap: 12px;
+    }
+
+    .open-task-text {
+    font-size: 15px;
+    }
+
+    .open-task-date {
+    font-size: 15px;
+    }
+
+    .open-task-priority-div {
+    gap: 12px;
+    }
+
+    .open-task-priority {
+    font-size: 15px;
+    gap: 8px;
+    }
+
+    .open-task-assigned-div {
+    gap: 4px;
+    }
+
+    .open-task-assigned {
+    gap: 2px;
+    }
+
+    .initials-single-board {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+    }
+
+    .assigned-contact-open-task div h3 {
+    font-size: 10px;
+    }
+
+    .assigned-contact-open-task h3 {
+    font-size: 15px;
+    }
+
+    .open-task-subtasks-div {
+    gap: 4px;
+    }
+
+    .subtask-button-board {
+    gap: 8px;
+    padding: 3px 8px;
+    border-radius: 5px;
+    }
+
+    .subtask-button-board h3 {
+    font-size: 12px;
+    color: var(--black);
+    }
+
+    .open-task-buttons {
+        padding-bottom: -5px;
+    }
+
+    .button-create-task{
+        font-size: small;
+    }
 }

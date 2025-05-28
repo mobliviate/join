@@ -212,23 +212,25 @@ function getOpenTaskBoard(task, color, indexTask) {
         </svg>
       </button>
     </div>
-    <h1 class="open-task-title">${task.title}</h1>
-    <h3 class="open-task-description">${task.description}</h3>
-    <div class="open-task-date-div">
-      <h3 class="open-task-text">Due date:</h3>
-      <input type="date" class="open-task-date"value="${task.dueDate}"/>
-    </div>
-    <div class="open-task-priority-div">
-      <h3 class="open-task-text">Priority:</h3>
-      <h3 class="open-task-priority">${task.priority} <img class="priority-board" src="./assets/svg/prio_${task.priority}.svg" alt="${task.priority}_icon"></h3>
-    </div>
-    <div class="open-task-assigned-div">
-      <h3 class="open-task-text">Assigned To:</h3>
-      <div id="open-task-assigned" class=""></div>
-    </div>
-    <div class="open-task-subtasks-div">
-      <h3 class="open-task-text">Subtasks</h3>
-      <div id="open_task_subtasks" class="open-task-subtasks"></div>
+  	<div class="open-task-main">
+      <h1 class="open-task-title">${task.title}</h1>
+      <h3 class="open-task-description">${task.description}</h3>
+      <div class="open-task-date-div">
+        <h3 class="open-task-text">Due date:</h3>
+        <input type="date" class="open-task-date"value="${task.dueDate}"/>
+      </div>
+      <div class="open-task-priority-div">
+        <h3 class="open-task-text">Priority:</h3>
+        <h3 class="open-task-priority">${task.priority}<img class="priority-board" src="./assets/svg/prio_${task.priority}.svg" alt="${task.priority}_icon"></h3>
+      </div>
+      <div class="open-task-assigned-div">
+        <h3 class="open-task-text">Assigned To:</h3>
+        <div id="open-task-assigned" class=""></div>
+      </div>
+      <div class="open-task-subtasks-div">
+        <h3 class="open-task-text">Subtasks</h3>
+        <div id="open_task_subtasks" class="open-task-subtasks"></div>
+      </div>
     </div>
     <div class="open-task-buttons">
       <button class="open-task-button" onclick="deleteTask('${indexTask}')">
