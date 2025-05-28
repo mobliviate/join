@@ -583,6 +583,21 @@
 .edit-scroll-column {
     overflow: auto;
 }
+
+@media (max-width: 1140px){
+    .add-task-overlay {
+    width: 950px;
+    max-height: 750px;
+    }
+}
+
+@media (max-width: 980px){
+    .add-task-overlay {
+    width: 650px;
+    max-height: 850px;
+    }
+}
+
 @media (max-width: 720px){
     .open-task-overlay {
     width: 320px;
@@ -674,5 +689,10 @@
 
     .button-create-task{
         font-size: small;
+    }
+
+    .add-task-overlay {
+    width: 320px;
+    max-height: 550px;
     }
 }
