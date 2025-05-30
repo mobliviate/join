@@ -109,7 +109,7 @@ function closeOverlayBoard(divID,overlay) {
   }
   closeOverlayBoard.addEventListener("animationend", handleEnd);
   const container = document.getElementById("add_task_board");
-container.removeEventListener("click", handleGlobalClick, true);
+  container.removeEventListener("click", handleGlobalClick, true);
   renderTasks()
 }
 
@@ -205,6 +205,8 @@ async function openTaskBoard(indexTask, color) {
   } if (openTaskRefToJson.subtasks?.length > 0) {
     renderOpenSubtasks(indexTask)
   }
+  const container = document.getElementById("open_task_board");
+  container.addEventListener("click", handleGlobalClick, true);
 }
 
 async function renderOpenAssignedContacts(indexTask){
