@@ -9,9 +9,7 @@ function toggleAssignDropdown() {
  * Opens the assigned contacts dropdown and loads contacts.
  */
 function openAssignDropdown() {
-    const container = document.getElementById("multiselect-assign-options");
-    document.getElementById("multiselect-assign").focus();
-    container.classList.remove("d-none");
+    document.getElementById("multiselect-assign-options").classList.remove("d-none");
     loadContacts();
     assignDropdownOpen = true;
 }
@@ -35,7 +33,6 @@ function toggleCategoryDropdown() {
  * Opens the category dropdown.
  */
 function openCategoryDropdown() {
-    document.getElementById("multiselect-category").focus();
     document.getElementById("multiselect-category-options").classList.remove("d-none");
     categoryDropdownOpen = true;
 }
@@ -59,3 +56,34 @@ function selectCategoryOption(option) {
     checkFormValidity();
     closeCategoryDropdown();
 }
+
+/**
+ * Global click handler that closes open dropdowns
+ * when a click occurs outside of their respective elements.
+ *
+ * This ensures dropdowns stay open when interacting with inputs or options inside them,
+ * and are closed automatically when clicking anywhere else on the page.
+ *
+ * @param {MouseEvent} event - The click event triggered by the user.
+ */
+document.addEventListener('click', function (event) {
+    const assignWrapper = document.getElementById('multiselect-assign');
+    const assignOptions = document.getElementById('multiselect-assign-options');
+
+    const categoryWrapper = document.getElementById('multiselect-category');
+    const categoryOptions = document.getElementById('multiselect-category-options');
+
+    const clickedInsideAssign =
+        assignWrapper?.contains(event.target) || assignOptions?.contains(event.target);
+
+    const clickedInsideCategory =
+        categoryWrapper?.contains(event.target) || categoryOptions?.contains(event.target);
+
+    if (assignDropdownOpen && !clickedInsideAssign) {
+        closeAssignDropdown();
+    }
+
+    if (categoryDropdownOpen && !clickedInsideCategory) {
+        closeCategoryDropdown();
+    }
+});

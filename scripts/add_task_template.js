@@ -65,14 +65,13 @@ function getAddTaskTemplate(status) {
                         <label for="assigned-input">Assigned to</label>
                         <div class="multiselect-container">
                             <div class="multiselect" id="multiselect-assign"
-                                onclick="event.stopPropagation(); toggleAssignDropdown()" tabindex="0">
+                                onclick="toggleAssignDropdown()" tabindex="0">
                                 <input type="text" placeholder="Select contacts to assign" id="multiselect-input-assign"
                                     class="multiselect-input" oninput="filterContacts()" autocomplete="off" />
                                 <img class="multiselect-icon" id="multiselect-icon-assign"
                                     src="./assets/svg/arrow_dropdown_down.svg" alt="Toggle options">
                             </div>
-                            <div class="multiselect-options assigned d-none" id="multiselect-assign-options"
-                                onclick="event.stopPropagation()">
+                            <div class="multiselect-options assigned d-none" id="multiselect-assign-options">
                                 <!-- Javascript insert Contacts from Firebase -->
                             </div>
                             <div class="assigned-contacts" id="assigned-contacts">
@@ -85,7 +84,7 @@ function getAddTaskTemplate(status) {
                         <label for="category-box">Category<span class="required">*</span></label>
                         <div class="multiselect-container">
                             <div class="multiselect" id="multiselect-category"
-                                onclick="event.stopPropagation(); toggleCategoryDropdown()"
+                                onclick="toggleCategoryDropdown()"
                                 onfocusout="validateCategory()" tabindex="0">
                                 <span class="label-text" id="category-selected">Select task category</span>
                                 <img class="multiselect-icon" id="multiselect-icon-category"
