@@ -92,6 +92,8 @@ function addTaskBoard(title) {
   showDiv('add_task_board');
   document.getElementById("add_task_board").innerHTML = getAddTaskTemplate(title);
   renderTasks()
+  const container = document.getElementById("add_task_board");
+  container.addEventListener("click", handleGlobalClick, true);
 }
 
 function overlayProtection(event) {
@@ -106,6 +108,8 @@ function closeOverlayBoard(divID,overlay) {
   closeOverlayBoard.removeEventListener("animationend", handleEnd);
   }
   closeOverlayBoard.addEventListener("animationend", handleEnd);
+  const container = document.getElementById("add_task_board");
+container.removeEventListener("click", handleGlobalClick, true);
   renderTasks()
 }
 
