@@ -264,6 +264,12 @@ async function handleSearch(searchTerm) {
     task.title?.toLowerCase().includes(searchTerm) ||
     task.description?.toLowerCase().includes(searchTerm)
   );
+  if (filteredTasks.length === 0) {
+    // Füge hier deinen Hinweistext hinzu – z. B. in eine bestimmte Spalte oder einen Container
+    const noResultContainer = document.getElementById("todo"); // z.B. die "To Do"-Spalte
+    noResultContainer.innerHTML = `<div class="no-results">No tasks found for "${searchTerm}"</div>`;
+    return;
+  }
   filteredTasks.forEach((taskRef, indexTask) => {
     let background = taskRef.category === "User Story" ? "--user" : "--technical";
     let taskContentRef = document.getElementById(`${taskRef.status}`);
