@@ -600,9 +600,9 @@
 
 @media (max-width: 720px){
     .open-task-overlay {
-    width: 320px;
-    max-height: 550px;
-    padding: 20px 18px;
+    width: 450px;
+    max-height: 650px;
+    padding: 10px 8px;
     border-radius: 15px;
     gap: 12px;
     }
@@ -694,5 +694,19 @@
     .add-task-overlay {
     width: 320px;
     max-height: 550px;
+    }
+}
+
+@media (max-width: 480px){
+    .open-task-overlay {
+    width: 370px;
+    max-height: 560px;
+    }
+}
+
+@media (max-width: 370px){
+    .open-task-overlay {
+    width: 310px;
+    max-height: 500px;
     }
 }
