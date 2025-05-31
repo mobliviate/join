@@ -447,19 +447,19 @@ function getMoveTaskOverlayTemplate() {
     <div id="move_task_overlay" class="move-task-overlay" onclick="overlayProtection(event)">
       <h3>Move to</h3>
       <button id="move_to_to_do" class="move-task-btn" onclick="moveTo('todo')">
-        <img src="../assets/svg/move_to_arrow_upward.svg" alt="move_to_arrow_upward">
+        <img src="./assets/svg/move_to_arrow_upward.svg" alt="move_to_arrow_upward">
         <span class="move-task-span">To Do</span>
       </button>
       <button id="move_to_progress" class="move-task-btn" onclick="moveTo('progress')">
-        <img src="../assets/svg/move_to_arrow_upward.svg" alt="move_to_arrow_upward">
+        <img src="./assets/svg/move_to_arrow_upward.svg" alt="move_to_arrow_upward">
         <span class="move-task-span">In Progress</span>
       </button>
       <button id="move_to_feedback" class="move-task-btn" onclick="moveTo('feedback')">
-        <img src="../assets/svg/move_to_arrow_upward.svg" alt="move_to_arrow_upward">
+        <img src="./assets/svg/move_to_arrow_upward.svg" alt="move_to_arrow_upward">
         <span class="move-task-span">Feedback</span>
       </button>
       <button id="move_to_done" class="move-task-btn" onclick="moveTo('done')">
-        <img src="../assets/svg/move_to_arrow_downward.svg" alt="move_to_arrow_downward">
+        <img src="./assets/svg/move_to_arrow_downward.svg" alt="move_to_arrow_downward">
         <span class="move-task-span">Done</span>
       </button>
     </div>

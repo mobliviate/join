@@ -45,13 +45,13 @@ function getBodyTemplate() {
         <div class="wrapper-user-menu hidden" id="wrapper_user_menu" onclick="toggleUserMenu('close')">
           <div class="user-menu" id="user_menu" onclick="event.stopPropagation()">
             <div class="user-menu-item user-menu-help-item mobile-flex">
-              <a href="../help.html">Help</a>
+              <a href="help.html">Help</a>
             </div>
             <div class="user-menu-item">
-              <a href="../privacy_policy.html">Privacy Policy</a>
+              <a href="privacy_policy.html">Privacy Policy</a>
             </div>
             <div class="user-menu-item">
-              <a href="../legal_notice.html">Legal Notice</a>
+              <a href="legal_notice.html">Legal Notice</a>
             </div>
             <div class="user-menu-item">
               <button class="logout-btn" onclick="logOut()">Log out</button>
@@ -155,7 +155,7 @@ function getLegalNoticeContent() {
 
       <h2>Imprint</h2>
       <ul>
-        <li><strong>Marc Odermatt, Gyözö Pere, Srdjan Velickovski, Aledxander Schmidt, Kevin Karoly</strong></li>
+        <li><strong>Marc Odermatt, Gyözö Pere, Srdjan Velickovski, Alexander Schmidt, Kevin Karoly</strong></li>
         <li><strong>Tassiloplatz 25</strong></li>
         <li><strong>81541 München</strong></li>
       </ul>

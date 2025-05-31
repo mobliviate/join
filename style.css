@@ -41,7 +41,7 @@
   font-family: 'Mulish';
   font-style: normal;
   font-weight: 500;
-  src: url('../assets/fonts/mulish-v13-latin-500.woff2') format('woff2');
+  src: url('./assets/fonts/mulish-v13-latin-500.woff2') format('woff2');
   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
@@ -52,7 +52,7 @@
   font-family: 'Mulish';
   font-style: normal;
   font-weight: 700;
-  src: url('../assets/fonts/mulish-v13-latin-700.woff2') format('woff2');
+  src: url('./assets/fonts/mulish-v13-latin-700.woff2') format('woff2');
   /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
@@ -129,6 +129,7 @@ body {
 
 .main {
   width: 100%;
+  /* height: calc(100dvh - 80px - 80px); */
   height: calc(100% - 96px);
   overflow-y: auto;
   position: relative;
