@@ -26,6 +26,9 @@ function getBoardTemplate() {
                   fill="white" />
               </svg>
             </button>
+            <div id="no_results" class="no-results-div d-none">
+              <span class="no-results">No tasks found</span>
+            </div>
           </div>
         </div>
       </div>

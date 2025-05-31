@@ -265,16 +265,18 @@ async function handleSearch(searchTerm) {
     task.description?.toLowerCase().includes(searchTerm)
   );
   if (filteredTasks.length === 0) {
-    // Füge hier deinen Hinweistext hinzu – z. B. in eine bestimmte Spalte oder einen Container
-    const noResultContainer = document.getElementById("todo"); // z.B. die "To Do"-Spalte
-    noResultContainer.innerHTML = `<div class="no-results">No tasks found for "${searchTerm}"</div>`;
+    document.getElementById("no_results").classList.remove("d-none");
     return;
-  }
-  filteredTasks.forEach((taskRef, indexTask) => {
+  }else{
+    if (!document.getElementById("no_results").classList.remove("d-none")) {
+      document.getElementById("no_results").classList.add("d-none")
+    }
+    filteredTasks.forEach((taskRef, indexTask) => {
     let background = taskRef.category === "User Story" ? "--user" : "--technical";
     let taskContentRef = document.getElementById(`${taskRef.status}`);
     taskContentRef.innerHTML += getRenderTask(taskRef, indexTask, background);
     renderSubtasks(taskRef, indexTask);
-  });
+    });
+  }
   findEmptyColumn();
 }
