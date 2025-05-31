@@ -181,7 +181,7 @@ function getRenderInitials(initial, color) {
 
 function getRenderProgressbar(widthProgress, subTasks, subtaskDone) {
   return `
-    <div class="subtasks-board">
+    <div class="subtasks-board" title="${subtaskDone} of ${subTasks} subtasks completed">
       <svg width="128" height="8" viewBox="0 0 128 8" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="128" height="8" rx="4" fill="#F4F4F4"/>
         <rect width="${widthProgress}" height="8" rx="4" fill="#4589FF"/>
