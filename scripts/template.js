@@ -11,7 +11,7 @@ function getBodyTemplate() {
               <use href="assets/svg/sprite.svg#summary_icon"></use>
             </svg> Summary
           </a>
-          <a href="add_task.html" class="sidebar-link" data-page="add_task.html">
+          <a href="addTask.html" class="sidebar-link" data-page="addTask.html">
             <svg class="nav-icon" viewBox="0 0 26 26">
               <use href="assets/svg/sprite.svg#add_task_icon"></use>
             </svg> Add Task
@@ -79,7 +79,7 @@ function getFooterTemplate() {
           <span>Summary</span>
         </div>
       </a>
-      <a href="add_task.html" class="footer-nav-link" data-page="add_task.html">
+      <a href="addTask.html" class="footer-nav-link" data-page="addTask.html">
         <div class="footer-nav-link-cnt">
           <svg class="nav-icon" viewBox="0 0 26 26">
             <use href="assets/svg/sprite.svg#add_task_icon"></use>
