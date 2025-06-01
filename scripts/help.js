@@ -4,10 +4,10 @@
  * loads the help header, and populates the main section with help content.
  */
 function initHelp() {
-  loadBody();
-  loadHeader();
-  hideHelpLink();
-  document.getElementById("main").innerHTML = getHelpContent();
+    loadBody();
+    loadHeader();
+    hideHelpLink();
+    document.getElementById("main").innerHTML = getHelpContent();
 }
 
 /**
@@ -15,8 +15,8 @@ function initHelp() {
  * @function
  */
 function hideHelpLink() {
-  const helpLinkRef = document.getElementById("help_link");
-  helpLinkRef.style.display = "none";
+    const helpLinkRef = document.getElementById("help_link");
+    helpLinkRef.style.display = "none";
 }
 
 /**
@@ -40,28 +40,28 @@ function hideHelpLink() {
  */
 
 function getSteps() {
-  const steps = [
-    {
-      title: "Exploring the Board",
-      text: 'Wenn du dich bei <span class="blue">Join</span> anmeldest, siehst du ein Board mit vier Listen: "To Do", "In Progress", "Await feedback" und "Done".',
-    },
-    {
-      title: "Creating Contacts",
-      text: 'Gehe zum Bereich "Contacts", klicke auf "New contact" und trage dort die Infos ein. Diese Kontakte kannst du dann Aufgaben zuweisen.',
-    },
-    {
-      title: "Adding Cards",
-      text: 'Klicke auf das "+" unter einer Liste, um eine neue Aufgabe zu erstellen. Gib Titel, Beschreibung, Fälligkeitsdatum usw. ein.',
-    },
-    {
-      title: "Moving Cards",
-      text: "Du kannst Aufgaben ganz einfach per Drag & Drop zwischen den Listen verschieben.",
-    },
-    {
-      title: "Deleting Cards",
-      text: 'Du kannst Aufgaben löschen oder in die Liste "Done" verschieben. Achtung: Gelöschte Aufgaben sind weg und können nicht wiederhergestellt werden!',
-    },
-  ];
+    const steps = [
+        {
+            title: "Exploring the Board",
+            text: 'Wenn du dich bei <span class="blue">Join</span> anmeldest, siehst du ein Board mit vier Listen: "To Do", "In Progress", "Await feedback" und "Done".',
+        },
+        {
+            title: "Creating Contacts",
+            text: 'Gehe zum Bereich "Contacts", klicke auf "New contact" und trage dort die Infos ein. Diese Kontakte kannst du dann Aufgaben zuweisen.',
+        },
+        {
+            title: "Adding Cards",
+            text: 'Klicke auf das "+" unter einer Liste, um eine neue Aufgabe zu erstellen. Gib Titel, Beschreibung, Fälligkeitsdatum usw. ein.',
+        },
+        {
+            title: "Moving Cards",
+            text: "Du kannst Aufgaben ganz einfach per Drag & Drop zwischen den Listen verschieben.",
+        },
+        {
+            title: "Deleting Cards",
+            text: 'Du kannst Aufgaben löschen oder in die Liste "Done" verschieben. Achtung: Gelöschte Aufgaben sind weg und können nicht wiederhergestellt werden!',
+        },
+    ];
 
-  return steps.map(createStepHTML).join("");
+    return steps.map(createStepHTML).join("");
 }

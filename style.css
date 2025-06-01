@@ -1,222 +1,222 @@
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  scroll-behavior: smooth;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    scroll-behavior: smooth;
 }
 
 /* inter-regular - latin */
 @font-face {
-  font-display: swap;
-  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  src: url("./assets/fonts/inter-v18-latin-regular.woff2") format("woff2");
-  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400;
+    src: url("./assets/fonts/inter-v18-latin-regular.woff2") format("woff2");
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* inter-700 - latin */
 @font-face {
-  font-display: swap;
-  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  src: url("./assets/fonts/inter-v18-latin-700.woff2") format("woff2");
-  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    src: url("./assets/fonts/inter-v18-latin-700.woff2") format("woff2");
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 @font-face {
-  font-family: "Poppins";
-  src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
+    font-family: "Poppins";
+    src: url("./assets/fonts/Poppins-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
 }
 
 /* mulish-500 - latin */
 @font-face {
-  font-display: swap;
-  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Mulish';
-  font-style: normal;
-  font-weight: 500;
-  src: url('./assets/fonts/mulish-v13-latin-500.woff2') format('woff2');
-  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 500;
+    src: url('./assets/fonts/mulish-v13-latin-500.woff2') format('woff2');
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 /* mulish-700 - latin */
 @font-face {
-  font-display: swap;
-  /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
-  font-family: 'Mulish';
-  font-style: normal;
-  font-weight: 700;
-  src: url('./assets/fonts/mulish-v13-latin-700.woff2') format('woff2');
-  /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+    font-display: swap;
+    /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    src: url('./assets/fonts/mulish-v13-latin-700.woff2') format('woff2');
+    /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
 }
 
 
 
 :root {
-  --primary-color: #2a3647;
-  --secondary-color: #29abe2;
-  --warning-color: #ff4d4f;
-  --white: #ffffff;
-  --black: #000000;
-  --light-gray: #cdcdcd;
-  --dark-gray: #647188;
-  --main-bg: #f6f7f8;
-  --light-blue: #29abe2;
-  --style: #d1d1d1;
-  --icons: #a8a8a8;
-  --nav-hover: rgba(255, 255, 255, 0.1);
-  --active: #090131;
-  --no-task-bg: #e7e7e7;
-  --technical: #1fd7c1;
-  --user: #0038ff;
-  --header-padding: 20px 40px 20px 116px;
-  --main-padding: 60px 96px;
-  --h1-help-privacy-legal: clamp(47px, 5.2vw, 61px);
-  --h2-help-privacy-legal: 27px;
-  --h3-help-privacy-legal: 20px;
+    --primary-color: #2a3647;
+    --secondary-color: #29abe2;
+    --warning-color: #ff4d4f;
+    --white: #ffffff;
+    --black: #000000;
+    --light-gray: #cdcdcd;
+    --dark-gray: #647188;
+    --main-bg: #f6f7f8;
+    --light-blue: #29abe2;
+    --style: #d1d1d1;
+    --icons: #a8a8a8;
+    --nav-hover: rgba(255, 255, 255, 0.1);
+    --active: #090131;
+    --no-task-bg: #e7e7e7;
+    --technical: #1fd7c1;
+    --user: #0038ff;
+    --header-padding: 20px 40px 20px 116px;
+    --main-padding: 60px 96px;
+    --h1-help-privacy-legal: clamp(47px, 5.2vw, 61px);
+    --h2-help-privacy-legal: 27px;
+    --h3-help-privacy-legal: 20px;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 body {
-  font-family: "Inter", sans-serif;
-  height: 100vh;
+    font-family: "Inter", sans-serif;
+    height: 100vh;
 }
 
 .d-none {
-  display: none !important;
+    display: none !important;
 }
 
 .main-div {
-  display: flex;
-  height: 100vh;
-  width: 100%;
+    display: flex;
+    height: 100vh;
+    width: 100%;
 }
 
 .wrapper {
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
 }
 
 .left {
-  background-color: var(--primary-color);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 32px 0;
-  flex: 0 0 232px;
+    background-color: var(--primary-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 32px 0;
+    flex: 0 0 232px;
 }
 
 .right {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  flex: 1 1 auto;
-  background-color: var(--main-bg);
-  position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    background-color: var(--main-bg);
+    position: relative;
 }
 
 .main {
-  width: 100%;
-  height: calc(100% - 96px);
-  /* height: 100%; */
-  overflow-y: auto;
-  position: relative;
+    width: 100%;
+    height: calc(100% - 96px);
+    /* height: 100%; */
+    overflow-y: auto;
+    position: relative;
 }
 
 /* Chrome, Edge, Safari */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+    width: 10px;
+    height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--white);
-  border-radius: 10px;
+    background: var(--white);
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--light-blue);
-  border-radius: 10px;
-  border: 2px solid var(--white);
+    background-color: var(--light-blue);
+    border-radius: 10px;
+    border: 2px solid var(--white);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: var(--primary-color);
+    background-color: var(--primary-color);
 }
 
 /*Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--light-blue) var(--white);
+    scrollbar-width: thin;
+    scrollbar-color: var(--light-blue) var(--white);
 }
 
 /* greet overlay */
 .greet-overlay {
-  position: absolute;
-  top: 10px;
-  left: 0;
-  width: 100%;
-  height: calc(100% - 10px);
-  background-color: var(--main-bg);
-  display: flex;
-  opacity: 1;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  transition: all 0.5s ease-out;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 10px);
+    background-color: var(--main-bg);
+    display: flex;
+    opacity: 1;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.5s ease-out;
 
-  &.hidden {
-    opacity: 0;
-    transition: all 0.5s ease-in;
-  }
+    &.hidden {
+        opacity: 0;
+        transition: all 0.5s ease-in;
+    }
 }
 
 .greet-overlay-content {
-  text-align: center;
+    text-align: center;
 }
 
 .greet-overlay-title {
-  font-size: 36px;
-  font-weight: 400;
-  color: var(--primary-color);
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--primary-color);
 }
 
 .greet-overlay-name {
-  font-size: 47px;
-  font-weight: 700;
-  color: var(--secondary-color);
+    font-size: 47px;
+    font-weight: 700;
+    color: var(--secondary-color);
 }
 
 /* Responsive */
 @media (max-width: 850px) {
-  :root {
-    --main-padding: 48px 32px;
-  }
+    :root {
+        --main-padding: 48px 32px;
+    }
 }
 
 @media (max-width: 750px) {
-  :root {
-    --main-padding: 48px 32px;
-  }
+    :root {
+        --main-padding: 48px 32px;
+    }
 
-  .right {
-    height: 100dvh;
-  }
+    .right {
+        height: 100dvh;
+    }
 }
 
 @media (max-width: 375px) {
-  :root {
-    --main-padding: 48px 16px;
-  }
+    :root {
+        --main-padding: 48px 16px;
+    }
 }

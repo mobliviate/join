@@ -12,7 +12,7 @@ function getButtonTemplate(inputId, iconId) {
         <button onclick="changePasswordIcon('${inputId}', '${iconId}')" class="input-icon-btn" type="button">
                 <img id=${iconId} src="assets/png/visibility_off.png">
         </button>
-         `;
+    `;
 }
 
 /**
