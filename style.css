@@ -123,14 +123,13 @@ body {
   flex-direction: column;
   flex: 1 1 auto;
   background-color: var(--main-bg);
-  /* min-width: 0; */
   position: relative;
 }
 
 .main {
   width: 100%;
-  /* height: calc(100dvh - 80px - 80px); */
   height: calc(100% - 96px);
+  /* height: 100%; */
   overflow-y: auto;
   position: relative;
 }
@@ -209,6 +208,10 @@ body {
 @media (max-width: 750px) {
   :root {
     --main-padding: 48px 32px;
+  }
+
+  .right {
+    height: 100dvh;
   }
 }
 

@@ -112,45 +112,16 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 2.56251px 2.56251px 0px;
 }
 
-/* .tasks-board {
-    width: 1208px;
-    height: 72px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-top: 48px;
-    padding-left: 64px;
-    padding-right: 64px;
-} */
-
 .tasks-board {
-    /* width: 1208px; */
-    /* height: 72px; */
     display: flex;
-    /* flex-direction: row; */
-    justify-content: space-between;
-    /* padding-top: 48px; */
-    /* padding-left: 64px; */
-    /* padding-right: 64px; */
-    padding: 48px 64px;
+    padding: 48px 24px;
+    margin: 0 auto;
     gap: 26px;
 }
 
-/* .task-board {
-    width: 244px;
-    height: 24px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-} */
-
 .task-board {
-    /* width: 244px; */
-    /* height: 24px; */
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: space-between; */
 }
 
 .task-board h3 {
@@ -193,7 +164,7 @@
 .columns-highlight {
     background-color: rgba(0, 0, 0, 0.1);
     border: dashed 1px var(--icons);
-    border-radius: 10px 10px 24px 24px;    
+    border-radius: 10px 10px 24px 24px;
 }
 
 .empty-task {
@@ -227,7 +198,7 @@
 }
 
 .task-main:active {
-  transform: rotate(5deg);
+    transform: rotate(5deg);
 }
 
 .category-board {
@@ -606,129 +577,129 @@
     overflow: auto;
 }
 
-@media (max-width: 1140px){
+@media (max-width: 1140px) {
     .add-task-overlay {
-    width: 950px;
-    max-height: 750px;
+        width: 950px;
+        max-height: 750px;
     }
 }
 
-@media (max-width: 980px){
+@media (max-width: 980px) {
     .add-task-overlay {
-    width: 650px;
-    max-height: 850px;
+        width: 650px;
+        max-height: 850px;
     }
 }
 
-@media (max-width: 720px){
+@media (max-width: 720px) {
     .open-task-overlay {
-    width: 450px;
-    max-height: 650px;
-    padding: 10px 8px;
-    border-radius: 15px;
-    gap: 12px;
+        width: 450px;
+        max-height: 650px;
+        padding: 10px 8px;
+        border-radius: 15px;
+        gap: 12px;
     }
 
     .open-task-main {
-    gap: 12px;
+        gap: 12px;
     }
 
     .category-board {
-    height: 25px;
-    padding: 4px 8px;
-    font-size: small;
+        height: 25px;
+        padding: 4px 8px;
+        font-size: small;
     }
 
     .open-task-title {
-    font-size: 28px;
+        font-size: 28px;
     }
-    
+
     .open-task-description {
-    font-size: 15px;
+        font-size: 15px;
     }
 
     .open-task-date-div {
-    gap: 12px;
+        gap: 12px;
     }
 
     .open-task-text {
-    font-size: 15px;
+        font-size: 15px;
     }
 
     .open-task-date {
-    font-size: 15px;
+        font-size: 15px;
     }
 
     .open-task-priority-div {
-    gap: 12px;
+        gap: 12px;
     }
 
     .open-task-priority {
-    font-size: 15px;
-    gap: 8px;
+        font-size: 15px;
+        gap: 8px;
     }
 
     .open-task-assigned-div {
-    gap: 4px;
+        gap: 4px;
     }
 
     .open-task-assigned {
-    gap: 2px;
+        gap: 2px;
     }
 
     .initials-single-board {
-    width: 25px;
-    height: 25px;
-    border-radius: 25px;
+        width: 25px;
+        height: 25px;
+        border-radius: 25px;
     }
 
     .assigned-contact-open-task div h3 {
-    font-size: 10px;
+        font-size: 10px;
     }
 
     .assigned-contact-open-task h3 {
-    font-size: 15px;
+        font-size: 15px;
     }
 
     .open-task-subtasks-div {
-    gap: 4px;
+        gap: 4px;
     }
 
     .subtask-button-board {
-    gap: 8px;
-    padding: 3px 8px;
-    border-radius: 5px;
+        gap: 8px;
+        padding: 3px 8px;
+        border-radius: 5px;
     }
 
     .subtask-button-board h3 {
-    font-size: 12px;
-    color: var(--black);
+        font-size: 12px;
+        color: var(--black);
     }
 
     .open-task-buttons {
         padding-bottom: -5px;
     }
 
-    .button-create-task{
+    .button-create-task {
         font-size: small;
     }
 
     .add-task-overlay {
-    width: 320px;
-    max-height: 550px;
+        width: 320px;
+        max-height: 550px;
     }
 }
 
-@media (max-width: 480px){
+@media (max-width: 480px) {
     .open-task-overlay {
-    width: 370px;
-    max-height: 560px;
+        width: 370px;
+        max-height: 560px;
     }
 }
 
-@media (max-width: 370px){
+@media (max-width: 370px) {
     .open-task-overlay {
-    width: 310px;
-    max-height: 500px;
+        width: 310px;
+        max-height: 500px;
     }
 }

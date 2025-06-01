@@ -1,28 +1,33 @@
-/* added from Alex */
 .board-task-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /* width: 244px; */
     padding: 0px 4px 16px 4px;
 }
 
-/* added from Alex */
 .board-task-header-cnt {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-/* added from Alex */
 .move-to-btn {
     display: none;
     cursor: pointer;
     border: none;
     background-color: transparent;
+
+    &:hover {
+        svg path {
+            fill: var(--secondary-color);
+        }
+
+        svg rect {
+            stroke: var(--secondary-color);
+        }
+    }
 }
 
-/* added from Alex */
 .board-header-mobile {
     padding-bottom: 40px;
 }
@@ -65,14 +70,10 @@
 }
 
 .separetor-board-mobile {
-    /* position: relative; */
-    /* right: 48px; */
-    /* top: 8px; */
-    /* height: 32px; */
     width: 1px;
     height: 32px;
     background-color: var(--icons);
-    /* padding-left: -48px; */
+
 }
 
 .button-search-board-mobile {
@@ -142,11 +143,17 @@
 }
 
 
+@media (pointer: coarse) and (hover: none) {
+    .move-to-btn {
+        display: flex;
+    }
+}
+
 @media (max-width: 1440px) {
     .main-board {
-    width: calc(100vw - 243px);
+        width: calc(100vw - 243px);
     }
-    
+
     .tasks-board {
         flex-wrap: wrap;
     }
@@ -187,18 +194,29 @@
     .main-board {
         width: calc(100vw - 12px);
     }
+
+    .tasks-board {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 750px) {
+
     .columns {
         flex-direction: row;
-        width: calc(100vw - 90px);
+        width: calc(100dvw - 80px);
         overflow-x: scroll;
         scrollbar-width: none;
+        padding: 13px;
+        margin: -13px;
     }
 
     .tasks-board {
         padding: 40px 40px;
+    }
+
+    .task-board {
+        width: 100%
     }
 }
 
@@ -208,7 +226,7 @@
     }
 
     .header-board {
-        padding: 48px 16px;
+        padding: 48px 16px 0;
     }
 
     .tasks-board {
@@ -216,6 +234,6 @@
     }
 
     .columns {
-        width: calc(100vw - 42px);
+        width: calc(100vw - 32px);
     }
 }

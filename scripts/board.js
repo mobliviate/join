@@ -127,7 +127,7 @@ function addTaskBoard(title) {
   openOverlayBoard.classList.remove("d-none");
   showDiv('add_task_board');
   document.getElementById("add_task_board").innerHTML = getAddTaskTemplate(title);
-  renderTasks()
+  renderTasks();
   const container = document.getElementById("add_task_board");
   container.addEventListener("click", handleGlobalClick, true);
 }
@@ -145,17 +145,17 @@ function overlayProtection(event) {
  * @param {string} divID - The ID of the div to hide.
  * @param {string} overlay - The overlay element ID.
  */
-function closeOverlayBoard(divID,overlay) {
+function closeOverlayBoard(divID, overlay) {
   let closeOverlayBoard = document.getElementById(overlay);
-  hideDiv(divID)
+  hideDiv(divID);
   function handleEnd() {
-  closeOverlayBoard.classList.add("d-none");
-  closeOverlayBoard.removeEventListener("animationend", handleEnd);
+    closeOverlayBoard.classList.add("d-none");
+    closeOverlayBoard.removeEventListener("animationend", handleEnd);
   }
   closeOverlayBoard.addEventListener("animationend", handleEnd);
   const container = document.getElementById("add_task_board");
   container.removeEventListener("click", handleGlobalClick, true);
-  renderTasks()
+  renderTasks();
 }
 
 /**
@@ -163,15 +163,15 @@ function closeOverlayBoard(divID,overlay) {
  * @param {string} divID - The ID of the div to hide.
  * @param {string} overlay - The overlay element ID.
  */
-function closeOverlayButtonBoard(divID,overlay) {
+function closeOverlayButtonBoard(divID, overlay) {
   let closeOverlayBoard = document.getElementById(overlay);
-  hideDiv(divID)
+  hideDiv(divID);
   function handleEnd() {
     closeOverlayBoard.classList.add("d-none");
     closeOverlayBoard.removeEventListener("animationend", handleEnd);
   }
   closeOverlayBoard.addEventListener("animationend", handleEnd);
-  renderTasks()
+  renderTasks();
 }
 
 /**
@@ -232,6 +232,7 @@ async function moveTo(category) {
     renderTasks();
   }
   removeHighlight(`${category}`);
+  closeMoveToOverlay();
 }
 
 /**
@@ -267,15 +268,15 @@ async function handleSearch(searchTerm) {
   if (filteredTasks.length === 0) {
     document.getElementById("no_results").classList.remove("d-none");
     return;
-  }else{
+  } else {
     if (!document.getElementById("no_results").classList.remove("d-none")) {
-      document.getElementById("no_results").classList.add("d-none")
+      document.getElementById("no_results").classList.add("d-none");
     }
     filteredTasks.forEach((taskRef, indexTask) => {
-    let background = taskRef.category === "User Story" ? "--user" : "--technical";
-    let taskContentRef = document.getElementById(`${taskRef.status}`);
-    taskContentRef.innerHTML += getRenderTask(taskRef, indexTask, background);
-    renderSubtasks(taskRef, indexTask);
+      let background = taskRef.category === "User Story" ? "--user" : "--technical";
+      let taskContentRef = document.getElementById(`${taskRef.status}`);
+      taskContentRef.innerHTML += getRenderTask(taskRef, indexTask, background);
+      renderSubtasks(taskRef, indexTask);
     });
   }
   findEmptyColumn();

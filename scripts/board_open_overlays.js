@@ -1,21 +1,23 @@
+let closeMoveToOverlay;
+
 /**
  * Opens a task overlay with detailed task information.
  * @param {number} indexTask - Index of the task.
  * @param {string} color - The color to apply (e.g., from getColorBoard).
  */
 async function openTaskBoard(indexTask, color) {
-  let openTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`)
+  let openTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`);
   let openTaskRefToJson = await openTaskRef.json();
-  let openOverlayBoard = document.getElementById("open_overlay_task_board")
-  let openOverlayTaskBoard = document.getElementById("open_task_board")
-  openOverlayTaskBoard.innerHTML = ""
+  let openOverlayBoard = document.getElementById("open_overlay_task_board");
+  let openOverlayTaskBoard = document.getElementById("open_task_board");
+  openOverlayTaskBoard.innerHTML = "";
   openOverlayBoard.classList.remove("d-none");
   showDiv('open_task_board');
   document.getElementById("open_task_board").innerHTML = getOpenTaskBoard(openTaskRefToJson, color, indexTask);
   if (openTaskRefToJson.assignedContacts?.length > 0) {
-    renderOpenAssignedContacts(indexTask)
+    renderOpenAssignedContacts(indexTask);
   } if (openTaskRefToJson.subtasks?.length > 0) {
-    renderOpenSubtasks(indexTask)
+    renderOpenSubtasks(indexTask);
   }
   const container = document.getElementById("open_task_board");
   container.addEventListener("click", handleGlobalClick, true);
@@ -25,15 +27,15 @@ async function openTaskBoard(indexTask, color) {
  * Renders assigned contacts in the open task view.
  * @param {number} indexTask - Index of the task.
  */
-async function renderOpenAssignedContacts(indexTask){
-  let openAssignedContactsRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`)
+async function renderOpenAssignedContacts(indexTask) {
+  let openAssignedContactsRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`);
   let openAssignedContactsRefToJson = await openAssignedContactsRef.json();
   let allAssignedContacts = openAssignedContactsRefToJson.assignedContacts;
-  let assignedContactsContentRef = document.getElementById("open-task-assigned")
+  let assignedContactsContentRef = document.getElementById("open-task-assigned");
   for (let assignedContactsIndex = 0; assignedContactsIndex < allAssignedContacts.length; assignedContactsIndex++) {
-    let contact = allAssignedContacts[assignedContactsIndex]
+    let contact = allAssignedContacts[assignedContactsIndex];
     let color = getColorBoard(contact.name);
-   assignedContactsContentRef.innerHTML += getRenderAssignedContacts(contact.initials, contact.name, color);
+    assignedContactsContentRef.innerHTML += getRenderAssignedContacts(contact.initials, contact.name, color);
   }
 }
 
@@ -41,18 +43,18 @@ async function renderOpenAssignedContacts(indexTask){
  * Renders subtasks in the open task view.
  * @param {number} indexTask - Index of the task.
  */
-async function renderOpenSubtasks(indexTask){
-  let openTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`)
+async function renderOpenSubtasks(indexTask) {
+  let openTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`);
   let openTaskRefToJson = await openTaskRef.json();
-  let allSubtasks = openTaskRefToJson.subtasks
-  let subtaskContentRef = document.getElementById("open_task_subtasks")
-  subtaskContentRef.innerHTML = ""
+  let allSubtasks = openTaskRefToJson.subtasks;
+  let subtaskContentRef = document.getElementById("open_task_subtasks");
+  subtaskContentRef.innerHTML = "";
   for (let subtaskIndex = 0; subtaskIndex < allSubtasks.length; subtaskIndex++) {
     if (allSubtasks[subtaskIndex].status === true) {
-      subtaskContentRef.innerHTML += getrenderSubtasksTrueBoard(allSubtasks[subtaskIndex],indexTask,subtaskIndex)
+      subtaskContentRef.innerHTML += getrenderSubtasksTrueBoard(allSubtasks[subtaskIndex], indexTask, subtaskIndex);
     } else {
-      subtaskContentRef.innerHTML += getrenderSubtasksFalseBoard(allSubtasks[subtaskIndex],indexTask,subtaskIndex)
-    }    
+      subtaskContentRef.innerHTML += getrenderSubtasksFalseBoard(allSubtasks[subtaskIndex], indexTask, subtaskIndex);
+    }
   }
 }
 
@@ -61,7 +63,7 @@ async function renderOpenSubtasks(indexTask){
  * @param {number} openedTask - Index of the task.
  * @param {number} subtaskIndex - Index of the subtask.
  */
-async function setSubtaskTrue(openedTask,subtaskIndex){
+async function setSubtaskTrue(openedTask, subtaskIndex) {
   let taskUrlRef = `https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${openedTask}/subtasks/${subtaskIndex}/status.json`;
   let updatedSubtask = await fetch(taskUrlRef, {
     method: "PUT",
@@ -80,7 +82,7 @@ async function setSubtaskTrue(openedTask,subtaskIndex){
  * @param {number} openedTask - Index of the task.
  * @param {number} subtaskIndex - Index of the subtask.
  */
-async function setSubtaskFalse(openedTask,subtaskIndex){
+async function setSubtaskFalse(openedTask, subtaskIndex) {
   let taskUrlRef = `https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${openedTask}/subtasks/${subtaskIndex}/status.json`;
   let updatedSubtask = await fetch(taskUrlRef, {
     method: "PUT",
@@ -103,11 +105,11 @@ async function deleteTask(openedTask) {
   const res = await fetch(url);
   const tasks = await res.json();
   if (!Array.isArray(tasks)) return;
-    tasks.splice(openedTask, 1);
-    let deleteCompleted = await fetch(url, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json"
+  tasks.splice(openedTask, 1);
+  let deleteCompleted = await fetch(url, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
     },
     body: JSON.stringify(tasks)
   });
@@ -121,17 +123,17 @@ async function deleteTask(openedTask) {
  * @param {number} indexTask - Index of the task.
  * @param {string} color - The task's color.
  */
-async function editTasskBoard(indexTask, color){
-  let editTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`)
+async function editTasskBoard(indexTask, color) {
+  let editTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`);
   let editTaskRefToJson = await editTaskRef.json();
-  let openOverlayEditBoard = document.getElementById("open_task_board")
-  openOverlayEditBoard.innerHTML = ""
-  openOverlayEditBoard.innerHTML = getRenderEditBoard(editTaskRefToJson, indexTask, color)
-  setPriority(indexTask)
+  let openOverlayEditBoard = document.getElementById("open_task_board");
+  openOverlayEditBoard.innerHTML = "";
+  openOverlayEditBoard.innerHTML = getRenderEditBoard(editTaskRefToJson, indexTask, color);
+  setPriority(indexTask);
   if (editTaskRefToJson.assignedContacts?.length > 0) {
     setAssignedContacts(indexTask);
   } if (editTaskRefToJson.subtasks?.length > 0) {
-    setSubtasks(indexTask)
+    setSubtasks(indexTask);
   }
 }
 
@@ -140,7 +142,7 @@ async function editTasskBoard(indexTask, color){
  * @param {number} indexTask - Task index to fetch priority for.
  */
 async function setPriority(indexTask) {
-  let priorityRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}/priority.json`)
+  let priorityRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}/priority.json`);
   let priorityRefToJson = await priorityRef.json();
   let setButtons = document.querySelectorAll('[data-prio]');
   setButtons.forEach(btn => {
@@ -154,10 +156,10 @@ async function setPriority(indexTask) {
  * Matches assigned contacts in edit view with those stored in the task.
  * @param {number} indexTask - Index of the task.
  */
-async function setAssignedContacts(indexTask){
+async function setAssignedContacts(indexTask) {
   await clearAssignedContacts();
   await loadContacts();
-  let setAssignedContactsRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}/assignedContacts.json`)
+  let setAssignedContactsRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}/assignedContacts.json`);
   let setAssignedContactsRefToJson = await setAssignedContactsRef.json();
   let setAssignedContacts = document.querySelectorAll('[data-id]');
   let assignedIds = new Set(setAssignedContactsRefToJson.map(contact => contact.id));
@@ -172,8 +174,8 @@ async function setAssignedContacts(indexTask){
  * Renders existing subtasks in the edit view.
  * @param {number} indexTask - Index of the task.
  */
-async function setSubtasks(indexTask){
-  let setSubtasksRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}/subtasks.json`)
+async function setSubtasks(indexTask) {
+  let setSubtasksRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}/subtasks.json`);
   let setSubtasksRefToJson = await setSubtasksRef.json();
   for (let indexSetSubtasks = 0; indexSetSubtasks < setSubtasksRefToJson.length; indexSetSubtasks++) {
     const item = document.createElement('div');
@@ -196,7 +198,7 @@ async function setSubtasks(indexTask){
  * @param {number} indexTask - Index of the task to load.
  */
 async function loadTask(indexTask) {
-  let currentTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`)
+  let currentTaskRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${indexTask}.json`);
   currentTask = await currentTaskRef.json();
 }
 
@@ -205,24 +207,24 @@ async function loadTask(indexTask) {
  * @param {number} indexTask - Index of the task.
  * @param {string} color - The task's color.
  */
-async function updateCurrentTask(indexTask, color){
+async function updateCurrentTask(indexTask, color) {
   currentTask.title = document.getElementById("title").value;
   currentTask.description = document.getElementById("description").value;
   currentTask.dueDate = document.getElementById("due-date").value;
   currentTask.priority = document.querySelector('.prio-btn.selected').dataset.prio;
   await assignedValue();
   currentTask.category = document.getElementById("category-selected").textContent;
-  subtasksValue()
-  await saveTaskToDataBase(indexTask, color)
+  subtasksValue();
+  await saveTaskToDataBase(indexTask, color);
 }
 
 /**
  * Collects assigned contacts from the edit view and updates `currentTask`.
  */
-async function assignedValue(){
+async function assignedValue() {
   currentTask.assignedContacts = [];
   let selectedElements = document.querySelectorAll('.selected[data-id]');
-  let contactsRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`)
+  let contactsRef = await fetch(`https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/contacts.json`);
   let contactsRefToJson = await contactsRef.json();
   for (let i = 0; i < selectedElements.length; i++) {
     let id = selectedElements[i].dataset.id;
@@ -274,7 +276,7 @@ function getInitials(name) {
  * @param {number} openedTask - Index of the task.
  * @param {string} color - The task's color.
  */
-async function saveTaskToDataBase(openedTask, color){
+async function saveTaskToDataBase(openedTask, color) {
   let taskUrlRef = `https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${openedTask}.json`;
   let updatedTask = await fetch(taskUrlRef, {
     method: "PUT",
@@ -284,7 +286,7 @@ async function saveTaskToDataBase(openedTask, color){
     body: JSON.stringify(currentTask),
   });
   if (updatedTask.ok) {
-    openTaskBoard(openedTask, color)
+    openTaskBoard(openedTask, color);
   }
 }
 
@@ -341,21 +343,15 @@ function hideMoveToOverlayElements(status) {
 function enableOverlayCloseOnOutsideClickAndScroll() {
   const overlay = document.querySelector('.move-task-cnt');
   const scrollContainer = document.getElementById('main');
-  function closeMoveToOverlay() {
-    if (overlay) {
-      overlay.remove();
-      document.removeEventListener('click', outsideClickListener);
-      scrollContainer.removeEventListener('scroll', scrollListener);
-    }
-  }
-  function outsideClickListener(event) {
-    if (overlay && !overlay.contains(event.target)) {
-      closeMoveToOverlay();
-    }
-  }
-  function scrollListener() {
-    closeMoveToOverlay();
-  }
-  document.addEventListener('click', outsideClickListener);
-  scrollContainer.addEventListener('scroll', scrollListener);
+
+  closeMoveToOverlay = () => {
+    overlay?.remove();
+    document.removeEventListener('click', outsideClickHandler);
+    scrollContainer.removeEventListener('scroll', closeMoveToOverlay);
+  };
+
+  const outsideClickHandler = e => !overlay.contains(e.target) && closeMoveToOverlay();
+
+  document.addEventListener('click', outsideClickHandler);
+  scrollContainer.addEventListener('scroll', closeMoveToOverlay);
 }
