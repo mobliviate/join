@@ -127,10 +127,18 @@ function addTaskBoard(title) {
   openOverlayBoard.classList.remove("d-none");
   showDiv('add_task_board');
   document.getElementById("add_task_board").innerHTML = getAddTaskTemplate(title);
-  renderTasks();
+  renderCloseButton();
   const container = document.getElementById("add_task_board");
   container.addEventListener("click", handleGlobalClick, true);
 }
+
+/**
+ * Renders the close button inside the add task overlay.
+ */
+function renderCloseButton(){
+  document.getElementById("add_task_board").innerHTML += getAddTaskcloseButtonTemplate();
+}
+
 
 /**
  * Prevents an overlay from closing when clicked inside.

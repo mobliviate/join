@@ -93,6 +93,15 @@
     cursor: pointer;
 }
 
+.close-button-open-add-task-board{
+    position: absolute;
+    top: 64px;
+    right: 32px;
+    cursor: pointer;
+    border: none;
+    background-color: white;    
+}
+
 .no-results-div {
     position: absolute;
     top: 50px;
@@ -155,7 +164,7 @@
 }
 
 .columns {
-    height: 100%;
+    min-height: calc(100vh - 450px);
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -304,6 +313,7 @@
 }
 
 .add-task-overlay {
+    position: relative;
     width: 1116px;
     height: 870px;
     background-color: var(--white);
@@ -581,6 +591,10 @@
     .add-task-overlay {
         width: 950px;
         max-height: 750px;
+    }
+    .columns {
+    height: 100%;
+    min-height: 0;
     }
 }
 
