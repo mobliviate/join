@@ -194,16 +194,19 @@ async function addUser() {
     const name = nameInputRef.value.trim();
     const email = emailInputRef.value.trim();
     const password = passwordInputRef.value.trim();
+
+    const contactId = await saveNewContactToFirebase({ name, email, phone: "" });
+
     let usersData = await loadData();
     usersData.push({
-        name: name,
-        email: email,
-        password: password
+        name,
+        email,
+        password,
+        contactId
     });
+
     await saveUserToDB(usersData);
     showSuccessMsg();
-
-    // console.log(usersData);
 }
 
 /**

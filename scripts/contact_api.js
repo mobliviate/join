@@ -1,13 +1,13 @@
+/* ==========================================================================
+    API: FETCH, CREATE, UPDATE, DELETE CONTACTS
+   ========================================================================== */
+
 /**
  * Base URL for Firebase Realtime Database.
  * @type {string}
  */
 const BASEURL =
     "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app";
-
-/* ==========================================================================
-    API: FETCH, CREATE, UPDATE, DELETE CONTACTS
-   ========================================================================== */
 
 /**
  * Fetch contacts from Firebase and render the list.
@@ -44,11 +44,13 @@ async function fetchAndRenderContacts() {
  * @returns {Promise<void>}
  */
 async function saveNewContactToFirebase(contactData) {
-    await fetch(`${BASEURL}/contacts.json`, {
+    const res = await fetch(`${BASEURL}/contacts.json`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(contactData),
     });
+    const result = await res.json();
+    return result.name;
 }
 
 /**
@@ -82,12 +84,8 @@ async function handleEditContactMobile(event, contactId) {
     event.preventDefault();
     const updated = {
         name: document.getElementById("edit-contact-name-mobile").value.trim(),
-        email: document
-            .getElementById("edit-contact-email-mobile")
-            .value.trim(),
-        phone: document
-            .getElementById("edit-contact-phone-mobile")
-            .value.trim(),
+        email: document.getElementById("edit-contact-email-mobile").value.trim(),
+        phone: document.getElementById("edit-contact-phone-mobile").value.trim(),
     };
     await fetch(`${BASEURL}/contacts/${contactId}.json`, {
         method: "PATCH",
