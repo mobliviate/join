@@ -35,8 +35,8 @@ function getBodyTemplate() {
           </a>
       </nav>
         <div class="sidebar-footer">
-          <a href="privacy_policy.html" class="sidebar-link" data-page="privacy_policy.html">Privacy Policy</a>
-          <a href="legal_notice.html" class="sidebar-link" data-page="legal_notice.html">Legal Notice</a>
+          <a href="privacyPolicy.html" class="sidebar-link" data-page="privacyPolicy.html">Privacy Policy</a>
+          <a href="legalNotice.html" class="sidebar-link" data-page="legalNotice.html">Legal Notice</a>
         </div>
       </div>
       <div class="right">
@@ -48,10 +48,10 @@ function getBodyTemplate() {
               <a href="help.html">Help</a>
             </div>
             <div class="user-menu-item">
-              <a href="privacy_policy.html">Privacy Policy</a>
+              <a href="privacyPolicy.html">Privacy Policy</a>
             </div>
             <div class="user-menu-item">
-              <a href="legal_notice.html">Legal Notice</a>
+              <a href="legalNotice.html">Legal Notice</a>
             </div>
             <div class="user-menu-item">
               <button class="logout-btn" onclick="logOut()">Log out</button>
@@ -111,8 +111,8 @@ function getFooterTemplate() {
         </svg> Log In
       </a>
       <div class="footer-link-cnt">
-        <a href="privacy_policy.html" class="footer-nav-link" data-page="privacy_policy.html">Privacy Policy</a>
-        <a href="legal_notice.html" class="footer-nav-link" data-page="legal_notice.html">Legal Notice</a>
+        <a href="privacyPolicy.html" class="footer-nav-link" data-page="privacyPolicy.html">Privacy Policy</a>
+        <a href="legalNotice.html" class="footer-nav-link" data-page="legalNotice.html">Legal Notice</a>
       </div>
     </nav>
   `;

@@ -1,3 +1,7 @@
+/* ==========================================================================
+   INIT & MAIN LOGIC
+   ========================================================================== */
+
 /**
  * Global flag to track mobile options menu state.
  * @type {boolean}
@@ -5,10 +9,6 @@
 let mobileOptionsMenuOpen = false;
 let currentEditContactId = null;
 let lastViewportMode = window.innerWidth > 980 ? "desktop" : "mobile";
-
-/* ==========================================================================
-   INIT & MAIN LOGIC
-   ========================================================================== */
 
 /**
  * Initialize Contacts Page: Loads UI and fetches contacts.
