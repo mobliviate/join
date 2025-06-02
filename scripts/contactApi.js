@@ -9,6 +9,7 @@
 const BASEURL =
     "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app";
 
+
 /**
  * Fetch contacts from Firebase and render the list.
  * @returns {Promise<void>}
@@ -38,6 +39,7 @@ async function fetchAndRenderContacts() {
     }
 }
 
+
 /**
  * Create a new contact in Firebase.
  * @param {Object} contactData
@@ -52,6 +54,7 @@ async function saveNewContactToFirebase(contactData) {
     const result = await res.json();
     return result.name;
 }
+
 
 /**
  * Update a contact in Firebase.
@@ -75,6 +78,7 @@ async function handleEditContact(event, contactId) {
     showToast("Contact successfully updated");
 }
 
+
 /**
  * Update a contact (Mobile).
  * @param {Event} event
@@ -84,8 +88,12 @@ async function handleEditContactMobile(event, contactId) {
     event.preventDefault();
     const updated = {
         name: document.getElementById("edit-contact-name-mobile").value.trim(),
-        email: document.getElementById("edit-contact-email-mobile").value.trim(),
-        phone: document.getElementById("edit-contact-phone-mobile").value.trim(),
+        email: document
+            .getElementById("edit-contact-email-mobile")
+            .value.trim(),
+        phone: document
+            .getElementById("edit-contact-phone-mobile")
+            .value.trim(),
     };
     await fetch(`${BASEURL}/contacts/${contactId}.json`, {
         method: "PATCH",
@@ -96,6 +104,7 @@ async function handleEditContactMobile(event, contactId) {
     fetchAndRenderContacts();
     showToast("Contact successfully updated");
 }
+
 
 /**
  * Handles the form submission for creating a new contact.
@@ -117,9 +126,9 @@ async function handleCreateContact(event) {
     showToast("Contact successfully created");
 }
 
+
 /**
- * Delete a contact from Firebase.
- * Also closes overlays if necessary.
+ * Delete a contact from Firebase and remove from tasks.
  * @param {string} contactId
  */
 async function deleteContact(contactId) {
@@ -127,18 +136,53 @@ async function deleteContact(contactId) {
         await fetch(`${BASEURL}/contacts/${contactId}.json`, {
             method: "DELETE",
         });
+        await removeContactFromAllTasks(contactId);
         fetchAndRenderContacts();
+
         const detail = document.getElementById("contact-detail");
         if (detail) detail.innerHTML = "";
 
         closeMobileContactDetail?.();
         hideEditContactOverlayMobile?.();
         hideEditContactOverlay?.();
-        window.lastSelectedContactId = null;
 
+        window.lastSelectedContactId = null;
         closeMobileOptionsMenuWithAnimation?.();
     } catch (err) {
         showToast("Delete failed");
         console.error("Delete contact error:", err);
+    }
+}
+
+
+/**
+ * Remove a deleted contact from all tasks in Firebase.
+ * @param {string} contactId
+ */
+async function removeContactFromAllTasks(contactId) {
+    try {
+        const res = await fetch(`${BASEURL}/tasks.json`);
+        const tasks = await res.json();
+        if (!tasks) return;
+
+        for (let taskIndex in tasks) {
+            const task = tasks[taskIndex];
+
+            if (task.assignedContacts) {
+                const filtered = task.assignedContacts.filter(
+                    (c) => c.id !== contactId
+                );
+
+                if (filtered.length !== task.assignedContacts.length) {
+                    await fetch(`${BASEURL}/tasks/${taskIndex}.json`, {
+                        method: "PATCH",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ assignedContacts: filtered }),
+                    });
+                }
+            }
+        }
+    } catch (err) {
+        console.error("Failed to clean tasks from deleted contact:", err);
     }
 }

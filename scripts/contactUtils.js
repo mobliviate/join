@@ -2,6 +2,7 @@
    UTILITIES & HELPERS
    ========================================================================== */
 
+
 /**
  * Get initials from a full name.
  * @param {string} fullName
@@ -11,6 +12,7 @@ function getInitials(fullName) {
     const parts = fullName.trim().split(" ");
     return (parts[0][0] + (parts[1]?.[0] || "")).toUpperCase();
 }
+
 
 /**
  * Get a "hash" hue from a string for avatar colors.
@@ -23,6 +25,7 @@ function getHueFromString(text) {
     return hash;
 }
 
+
 /**
  * Get avatar background color as HSL.
  * @param {string} name
@@ -32,6 +35,7 @@ function getAvatarColor(name) {
     return `hsl(${getHueFromString(name)}, 70%, 50%)`;
 }
 
+
 /**
  * Create the email display HTML for a contact.
  * @param {string} email
@@ -40,6 +44,7 @@ function getAvatarColor(name) {
 function getEmailPart(email) {
     return email ? `<div class="email">${email}</div>` : "";
 }
+
 
 /**
  * Create the contact item HTML (list entry).
@@ -55,6 +60,7 @@ function createContactItemTemplate(contact) {
     );
 }
 
+
 /**
  * Collect input values from the add contact form.
  * @returns {Object}
@@ -66,6 +72,7 @@ function collectNewContactData() {
         phone: document.getElementById("new-contact-phone").value.trim(),
     };
 }
+
 
 /**
  * Show a toast notification with the given message.

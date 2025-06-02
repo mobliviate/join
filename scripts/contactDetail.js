@@ -2,6 +2,7 @@
    CONTACT DETAILS UI
    ========================================================================== */
 
+
 /**
  * Show the detail view of a contact (responsive for mobile/desktop).
  * @param {Object} contact
@@ -16,6 +17,7 @@ function showContactDetail(contact) {
         document.body.classList.remove("mobile-detail-open");
     }
 }
+
 
 /**
  * Clears the contact detail container and removes any extra (duplicate) headers.
@@ -39,6 +41,7 @@ function clearContactDetail() {
     }
 }
 
+
 /**
  * Rendert die Detailansicht für Desktop.
  * @param {Object} contact
@@ -52,6 +55,7 @@ function renderDesktopContactDetail(contact) {
     `;
 }
 
+
 /**
  * Render the contact detail view for mobile.
  * @param {Object} contact
@@ -60,6 +64,7 @@ function renderMobileContactDetail(contact) {
     const detail = document.getElementById("contact-detail");
     detail.innerHTML = getMobileContactDetailHTML(contact);
 }
+
 
 /**
  * Close the mobile contact detail view.
@@ -78,6 +83,7 @@ function closeMobileContactDetail() {
     }
     window.lastSelectedContactId = null;
 }
+
 
 /**
  * Helper for getting contact detail HTML.

@@ -2,6 +2,7 @@
    CONTACT TEMPLATES
    ========================================================================== */
 
+
 /**
  * Returns the main contacts section template.
  * @returns {string}
@@ -39,6 +40,7 @@ function getContactsSectionTemplate() {
   `;
 }
 
+
 /**
  * Render the contact detail view for desktop.
  * @param {Object} contact
@@ -51,6 +53,7 @@ function renderDesktopContactDetail(contact) {
     </div>
   `;
 }
+
 
 /**
  * Returns the mobile options menu HTML template for a contact.
@@ -69,6 +72,7 @@ function getMobileOptionsMenuTemplate(contactId) {
     </div>
   `;
 }
+
 
 /**
  * Returns the contact detail HTML template for mobile view.
@@ -91,6 +95,7 @@ function getMobileContactDetailHTML(contact) {
     </div>
   `;
 }
+
 
 /**
  * Returns the HTML for the group letter heading in the contact list.
@@ -121,6 +126,7 @@ function buildContactItem(id, avatarHTML, name, emailHTML) {
   `;
 }
 
+
 /**
  * Generates the avatar circle for a contact.
  * @param {string} name - The contact's name.
@@ -137,6 +143,7 @@ function createAvatarTemplate(name, initials) {
   `;
 }
 
+
 /**
  * Builds the complete contact detail HTML (header + info section).
  * @param {Object} contact
@@ -147,6 +154,7 @@ function createContactDetailTemplate(contact) {
         buildContactHeaderSection(contact) + buildContactInfoSection(contact)
     );
 }
+
 
 /**
  * Builds the contact header section including avatar and actions.
@@ -178,6 +186,7 @@ function buildContactHeaderSection(contact) {
   `;
 }
 
+
 /**
  * Builds the contact information section with email and phone.
  * @param {Object} contact
@@ -195,6 +204,7 @@ function buildContactInfoSection(contact) {
     infoHTML += `</div>`;
     return infoHTML;
 }
+
 
 /**
  * Returns the Add Contact overlay template for desktop.
@@ -241,6 +251,7 @@ function getAddContactOverlayTemplate() {
   `;
 }
 
+
 /**
  * Returns the Add Contact overlay template for mobile.
  * @returns {string}
@@ -279,6 +290,7 @@ function getAddContactOverlayMobileTemplate() {
     </div>
   `;
 }
+
 
 /**
  * Returns the HTML template for the Edit Contact overlay on desktop.
@@ -341,6 +353,7 @@ function getEditContactOverlayTemplate(contact) {
     </div>
   `;
 }
+
 
 /**
  * Returns the HTML template for the Edit Contact overlay on mobile devices.

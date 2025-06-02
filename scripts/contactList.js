@@ -2,6 +2,7 @@
    CONTACT LIST RENDERING & SORTING
    ========================================================================== */
 
+
 /**
  * Sort contacts alphabetically by name.
  * @param {Array} contacts
@@ -9,6 +10,7 @@
 function sortContactsByName(contacts) {
     contacts.sort((a, b) => a.name.localeCompare(b.name));
 }
+
 
 /**
  * Render the contact list into the group container.
@@ -19,6 +21,7 @@ function renderContactsList(contactArray) {
     if (!container) return;
     container.innerHTML = generateContactsListHTML(contactArray);
 }
+
 
 /**
  * Generate HTML for the contact list (with A-Z grouping).
@@ -39,6 +42,7 @@ function generateContactsListHTML(contactArray) {
     return html;
 }
 
+
 /**
  * Clears the currently selected contact.
  * - Removes the 'active' class from any selected contact item.
@@ -58,6 +62,7 @@ function clearSelectedContact() {
         detail.innerHTML = "";
     }
 }
+
 
 /**
  * Selects a contact by its ID.
@@ -89,6 +94,7 @@ function selectContactById(contactId) {
     }
 }
 
+
 /**
  * Highlight the selected contact in the list.
  * @param {Element} itemElement
@@ -100,6 +106,7 @@ function highlightSelectedContact(itemElement) {
     }
     itemElement.classList.add("active");
 }
+
 
 /**
  * Select and show contact detail.

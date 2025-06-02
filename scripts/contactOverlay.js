@@ -2,6 +2,7 @@
    CONTACT FORM & OVERLAY LOGIC
    ========================================================================== */
 
+
 /**
  * Show the Add Contact overlay (mobile or desktop).
  */
@@ -12,6 +13,7 @@ function showAddContactOverlay() {
         showAddContactOverlayDesktop();
     }
 }
+
 
 /**
  * Opens the correct Edit Contact overlay depending on screen size.
@@ -25,6 +27,7 @@ function showEditContactOverlayResponsive(contactId) {
     }
 }
 
+
 /**
  * Show the Add Contact overlay (desktop only).
  */
@@ -36,6 +39,7 @@ function showAddContactOverlayDesktop() {
     document.body.appendChild(temp.firstElementChild);
     window.addContactOverlayOpen = true;
 }
+
 
 /**
  * Show the Add Contact overlay (mobile only).
@@ -50,6 +54,7 @@ function showAddContactOverlayMobile() {
     window.addContactOverlayOpen = true;
 }
 
+
 /**
  * Hide the Add Contact overlay (desktop only).
  */
@@ -58,6 +63,7 @@ function hideAddContactOverlay() {
     if (overlay) overlay.remove();
     window.addContactOverlayOpen = false;
 }
+
 
 /**
  * Hide the Add Contact overlay (mobile only).
@@ -70,6 +76,7 @@ function hideAddContactOverlayMobile() {
     document.body.style.overflow = "";
     window.addContactOverlayOpen = false;
 }
+
 
 /**
  * Shows the Edit Contact overlay for desktop.
@@ -87,6 +94,7 @@ function showEditContactOverlay(contactId) {
     window.currentEditContactId = contactId;
 }
 
+
 /**
  * Shows the Edit Contact overlay for mobile devices.
  * @param {string} contactId
@@ -103,6 +111,7 @@ function showEditContactOverlayMobile(contactId) {
     window.currentEditContactId = contactId;
 }
 
+
 /**
  * Finds a contact by ID in window.currentContacts.
  * @param {string} contactId
@@ -117,6 +126,7 @@ function findContactById(contactId) {
     }
     return null;
 }
+
 
 /**
  * Shows the overlay and animates it for mobile.
@@ -133,6 +143,7 @@ function showMobileOverlay(container) {
     }, 20);
 }
 
+
 /**
  * Hide the Edit Contact overlay (desktop).
  */
@@ -141,6 +152,7 @@ function hideEditContactOverlay() {
     if (overlay) overlay.remove();
     window.currentEditContactId = null;
 }
+
 
 /**
  * Hide the Edit Contact overlay (mobile).
@@ -165,6 +177,7 @@ function hideEditContactOverlayMobile() {
     }
 }
 
+
 /**
  * Closes all overlays (add/edit, mobile/desktop).
  */
@@ -176,6 +189,7 @@ function closeAllContactOverlays() {
     window.addContactOverlayOpen = false;
     window.currentEditContactId = null;
 }
+
 
 /**
  * Handles reopening of overlays after resize.
@@ -203,6 +217,7 @@ function handleOverlayReopenAfterResize(
     }
 }
 
+
 /**
  * Handles viewport resizing and triggers overlay/detail changes.
  */
@@ -227,6 +242,7 @@ function handleViewportResize() {
     handleContactDetailResize(currentMode);
 }
 
+
 /**
  * Handles the contact detail view resize for desktop mode.
  * @param {HTMLElement} detail - The detail container element.
@@ -244,6 +260,7 @@ function handleContactDetailResizeDesktop(detail) {
     }
     detail.innerHTML = "";
 }
+
 
 /**
  * Handles the contact detail view resize for mobile mode.
@@ -263,6 +280,7 @@ function handleContactDetailResizeMobile(detail) {
     document.body.classList.remove("mobile-detail-open");
 }
 
+
 /**
  * Main function to handle contact detail resize.
  * @param {"desktop"|"mobile"} currentMode
@@ -275,6 +293,7 @@ function handleContactDetailResize(currentMode) {
         handleContactDetailResizeMobile(detail);
     }
 }
+
 
 /**
  * Utility function to remove the .active class from all contact items
