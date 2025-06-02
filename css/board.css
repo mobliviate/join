@@ -590,8 +590,8 @@
 @media (max-width: 1140px) {
     .add-task-overlay {
         width: 950px;
-        max-height: 750px;
     }
+    
     .columns {
     height: 100%;
     min-height: 0;
