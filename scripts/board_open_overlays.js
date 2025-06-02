@@ -333,7 +333,7 @@ function hideMoveToOverlayElements(status) {
   const imgSelector = { todo: "#move_to_progress img", progress: "#move_to_feedback img" }[status];
   if (imgSelector) {
     const img = document.querySelector(imgSelector);
-    if (img) img.src = "../assets/svg/move_to_arrow_downward.svg";
+    if (img) img.src = "./assets/svg/move_to_arrow_downward.svg";
   }
 }
 
