@@ -5,6 +5,7 @@ function toggleAssignDropdown() {
     assignDropdownOpen ? closeAssignDropdown() : openAssignDropdown();
 }
 
+
 /**
  * Opens the assigned contacts dropdown and loads contacts.
  */
@@ -14,6 +15,7 @@ function openAssignDropdown() {
     assignDropdownOpen = true;
 }
 
+
 /**
  * Closes the assigned contacts dropdown.
  */
@@ -22,12 +24,14 @@ function closeAssignDropdown() {
     assignDropdownOpen = false;
 }
 
+
 /**
  * Toggles visibility of the category dropdown.
  */
 function toggleCategoryDropdown() {
     categoryDropdownOpen ? closeCategoryDropdown() : openCategoryDropdown();
 }
+
 
 /**
  * Opens the category dropdown.
@@ -37,6 +41,7 @@ function openCategoryDropdown() {
     categoryDropdownOpen = true;
 }
 
+
 /**
  * Closes the category dropdown.
  */
@@ -44,6 +49,7 @@ function closeCategoryDropdown() {
     document.getElementById("multiselect-category-options").classList.add("d-none");
     categoryDropdownOpen = false;
 }
+
 
 /**
  * Sets the selected category option and closes the dropdown.
@@ -56,6 +62,7 @@ function selectCategoryOption(option) {
     checkFormValidity();
     closeCategoryDropdown();
 }
+
 
 /**
  * Global click handler that closes open dropdowns

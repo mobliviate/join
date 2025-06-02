@@ -12,6 +12,7 @@ function subtaskInput() {
     document.getElementById('save-subtask-icon').classList.toggle('d-none', !show);
 }
 
+
 /**
  * Creates a new subtask DOM element and adds it to the subtask list.
  */
@@ -35,6 +36,7 @@ function subtaskSave() {
     subtaskDelete();
 }
 
+
 /**
  * Clears the subtask input field and hides action icons.
  */
@@ -52,6 +54,7 @@ function subtaskDelete() {
     saveIcon.classList.add('d-none');
 }
 
+
 /**
  * Deletes the subtask element from the list.
  * 
@@ -63,6 +66,7 @@ function deleteSubtask(iconElement) {
         subtaskItem.remove();
     }
 }
+
 
 /**
  * Activates edit mode for the selected subtask item.
@@ -81,6 +85,7 @@ function editSubtask(icon) {
     input.focus();
 }
 
+
 /**
  * Cancels subtask edit mode and restores original state.
  */
@@ -92,6 +97,7 @@ function cancelEditSubtask() {
     if (editingSubtaskItem) document.querySelector(".subtask-list").style.display = 'flex';
     editingSubtaskItem = null;
 }
+
 
 /**
  * Saves changes to the currently edited subtask.
@@ -105,13 +111,12 @@ function saveEditedSubtask() {
         const textElement = editingSubtaskItem.querySelector('.subtask-text');
         textElement.innerText = `• ${newText}`;
     }
-
     if (editingSubtaskItem) {
         subtaskList.style.display = 'flex';
     }
-
     cancelEditSubtask();
 }
+
 
 /**
  * Returns an array of all current subtasks from the DOM.
@@ -124,6 +129,7 @@ function getSubtasks() {
         status: false
     }));
 }
+
 
 /**
  * Handles the Enter key press in the subtask input field.

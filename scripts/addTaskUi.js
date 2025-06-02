@@ -8,12 +8,14 @@ function selectPriority(btn) {
     btn.classList.add('selected');
 }
 
+
 /**
  * Focuses the subtask input when clicking the plus icon.
  */
 function subtaskInputIcon() {
     document.getElementById('subtask-input')?.focus();
 }
+
 
 /**
  * Shows the "Task added" overlay and redirects to board.

@@ -19,6 +19,7 @@ async function loadContacts() {
     }
 }
 
+
 /**
  * Toggles selection state of a contact and updates the assigned list.
  * 
@@ -41,6 +42,7 @@ function toggleSelectedContact(contact) {
     updateAssignedContacts();
 }
 
+
 /**
  * Updates the visual display of selected contacts below the input.
  */
@@ -62,6 +64,7 @@ function updateAssignedContacts() {
     assignedContactsContainer.innerHTML = assignedHTML;
 }
 
+
 /**
  * Filters the contact list in the assign dropdown based on user input.
  */
@@ -74,6 +77,7 @@ function filterContacts() {
         contact.style.display = name.includes(input) ? '' : 'none';
     });
 }
+
 
 /**
  * Gathers the selected contacts from the UI.

@@ -10,6 +10,7 @@ function checkFormValidity() {
     btn.disabled = !(title && dueDate && category !== "Select task category");
 }
 
+
 /**
  * Collects all input data from the form and returns it as a task object.
  * 
@@ -36,6 +37,7 @@ function collectNewTaskData(status) {
     };
 }
 
+
 /**
  * Saves the given task data to Firebase.
  * 
@@ -58,6 +60,7 @@ async function saveNewTaskToFirebase(taskData) {
         console.error('Error saving task:', error);
     }
 }
+
 
 /**
  * Creates a task based on form input and saves it to Firebase.

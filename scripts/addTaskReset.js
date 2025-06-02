@@ -7,6 +7,7 @@ function clearTextFields() {
     document.getElementById('due-date').value = '';
 }
 
+
 /**
  * Hides all error messages and removes red borders.
  */
@@ -19,6 +20,7 @@ function clearErrorMessages() {
     document.getElementById('multiselect-category').classList.remove('red-border');
 }
 
+
 /**
  * Resets the priority buttons to default (medium selected).
  */
@@ -27,12 +29,14 @@ function clearPriority() {
     document.querySelector('.prio-btn[data-prio="medium"]').classList.add('selected');
 }
 
+
 /**
  * Resets the category selector.
  */
 function clearCategory() {
     document.getElementById('category-selected').innerText = 'Select task category';
 }
+
 
 /**
  * Clears the selected contacts from the assigned list.
@@ -44,6 +48,7 @@ function clearAssignedContacts() {
     options.forEach(option => option.classList.remove('selected'));
 }
 
+
 /**
  * Clears all subtasks from the UI and resets input/edit state.
  */
@@ -53,6 +58,7 @@ function clearSubtasks() {
     subtaskDelete();
     cancelEditSubtask();
 }
+
 
 /**
  * Clears all form fields and resets validation/UI state.

@@ -165,6 +165,7 @@ function getAddTaskTemplate(status) {
 `;
 }
 
+
 /**
  * Returns the HTML string for one contact option element for the assignment multiselect.
  *

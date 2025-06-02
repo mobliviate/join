@@ -14,6 +14,7 @@ function validateInputTitel() {
     }
 }
 
+
 /**
  * Validates the due date input field.
  */
@@ -29,6 +30,7 @@ function validateInputDate() {
         inputDateRef.classList.remove("red-border");
     }
 }
+
 
 /**
  * Validates the category dropdown.

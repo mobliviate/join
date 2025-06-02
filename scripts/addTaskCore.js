@@ -13,6 +13,7 @@ function initAddTask() {
     document.getElementById("main").innerHTML = getAddTaskTemplate("todo");
 }
 
+
 /**
  * Closes open dropdowns when clicking outside.
  */
@@ -20,6 +21,7 @@ function onBodyClick() {
     closeCategoryDropdown();
     closeAssignDropdown();
 }
+
 
 /**
  * Global click handler to automatically close dropdowns
