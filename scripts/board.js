@@ -275,10 +275,12 @@ async function handleSearch(searchTerm) {
   );
   if (filteredTasks.length === 0) {
     document.getElementById("no_results").classList.remove("d-none");
+    document.getElementById("no_results_mobile").classList.remove("d-none");
     return;
   } else {
     if (!document.getElementById("no_results").classList.remove("d-none")) {
       document.getElementById("no_results").classList.add("d-none");
+      document.getElementById("no_results_mobile").classList.add("d-none");
     }
     filteredTasks.forEach((taskRef, indexTask) => {
       let background = taskRef.category === "User Story" ? "--user" : "--technical";

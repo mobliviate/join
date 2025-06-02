@@ -57,6 +57,9 @@ function getBoardTemplate() {
                   </svg>
                 </button>
               </div>
+              <div id="no_results_mobile" class="no-results-div d-none">
+                <span class="no-results">No tasks found</span>
+              </div>
             </div>           
           </div>
         </div>
