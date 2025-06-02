@@ -1,4 +1,5 @@
 .board-task-header {
+    min-width: 246px;
     display: flex;
     justify-content: space-between;
     align-items: center;
