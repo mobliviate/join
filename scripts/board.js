@@ -228,6 +228,10 @@ function allowDrop(ev) {
  * @param {string} category - The new task status (e.g., "done", "todo").
  */
 async function moveTo(category) {
+  if (!currentDraggedElement) {
+      removeHighlight(category);
+    return;
+  }
   let taskUrlRef = `https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${currentDraggedElement}/status.json`;
   let updatedTask = await fetch(taskUrlRef, {
     method: "PUT",
@@ -240,7 +244,7 @@ async function moveTo(category) {
     renderTasks();
   }
   removeHighlight(`${category}`);
-  // closeMoveToOverlay();
+  currentDraggedElement = "";
 }
 
 /**
@@ -276,6 +280,7 @@ async function handleSearch(searchTerm) {
   if (filteredTasks.length === 0) {
     document.getElementById("no_results").classList.remove("d-none");
     document.getElementById("no_results_mobile").classList.remove("d-none");
+    findEmptyColumn();
     return;
   } else {
     if (!document.getElementById("no_results").classList.remove("d-none")) {
