@@ -135,7 +135,7 @@ function addTaskBoard(title) {
 /**
  * Renders the close button inside the add task overlay.
  */
-function renderCloseButton(){
+function renderCloseButton() {
   document.getElementById("add_task_board").innerHTML += getAddTaskcloseButtonTemplate();
 }
 
@@ -240,7 +240,7 @@ async function moveTo(category) {
     renderTasks();
   }
   removeHighlight(`${category}`);
-  closeMoveToOverlay();
+  // closeMoveToOverlay();
 }
 
 /**

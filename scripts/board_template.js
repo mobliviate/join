@@ -146,8 +146,8 @@ function getBoardTemplate() {
   `;
 }
 
-function getAddTaskcloseButtonTemplate(){
-  return`
+function getAddTaskcloseButtonTemplate() {
+  return `
     <button class="close-button-open-add-task-board" onclick="closeOverlayBoard('add_task_board', 'open_overlay_board')">
       <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
         <mask id="mask0_71720_5535" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="4" y="4" width="24" height="24">
@@ -158,7 +158,7 @@ function getAddTaskcloseButtonTemplate(){
         </g>
       </svg>
     </button>
-  ` 
+  `;
 }
 
 function getRenderTask(task, indexTask, background,) {
@@ -464,19 +464,19 @@ function getMoveTaskOverlayTemplate() {
   return `
     <div id="move_task_overlay" class="move-task-overlay" onclick="overlayProtection(event)">
       <h3>Move to</h3>
-      <button id="move_to_to_do" class="move-task-btn" onclick="moveTo('todo')">
+      <button id="move_to_to_do" class="move-task-btn" onclick="moveTo('todo'); closeMoveTaskOverlay()">
         <img src="./assets/svg/move_to_arrow_upward.svg" alt="move_to_arrow_upward">
         <span class="move-task-span">To Do</span>
       </button>
-      <button id="move_to_progress" class="move-task-btn" onclick="moveTo('progress')">
+      <button id="move_to_progress" class="move-task-btn" onclick="moveTo('progress'); closeMoveTaskOverlay()">
         <img src="./assets/svg/move_to_arrow_upward.svg" alt="move_to_arrow_upward">
         <span class="move-task-span">In Progress</span>
       </button>
-      <button id="move_to_feedback" class="move-task-btn" onclick="moveTo('feedback')">
+      <button id="move_to_feedback" class="move-task-btn" onclick="moveTo('feedback'); closeMoveTaskOverlay()">
         <img src="./assets/svg/move_to_arrow_upward.svg" alt="move_to_arrow_upward">
         <span class="move-task-span">Feedback</span>
       </button>
-      <button id="move_to_done" class="move-task-btn" onclick="moveTo('done')">
+      <button id="move_to_done" class="move-task-btn" onclick="moveTo('done'); closeMoveTaskOverlay()">
         <img src="./assets/svg/move_to_arrow_downward.svg" alt="move_to_arrow_downward">
         <span class="move-task-span">Done</span>
       </button>

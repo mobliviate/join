@@ -39,7 +39,7 @@ async function loadUsersEmails() {
         u.email = u.email.toLowerCase();
         usersEmails.push(u.email);
     });
-    console.log(usersEmails);
+    // console.log(usersEmails);
 };
 
 /**
