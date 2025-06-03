@@ -235,7 +235,7 @@ function allowDrop(ev) {
  * @param {string} category - The new task status (e.g., "done", "todo").
  */
 async function moveTo(category) {
-  if (!currentDraggedElement) {
+  if (!Number.isFinite(currentDraggedElement)) {
       removeHighlight(category);
     return;
   }
@@ -284,6 +284,16 @@ async function handleSearch(searchTerm) {
     task.title?.toLowerCase().includes(searchTerm) ||
     task.description?.toLowerCase().includes(searchTerm)
   );
+  renderFilterdTasks(filteredTasks);
+  findEmptyColumn();
+}
+
+/**
+ * function to render filtered tasks on the board.
+ * @param {string} filteredTasks - The array of tasks to render.
+ * @returns 
+ */
+function renderFilterdTasks(filteredTasks) {
   if (filteredTasks.length === 0) {
     document.getElementById("no_results").classList.remove("d-none");
     document.getElementById("no_results_mobile").classList.remove("d-none");
@@ -301,5 +311,4 @@ async function handleSearch(searchTerm) {
       renderSubtasks(taskRef, indexTask);
     });
   }
-  findEmptyColumn();
 }
