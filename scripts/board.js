@@ -110,7 +110,7 @@ function renderInitials(taskRef, indexTask) {
   }
   if (total > maxVisible) {
     let remaining = total - maxVisible;
-    initialContactRef.innerHTML += getRenderInitials("+" + remaining, "#ccc");
+    initialContactRef.innerHTML += getRenderInitials("+" + remaining, "#5c6f7b");
   }
 }
 
