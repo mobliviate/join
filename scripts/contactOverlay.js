@@ -235,6 +235,7 @@ function handleViewportResize() {
  */
 function handleContactDetailResizeDesktop(detail) {
     document.body.classList.remove("mobile-detail-open");
+    if (!detail) return; // <--- DIESER CHECK FEHLT!
     const active = document.querySelector(".contact-item.active");
     if (active && active.dataset.id && window.currentContacts) {
         for (let i = 0; i < window.currentContacts.length; i++) {
