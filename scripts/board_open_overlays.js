@@ -297,7 +297,6 @@ async function saveTaskToDataBase(openedTask, color) {
  */
 function openMoveToOverlay(indexTask, status) {
   let moveToBtnRef = document.getElementById(`move_to_btn_${indexTask}`);
-
   let existingOverlay = document.querySelector('.move-task-cnt');
   if (existingOverlay) {
     existingOverlay.remove();
@@ -325,7 +324,6 @@ function hideMoveToOverlayElements(status) {
     feedback: ["move_to_feedback"],
     done: ["move_to_done"],
   };
-
   (hideMap[status] || []).forEach(id =>
     document.getElementById(id)?.classList.add("d-none")
   );
@@ -343,15 +341,12 @@ function hideMoveToOverlayElements(status) {
 function enableOverlayCloseOnOutsideClickAndScroll() {
   const overlay = document.querySelector('.move-task-cnt');
   const scrollContainer = document.getElementById('main');
-
   closeMoveToOverlay = () => {
     overlay?.remove();
     document.removeEventListener('click', outsideClickHandler);
     scrollContainer.removeEventListener('scroll', closeMoveToOverlay);
   };
-
   const outsideClickHandler = e => !overlay.contains(e.target) && closeMoveToOverlay();
-
   document.addEventListener('click', outsideClickHandler);
   scrollContainer.addEventListener('scroll', closeMoveToOverlay);
 }
