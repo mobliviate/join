@@ -2,7 +2,6 @@
    CONTACT FORM & OVERLAY LOGIC
    ========================================================================== */
 
-
 /**
  * Show the Add Contact overlay (mobile or desktop).
  */
@@ -13,7 +12,6 @@ function showAddContactOverlay() {
         showAddContactOverlayDesktop();
     }
 }
-
 
 /**
  * Opens the correct Edit Contact overlay depending on screen size.
@@ -27,7 +25,6 @@ function showEditContactOverlayResponsive(contactId) {
     }
 }
 
-
 /**
  * Show the Add Contact overlay (desktop only).
  */
@@ -39,7 +36,6 @@ function showAddContactOverlayDesktop() {
     document.body.appendChild(temp.firstElementChild);
     window.addContactOverlayOpen = true;
 }
-
 
 /**
  * Show the Add Contact overlay (mobile only).
@@ -54,7 +50,6 @@ function showAddContactOverlayMobile() {
     window.addContactOverlayOpen = true;
 }
 
-
 /**
  * Hide the Add Contact overlay (desktop only).
  */
@@ -63,7 +58,6 @@ function hideAddContactOverlay() {
     if (overlay) overlay.remove();
     window.addContactOverlayOpen = false;
 }
-
 
 /**
  * Hide the Add Contact overlay (mobile only).
@@ -76,7 +70,6 @@ function hideAddContactOverlayMobile() {
     document.body.style.overflow = "";
     window.addContactOverlayOpen = false;
 }
-
 
 /**
  * Shows the Edit Contact overlay for desktop.
@@ -92,8 +85,8 @@ function showEditContactOverlay(contactId) {
     temp.innerHTML = getEditContactOverlayTemplate(contact).trim();
     document.body.appendChild(temp.firstElementChild);
     window.currentEditContactId = contactId;
+    enableEditSaveButtonIfValid();
 }
-
 
 /**
  * Shows the Edit Contact overlay for mobile devices.
@@ -109,8 +102,8 @@ function showEditContactOverlayMobile(contactId) {
     container.innerHTML = getEditContactOverlayMobileTemplate(contact);
     showMobileOverlay(container);
     window.currentEditContactId = contactId;
+    enableEditSaveButtonIfValid();
 }
-
 
 /**
  * Finds a contact by ID in window.currentContacts.
@@ -127,7 +120,6 @@ function findContactById(contactId) {
     return null;
 }
 
-
 /**
  * Shows the overlay and animates it for mobile.
  * @param {Element} container
@@ -143,7 +135,6 @@ function showMobileOverlay(container) {
     }, 20);
 }
 
-
 /**
  * Hide the Edit Contact overlay (desktop).
  */
@@ -152,7 +143,6 @@ function hideEditContactOverlay() {
     if (overlay) overlay.remove();
     window.currentEditContactId = null;
 }
-
 
 /**
  * Hide the Edit Contact overlay (mobile).
@@ -177,7 +167,6 @@ function hideEditContactOverlayMobile() {
     }
 }
 
-
 /**
  * Closes all overlays (add/edit, mobile/desktop).
  */
@@ -189,7 +178,6 @@ function closeAllContactOverlays() {
     window.addContactOverlayOpen = false;
     window.currentEditContactId = null;
 }
-
 
 /**
  * Handles reopening of overlays after resize.
@@ -217,7 +205,6 @@ function handleOverlayReopenAfterResize(
     }
 }
 
-
 /**
  * Handles viewport resizing and triggers overlay/detail changes.
  */
@@ -242,7 +229,6 @@ function handleViewportResize() {
     handleContactDetailResize(currentMode);
 }
 
-
 /**
  * Handles the contact detail view resize for desktop mode.
  * @param {HTMLElement} detail - The detail container element.
@@ -260,7 +246,6 @@ function handleContactDetailResizeDesktop(detail) {
     }
     detail.innerHTML = "";
 }
-
 
 /**
  * Handles the contact detail view resize for mobile mode.
@@ -280,7 +265,6 @@ function handleContactDetailResizeMobile(detail) {
     document.body.classList.remove("mobile-detail-open");
 }
 
-
 /**
  * Main function to handle contact detail resize.
  * @param {"desktop"|"mobile"} currentMode
@@ -293,7 +277,6 @@ function handleContactDetailResize(currentMode) {
         handleContactDetailResizeMobile(detail);
     }
 }
-
 
 /**
  * Utility function to remove the .active class from all contact items
@@ -308,3 +291,142 @@ function clearContactSelection() {
 }
 
 window.addEventListener("resize", handleViewportResize);
+
+/**
+ * Validates a name input field.
+ * Requirements: at least 3 characters, no leading or trailing spaces.
+ * @param {string} inputId - The input field's id.
+ * @param {string} warningId - The id of the warning span to show messages.
+ * @returns {boolean} True if the name is valid, otherwise false.
+ */
+function validateNameField(inputId, warningId) {
+    const value = document.getElementById(inputId).value.trim();
+    const w = document.getElementById(warningId);
+    if (!value) return (w.textContent = ""), false;
+    if (value.length < 3)
+        return (w.textContent = "Name must be at least 3 characters."), false;
+    if (/^\s|\s$/.test(value))
+        return (
+            (w.textContent = "Name cannot start or end with a space."), false
+        );
+    w.textContent = "";
+    return true;
+}
+
+/**
+ * Validates an email input field.
+ * Checks for a valid email format (including "@", ".", and at least 2 chars after the last dot).
+ * @param {string} inputId - The input field's id.
+ * @param {string} warningId - The id of the warning span to show messages.
+ * @returns {boolean} True if the email is valid, otherwise false.
+ */
+function validateEmailField(inputId, warningId) {
+    const value = document.getElementById(inputId).value.trim();
+    const w = document.getElementById(warningId);
+    if (!value) return (w.textContent = ""), false;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value))
+        return (w.textContent = "Please enter a valid email address."), false;
+    w.textContent = "";
+    return true;
+}
+
+/**
+ * Validates a phone number input field.
+ * Checks for at least 3 characters and allows digits, spaces, +, -, and ().
+ * @param {string} inputId - The input field's id.
+ * @param {string} warningId - The id of the warning span to show messages.
+ * @returns {boolean} True if the phone number is valid, otherwise false.
+ */
+function validatePhoneField(inputId, warningId) {
+    const value = document.getElementById(inputId).value.trim();
+    const w = document.getElementById(warningId);
+    if (!value) return (w.textContent = ""), false;
+    if (!/^[0-9+\-\s()]{3,}$/.test(value))
+        return (w.textContent = "Please enter a valid phone number."), false;
+    w.textContent = "";
+    return true;
+}
+
+/**
+ * Validates the add contact form (desktop).
+ * Returns true only if all fields are valid.
+ * @returns {boolean}
+ */
+function checkContactFormValidity() {
+    const validName = validateNameField(
+        "new-contact-name",
+        "contact_warning_name"
+    );
+    const validEmail = validateEmailField(
+        "new-contact-email",
+        "contact_warning_email"
+    );
+    const validPhone = validatePhoneField(
+        "new-contact-phone",
+        "contact_warning_phone"
+    );
+    return validName && validEmail && validPhone;
+}
+
+/**
+ * Validates the add contact form (mobile).
+ * Returns true only if all fields are valid.
+ * @returns {boolean}
+ */
+function checkContactFormValidityMobile() {
+    const validName = validateNameField(
+        "new-contact-name-mobile",
+        "contact_warning_name_mobile"
+    );
+    const validEmail = validateEmailField(
+        "new-contact-email-mobile",
+        "contact_warning_email_mobile"
+    );
+    const validPhone = validatePhoneField(
+        "new-contact-phone-mobile",
+        "contact_warning_phone_mobile"
+    );
+    return validName && validEmail && validPhone;
+}
+
+/**
+ * Validates the edit contact form (desktop).
+ * Returns true only if all fields are valid.
+ * @returns {boolean}
+ */
+function checkEditContactFormValidity() {
+    const validName = validateNameField(
+        "edit-contact-name",
+        "edit_contact_warning_name"
+    );
+    const validEmail = validateEmailField(
+        "edit-contact-email",
+        "edit_contact_warning_email"
+    );
+    const validPhone = validatePhoneField(
+        "edit-contact-phone",
+        "edit_contact_warning_phone"
+    );
+    return validName && validEmail && validPhone;
+}
+
+/**
+ * Validates the edit contact form (mobile).
+ * Returns true only if all fields are valid.
+ * @returns {boolean}
+ */
+function checkEditContactFormValidityMobile() {
+    const validName = validateNameField(
+        "edit-contact-name-mobile",
+        "edit_contact_warning_name_mobile"
+    );
+    const validEmail = validateEmailField(
+        "edit-contact-email-mobile",
+        "edit_contact_warning_email_mobile"
+    );
+    const validPhone = validatePhoneField(
+        "edit-contact-phone-mobile",
+        "edit_contact_warning_phone_mobile"
+    );
+    return validName && validEmail && validPhone;
+}

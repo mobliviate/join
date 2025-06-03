@@ -2,7 +2,6 @@
    CONTACT TEMPLATES
    ========================================================================== */
 
-
 /**
  * Returns the main contacts section template.
  * @returns {string}
@@ -40,7 +39,6 @@ function getContactsSectionTemplate() {
   `;
 }
 
-
 /**
  * Render the contact detail view for desktop.
  * @param {Object} contact
@@ -53,7 +51,6 @@ function renderDesktopContactDetail(contact) {
     </div>
   `;
 }
-
 
 /**
  * Returns the mobile options menu HTML template for a contact.
@@ -72,7 +69,6 @@ function getMobileOptionsMenuTemplate(contactId) {
     </div>
   `;
 }
-
 
 /**
  * Returns the contact detail HTML template for mobile view.
@@ -95,7 +91,6 @@ function getMobileContactDetailHTML(contact) {
     </div>
   `;
 }
-
 
 /**
  * Returns the HTML for the group letter heading in the contact list.
@@ -126,7 +121,6 @@ function buildContactItem(id, avatarHTML, name, emailHTML) {
   `;
 }
 
-
 /**
  * Generates the avatar circle for a contact.
  * @param {string} name - The contact's name.
@@ -143,7 +137,6 @@ function createAvatarTemplate(name, initials) {
   `;
 }
 
-
 /**
  * Builds the complete contact detail HTML (header + info section).
  * @param {Object} contact
@@ -154,7 +147,6 @@ function createContactDetailTemplate(contact) {
         buildContactHeaderSection(contact) + buildContactInfoSection(contact)
     );
 }
-
 
 /**
  * Builds the contact header section including avatar and actions.
@@ -186,7 +178,6 @@ function buildContactHeaderSection(contact) {
   `;
 }
 
-
 /**
  * Builds the contact information section with email and phone.
  * @param {Object} contact
@@ -205,95 +196,106 @@ function buildContactInfoSection(contact) {
     return infoHTML;
 }
 
-
 /**
- * Returns the Add Contact overlay template for desktop.
+ * Returns the Add Contact overlay template for desktop, including a disabled submit button.
  * @returns {string}
  */
 function getAddContactOverlayTemplate() {
     return `
-    <div class="overlay" id="add-contact-overlay">
-      <div class="overlay-content">
-        <div class="overlay-left">
-          <div class="sidebar-logo">
-            <img src="assets/svg/join-logo.svg" alt="Join Logo">
-          </div>
-          <h2>Add contact</h2>
-          <p class="overlay-subtitle">Tasks are better with a team!</p>
-          <hr>
+  <div class="overlay" id="add-contact-overlay">
+    <div class="overlay-content">
+      <div class="overlay-left">
+        <div class="sidebar-logo">
+          <img src="assets/svg/join-logo.svg" alt="Join Logo">
         </div>
-        <div class="overlay-right">
-          <button class="close-btn" onclick="hideAddContactOverlay()">×</button>
-          <div class="avatar-placeholder">
-            <img src="assets/svg/person_icon.svg" alt="Avatar placeholder">
-          </div>
-          <form id="add-contact-form" onsubmit="handleCreateContact(event)">
-            <div class="input-group">
-              <input type="text" id="new-contact-name" placeholder="Name" required>
-              <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
-            </div>
-            <div class="input-group">
-              <input type="email" id="new-contact-email" placeholder="Email">
-              <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
-            </div>
-            <div class="input-group">
-              <input type="tel" id="new-contact-phone" placeholder="Phone">
-              <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
-            </div>
-            <div class="form-buttons">
-              <button type="button" class="btn cancel-btn" onclick="hideAddContactOverlay()">Cancel ×</button>
-              <button type="submit" class="btn btn-primary create-btn">Create contact ✓</button>
-            </div>
-          </form>
+        <h2>Add contact</h2>
+        <p class="overlay-subtitle">Tasks are better with a team!</p>
+        <hr>
+      </div>
+      <div class="overlay-right">
+        <button class="close-btn" onclick="hideAddContactOverlay()">×</button>
+        <div class="avatar-placeholder">
+          <img src="assets/svg/person_icon.svg" alt="Avatar placeholder">
         </div>
+        <form id="add-contact-form" onsubmit="if(!checkContactFormValidity()) return false; handleCreateContact(event)">
+          <div class="input-group">
+            <input type="text" id="new-contact-name" placeholder="Name"
+              oninput="validateNameField('new-contact-name', 'contact_warning_name'); updateAddContactSubmitButton()">
+            <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
+            <span id="contact_warning_name" class="input-warning"></span>
+          </div>
+          <div class="input-group">
+            <input type="email" id="new-contact-email" placeholder="Email"
+              oninput="validateEmailField('new-contact-email', 'contact_warning_email'); updateAddContactSubmitButton()">
+            <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
+            <span id="contact_warning_email" class="input-warning"></span>
+          </div>
+          <div class="input-group">
+            <input type="tel" id="new-contact-phone" placeholder="Phone"
+              oninput="validatePhoneField('new-contact-phone', 'contact_warning_phone'); updateAddContactSubmitButton()">
+            <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
+            <span id="contact_warning_phone" class="input-warning"></span>
+          </div>
+          <div class="form-buttons">
+            <button type="button" class="btn cancel-btn" onclick="hideAddContactOverlay()">Cancel ×</button>
+            <button id="add-contact-btn-submit" type="submit" class="btn btn-primary create-btn" disabled>
+              Create contact ✓
+            </button>
+          </div>
+        </form>
       </div>
     </div>
-  `;
+  </div>
+`;
 }
 
-
 /**
- * Returns the Add Contact overlay template for mobile.
+ * Returns the Add Contact overlay template for mobile, including a disabled submit button.
  * @returns {string}
  */
 function getAddContactOverlayMobileTemplate() {
     return `
-    <div class="overlay-mobile">
-      <div class="overlay-mobile-content">
-        <button class="close-btn-mobile" aria-label="Close" onclick="hideAddContactOverlayMobile()">×</button>
-        <div class="mobile-header">
-          <h2>Add contact</h2>
-          <p>Tasks are better with a team!</p>
-          <div class="underline"></div>
-        </div>
-        <div class="mobile-avatar">
-          <img src="assets/svg/person_icon.svg" alt="Avatar placeholder">
-        </div>
-        <form id="add-contact-form-mobile" onsubmit="handleCreateContact(event)">
-          <div class="input-group-mobile">
-            <input type="text" id="new-contact-name" placeholder="Name" required>
-            <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
-          </div>
-          <div class="input-group-mobile">
-            <input type="email" id="new-contact-email" placeholder="Email">
-            <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
-          </div>
-          <div class="input-group-mobile">
-            <input type="tel" id="new-contact-phone" placeholder="Phone">
-            <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
-          </div>
-          <button type="submit" class="btn btn-primary mobile-create-btn">
-            Create contact&nbsp;✓
-          </button>
-        </form>
+  <div class="overlay-mobile">
+    <div class="overlay-mobile-content">
+      <button class="close-btn-mobile" aria-label="Close" onclick="hideAddContactOverlayMobile()">×</button>
+      <div class="mobile-header">
+        <h2>Add contact</h2>
+        <p>Tasks are better with a team!</p>
+        <div class="underline"></div>
       </div>
+      <div class="mobile-avatar">
+        <img src="assets/svg/person_icon.svg" alt="Avatar placeholder">
+      </div>
+      <form id="add-contact-form-mobile" onsubmit="if(!checkContactFormValidityMobile()) return false; handleCreateContact(event)">
+        <div class="input-group-mobile">
+          <input type="text" id="new-contact-name-mobile" placeholder="Name"
+            oninput="validateNameField('new-contact-name-mobile','contact_warning_name_mobile'); updateAddContactMobileSubmitButton()">
+          <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
+          <span id="contact_warning_name_mobile" class="input-warning"></span>
+        </div>
+        <div class="input-group-mobile">
+          <input type="email" id="new-contact-email-mobile" placeholder="Email"
+            oninput="validateEmailField('new-contact-email-mobile','contact_warning_email_mobile'); updateAddContactMobileSubmitButton()">
+          <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
+          <span id="contact_warning_email_mobile" class="input-warning"></span>
+        </div>
+        <div class="input-group-mobile">
+          <input type="tel" id="new-contact-phone-mobile" placeholder="Phone"
+            oninput="validatePhoneField('new-contact-phone-mobile','contact_warning_phone_mobile'); updateAddContactMobileSubmitButton()">
+          <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
+          <span id="contact_warning_phone_mobile" class="input-warning"></span>
+        </div>
+        <button id="add-contact-btn-mobile-submit" type="submit" class="btn btn-primary mobile-create-btn" disabled>
+          Create contact&nbsp;✓
+        </button>
+      </form>
     </div>
-  `;
+  </div>
+`;
 }
 
-
 /**
- * Returns the HTML template for the Edit Contact overlay on desktop.
+ * Returns the Edit Contact overlay template for desktop, including a disabled submit button.
  * @param {Object} contact - The contact object to edit.
  * @param {string} contact.id - The contact's unique identifier.
  * @param {string} contact.name - The contact's name.
@@ -304,59 +306,61 @@ function getAddContactOverlayMobileTemplate() {
  */
 function getEditContactOverlayTemplate(contact) {
     return `
-    <div class="overlay" id="edit-contact-overlay">
-      <div class="overlay-content">
-        <div class="overlay-left">
-          <div class="sidebar-logo">
-            <img src="assets/svg/join-logo.svg" alt="Join Logo">
-          </div>
-          <h2>Edit contact</h2>
-          <hr>
+  <div class="overlay" id="edit-contact-overlay">
+    <div class="overlay-content">
+      <div class="overlay-left">
+        <div class="sidebar-logo">
+          <img src="assets/svg/join-logo.svg" alt="Join Logo">
         </div>
-        <div class="overlay-right">
-          <button class="close-btn" onclick="hideEditContactOverlay()">×</button>
-          <div id="edit-avatar-wrapper">
-            <div class="avatar-circle large" id="edit-avatar">
-              ${contact.initials}
-            </div>
+        <h2>Edit contact</h2>
+        <hr>
+      </div>
+      <div class="overlay-right">
+        <button class="close-btn" onclick="hideEditContactOverlay()">×</button>
+        <div id="edit-avatar-wrapper">
+          <div class="avatar-circle large" id="edit-avatar">
+            ${contact.initials}
           </div>
-          <form id="edit-contact-form" onsubmit="handleEditContact(event, '${
-              contact.id
-          }')">
-            <div class="input-group">
-              <input type="text" id="edit-contact-name" placeholder="Name" required value="${
-                  contact.name
-              }">
-              <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
-            </div>
-            <div class="input-group">
-              <input type="email" id="edit-contact-email" placeholder="Email" value="${
-                  contact.email || ""
-              }">
-              <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
-            </div>
-            <div class="input-group">
-              <input type="tel" id="edit-contact-phone" placeholder="Phone" value="${
-                  contact.phone || ""
-              }">
-              <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
-            </div>
-            <div class="form-buttons-desktop">
-              <button type="button" class="btn delete-btn" onclick="deleteContact('${
-                  contact.id
-              }');">Delete</button>
-              <button type="submit" class="btn btn-primary create-btn">Save ✓</button>
-            </div>
-          </form>
         </div>
+        <form id="edit-contact-form" onsubmit="if(!checkEditContactFormValidity()) return false; handleEditContact(event, '${
+            contact.id
+        }')">
+          <div class="input-group">
+            <input type="text" id="edit-contact-name" placeholder="Name"
+              required value="${contact.name || ""}"
+              oninput="validateNameField('edit-contact-name', 'edit_contact_warning_name'); updateEditContactSubmitButton()">
+            <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
+            <span id="edit_contact_warning_name" class="input-warning"></span>
+          </div>
+          <div class="input-group">
+            <input type="email" id="edit-contact-email" placeholder="Email"
+              value="${contact.email || ""}"
+              oninput="validateEmailField('edit-contact-email', 'edit_contact_warning_email'); updateEditContactSubmitButton()">
+            <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
+            <span id="edit_contact_warning_email" class="input-warning"></span>
+          </div>
+          <div class="input-group">
+            <input type="tel" id="edit-contact-phone" placeholder="Phone"
+              value="${contact.phone || ""}"
+              oninput="validatePhoneField('edit-contact-phone', 'edit_contact_warning_phone'); updateEditContactSubmitButton()">
+            <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
+            <span id="edit_contact_warning_phone" class="input-warning"></span>
+          </div>
+          <div class="form-buttons-desktop">
+            <button type="button" class="btn delete-btn" onclick="deleteContact('${
+                contact.id
+            }');">Delete</button>
+            <button id="edit-contact-save-btn" type="submit" class="btn btn-primary create-btn" disabled>Save ✓</button>
+          </div>
+        </form>
       </div>
     </div>
-  `;
+  </div>
+`;
 }
 
-
 /**
- * Returns the HTML template for the Edit Contact overlay on mobile devices.
+ * Returns the Edit Contact overlay template for mobile, including a disabled submit button.
  * @param {Object} contact - The contact object to edit.
  * @param {string} contact.id - The contact's unique identifier.
  * @param {string} contact.name - The contact's name.
@@ -371,56 +375,64 @@ function getEditContactOverlayMobileTemplate(contact) {
     const color = `hsl(${hue}, 70%, 50%)`;
 
     return `
-    <div class="overlay-mobile">
-      <div class="overlay-mobile-content">
-        <button class="close-btn-mobile" aria-label="Close" onclick="hideEditContactOverlayMobile()">×</button>
-        <div class="mobile-header">
-          <h2>Edit contact</h2>
-          <div class="underline"></div>
-        </div>
-        <div class="mobile-avatar" style="background: ${color}; border: 4px solid white;">
-          <span style="font-size: 38px; color: #fff; font-weight: bold;">${initials}</span>
-        </div>
-        <form id="edit-contact-form-mobile" onsubmit="handleEditContactMobile(event, '${
+  <div class="overlay-mobile">
+    <div class="overlay-mobile-content">
+      <button class="close-btn-mobile" aria-label="Close" onclick="hideEditContactOverlayMobile()">×</button>
+      <div class="mobile-header">
+        <h2>Edit contact</h2>
+        <div class="underline"></div>
+      </div>
+      <div class="mobile-avatar" style="background: ${color}; border: 4px solid white;">
+        <span style="font-size: 38px; color: #fff; font-weight: bold;">${initials}</span>
+      </div>
+      <form id="edit-contact-form-mobile" 
+        onsubmit="if(!checkEditContactFormValidityMobile()) return false; handleEditContactMobile(event, '${
             contact.id
         }')">
-          <div class="input-group-mobile">
-            <input 
-              type="text" 
-              id="edit-contact-name-mobile" 
-              placeholder="Name" 
-              required
-              value="${contact.name || ""}">
-            <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
-          </div>
-          <div class="input-group-mobile">
-            <input 
-              type="email" 
-              id="edit-contact-email-mobile" 
-              placeholder="Email"
-              value="${contact.email || ""}">
-            <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
-          </div>
-          <div class="input-group-mobile">
-            <input 
-              type="tel" 
-              id="edit-contact-phone-mobile" 
-              placeholder="Phone"
-              value="${contact.phone || ""}">
-            <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
-          </div>
-          <div class="form-buttons-mobile">
-            <button type="button" class="btn delete-btn" onclick="deleteContact('${
-                contact.id
-            }');">Delete</button>
-            <button 
-              type="submit" 
-              class="btn btn-primary mobile-create-btn">
-              Save&nbsp;✓
-            </button>
-          </div>
-        </form>
-      </div>
+        <div class="input-group-mobile">
+          <input 
+            type="text" 
+            id="edit-contact-name-mobile" 
+            placeholder="Name"
+            required
+            value="${contact.name || ""}"
+            oninput="validateNameField('edit-contact-name-mobile','edit_contact_warning_name_mobile'); updateEditContactMobileSubmitButton()"
+          >
+          <img src="assets/svg/person_icon.svg" class="input-icon" alt="">
+          <span id="edit_contact_warning_name_mobile" class="input-warning"></span>
+        </div>
+        <div class="input-group-mobile">
+          <input 
+            type="email" 
+            id="edit-contact-email-mobile" 
+            placeholder="Email"
+            value="${contact.email || ""}"
+            oninput="validateEmailField('edit-contact-email-mobile','edit_contact_warning_email_mobile'); updateEditContactMobileSubmitButton()"
+          >
+          <img src="assets/svg/mail_icon.svg" class="input-icon" alt="">
+          <span id="edit_contact_warning_email_mobile" class="input-warning"></span>
+        </div>
+        <div class="input-group-mobile">
+          <input 
+            type="tel" 
+            id="edit-contact-phone-mobile" 
+            placeholder="Phone"
+            value="${contact.phone || ""}"
+            oninput="validatePhoneField('edit-contact-phone-mobile','edit_contact_warning_phone_mobile'); updateEditContactMobileSubmitButton()"
+          >
+          <img src="assets/svg/phone_icon.svg" class="input-icon" alt="">
+          <span id="edit_contact_warning_phone_mobile" class="input-warning"></span>
+        </div>
+        <div class="form-buttons-mobile">
+          <button type="button" class="btn delete-btn" onclick="deleteContact('${
+              contact.id
+          }');">Delete</button>
+          <button id="edit-contact-save-btn-mobile" type="submit" class="btn btn-primary mobile-create-btn" disabled>
+            Save&nbsp;✓
+          </button>
+        </div>
+      </form>
     </div>
-  `;
+  </div>
+`;
 }

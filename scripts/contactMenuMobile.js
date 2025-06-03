@@ -2,7 +2,6 @@
    MOBILE: OPTIONS MENU (ACTION MENU)
    ========================================================================== */
 
-
 /**
  * Displays the mobile options menu for the selected contact.
  * If the menu is already open, it will close it instead.
@@ -16,11 +15,15 @@ function showEditOverlayMobile() {
         closeMobileOptionsMenuWithAnimation();
         return;
     }
+    let contactId = null;
 
     const activeElement = document.querySelector(".contact-item.active");
-    if (!activeElement) return;
+    if (activeElement && activeElement.dataset.id) {
+        contactId = activeElement.dataset.id;
+    } else if (window.lastSelectedContactId) {
+        contactId = window.lastSelectedContactId;
+    }
 
-    const contactId = activeElement.dataset.id;
     if (!contactId) return;
 
     menuContainer.innerHTML = getMobileOptionsMenuTemplate(contactId);
@@ -30,7 +33,6 @@ function showEditOverlayMobile() {
     showMobileMenuWithAnimation();
     addMobileMenuEventListeners();
 }
-
 
 /**
  * Triggers animation and sets up delayed visual transition for the menu.
@@ -44,7 +46,6 @@ function showMobileMenuWithAnimation() {
     }, 10);
 }
 
-
 /**
  * Adds global event listeners for menu close interactions (outside click, ESC key).
  */
@@ -55,7 +56,6 @@ function addMobileMenuEventListeners() {
         window.addEventListener("keydown", handleEscMobileMenu);
     }, 0);
 }
-
 
 /**
  * Handle click outside the mobile options menu.
@@ -68,7 +68,6 @@ function handleClickOutsideMobileMenu(event) {
     }
 }
 
-
 /**
  * Handle ESC key for closing the mobile options menu.
  * @param {KeyboardEvent} e
@@ -78,7 +77,6 @@ function handleEscMobileMenu(e) {
         closeMobileOptionsMenuWithAnimation();
     }
 }
-
 
 /**
  * Close the mobile options menu with animation and remove all event listeners.

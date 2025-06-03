@@ -9,7 +9,6 @@
 const BASEURL =
     "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app";
 
-
 /**
  * Fetch contacts from Firebase and render the list.
  * @returns {Promise<void>}
@@ -39,7 +38,6 @@ async function fetchAndRenderContacts() {
     }
 }
 
-
 /**
  * Create a new contact in Firebase.
  * @param {Object} contactData
@@ -55,7 +53,6 @@ async function saveNewContactToFirebase(contactData) {
     return result.name;
 }
 
-
 /**
  * Update a contact in Firebase.
  * @param {Event} event
@@ -68,16 +65,27 @@ async function handleEditContact(event, contactId) {
         email: document.getElementById("edit-contact-email").value.trim(),
         phone: document.getElementById("edit-contact-phone").value.trim(),
     };
+
     await fetch(`${BASEURL}/contacts/${contactId}.json`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updated),
     });
+
     hideEditContactOverlay();
-    fetchAndRenderContacts();
+    const contact = window.currentContacts.find((c) => c.id === contactId);
+    if (contact) {
+        contact.name = updated.name;
+        contact.email = updated.email;
+        contact.phone = updated.phone;
+        contact.initials = getInitials(updated.name);
+    }
+    sortContactsByName(window.currentContacts);
+    renderContactsList(window.currentContacts);
+    showContactDetail(contact);
+
     showToast("Contact successfully updated");
 }
-
 
 /**
  * Update a contact (Mobile).
@@ -95,16 +103,20 @@ async function handleEditContactMobile(event, contactId) {
             .getElementById("edit-contact-phone-mobile")
             .value.trim(),
     };
+
     await fetch(`${BASEURL}/contacts/${contactId}.json`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updated),
     });
+
     hideEditContactOverlayMobile();
-    fetchAndRenderContacts();
+    await fetchAndRenderContacts();
+    const updatedContact = findContactById(contactId);
+    if (updatedContact) showContactDetail(updatedContact);
+
     showToast("Contact successfully updated");
 }
-
 
 /**
  * Handles the form submission for creating a new contact.
@@ -125,7 +137,6 @@ async function handleCreateContact(event) {
     fetchAndRenderContacts();
     showToast("Contact successfully created");
 }
-
 
 /**
  * Delete a contact from Firebase and remove from tasks.
@@ -153,7 +164,6 @@ async function deleteContact(contactId) {
         console.error("Delete contact error:", err);
     }
 }
-
 
 /**
  * Remove a deleted contact from all tasks in Firebase.
