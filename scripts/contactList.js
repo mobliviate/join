@@ -20,6 +20,13 @@ function renderContactsList(contactArray) {
     const container = document.getElementById("contacts-group-container");
     if (!container) return;
     container.innerHTML = generateContactsListHTML(contactArray);
+
+    if (window.lastSelectedContactId) {
+        const item = container.querySelector(
+            `.contact-item[data-id="${window.lastSelectedContactId}"]`
+        );
+        if (item) item.classList.add("active");
+    }
 }
 
 
