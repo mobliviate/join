@@ -307,7 +307,7 @@ function openMoveToOverlay(indexTask, status) {
   overlay.innerHTML = getMoveTaskOverlayTemplate();
   const rect = moveToBtnRef.getBoundingClientRect();
   overlay.style.top = `${rect.bottom + window.scrollY}px`;
-  overlay.style.left = `${rect.left + window.scrollX}px`;
+  overlay.style.left = `${rect.left + window.scrollX - 54}px`;
 
   document.body.appendChild(overlay);
   hideMoveToOverlayElements(status);
@@ -320,20 +320,20 @@ function openMoveToOverlay(indexTask, status) {
  */
 function hideMoveToOverlayElements(status) {
   const hideMap = {
-    todo: ["move_to_to_do", "move_to_feedback", "move_to_done"],
-    progress: ["move_to_progress", "move_to_done"],
-    feedback: ["move_to_to_do", "move_to_feedback"],
-    done: ["move_to_to_do", "move_to_progress", "move_to_done"],
+    todo: ["move_to_to_do"],
+    progress: ["move_to_progress"],
+    feedback: ["move_to_feedback"],
+    done: ["move_to_done"],
   };
 
   (hideMap[status] || []).forEach(id =>
     document.getElementById(id)?.classList.add("d-none")
   );
 
-  const imgSelector = { todo: "#move_to_progress img", progress: "#move_to_feedback img" }[status];
+  const imgSelector = { feedback: "#move_to_progress img", done: "#move_to_progress img, #move_to_feedback img" }[status];
   if (imgSelector) {
     const img = document.querySelector(imgSelector);
-    if (img) img.src = "./assets/svg/move_to_arrow_downward.svg";
+    if (img) img.src = "./assets/svg/move_to_arrow_upward.svg";
   }
 }
 

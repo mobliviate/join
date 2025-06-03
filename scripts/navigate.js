@@ -1,3 +1,6 @@
+/**
+ * Highlights the active sidebar and footer link based on the current page.
+ */
 function highlightActiveSidebarLink() {
     const currentPath = window.location.pathname;
     const currentPage = currentPath.substring(currentPath.lastIndexOf("/") + 1);

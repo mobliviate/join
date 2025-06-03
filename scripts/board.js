@@ -236,7 +236,7 @@ function allowDrop(ev) {
  */
 async function moveTo(category) {
   if (!Number.isFinite(currentDraggedElement)) {
-      removeHighlight(category);
+    removeHighlight(category);
     return;
   }
   let taskUrlRef = `https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${currentDraggedElement}/status.json`;
@@ -291,7 +291,7 @@ async function handleSearch(searchTerm) {
 /**
  * function to render filtered tasks on the board.
  * @param {string} filteredTasks - The array of tasks to render.
- * @returns 
+ * @returns  
  */
 function renderFilterdTasks(filteredTasks) {
   if (filteredTasks.length === 0) {

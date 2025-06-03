@@ -472,11 +472,11 @@ function getMoveTaskOverlayTemplate() {
         <span class="move-task-span">To Do</span>
       </button>
       <button id="move_to_progress" class="move-task-btn" onclick="moveTo('progress'); closeMoveTaskOverlay()">
-        <img src="./assets/svg/move_to_arrow_upward.svg" alt="move_to_arrow_upward">
+        <img src="./assets/svg/move_to_arrow_downward.svg" alt="move_to_arrow_downward">
         <span class="move-task-span">In Progress</span>
       </button>
       <button id="move_to_feedback" class="move-task-btn" onclick="moveTo('feedback'); closeMoveTaskOverlay()">
-        <img src="./assets/svg/move_to_arrow_upward.svg" alt="move_to_arrow_upward">
+        <img src="./assets/svg/move_to_arrow_downward.svg" alt="move_to_arrow_downward">
         <span class="move-task-span">Feedback</span>
       </button>
       <button id="move_to_done" class="move-task-btn" onclick="moveTo('done'); closeMoveTaskOverlay()">

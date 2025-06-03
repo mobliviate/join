@@ -390,10 +390,7 @@ button {
 
 @media (max-width: 430px) {
   :root {
-    /* --logo-anim-start-pos-top: 30%; */
     --logo-anim-start-width: 100px;
-    /* --animation-bg-color: var(--primary-color);
-    --logo-anim-bg-image: url('../assets/png/join_logo_dark.png'); */
   }
 
   .p-top-bottom-160 {
@@ -444,14 +441,6 @@ button {
   }
 
   .btn-back {
-    top: -100px;
-    left: auto;
-    right: 30px;
+    left: 16px;
   }
 }
-
-/* @media (max-width: 350px) {
-  :root {
-    --logo-anim-start-pos-top: 30%;
-  }
-} */
