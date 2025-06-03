@@ -90,20 +90,27 @@ function renderSubtasks(taskRef, indexTask) {
 }
 
 /**
- * Renders initials for assigned contacts of a task.
- * @param {Object} taskRef - The task object.
- * @param {number} indexTask - The index of the task.
+ * Renders up to 5 initials for assigned contacts of a task.
+ * If there are more than 5 contacts, the 5th circle shows the number of additional contacts as "+X".
+ *
+ * @param {Object} taskRef - The task object containing assigned contacts.
+ * @param {number} indexTask - The index of the task used to identify the HTML container.
  */
 function renderInitials(taskRef, indexTask) {
-  if (!taskRef.assignedContacts) {
-    return;
-  }
+  if (!taskRef.assignedContacts) return;
   let initialContactRef = document.getElementById(`initials_${indexTask}`);
   let contactRef = taskRef.assignedContacts;
-  for (let index = 0; index < contactRef.length; index++) {
+  initialContactRef.innerHTML = "";
+  let maxVisible = 5;
+  let total = contactRef.length;
+  for (let index = 0; index < Math.min(maxVisible, total); index++) {
     let initial = contactRef[index].initials;
     let color = getColorBoard(contactRef[index].name);
     initialContactRef.innerHTML += getRenderInitials(initial, color);
+  }
+  if (total > maxVisible) {
+    let remaining = total - maxVisible;
+    initialContactRef.innerHTML += getRenderInitials("+" + remaining, "#ccc");
   }
 }
 
