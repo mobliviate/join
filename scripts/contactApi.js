@@ -6,7 +6,8 @@
  * Base URL for Firebase Realtime Database.
  * @type {string}
  */
-const BASEURL = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app";
+const BASEURL =
+    "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app";
 
 /**
  * Fetches and renders all contacts.
@@ -14,12 +15,14 @@ const BASEURL = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.a
  */
 async function fetchAndRenderContacts() {
     try {
-        const obj = await fetchContactsFromFirebase() || {};
+        const obj = (await fetchContactsFromFirebase()) || {};
         const arr = parseContactsObjectToArray(obj);
         sortContactsByName(arr);
         window.currentContacts = arr;
         renderContactsList(arr);
-    } catch (e) { console.error("Failed to load contacts:", e); }
+    } catch (e) {
+        console.error("Failed to load contacts:", e);
+    }
 }
 
 /**
@@ -36,7 +39,7 @@ async function fetchContactsFromFirebase() {
  * @returns {Array}
  */
 function parseContactsObjectToArray(data) {
-    return Object.keys(data).map(id => ({
+    return Object.keys(data).map((id) => ({
         id,
         name: data[id].name,
         email: data[id].email,
@@ -52,7 +55,9 @@ function parseContactsObjectToArray(data) {
  */
 async function saveNewContactToFirebase(data) {
     const res = await fetch(`${BASEURL}/contacts.json`, {
-        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data)
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
     });
     return (await res.json()).name;
 }
@@ -65,8 +70,10 @@ async function saveNewContactToFirebase(data) {
 async function handleCreateContact(e) {
     e.preventDefault();
     await saveNewContactToFirebase(collectNewContactData());
-    hideAddContactOverlay(); hideAddContactOverlayMobile();
-    fetchAndRenderContacts(); showToast("Contact successfully created");
+    hideAddContactOverlay();
+    hideAddContactOverlayMobile();
+    fetchAndRenderContacts();
+    showToast("Contact successfully created");
 }
 
 /**
@@ -77,9 +84,10 @@ async function handleCreateContact(e) {
  */
 async function handleEditContact(e, id) {
     e.preventDefault();
-    await updateContactInFirebase(id, getEditContactFormValues());
+    const values = getEditContactFormValues();
+    await updateContactInFirebase(id, values);
     hideEditContactOverlay();
-    updateContactInMemory(id, getEditContactFormValues());
+    updateContactInMemory(id, values);
     window.lastSelectedContactId = id;
     sortContactsByName(window.currentContacts);
     renderContactsList(window.currentContacts);
@@ -105,7 +113,7 @@ function getEditContactFormValues() {
  * @param {Object} upd
  */
 function updateContactInMemory(id, upd) {
-    const c = window.currentContacts.find(c => c.id === id);
+    const c = window.currentContacts.find((c) => c.id === id);
     if (c) Object.assign(c, upd, { initials: getInitials(upd.name) });
 }
 
@@ -131,8 +139,12 @@ async function handleEditContactMobile(e, id) {
 function getEditContactFormValuesMobile() {
     return {
         name: document.getElementById("edit-contact-name-mobile").value.trim(),
-        email: document.getElementById("edit-contact-email-mobile").value.trim(),
-        phone: document.getElementById("edit-contact-phone-mobile").value.trim(),
+        email: document
+            .getElementById("edit-contact-email-mobile")
+            .value.trim(),
+        phone: document
+            .getElementById("edit-contact-phone-mobile")
+            .value.trim(),
     };
 }
 
@@ -153,7 +165,9 @@ function showMobileContactDetailIfAvailable(id) {
  */
 async function updateContactInFirebase(id, upd) {
     await fetch(`${BASEURL}/contacts/${id}.json`, {
-        method: "PATCH", headers: { "Content-Type": "application/json" }, body: JSON.stringify(upd)
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(upd),
     });
 }
 
@@ -226,9 +240,10 @@ async function fetchAllTasks() {
  * @returns {Promise<void>}
  */
 async function removeContactFromTask(taskId, assigned, contactId) {
-    const filtered = assigned.filter(c => c.id !== contactId);
+    const filtered = assigned.filter((c) => c.id !== contactId);
     await fetch(`${BASEURL}/tasks/${taskId}.json`, {
-        method: "PATCH", headers: { "Content-Type": "application/json" },
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ assignedContacts: filtered }),
     });
 }
@@ -244,8 +259,15 @@ async function removeContactFromAllTasks(contactId) {
         if (!tasks) return;
         for (let taskId in tasks) {
             const t = tasks[taskId];
-            if (t.assignedContacts && t.assignedContacts.some(c => c.id === contactId)) {
-                await removeContactFromTask(taskId, t.assignedContacts, contactId);
+            if (
+                t.assignedContacts &&
+                t.assignedContacts.some((c) => c.id === contactId)
+            ) {
+                await removeContactFromTask(
+                    taskId,
+                    t.assignedContacts,
+                    contactId
+                );
             }
         }
     } catch (e) {
