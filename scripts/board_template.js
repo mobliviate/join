@@ -1,3 +1,11 @@
+/**
+ * Generates the HTML structure for the board view including:
+ * - Search and Add Task sections (both desktop and mobile)
+ * - Task columns: To do, In Progress, Await feedback, Done
+ * - Overlay for adding a task
+ *
+ * @returns {string} HTML string representing the board UI
+ */
 function getBoardTemplate() {
   return `
     <div class="main-board">
@@ -149,6 +157,10 @@ function getBoardTemplate() {
   `;
 }
 
+/**
+ * Generates the HTML template for the close button in the "Add Task" overlay.
+ * @returns {string} HTML string for the close button.
+ */
 function getAddTaskcloseButtonTemplate() {
   return `
     <button class="close-button-open-add-task-board" onclick="closeOverlayBoard('add_task_board', 'open_overlay_board')">
@@ -164,6 +176,13 @@ function getAddTaskcloseButtonTemplate() {
   `;
 }
 
+/**
+ * Renders a task element for the board.
+ * @param {Object} task - Task object containing title, description, category, etc.
+ * @param {number} indexTask - Index of the task in the task list.
+ * @param {string} background - CSS variable name or color string for the category background.
+ * @returns {string} HTML string of the rendered task.
+ */
 function getRenderTask(task, indexTask, background,) {
   return `
     <div class="task-main" draggable="true" ondragstart="startDragging(${indexTask})" onclick="openTaskBoard('${indexTask}','${background}')">
@@ -194,12 +213,25 @@ function getRenderTask(task, indexTask, background,) {
   `;
 }
 
+/**
+ * Renders the initials of a user with a background color.
+ * @param {string} initial - The user's initials (e.g., "AB").
+ * @param {string} color - Background color for the initials.
+ * @returns {string} HTML string of the initials badge.
+ */
 function getRenderInitials(initial, color) {
   return `
     <div class="initials-single-board" style="background-color:${color}"><h3>${initial}</h3></div>
   `;
 }
 
+/**
+ * Renders a progress bar for subtasks.
+ * @param {number} widthProgress - Width of the blue progress bar in pixels or percentage.
+ * @param {number} subTasks - Total number of subtasks.
+ * @param {number} subtaskDone - Number of completed subtasks.
+ * @returns {string} HTML string of the progress bar element.
+ */
 function getRenderProgressbar(widthProgress, subTasks, subtaskDone) {
   return `
     <div class="subtasks-board" title="${subtaskDone} of ${subTasks} subtasks completed">
@@ -212,12 +244,30 @@ function getRenderProgressbar(widthProgress, subTasks, subtaskDone) {
   `;
 }
 
+/**
+ * Renders a message for an empty task column.
+ * @param {string} emptyColumn - Description of which column is empty (e.g., "in progress").
+ * @returns {string} HTML string for the empty message.
+ */
 function getRenderEmpty(emptyColumn) {
   return `
     <div class="empty-task"><h3>No tasks ${emptyColumn}</h3></div>
   `;
 }
 
+/**
+ * Generates the HTML markup for the open task board overlay.
+ *
+ * @param {Object} task - The task object containing all relevant task data.
+ * @param {string} task.category - The category of the task.
+ * @param {string} task.title - The title of the task.
+ * @param {string} task.description - The description of the task.
+ * @param {string} task.dueDate - The due date of the task (in YYYY-MM-DD format).
+ * @param {string} task.priority - The priority level of the task ('urgent', 'medium', 'low').
+ * @param {string} color - The CSS variable name representing the background color for the category label (e.g., '--color-category').
+ * @param {number|string} indexTask - The index or ID of the task, used for identifying it when deleting.
+ * @returns {string} HTML string representing the open task board.
+ */
 function getOpenTaskBoard(task, color, indexTask) {
   return `
     <div class="open-task-header">
@@ -281,6 +331,13 @@ function getOpenTaskBoard(task, color, indexTask) {
   `;
 }
 
+/**
+ * Generates an HTML element for an assigned contact with initials, name, and background color.
+ * @param {string} initial - The person's initials.
+ * @param {string} name - The person's name.
+ * @param {string} color - The background color for the initials.
+ * @returns {string} The HTML string of the element.
+ */
 function getRenderAssignedContacts(initial, name, color) {
   return `
     <div class="assigned-contact-open-task">
@@ -290,6 +347,14 @@ function getRenderAssignedContacts(initial, name, color) {
   `;
 }
 
+/**
+ * Generates a button for a subtask that is not yet completed.
+ * @param {Object} subtask - The subtask object.
+ * @param {string} subtask.text - The text of the subtask.
+ * @param {number|string} indexTask - The index of the main task.
+ * @param {number|string} subtaskIndex - The index of the subtask.
+ * @returns {string} The HTML string of the button.
+ */
 function getrenderSubtasksFalseBoard(subtask, indexTask, subtaskIndex) {
   return `
     <button onclick="setSubtaskTrue('${indexTask}','${subtaskIndex}')" class="subtask-button-board">
@@ -303,6 +368,14 @@ function getrenderSubtasksFalseBoard(subtask, indexTask, subtaskIndex) {
   `;
 }
 
+/**
+ * Generates a button for a completed subtask.
+ * @param {Object} subtask - The subtask object.
+ * @param {string} subtask.text - The text of the subtask.
+ * @param {number|string} indexTask - The index of the main task.
+ * @param {number|string} subtaskIndex - The index of the subtask.
+ * @returns {string} The HTML string of the button.
+ */
 function getrenderSubtasksTrueBoard(subtask, indexTask, subtaskIndex) {
   return `
     <button onclick="setSubtaskFalse('${indexTask}','${subtaskIndex}')" class="subtask-button-board">
@@ -317,6 +390,14 @@ function getrenderSubtasksTrueBoard(subtask, indexTask, subtaskIndex) {
   `;
 }
 
+/**
+ * Generates the HTML string for the edit board of a task.
+ *
+ * @param {Object} task - The task object to be edited.
+ * @param {string|number} indexTask - The index of the task in the task array.
+ * @param {string} color - The color used, for example, for buttons.
+ * @returns {string} The HTML string for the edit board.
+ */
 function getRenderEditBoard(task, indexTask, color) {
   return `
     <div class="edit-task-header">
@@ -450,6 +531,12 @@ function getRenderEditBoard(task, indexTask, color) {
   `;
 }
 
+/**
+ * Generates the HTML string for a single subtask display in the edit board.
+ *
+ * @param {string} subtask - The text of the subtask.
+ * @returns {string} The HTML string for the subtask element.
+ */
 function getRenderEditSubtasks(subtask) {
   return `
     <div class="subtask-item">
@@ -462,7 +549,11 @@ function getRenderEditSubtasks(subtask) {
   `;
 }
 
-// added from Alex
+/**
+ * Generates the HTML string for the overlay used to move a task between statuses.
+ *
+ * @returns {string} The HTML string for the Move Task overlay.
+ */
 function getMoveTaskOverlayTemplate() {
   return `
     <div id="move_task_overlay" class="move-task-overlay" onclick="overlayProtection(event)">
