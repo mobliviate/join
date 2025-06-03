@@ -41,8 +41,6 @@ body {
 .form-column--right {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    scrollbar-width: none;
 
 }
 
@@ -410,6 +408,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    max-height: 105px;
+    overflow-y: auto;
 }
 
 .subtask-item {
@@ -467,6 +467,7 @@ body {
 .required-text {
     display: flex;
     align-items: flex-end;
+    padding-top: 10px;
 }
 
 .text {

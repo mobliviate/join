@@ -33,7 +33,7 @@ function getAddTaskTemplate(status) {
                         <label for="due-date">Due Date<span class="required">*</span></label>
                         <div class="input-container">
                             <input type="date" id="due-date" class="input-default due-date" name="due-date" required
-                                oninput="validateInputDate(); checkFormValidity()" onblur="validateInputDate()" />
+                                oninput="validateInputDate(); checkFormValidity()" onblur="validateInputDate()" min="" />
                             <span id="error-msg-duedate" class="error-msg d-none">This field is required</span>
                         </div>
                     </div>

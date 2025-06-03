@@ -11,6 +11,8 @@ function initAddTask() {
     loadHeader();
     highlightActiveSidebarLink();
     document.getElementById("main").innerHTML = getAddTaskTemplate("todo");
+    setMinDate();
+    limitYearInputLength();
 }
 
 
