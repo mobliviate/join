@@ -50,8 +50,9 @@ function updateAssignedContacts() {
     const assignedContactsContainer = document.getElementById('assigned-contacts');
     const selectedContacts = document.querySelectorAll('.multiselect-option-contact.selected');
     let assignedHTML = '';
+    const maxVisible = 5;
     selectedContacts.forEach((contact, index) => {
-        if (index < 5) {
+        if (index < maxVisible) {
             const initials = contact.querySelector('.circle').innerText.trim();
             const bgColor = contact.querySelector('.circle').style.backgroundColor;
             assignedHTML += `
@@ -61,6 +62,11 @@ function updateAssignedContacts() {
             `;
         }
     });
+
+    const extraCount = selectedContacts.length - maxVisible;
+    if (extraCount > 0) {
+        assignedHTML += `<div class="circle" style="background-color:rgb(187 0 83); color: white;">+${extraCount}</div>`;
+    }
     assignedContactsContainer.innerHTML = assignedHTML;
 }
 
