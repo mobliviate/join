@@ -68,7 +68,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100vw;
-    height: 82svh;
+    height: 75vh;
     background: var(--main-bg);
     z-index: 1000;
     display: flex;
