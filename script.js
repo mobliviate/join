@@ -118,6 +118,5 @@ function getDayTime() {
 
     if (hour >= 5 && hour < 11) return "Good Morning";
     if (hour >= 11 && hour < 17) return "Good Afternoon";
-    if (hour >= 17 && hour < 22) return "Good Evening";
-    return "Good Night";
+    return "Good Evening";
 }
