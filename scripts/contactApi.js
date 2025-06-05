@@ -7,7 +7,7 @@
  * @type {string}
  */
 const BASEURL =
-    "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app";
+    "https://join-1d2c2-default-rtdb.europe-west1.firebasedatabase.app";
 
 /**
  * Fetches and renders all contacts.

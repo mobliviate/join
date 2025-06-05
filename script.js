@@ -1,5 +1,5 @@
 const USERS_BASE_URL =
-    "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/users.json";
+    "https://join-1d2c2-default-rtdb.europe-west1.firebasedatabase.app/users.json";
 let loginState = localStorage.getItem("isLoggedIn") === "true";
 let userIndexStr = localStorage.getItem("userIndex");
 let userIndex = Number(userIndexStr);

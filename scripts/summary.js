@@ -44,7 +44,7 @@ const urgentDates = [];
  * 
  * @constant {string}
  */
-const DATABASEURL = 'https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/';
+const DATABASEURL = 'https://join-1d2c2-default-rtdb.europe-west1.firebasedatabase.app/';
 
 
 /**

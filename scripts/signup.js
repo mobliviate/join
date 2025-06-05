@@ -1,7 +1,7 @@
 'use strict';
 
-const BASE_URL = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/";
-// const USERS_BASE_URL = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/users.json";
+const BASE_URL = "https://join-1d2c2-default-rtdb.europe-west1.firebasedatabase.app/";
+// const USERS_BASE_URL = "https://join-1d2c2-default-rtdb.europe-west1.firebasedatabase.app/users.json";
 let usersEmails = [];
 const nameInputRef = document.getElementById("signup_name");
 const emailInputRef = document.getElementById("signup_email");

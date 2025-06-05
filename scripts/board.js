@@ -1,4 +1,4 @@
-const tasksUrl = "https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks.json";
+const tasksUrl = "https://join-1d2c2-default-rtdb.europe-west1.firebasedatabase.app/tasks.json";
 let currentDraggedElement;
 let currentTask;
 
@@ -239,7 +239,7 @@ async function moveTo(category) {
     removeHighlight(category);
     return;
   }
-  let taskUrlRef = `https://join-bc74a-default-rtdb.europe-west1.firebasedatabase.app/tasks/${currentDraggedElement}/status.json`;
+  let taskUrlRef = `https://join-1d2c2-default-rtdb.europe-west1.firebasedatabase.app/tasks/${currentDraggedElement}/status.json`;
   let updatedTask = await fetch(taskUrlRef, {
     method: "PUT",
     headers: {
