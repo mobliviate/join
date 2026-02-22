@@ -1,0 +1,6 @@
+services:
+  join:
+    build: .
+    ports:
+      - "3006:80"
+    restart: unless-stopped
